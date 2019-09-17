@@ -1,0 +1,1 @@
+Crea un numero aleatorio, lee mediante promt() un numero del usuario y escribe en el navegador si es mayor o menor.

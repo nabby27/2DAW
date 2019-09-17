@@ -1,0 +1,1 @@
+Crea un número aleatorio entre 0 y 100 y preséntalo por pantalla del navegador

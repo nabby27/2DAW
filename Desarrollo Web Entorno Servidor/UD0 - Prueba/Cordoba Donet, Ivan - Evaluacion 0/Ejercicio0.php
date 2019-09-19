@@ -7,12 +7,11 @@
 
         function main() {
             
-            $nums = [];
+            $nums = [5, 7, 3];
 
-            for ($i=0; $i < 3; $i++) { 
+            for ($i=0; $i < count($nums); $i++) { 
                 echo "<br>";
-                echo "num" . ($i + 1) . ": " . ($i + 3);
-                array_push($nums, $i + 3);
+                echo "num" . ($i + 1) . ": " . $nums[$i];
             }
         
             $min = $this->getMinNumber($nums);

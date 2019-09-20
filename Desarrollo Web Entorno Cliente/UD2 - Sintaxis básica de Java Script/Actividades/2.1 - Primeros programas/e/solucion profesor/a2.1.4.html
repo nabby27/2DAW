@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <title>Actividad Billetes</title>
+        <script>
+              var d = prompt("Cuanto dinero quieres cambiar?");
+              var dinero = parseInt(d);
+              var b_500 = Math.trunc(dinero / 500);
+              dinero = dinero-(b_500*500);
+              var b_200 = Math.trunc(dinero / 200);
+              dinero = dinero-(b_200*200);
+              var b_100 = Math.trunc(dinero / 100);
+              dinero = dinero-(b_100*100);
+              var b_50 = Math.trunc(dinero / 50);
+              dinero = dinero-(b_50*50);
+              var b_20 = Math.trunc(dinero / 20);
+              dinero = dinero-(b_20*20);
+              var b_10 = Math.trunc(dinero / 10);
+              dinero = dinero-(b_10*10);
+              var b_5 = Math.trunc(dinero / 5);
+              console.log("b_500 : "+b_500+b_200+b_100);
+              
+              var billetes = "<p>";
+              for(i=0; i< b_500; i++){
+                billetes+="<img src='img/EUR_500.jpg' style='max-width: 20%;''>";
+              }
+              for(i=0; i< b_200; i++){
+                billetes+="<img src='img/EUR_200.jpg' style='max-width: 20%;''>";
+              }
+              for(i=0; i< b_100; i++){
+                billetes+="<img src='img/EUR_100.jpg' style='max-width: 20%;''>";
+              }
+              for(i=0; i< b_50; i++){
+                billetes+="<img src='img/EUR_50.jpg' style='max-width: 20%;''>";
+              }
+              for(i=0; i< b_20; i++){
+                billetes+="<img src='img/EUR_20.jpg' style='max-width: 20%;''>";
+              }
+              for(i=0; i< b_10; i++){
+                billetes+="<img src='img/EUR_10.jpg' style='max-width: 20%;''>";
+              }
+              for(i=0; i< b_5; i++){
+                billetes+="<img src='img/EUR_5.jpg' style='max-width: 20%;''>";
+              }
+              billetes += "</p>";
+              document.write(billetes);
+          
+
+            </script>
+    </head>
+    <body>       
+    </body>
+</html>

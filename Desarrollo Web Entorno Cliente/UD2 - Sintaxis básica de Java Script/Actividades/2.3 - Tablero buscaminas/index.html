@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Buscaminas</title>
+    <script type="text/javascript" src="controller.js"></script>
+</head>
+
+<body onload="initBoard()">
+    <table>
+        <tr>
+            <td><input id="cell_00" type="number"></td>
+            <td><input id="cell_01" type="number"></td>
+            <td><input id="cell_02" type="number"></td>
+            <td><input id="cell_03" type="number"></td>
+        </tr>
+        <tr>
+            <td><input id="cell_10" type="number"></td>
+            <td><input id="cell_11" type="number"></td>
+            <td><input id="cell_12" type="number"></td>
+            <td><input id="cell_13" type="number"></td>
+        </tr>
+        <tr>
+            <td><input id="cell_20" type="number"></td>
+            <td><input id="cell_21" type="number"></td>
+            <td><input id="cell_22" type="number"></td>
+            <td><input id="cell_23" type="number"></td>
+        </tr>
+        <tr>
+            <td><input id="cell_30" type="number"></td>
+            <td><input id="cell_31" type="number"></td>
+            <td><input id="cell_32" type="number"></td>
+            <td><input id="cell_33" type="number"></td>
+        </tr>
+    </table>
+
+    <div class="buttons">
+        <button id="calculateButton" onclick="calculate()">Calcular tablero</button>
+        <button id="reloadButton" onclick="initBoard()">Borrar tablero</button>
+    </div>
+</body>
+
+</html>

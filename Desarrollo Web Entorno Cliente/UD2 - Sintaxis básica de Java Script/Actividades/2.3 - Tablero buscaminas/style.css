@@ -1,0 +1,27 @@
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse:collapse;
+}
+
+td {
+    margin: 0;
+    width: 5vw;
+    height: 5vw;
+}
+
+input {
+    margin: 0;
+    width: 5vw;
+    height: 5vw;
+    font-size: 2vw;
+}
+
+.buttons {
+    margin-top: 1em;
+}

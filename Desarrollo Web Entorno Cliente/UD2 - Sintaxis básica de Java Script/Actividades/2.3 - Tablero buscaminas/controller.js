@@ -11,6 +11,11 @@ const colorBooms = {
 };
 
 function initBoard() {
+    setAllValues0WithDefaultColor();
+    enabledCellsAndButtons();
+}
+
+function setAllValues0WithDefaultColor() {
     for (let row = 0; row < numOfRows; row++) {
         for (let columns = 0; columns < numOfColumns; columns++) {
             if (!board[row]) {
@@ -21,8 +26,6 @@ function initBoard() {
             document.getElementById('cell_' + row + columns).style.color = defaultColor;
         }
     }
-
-    enabledCellsAndButtons();
 }
 
 function enabledCellsAndButtons() {
@@ -37,7 +40,7 @@ function enabledCellsAndButtons() {
 
 function calculate() {
     disabledCellsAndButtons();
-    readBombs();
+    syncInputBombsToArray();
     calculateProximityOfBooms();
 }
 
@@ -51,7 +54,7 @@ function disabledCellsAndButtons() {
     document.getElementById('calculateButton').disabled = true;
 }
 
-function readBombs() {
+function syncInputBombsToArray() {
     for (let row = 0; row < numOfRows; row++) {
         for (let column = 0; column < numOfColumns; column++) {
             board[row][column] = document.getElementById('cell_' + row + column).value;
@@ -65,14 +68,11 @@ function calculateProximityOfBooms() {
             if (!cellIsBoom(row, column)) {
                 numOfBooms = getNumOfBoomsAroundCell(row, column);
                 document.getElementById('cell_' + row + column).value = numOfBooms;
+                board[row][column] = numOfBooms;
                 paintColorNumber(row, column, numOfBooms);
             }
         }
     }
-}
-
-function cellIsBoom(row, column) {
-    return -1 == document.getElementById('cell_' + row + column);
 }
 
 function getNumOfBoomsAroundCell(cellRow, cellColumn) {
@@ -88,7 +88,7 @@ function getNumOfBoomsAroundCell(cellRow, cellColumn) {
             }
         }
     }
-    debugger
+
     return numOfBooms;
 }
 
@@ -105,5 +105,5 @@ function existCell(row, column) {
 }
 
 function cellIsBoom(row, column) {
-    return board[row][column] == -1;
+    return -1 == board[row][column];
 }

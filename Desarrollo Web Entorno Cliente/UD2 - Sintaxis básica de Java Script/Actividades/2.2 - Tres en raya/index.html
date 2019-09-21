@@ -8,25 +8,27 @@
     <title>Tres en raya</title>
     <script type="text/javascript" src="controller.js"></script>
 </head>
-<body>
-    <div class="row">
-        <div class="cell"><input id="cell_00" type="text"></div>
-        <div class="cell"><input id="cell_01" type="text"></div>
-        <div class="cell"><input id="cell_02" type="text"></div>
-    </div>
-    <div class="row">
-        <div class="cell"><input id="cell_10" type="text"></div>
-        <div class="cell"><input id="cell_11" type="text"></div>
-        <div class="cell"><input id="cell_12" type="text"></div>
-    </div>
-    <div class="row">
-        <div class="cell"><input id="cell_20" type="text"></div>
-        <div class="cell"><input id="cell_21" type="text"></div>
-        <div class="cell"><input id="cell_22" type="text"></div>
-    </div>
-
-    <div class="changeRolButton">
-        <button id="button" type="submit" onclick=changeRol()>Cambiar turno</button>
+<body onload="initBoard()">
+    <div class="board">
+        <div class="row">
+            <div class="cell"><input id="cell_00" type="text"></div>
+            <div class="cell"><input id="cell_01" type="text"></div>
+            <div class="cell"><input id="cell_02" type="text"></div>
+        </div>
+        <div class="row">
+            <div class="cell"><input id="cell_10" type="text"></div>
+            <div class="cell"><input id="cell_11" type="text"></div>
+            <div class="cell"><input id="cell_12" type="text"></div>
+        </div>
+        <div class="row">
+            <div class="cell"><input id="cell_20" type="text"></div>
+            <div class="cell"><input id="cell_21" type="text"></div>
+            <div class="cell"><input id="cell_22" type="text"></div>
+        </div>
+    
+        <div class="changeRolButton">
+            <button id="button" type="submit" onclick=changeTurn()>Cambiar turno</button>
+        </div>
     </div>
 </body>
 </html>

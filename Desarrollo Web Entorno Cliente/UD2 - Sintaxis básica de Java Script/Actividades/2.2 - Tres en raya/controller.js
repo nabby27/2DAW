@@ -1,84 +1,109 @@
 board = [];
 
+const NUM_OF_ROWS = 3;
+const NUM_OF_COLUMNS = 3;
+const DEFAULT_BACKGROUND_COLOR = 'white';
 const CIRCLE = 'O';
 const CIRCLE_COLOR = 'rgba(200, 100, 100, 0.5)';
 const CROSS = 'X';
 const VOID = '_';
+const ROW_OF_INIT_CIRCLE = 1;
+const COLUMN_OF_INIT_CIRCLE = 1;
+const CELL_PREFIX = 'cell_';
 
-paintInitBoard();
-
-function paintInitBoard() {
-    for (let i = 0; i < 3; i++) {
-        if (!board[i]) {
-            board[i] = [];
+function initBoard() {
+    for (let row = 0; row < NUM_OF_ROWS; row++) {
+        if (!board[row]) {
+            board[row] = [];
         }
-        for (let j = 0; j < 3; j++) {
-            document.getElementById("cell_" + i + j).value = VOID;
-            board[i][j] = VOID;
+        for (let column = 0; column < NUM_OF_COLUMNS; column++) {
+            document.getElementById(CELL_PREFIX + row + column).disabled = false;
+            document.getElementById(CELL_PREFIX + row + column).style.backgroundColor = DEFAULT_BACKGROUND_COLOR;
+            document.getElementById(CELL_PREFIX + row + column).value = VOID;
+            board[row][column] = VOID;
         }
     }
     
-    document.getElementById("cell_11").style.backgroundColor = CIRCLE_COLOR;
-    board[1][1] = document.getElementById("cell_11").value  = CIRCLE;
-    document.getElementById("cell_11").disabled = true;
+    setInitCircleOnCenter();
 }
 
-function changeRol() {
-    document.getElementById("button").disabled = true;
+function setInitCircleOnCenter() {
+    document.getElementById(CELL_PREFIX + ROW_OF_INIT_CIRCLE + COLUMN_OF_INIT_CIRCLE).style.backgroundColor = CIRCLE_COLOR;
+    board[ROW_OF_INIT_CIRCLE][COLUMN_OF_INIT_CIRCLE] = document.getElementById(CELL_PREFIX + ROW_OF_INIT_CIRCLE + COLUMN_OF_INIT_CIRCLE).value  = CIRCLE;
+    document.getElementById(CELL_PREFIX + ROW_OF_INIT_CIRCLE + COLUMN_OF_INIT_CIRCLE).disabled = true;
+}
+
+function changeTurn() {
+    document.getElementById('button').disabled = true;
     readHumanInput();
-    checkWinner();
-    selectRandomCell();    
-    checkWinner();
-    document.getElementById("button").disabled = false;
+    endGame = checkWinner();
+    if (!endGame) {
+        selectRandomCell();
+        checkWinner();
+    }
+    document.getElementById('button').disabled = false;
 }
 
 function readHumanInput() {
-    for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < 3; j++) {
-            rewriteCharacterToCross(i, j);
+    for (let row = 0; row < NUM_OF_ROWS; row++) {
+        for (let column = 0; column < NUM_OF_COLUMNS; column++) {
+            let value = getValueFromCell(row, column);
+            board[row][column] = value;
+            document.getElementById(CELL_PREFIX + row + column).value = value;
         }
     }
 }
 
-function rewriteCharacterToCross(i, j) {
-    cellValue = document.getElementById("cell_" + i + j).value;
+function getValueFromCell(row, column) {
+    cellValue = document.getElementById(CELL_PREFIX + row + column).value;
+    value = rewriteAnyOtherCharToCross(cellValue);
+    return value;
+}
 
-    if (cellValue == VOID || cellValue == CIRCLE || cellValue == CROSS) {
-        board[i][j] = document.getElementById("cell_" + i + j).value;
-    } else {
-        board[i][j] = CROSS;
-        document.getElementById("cell_" + i + j).value = CROSS;
+function rewriteAnyOtherCharToCross(cellValue) {
+    value = cellValue;
+    if (!(cellValue == VOID || cellValue == CIRCLE || cellValue == CROSS)) {
+        value = CROSS;
     }
+
+    return value;
 }
 
 function checkWinner() {
     success = false;
     endGame = true;
-    for (let i = 0; i < 3 && !success; i++) {
-        for (let j = 0; j < 3 && !success; j++) {
-            if (checkSameItemOnRow(i, j) ||
-                checkSameItemOnColumn(i, j) || 
-                checkSameItemOnDiagonal(i, j) ||
-                checkSameItemOnReverseDiagonal(i, j)) {
+    winner = '';
+    for (let row = 0; row < NUM_OF_ROWS && !success; row++) {
+        for (let column = 0; column < NUM_OF_COLUMNS && !success; column++) {
+            if (check3ItemsToWin(row, column)) {
                     success = true;
-                    winner = board[i][j];
+                    winner = board[row][column];
             }
-            if (board[i][j] == '_') {
+            if (board[row][column] == '_') {
                 endGame = false;
             }
         }
     }
 
-    if (success) {
-        document.getElementById("button").disabled = true;
-        alert("Ha ganado " + winner);
-        location.reload();
-    } else if (endGame) {
-        alert("Empate");
-    }
-
-    return success;
+    showWinnerText(success, winner, endGame);    
     
+    return success || endGame;
+}
+
+function check3ItemsToWin(row, column) {
+    return  checkSameItemOnRow(row, column) || checkSameItemOnColumn(row, column) || 
+        checkSameItemOnDiagonal(row, column) || checkSameItemOnReverseDiagonal(row, column);
+}
+
+function showWinnerText(success, winner, endGame) {
+    if (success) {
+        document.getElementById('button').disabled = true;
+        alert('Ha ganado ' + winner);
+        initBoard();
+    } else if (endGame) {
+        alert('Empate');
+        initBoard();
+    }
 }
 
 function selectRandomCell() {
@@ -90,27 +115,29 @@ function selectRandomCell() {
 
 function getVoidCells() {
     voidCells = [];
-    for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < 3; j++) {
-            if (document.getElementById("cell_" + i + j).value == '_') {
-                voidCells.push([i, j]);
+    for (let row = 0; row < NUM_OF_ROWS; row++) {
+        for (let column = 0; column < NUM_OF_COLUMNS; column++) {
+            if (document.getElementById(CELL_PREFIX + row + column).value == VOID) {
+                voidCells.push([row, column]);
             }
         }
     }
     return voidCells;
 }
 
-function printSelectedCell(selectedCel) {
-    document.getElementById("cell_" + selectedCel[0] + selectedCel[1]).value = CIRCLE;
-    document.getElementById("cell_" + selectedCel[0] + selectedCel[1]).disabled = true;
-    document.getElementById("cell_" + selectedCel[0] + selectedCel[1]).style.backgroundColor = CIRCLE_COLOR;
-    board[selectedCel[0]][selectedCel[1]] = CIRCLE;
+function printSelectedCell(selectedCell) {
+    selectedRow = selectedCell[0];
+    selectedColumn = selectedCell[1];
+    document.getElementById(CELL_PREFIX + selectedRow + selectedColumn).value = CIRCLE;
+    document.getElementById(CELL_PREFIX + selectedRow + selectedColumn).disabled = true;
+    document.getElementById(CELL_PREFIX + selectedRow + selectedColumn).style.backgroundColor = CIRCLE_COLOR;
+    board[selectedRow][selectedColumn] = CIRCLE;
 }
 
 function checkSameItemOnRow(i, j) {
     isSameItemOnRow = false;
     if (j == 0) {
-        isSameItemOnRow =  board[i][j] != VOID && board[i][j] == board[i][j+1] && board[i][j] == board[i][j+2];
+        isSameItemOnRow = board[i][j] != VOID && board[i][j] == board[i][j+1] && board[i][j] == board[i][j+2];
     }
 
     return isSameItemOnRow;

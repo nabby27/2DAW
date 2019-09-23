@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Online Order</title>
+</head>
+
+<body style="display: flex; justify-content:center; text-align: center;">
+    <form action="mailto:pedidos@foofoods.com" method="POST" autocomplete="on" style="width: 80%;">
+        <fieldset style="width: 100%; display: flex; justify-content: space-around;">
+            <legend>D&uuml;r&uuml;ms:</legend>
+            <div style="display: flex; justify-content:space-around; margin-top: 2em;">
+                <div>
+                    <label for="numOfChickenDurums">N&ordm; of chicken d&uuml;r&uuml;ms:</label><br>
+                    <input type="number" name="numOfChickenDurums" id="numOfChickenDurums" value=0 min=0 max=10
+                        autocomplete="off" style="width: 100%;">
+                </div>
+
+                <div>
+                    <label for="numOfBeefDurums">N&ordm; of beef d&uuml;r&uuml;ms:</label><br>
+                    <input type="number" name="numOfBeefDurums" id="numOfBeefDurums" value=0 min=0 max=10
+                        autocomplete="off" style="width: 100%;">
+                </div>
+
+                <div>
+                    <label for="numOfMixedDurums">N&ordm; of mixed d&uuml;r&uuml;ms:</label><br>
+                    <input type="number" name="numOfMixedDurums" id="numOfMixedDurums" value=0 min=0 max=10
+                        autocomplete="off" style="width: 100%;">
+                </div>
+
+                <div>
+                    <label for="numOfVegetalDurums">N&ordm; of vegetal d&uuml;r&uuml;ms:</label><br>
+                    <input type="number" name="numOfVegetalDurums" id="numOfVegetalDurums" value=0 min=0 max=10
+                        autocomplete="off" style="width: 100%;">
+                </div>
+
+            </div>
+            <div style="margin-top: 2em;">
+                <label for="spicyRange">Spicy range:</label><br>
+                <input type="range" name="spicyRange" id="spicyRange" min=0 max=10 style="width: 60%;">
+            </div>
+
+            <div style="margin-top: 2em;">
+                <label for="moreInfo">Additional notes:</label><br>
+                <textarea name="moreInfo" id="moreInfo"
+                    placeholder="Additional info for order.     example: food allergies..." rows="5"
+                    style="width: 60%;"></textarea>
+            </div>
+        </fieldset>
+        <fieldset style="width: 100%; display: flex; justify-content: space-around;">
+            <legend>Contact *</legend>
+            <div style="display: flex; justify-content:space-around; margin-top: 2em;">
+                <div style="width: 100%;">
+                    <label for="name">Name: *</label><br>
+                    <input type="text" name="name" id="name" required style="width: 80%;">
+                </div>
+
+                <div style="width: 100%;">
+                    <label for="telephone">Telephone: *</label><br>
+                    <input type="tel" name="telephone" id="telephone" required style="width: 80%;">
+                </div>
+
+                <div style="width: 100%;">
+                    <label for="email">E-mail: *</label><br>
+                    <input type="email" name="email" id="email" required style="width: 80%;">
+                </div>
+            </div>
+        </fieldset>
+        <fieldset style="width: 100%; display: flex; justify-content: space-around;">
+            <legend>Payment *</legend>
+            <!-- cash, card -->
+            <div style="display: flex; justify-content:space-around; margin-top: 2em;">
+                <div style="width: 100%;">
+                    <label for="cash">Cash:</label><br>
+                    <input type="radio" name="cash" id="cash" required style="width: 80%;">
+                </div>
+
+                <div style="width: 100%;">
+                    <label for="telephone">Telephone: *</label><br>
+                    <input type="radio" name="telephone" id="telephone" required style="width: 80%;">
+                </div>
+
+                <div style="width: 100%;">
+                    <label for="email">E-mail: *</label><br>
+                    <input type="email" name="email" id="email" required style="width: 80%;">
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</body>
+
+</html>

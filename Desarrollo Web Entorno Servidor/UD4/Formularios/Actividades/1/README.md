@@ -1,0 +1,2 @@
+Rellenar un formulario con los datos de la empresa: `Nombre`, `NIF`, `Domicilio`, `CP`, `Población`.
+Lo mostramos en una tabla de dos columnas en la primera aparecerá el nombre del dato y al lado el valor del dato

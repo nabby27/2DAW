@@ -1,2 +1,0 @@
-Tenemos un array asociativo en el que se almacena datos de la empresa: `Nombre`, `NIF`, `Domicilio`, `CP`, `Población`.
-Lo asignamos de forma manual y lo mostramos en una tabla de dos columnas en la primera aparecera el nombre del dato y al lado el valor del dato.

@@ -1,13 +1,11 @@
 let validNumbers = [];
 
 function start() {
-    inputNumber = getNumber();
+    let inputNumber = getNumber();
     calculateNumbers(inputNumber);
-    wantToSee = confirm('There are ' + validNumbers.length + ' numbers, Do you want to see it');
+    let wantToSee = confirm('There are ' + validNumbers.length + ' numbers, Do you want to see it');
     if (wantToSee) {
-        validNumbers.forEach(number => {
-            document.write(number + '<br>');
-        });
+        printValidNumbers();
     }
 }
 
@@ -24,24 +22,31 @@ function calculateNumbers(inputNumber) {
     }
 }
 
+function printValidNumbers() {
+    document.getElementById('validNumbers').innerHTML = '';
+    validNumbers.forEach(number => {
+        document.getElementById('validNumbers').innerHTML += number + '<br>';
+    });
+}
+
 function isPalindrome(number) {
-    palidrome = false;
+    let isPalidrome = false;
     number = number.toString();
-    numberReverse = number.split('').reverse().join('');
+    let numberReverse = number.split('').reverse().join('');
     if (number == numberReverse) {
-        palidrome = true;
+        isPalidrome = true;
     }
     
-    return palidrome;
+    return isPalidrome;
 }
 
 function isPrime(number) {
-    prime = true;
+    let isPrime = true;
     for (let divisor = 2; divisor < number; divisor++) {
         if (number % divisor == 0) {
-            prime = false;
+            isPrime = false;
         }
     }
     
-    return prime;
+    return isPrime;
 }

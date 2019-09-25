@@ -13,7 +13,7 @@ function start() {
 }
 
 function getDniNumber() {
-    dni = prompt("Input your DNI or -1:");
+    let dni = prompt("Input your DNI or -1:");
     return parseInt(dni.substring(0, 8));
 }
 

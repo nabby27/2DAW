@@ -35,21 +35,21 @@
             echo 'Datos guardados<br>';
         }
         
+        function isFormsSent() {
+            return isset($_GET['send']);
+        }
+
         function isAnyFieldEmpty() {
             $isAnyFieldEmpty = false;
             foreach ($_GET as $key => $value) {
-                if ($_GET[$key] === '') {
+                if (empty($_GET[$key])) {
                     $isAnyFieldEmpty = true;
                 }
             }
 
             return $isAnyFieldEmpty;
         }
-
-        function isFormsSent() {
-            return isset($_GET['send']);
-        }
-
+        
         function formatTextToEvitCodeInyection($text) {
             return htmlentities(
                 htmlspecialchars(

@@ -1,0 +1,1 @@
+Haz un programa que calcule cuantos números son a la vez primos y palíndromos en un numero que lee de un cuadro de texto.

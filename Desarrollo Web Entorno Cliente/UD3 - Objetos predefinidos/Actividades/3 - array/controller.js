@@ -6,7 +6,7 @@ let dnisValidForChar = [];
 function start() {
     inputChar = getInputChar();
     addValidDNINumbers(inputChar);
-    printValidDNINumbers(200);   
+    printValidDNINumbers(200);
 }
 
 function getInputChar() {
@@ -23,7 +23,8 @@ function addValidDNINumbers() {
 }
 
 function printValidDNINumbers(limit) {
-    for (let i = 0; i < limit; i++) {
-        document.write((i+1) + ' - ' + dnisValidForChar[i] + '<br>');
+    document.write('Exist ' + dnisValidForChar.length + ' DNI <br>');
+    for (let dniIndex = 0; dniIndex < limit; dniIndex++) {
+        document.write((dniIndex+1) + ' - ' + dnisValidForChar[dniIndex] + '<br>');
     }
 }

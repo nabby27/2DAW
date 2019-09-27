@@ -8,7 +8,8 @@
 
 <body style="display: flex; justify-content:center; text-align: center;">
     <form action="mailto:pedidos@foofoods.com" method="POST" autocomplete="on" style="width: 80%;">
-        <fieldset style="width: 100%; display: flex; justify-content: space-around;  margin-top: 2em">
+        <fieldset
+            style="width: 100%; display: flex; flex-direction: column; justify-content: space-around;  margin-top: 2em">
             <legend>D&uuml;r&uuml;ms:</legend>
             <div style="display: flex; justify-content:space-around; margin-top: 2em;">
                 <div>
@@ -34,8 +35,8 @@
                     <input type="number" name="numOfVegetalDurums" id="numOfVegetalDurums" value=0 min=0 max=10
                         autocomplete="off" style="width: 100%;">
                 </div>
-
             </div>
+
             <div style="margin-top: 2em;">
                 <label for="spicyRange">Spicy range:</label><br>
                 <input type="range" name="spicyRange" id="spicyRange" min=0 max=10 style="width: 60%;">
@@ -58,12 +59,14 @@
 
                 <div style="width: 100%;">
                     <label for="telephone">Telephone: *</label><br>
-                    <input placeholder="Input your telephone" type="tel" name="telephone" pattern=".{9,}" title="telephone have 9 numbers" id="telephone" required style="width: 80%;">
+                    <input placeholder="Input your telephone" type="tel" name="telephone" pattern=".{9,}"
+                        title="telephone have 9 numbers" id="telephone" required style="width: 80%;">
                 </div>
 
                 <div style="width: 100%;">
                     <label for="email">E-mail: *</label><br>
-                    <input placeholder="Input your e-mail" type="email" name="email" id="email" required style="width: 80%;">
+                    <input placeholder="Input your e-mail" type="email" name="email" id="email" required
+                        style="width: 80%;">
                 </div>
             </div>
         </fieldset>
@@ -77,12 +80,12 @@
                         <option value="card">Card</option>
                     </select>
                 </div>
-    
+
                 <div style="width: 100%;">
                     <label for="where">Where do you eat? *</label><br>
                     <select name="where" id="where" style="width: 50%;">
                         <option value="here">Here</option>
-                        <option value="toCarryOut">To carry out</option>
+                        <option value="toCarryOut" selected>To carry out</option>
                     </select>
                 </div>
             </div>
@@ -94,7 +97,7 @@
         </div>
 
         <div style="width: 100%; display: flex; justify-content: space-around; margin-top: 2em">
-                <input type="reset" value="Reset" style="width: 20%;">
+            <input type="reset" value="Reset" style="width: 20%;">
             <input type="submit" value="Send" style="width: 20%;">
         </div>
     </form>

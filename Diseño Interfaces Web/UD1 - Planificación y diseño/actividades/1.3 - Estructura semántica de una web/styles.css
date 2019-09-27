@@ -1,0 +1,22 @@
+section {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+section > header {
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+section > article {
+    flex-grow: 1;
+    text-align: center;
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+    bottom: 1em;
+    position: fixed;
+}

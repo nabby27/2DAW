@@ -5,30 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css">
     <title>Suleyman&apos;s D&uuml;r&uuml;m Food Truck</title>
 </head>
 
 <body>
-    <header>
-        <h1>Suleyman&apos;s D&uuml;r&uuml;m Food Truck</h1>
-        <h2>El D&ouml;ner Kebab m&aacute;s enrollado</h2>
+    <header class="header">
+        <h1 class="header__title">Suleyman&apos;s D&uuml;r&uuml;m Food Truck</h1>
+        <h2 class="header__subtitle">El D&ouml;ner Kebab m&aacute;s enrollado</h2>
     </header>
-    <nav>
-        <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="./pedidos.html">Haz un pedido</a></li>
-            <li><a href="./contacto.html">Contacto</a></li>
+    <nav class="menu">
+        <ul class="menu__list">
+            <li class="menu__list-item"><a class="menu__link" href="index.html">Inicio</a></li>
+            <li class="menu__list-item"><a class="menu__link" href="./pedidos.html">Haz un pedido</a></li>
+            <li class="menu__list-item"><a class="menu__link" href="./contacto.html">Contacto</a></li>
         </ul>
     </nav>
 
-    <section>
-        <header>
-            <h3>Especialidades</h3>
+    <section class="content">
+        <header class="content__header">
+            <h3 class="content__title">Contacta con nosotros</h3>
         </header>
-        
+        <address class="contact__info">
+            <div class="contact__item">
+                <b>E-mail:</b> <a href="mailto:pedidos@foofoods.com">pedidos@foofoods.com</a><br>
+            </div>
+            <div class="contact__item">
+                <b>Tel&eacute;fono:</b> 961234567<br>
+            </div>
+            <div class="contact__item">
+                <b>Ubicaci&oacute;n de la furgoneta:</b> Carrer del monestir de poblet<br>
+            </div>
+        </address>
     </section>
 
-    <footer>Iv&aacute;n C&oacute;rdoba Donet &copy; 2019</footer>
+    <footer class="footer">
+        Iv&aacute;n C&oacute;rdoba Donet &copy; 2019
+    </footer>
 </body>
 
 </html>

@@ -5,126 +5,124 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css">
     <title>Suleyman&apos;s D&uuml;r&uuml;m Food Truck</title>
 </head>
 
 <body>
-    <header>
-        <h1>Suleyman&apos;s D&uuml;r&uuml;m Food Truck</h1>
-        <h2>El D&ouml;ner Kebab m&aacute;s enrollado</h2>
+    <header class="header">
+        <h1 class="header__title">Suleyman&apos;s D&uuml;r&uuml;m Food Truck</h1>
+        <h2 class="header__subtitle">El D&ouml;ner Kebab m&aacute;s enrollado</h2>
     </header>
-    <nav>
-        <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="./pedidos.html">Haz un pedido</a></li>
-            <li><a href="./contacto.html">Contacto</a></li>
+    <nav class="menu">
+        <ul class="menu__list">
+            <li class="menu__list-item"><a class="menu__link" href="index.html">Inicio</a></li>
+            <li class="menu__list-item"><a class="menu__link" href="./pedidos.html">Haz un pedido</a></li>
+            <li class="menu__list-item"><a class="menu__link" href="./contacto.html">Contacto</a></li>
         </ul>
     </nav>
 
-    <section>
-        <header>
-            <h3>Realiza tu pedido</h3>
+    <section class="content">
+        <header class="content__header">
+            <h3 class="content__title">Realiza tu pedido</h3>
         </header>
-        <article style="display: flex; justify-content:center; text-align: center;">
-            <form action="mailto:pedidos@foofoods.com" method="POST" autocomplete="on" style="width: 80%;">
-                <fieldset
-                    style="width: 100%; display: flex; flex-direction: column; justify-content: space-around;  margin-top: 2em">
-                    <legend>D&uuml;r&uuml;ms:</legend>
-                    <div style="display: flex; justify-content:space-around; margin-top: 2em;">
-                        <div>
-                            <label for="numOfChickenDurums">N&ordm; of chicken d&uuml;r&uuml;ms:</label><br>
-                            <input type="number" name="numOfChickenDurums" id="numOfChickenDurums" value=0 min=0 max=10
-                                autocomplete="off" style="width: 100%;">
-                        </div>
 
-                        <div>
-                            <label for="numOfBeefDurums">N&ordm; of beef d&uuml;r&uuml;ms:</label><br>
-                            <input type="number" name="numOfBeefDurums" id="numOfBeefDurums" value=0 min=0 max=10
-                                autocomplete="off" style="width: 100%;">
-                        </div>
-
-                        <div>
-                            <label for="numOfMixedDurums">N&ordm; of mixed d&uuml;r&uuml;ms:</label><br>
-                            <input type="number" name="numOfMixedDurums" id="numOfMixedDurums" value=0 min=0 max=10
-                                autocomplete="off" style="width: 100%;">
-                        </div>
-
-                        <div>
-                            <label for="numOfVegetalDurums">N&ordm; of vegetal d&uuml;r&uuml;ms:</label><br>
-                            <input type="number" name="numOfVegetalDurums" id="numOfVegetalDurums" value=0 min=0 max=10
-                                autocomplete="off" style="width: 100%;">
-                        </div>
+        <form class="form" action="mailto:pedidos@foofoods.com" method="POST" autocomplete="on">
+            <fieldset class="form__box">
+                <legend class="box__title">D&uuml;r&uuml;ms:</legend>
+                <div class="box__group-fields">
+                    <div class="field">
+                        <label for="numOfChickenDurums">N&ordm; de d&uuml;r&uuml;ms de pollo:</label><br>
+                        <input type="number" name="numOfChickenDurums" id="numOfChickenDurums" value=0 min=0 max=10
+                            autocomplete="off">
                     </div>
 
-                    <div style="margin-top: 2em;">
-                        <label for="spicyRange">Spicy range:</label><br>
-                        <input type="range" name="spicyRange" id="spicyRange" min=0 max=10 style="width: 60%;">
+                    <div class="field">
+                        <label for="numOfBeefDurums">N&ordm; de d&uuml;r&uuml;ms de ternera:</label><br>
+                        <input type="number" name="numOfBeefDurums" id="numOfBeefDurums" value=0 min=0 max=10
+                            autocomplete="off">
                     </div>
 
-                    <div style="margin-top: 2em;">
-                        <label for="moreInfo">Additional notes:</label><br>
-                        <textarea name="moreInfo" id="moreInfo"
-                            placeholder="Additional info for order.     example: food allergies..." rows="5"
-                            style="width: 60%;"></textarea>
+                    <div class="field">
+                        <label for="numOfMixedDurums">N&ordm; de d&uuml;r&uuml;ms mixtos:</label><br>
+                        <input type="number" name="numOfMixedDurums" id="numOfMixedDurums" value=0 min=0 max=10
+                            autocomplete="off">
                     </div>
-                </fieldset>
-                <fieldset style="width: 100%; display: flex; justify-content: space-around; margin-top: 2em">
-                    <legend>Contact *</legend>
-                    <div style="display: flex; justify-content:space-around; margin-top: 2em;">
-                        <div style="width: 100%;">
-                            <label for="name">Name: *</label><br>
-                            <input placeholder="Input your name" type="text" name="name" id="name" required
-                                style="width: 80%;">
-                        </div>
 
-                        <div style="width: 100%;">
-                            <label for="telephone">Telephone: *</label><br>
-                            <input placeholder="Input your telephone" type="tel" name="telephone" pattern=".{9,}"
-                                title="telephone have 9 numbers" id="telephone" required style="width: 80%;">
-                        </div>
-
-                        <div style="width: 100%;">
-                            <label for="email">E-mail: *</label><br>
-                            <input placeholder="Input your e-mail" type="email" name="email" id="email" required
-                                style="width: 80%;">
-                        </div>
+                    <div class="field">
+                        <label for="numOfVegetalDurums">N&ordm; de d&uuml;r&uuml;ms vegetal:</label><br>
+                        <input type="number" name="numOfVegetalDurums" id="numOfVegetalDurums" value=0 min=0 max=10
+                            autocomplete="off">
                     </div>
-                </fieldset>
-                <fieldset style="width: 100%; display: flex; justify-content: space-around; margin-top: 2em">
-                    <legend>Other info *</legend>
-                    <div style="display: flex; justify-content:space-around; margin-top: 2em;">
-                        <div style="width: 100%;">
-                            <label for="payment">Payment method: *</label><br>
-                            <select name="payment" id="payment" style="width: 50%;">
-                                <option value="cash">Cash</option>
-                                <option value="card">Card</option>
-                            </select>
-                        </div>
-
-                        <div style="width: 100%;">
-                            <label for="where">Where do you eat? *</label><br>
-                            <select name="where" id="where" style="width: 50%;">
-                                <option value="here">Here</option>
-                                <option value="toCarryOut" selected>To carry out</option>
-                            </select>
-                        </div>
-                    </div>
-                </fieldset>
-
-                <div style="width: 100%; margin-top: 2em">
-                    <input id="terms" type="checkbox" required>
-                    <label for="terms">Accept our terms and conditions.</label>
                 </div>
 
-                <div style="width: 100%; display: flex; justify-content: space-around; margin-top: 2em">
-                    <input type="reset" value="Reset" style="width: 20%;">
-                    <input type="submit" value="Send" style="width: 20%;">
+                <div class="field">
+                    <label for="spicyRange">Rango de picante:</label><br>
+                    <input type="range" name="spicyRange" id="spicyRange" min=0 max=10>
                 </div>
-            </form>
-        </article>
+
+                <div class="field">
+                    <label for="moreInfo">Notas adicionales:</label><br>
+                    <textarea name="moreInfo" id="moreInfo"
+                        placeholder="Informaci&oacute;n adicional del pedido.     ejemplo: alergias alimentarias..." rows="5"></textarea>
+                </div>
+            </fieldset>
+            <fieldset class="form__box">
+                <legend class="box__title">Contacto *</legend>
+                <div class="box__group-fields">
+                    <div class="field">
+                        <label for="name">Nombre: *</label><br>
+                        <input placeholder="Introduce tu nombre" type="text" name="name" id="name" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="telephone">Tel&eacute;fone: *</label><br>
+                        <input placeholder="Introduce tu tel&eacute;fono" type="tel" name="telephone" pattern=".{9,}"
+                            title="telephone have 9 numbers" id="telephone" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="email">E-mail: *</label><br>
+                        <input placeholder="Introduce tu e-mail" type="email" name="email" id="email" required>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="form__box">
+                <legend class="box__title">Otra informaci&oacute;n *</legend>
+                <div class="box__group-fields">
+                    <div class="field">
+                        <label for="payment">M&eacute;todos de pago: *</label><br>
+                        <select name="payment" id="payment">
+                            <option value="cash">Efectivo</option>
+                            <option value="card">Tarjeta</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="where">Donde quieres comer? *</label><br>
+                        <select name="where" id="where">
+                            <option value="here">Aqu&iacute;</option>
+                            <option value="toCarryOut" selected>Para llevar</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="form__conditions">
+                <input id="terms" type="checkbox" required>
+                <label for="terms">Aceptar t&eacute;rminos y condiciones.</label>
+            </div>
+
+            <div class="form__buttons">
+                <input class="button" type="reset" value="Borrar">
+                <input class="button" type="submit" value="Enviar">
+            </div>
+        </form>
     </section>
 
-    <footer>Iv&aacute;n C&oacute;rdoba Donet &copy; 2019</footer>
+    <footer class="footer">
+        Iv&aacute;n C&oacute;rdoba Donet &copy; 2019
+    </footer>
 </body>
 
 </html>

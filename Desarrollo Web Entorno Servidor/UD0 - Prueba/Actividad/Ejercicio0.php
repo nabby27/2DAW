@@ -31,8 +31,9 @@
             }
         }
 
-        function getMinNumber($nums) {
-            for ($i=0; $i < count($nums); $i++) { 
+        function getMinNumber(array $nums) {
+            $min = 0;
+            for ($i = 0; $i < count($nums); $i++) { 
                 if (0 == $i || $nums[$i] < $min) {
                     $min = $nums[$i];
                 }
@@ -41,8 +42,9 @@
             return $min;
         }
 
-        function getMaxNumber($nums) {
-            for ($i=0; $i < count($nums); $i++) {
+        function getMaxNumber(array $nums) {
+            $max = 0;
+            for ($i = 0; $i < count($nums); $i++) {
                 if (0 == $i || $nums[$i] > $max) {
                     $max = $nums[$i];
                 }
@@ -51,7 +53,7 @@
             return $max;
         }
 
-        function getAverage ($nums) {
+        function getAverage (array $nums) {
             $sum = 0;
             foreach ($nums as $num) {
                 $sum += $num;
@@ -60,7 +62,7 @@
             return $sum/count($nums);
         }
 
-        function factorial($num) {
+        function factorial(int $num) {
             if ($num > 0) {
                 $result = 1;
         

@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
- 
-    <?php
-    $array = array(
+<?php
+    $info = array(
         'Nombre' => 'Mi empresa',
         'NIF' => '654564987564',
         'Domicilio' => 'Valencia',
@@ -17,14 +7,24 @@
         'Poblacion' => 'Valencia'
     );
 
-    echo "<table>";
-
-    foreach ($array as $key => $value) {
-        echo "<tr><th>$key</th><td>$value</td></tr>";
+    function paintInfo(array $info) {
+        foreach ($info as $key => $value) {
+            echo "<tr><th>$key</th><td>$value</td></tr>";
+        }
     }
+?>
 
-    echo "</table>";
-    ?>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Table</title>
+</head>
+<body>
+    <table>
+        <?php paintInfo($info); ?>
+    </table>
 </body>
 </html>

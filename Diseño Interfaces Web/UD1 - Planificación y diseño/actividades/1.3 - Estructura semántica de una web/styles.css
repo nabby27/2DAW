@@ -185,10 +185,23 @@ input[type=range], textarea {
     width: 1.5em;
 }
 
+.legend__header {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.legend__title {
+  margin: 0;
+  font-size: 1.2em;
+}
+
 .legend__icons {
     margin-top: 5em;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 5em;
 }
 
 .legend__item {

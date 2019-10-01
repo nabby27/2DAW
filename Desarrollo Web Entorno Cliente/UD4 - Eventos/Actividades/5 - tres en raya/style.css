@@ -1,0 +1,14 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.table {
+    width: 500px;
+    height: 500px;
+    padding: 0;
+}
+
+.cell {
+    padding: 0;
+}

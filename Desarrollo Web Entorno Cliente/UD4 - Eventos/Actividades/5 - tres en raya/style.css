@@ -4,11 +4,19 @@ body {
 }
 
 .table {
-    width: 500px;
-    height: 500px;
     padding: 0;
 }
 
 .cell {
+    background-color: #33cc99;
+    text-align: center;
+    width: 150px;
+    height: 150px;
     padding: 0;
+}
+
+.image {
+    margin: 0;
+    padding: 0;
+    width: 90px;
 }

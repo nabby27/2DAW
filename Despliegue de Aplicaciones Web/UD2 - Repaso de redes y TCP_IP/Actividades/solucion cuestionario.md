@@ -33,10 +33,10 @@ máscara por defecto, indicar qué significan las siguientes direcciones
 especiales:
 
 * 0.0.0.0 -> no direccionable, desconocido
-* 192.168.67.0 ->
-* 255.255.255.255 -> direccion virtual para broadcast
-* 192.130.10.255 ->
-* 127.0.0.1 -> direccion virtual del host
+* 192.168.67.0 -> dirección der red
+* 255.255.255.255 -> dirección de broadcast en mi red
+* 192.130.10.255 -> dirección de broadcast
+* 127.0.0.1 -> dirección virtual del host
 
 
 ### 4. Si envió un ping ¿que protocolo entra en funcionamiento?

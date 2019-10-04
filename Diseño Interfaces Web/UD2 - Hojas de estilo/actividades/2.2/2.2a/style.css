@@ -1,0 +1,40 @@
+tr {
+    color: teal;
+    background-color: red;
+}
+
+tr + tr {
+    color: red;
+}
+
+tr + tr + tr {
+    color: blue;
+}
+
+tr + tr + tr + tr {
+    color: orange;
+}
+
+tr + tr + tr + tr + tr {
+    color: purple;
+}
+
+tr + tr + tr + tr + tr + tr {
+    color: olive;
+}
+
+tr + tr + tr + tr + tr + tr + tr {
+    color: fuchsia;
+}
+
+tr + tr + tr + tr + tr + tr + tr + tr {
+    color: green;
+}
+
+td + td {
+    background-color: green;
+}
+
+td + td + td {
+    background-color: blue;
+}

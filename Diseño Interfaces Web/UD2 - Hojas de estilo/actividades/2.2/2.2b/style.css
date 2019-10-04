@@ -1,0 +1,40 @@
+tr {
+    color: teal;
+    background-color: red;
+}
+
+td:nth-child(2) {
+    background-color: green;
+}
+
+td:nth-child(3) {
+    background-color: blue;
+}
+
+tr:nth-child(2) {
+    color: red;
+}
+
+tr:nth-child(3) {
+    color: blue;
+}
+
+tr:nth-child(4) {
+    color: orange;
+}
+
+tr:nth-child(5) {
+    color: purple;
+}
+
+tr:nth-child(6) {
+    color: olive;
+}
+
+tr:nth-child(7) {
+    color: fuchsia;
+}
+
+tr:nth-child(8) {
+    color: green;
+}

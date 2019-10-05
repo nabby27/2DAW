@@ -1,0 +1,76 @@
+version: '3'
+
+services:
+
+  #E2E test service
+  e2e:
+    build: ./e2e
+    tty: true
+    container_name: pfc_e2e_test
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./e2e:/e2e
+    links:
+      - api
+      - front
+    depends_on:
+      - api
+      - front
+
+  #Front service
+  front:
+    build: ./front
+    container_name: pfc_front
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - ${FRONT_PORT}:${FRONT_PORT}
+    expose:
+      - ${FRONT_PORT}
+    volumes:
+      - ./front:/front
+    links:
+      - api
+    depends_on:
+      - api
+
+  #Api service
+  api:
+    build: ./api
+    container_name: pfc_api
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - ${API_PORT}:${API_PORT}
+    expose:
+      - ${API_PORT}
+    volumes:
+      - ./api:/api
+    command: npm run dev
+    links:
+      - db
+    depends_on:
+      - db
+    
+  #Mysql Service
+  db:
+    image: mysql:latest
+    container_name: pfc_db
+    restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password
+    env_file: .env
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    expose:
+      - ${DB_PORT}
+    volumes:
+      - "dbdata:/var/lib/mysql"
+
+volumes:
+  dbdata:

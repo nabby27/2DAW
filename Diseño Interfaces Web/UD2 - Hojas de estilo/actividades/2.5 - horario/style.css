@@ -1,0 +1,96 @@
+body {
+    height: 90vh;
+    font-family: Arial, Helvetica, sans-serif;   
+}
+
+table {
+    text-align: center;
+    border: transparent;
+    width: 100%;
+    height: 100%;
+    font-size: 1vw;
+}
+
+td[class] {
+    background-repeat: no-repeat;
+    background-size: 3vw auto;
+    background-position: right bottom;
+}
+
+td > p:first-child {
+    font-size: 1vw;
+}
+
+td > span {
+    font-size: 1.2vw;
+}
+
+.DIW {
+    background-color: rgb(199, 116, 255);
+    background-image: url('./icons/rgb.svg');
+}
+
+.DAW {
+    background-color: rgb(255, 106, 106);
+    background-image: url('./icons/server.svg');
+}
+
+.DWC {
+    background-color: rgb(117, 117, 255);
+    background-image: url('./icons/js.svg');
+}
+
+.DWS {
+    background-color: rgb(153, 255, 153);
+    background-image: url('./icons/php.svg');
+}
+
+.HRD {
+    background-image: url('./icons/english.svg');
+}
+
+.EIE {
+    background-image: url('./icons/company.svg');
+}
+
+.TUT {
+    background-image: url('./icons/speaking.svg');
+}
+
+.HRD,
+.EIE,
+.TUT,
+td[colspan="5"],
+td[colspan="4"] {
+    background-color: rgb(199, 199, 199);
+}
+
+td > span,
+td > span + p {
+    visibility: hidden;
+}
+
+a:link, a:visited{
+    color: darkblue;
+}
+
+.DIW:hover > span,
+.DIW:hover > span + p,
+.DAW:hover > span,
+.DAW:hover > span + p,
+.DWC:hover > span,
+.DWC:hover > span + p,
+.DWS:hover > span,
+.DWS:hover > span + p,
+.TUT:hover > span,
+.TUT:hover > span + p,
+.HRD:hover > span,
+.HRD:hover > span + p,
+.EIE:hover > span,
+.EIE:hover > span + p {
+    visibility: visible;
+}
+
+td:empty {
+    background-color: gray;
+}

@@ -1,0 +1,1 @@
+Haz un programa que tenga 3 elementos <p> y al hacer clic sobre ellos desaparezcan (se oculten) y al hacer doble clic los elimine. También deberá tener un botón “Reaparecer” que hará que aparezcan todos los elementos desaparecidos (pero no los eliminados).

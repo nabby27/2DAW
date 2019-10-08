@@ -7,15 +7,16 @@ function crear_directorio(string $dir) {
 }
 
 function estado_archivo(string $name, string $dir) {
-    if (!in_array(exif_imagetype($name), [IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG])) {
+    $nameAsArray = explode('.', $name);
+    $extension = array_pop($nameAsArray);
+    if (!in_array(strtolower($extension), ['jpg', 'jpeg', 'png', 'gif'])) {
         return false;
     }
 
-    $image_name = $_FILES['file']['name'];
+    $image_name = $name;
     if (file_exists($dir . '/' . $image_name)) {
         $id = uniqid();
-        $nameAsArray = explode('.', $_FILES['file']['name']);
-        $extension = array_pop($nameAsArray);
+        $nameAsArray = explode('.', $name);
         $name = join('.', $nameAsArray);
         $image_name = $name . '-' . $id . '.' . $extension;
     }
@@ -24,7 +25,7 @@ function estado_archivo(string $name, string $dir) {
 
 if (is_uploaded_file($_FILES['file']['tmp_name'])) {
     crear_directorio($_POST['directorio']);
-    $result = estado_archivo($_FILES['file']['tmp_name'], $_POST['directorio']);
+    $result = estado_archivo($_FILES['file']['name'], $_POST['directorio']);
     if ($result !== false) {
         move_uploaded_file($_FILES['file']['tmp_name'], $result);
     }

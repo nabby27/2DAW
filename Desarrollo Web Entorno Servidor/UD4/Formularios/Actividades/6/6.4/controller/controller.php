@@ -1,10 +1,10 @@
 <?php
 
-include('functions.php');
+require('functions.php');
 
 if (!isset($_POST['sendOptions']) && !isset($_POST['sendFile']))
 {
-    include('../views/opciones.html');
+    require('../views/opciones.html');
 }
 
 if (isset($_POST['sendOptions'])) {
@@ -16,7 +16,7 @@ if (isset($_POST['sendOptions'])) {
         }
     }
 
-    include('../views/formulario.php');
+    require('../views/formulario.php');
 }
 
 if (isset($_POST['sendFile'])) {
@@ -27,9 +27,9 @@ if (isset($_POST['sendFile'])) {
             move_uploaded_file($_FILES['file']['tmp_name'], $result);
         }
         else {
-            include('../views/error.html');
+            require('../views/error.html');
         }
         
-        include('../views/go_home.html');
+        require('../views/go_home.html');
     }
 }

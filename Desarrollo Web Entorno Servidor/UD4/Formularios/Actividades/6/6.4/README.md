@@ -1,0 +1,3 @@
+- Separar todo lo que contiene HTML en vistas e incluirlas donde sea necesario.
+- Unir todas las funciones en un solo archivo a modo de libreria que se incluira en nuestro controlador.
+- Modificar la logica del programa para que solo exista un solo archivo php(controlador) donde se cargará las vista cuando sea necesario y las funciones.

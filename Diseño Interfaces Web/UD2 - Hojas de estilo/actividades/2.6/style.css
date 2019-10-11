@@ -1,0 +1,26 @@
+.box {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 20px 15px;
+    width: 50%;
+    margin: 20px;
+}
+
+.green {
+    border: 1px solid rgb(63, 97, 63);
+    background-color: rgb(179, 226, 179);
+    color: rgb(63, 97, 63);
+}
+
+.red {
+    border: 1px solid rgb(97, 63, 63);
+    background-color: rgb(226, 179, 179);
+    color: rgb(97, 63, 63);
+}
+
+.blue {
+    border: 1px solid rgb(46, 63, 95);
+    background-color: rgb(153, 158, 224);
+    color: rgb(46, 63, 95);
+}

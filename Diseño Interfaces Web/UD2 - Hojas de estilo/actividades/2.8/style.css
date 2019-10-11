@@ -1,0 +1,36 @@
+.box {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px;
+    background-color: #efefef;
+    width: 50%;
+    margin: 20px;
+}
+
+.box--large {
+    
+}
+
+.box--green {
+    border-left: 10px solid rgb(73, 146, 73);
+}
+
+.box--red {
+    border-left: 10px solid rgb(248, 80, 80);
+}
+
+.box--blue {
+    border-left: 10px solid rgb(107, 107, 238);
+}
+
+.box--orange {
+    border-left: 10px solid rgb(224, 159, 38);
+}
+
+.text {
+    display: inline;
+}
+
+.icon {
+    float: right;
+    width: 20px;
+}

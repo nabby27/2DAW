@@ -1,0 +1,47 @@
+.box {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 50%;
+    border-radius: 5px;
+    margin: 20px;
+}
+
+.title {
+    font-weight: bold;
+    padding: 15px 15px;
+    border-radius: 3px 3px 0 0;
+}
+
+.content {
+    margin: 0;
+    padding: 20px 15px;
+}
+
+.box--red {
+    border: 2px solid rgb(247, 177, 177);
+}
+
+.box--green {
+    border: 2px solid rgb(136, 197, 136);
+}
+
+.box--blue {
+    border: 2px solid rgb(177, 193, 247);
+}
+
+.title--red {
+    border-bottom: 2px solid rgb(247, 177, 177);
+    background-color: rgb(250, 210, 210);
+    color: rgb(165, 25, 25);
+}
+
+.title--green {
+    border-bottom: 2px solid rgb(136, 197, 136);
+    background-color: rgb(172, 204, 172);
+    color: rgb(0, 112, 9);
+}
+
+.title--blue {
+    border-bottom: 2px solid rgb(177, 193, 247);
+    background-color: rgb(198, 210, 250);
+    color: rgb(24, 98, 209);
+}

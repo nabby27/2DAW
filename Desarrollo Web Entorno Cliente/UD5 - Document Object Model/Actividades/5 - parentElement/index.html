@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>5.5</title>
+    <script type="text/javascript" src="controller.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="init()">
+    <div>
+        <h1>Introducción facturas</h1>
+        <label for="product">Producto</label>
+        <input type="text" name="product" id="product">
+        <label for="quantity">Cantidad</label>
+        <input type="number" name="quantity" id="quantity">
+        <label for="price">Precio</label>
+        <input type="number" step="0.1" name="price" id="price">
+        <button id="addButton">Añadir</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio unitario</th>
+                <th>Precio total</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <th colspan="4">Base imponible</th>
+                <th id="basePriceCell">0€</th>
+            </tr>
+
+            <tr>
+                <th colspan="4">IVA 21%</th>
+                <th id="ivaPriceCell">0€</th>
+            </tr>
+
+            <tr>
+                <th colspan="4">Total factura</th>
+                <th id="totalPriceCell">0€</th>
+            </tr>
+        </tfoot>
+    </table>
+
+    <button id="printButton">Imprimir</button>
+</body>
+
+</html>

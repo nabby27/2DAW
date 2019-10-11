@@ -23,7 +23,7 @@ function disappear($event) {
 
 function remove($event) {
     let element = $event.srcElement;
-    element.parentElement.removeChild(element);
+    element.parentNode.removeChild(element);
 }
 
 function appear() {

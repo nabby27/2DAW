@@ -1,0 +1,30 @@
+div {
+    background-color: aquamarine;
+}
+
+table {
+    width: 100%;
+    border: 1px solid black;
+    text-align: center;
+}
+
+button {
+    box-shadow: none;
+    padding: 0.3em;
+    margin: 0.5em 0;
+    border: 1px solid #000ece;
+    color: #000ece;
+    border-radius: 2px;
+    background-color: #fefefe;
+}
+
+button:hover {
+    box-shadow: none;
+    cursor: pointer;
+    border: 1px solid #ff0095;
+    color: #ff0095;
+}
+
+button:focus {
+    outline: none;
+}

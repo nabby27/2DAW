@@ -1,0 +1,5 @@
+## Uso de objetos y modelo
+
+Primera modificación: crearemos un archivo separado que definirá una clase llamada `imagen` que se utilizara para ubicar propiedades y métodos del array asociativo `$_FILES` que se crea cuando subimos una imagen al servidor tendrá las propiedades `tmp_name`, `name`, y `tipo` y los métodos `esta_cargado` que devolvera `true` si existe el archivo temporal, otro método `cambiar_nombre` que actualizara la propiedad `name` con el nombre completo (incluido directorio o id si fuera necesario) y el último método que es `mover` copiara definitivamente el archivo temporal a su directorio definitivo con su nombre definitivo.
+
+Este fichero formará parte del modelo y se incluira con un `require` al principio del controlador y modificaremos toda la programación del ejercicio para utilizar un objeto de esta clase.

@@ -1,0 +1,56 @@
+.one {
+    margin: 10px 30%;
+    z-index: 1;
+}
+
+.two {
+    margin: 70px 23%;
+    z-index: 2;
+}
+
+.three {
+    margin: 50px 60%;
+    z-index: 3;
+}
+
+.posit {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px;
+    width: 10vw;
+    height: 10vw;
+    position: absolute;
+    box-shadow: 2px 2px grey;
+}
+
+.posit:hover {
+    box-shadow: 4px 4px grey;
+    cursor: pointer;
+    z-index: 99;
+}
+
+.posit__text {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: inherit;
+    font-size: 1.4em;
+}
+
+.posit__author {
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    color: gray;
+    font-size: 0.8em;
+}
+
+.posit--yellow {
+    background-color: rgb(250, 255, 177);
+}
+
+.posit--green {
+    background-color: rgb(171, 245, 171);
+}
+
+.posit--blue {
+    background-color: rgb(179, 218, 255);
+}

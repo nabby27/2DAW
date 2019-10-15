@@ -1,0 +1,1 @@
+Diseña una clase colegio. Tendrá como atributos nombre, numero de aulas y numero de alumnos. Cada alumno se representará como una objeto de la clase Alumno. En ella se guardaran los atributos “DNI”, “nombre” y “nota_media”. Implementa métodos en colegio y alumno para modificar la nota media.

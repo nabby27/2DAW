@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="genf.css">
+	<script type="text/javascript" src="genf.js"></script>
+	</head>
+<body onload=init()>
+<div> 
+	<h3>Introducción facturas</h3>
+	<label for="producte">Producto:</label><input type="text" id="producte" />
+	<label for="quantitat">Cantidad:</label><input type="number" id="quantitat" value="0" />
+	<label for="preu−unitari">Precio unitaro:</label><input type="number" id="preu−unitari" value="0" />
+	<button onclick="anadoFila()" id="afegir">Añadir</button>
+</div>
+<table>
+	<thead>	<tr><th>Producto</th><th>Cantidad</th><th>Precio unitario</th><th>Precio total</th><th>Acciones</th></tr></thead> 
+	<tbody> </tbody> 
+	<tfoot> 
+		<tr><th colspan="4">Base imponible</th>
+			<th><span id="base-imponible">0</span>€</th>
+		</tr>
+		<tr><th colspan="4" data−iva="0.21">IVA 21%</th>
+			<th><span id="iva">0</span>€</th></tr>
+		<tr><th colspan="4">Total factura</th>
+			<th><span id="total">0</span>€</th>
+		</tr>
+	</tfoot>
+</table>
+<button id="imprimir">Imprimir</button>
+</body>
+</html>

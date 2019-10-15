@@ -1,6 +1,7 @@
 <?php
 
-require('functions.php');
+require('../model/Image.php');
+require('./functions.php');
 
 if (!isset($_POST['sendOptions']) && !isset($_POST['sendFile']))
 {
@@ -20,16 +21,10 @@ if (isset($_POST['sendOptions'])) {
 }
 
 if (isset($_POST['sendFile'])) {
-    if (is_uploaded_file($_FILES['file']['tmp_name'])) {
-        crear_directorio($_POST['directorio']);
-        $result = estado_archivo($_FILES['file']['name'], $_POST['directorio']);
-        if ($result !== false) {
-            move_uploaded_file($_FILES['file']['tmp_name'], $result);
-        }
-        else {
-            require('../views/error.html');
-        }
-        
-        require('../views/go_home.html');
+    $folder = crear_directorio($_POST['directorio']);
+    $image = new Image($folder);
+    if (!$image->upload()) {
+        require('../views/error.html');    
     }
+    require('../views/go_home.html');
 }

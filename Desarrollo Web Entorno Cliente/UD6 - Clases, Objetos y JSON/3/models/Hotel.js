@@ -10,16 +10,4 @@ class Hotel {
         this.number_of_rooms = rooms.length;
     }
 
-    showRoom(room) {
-        room.show();
-    }
-
-    reserveRoom(room) {
-        room.reserve();
-    }
-
-    breakFreeRoom(room) {
-        room.breakFree();
-    }
-
 }

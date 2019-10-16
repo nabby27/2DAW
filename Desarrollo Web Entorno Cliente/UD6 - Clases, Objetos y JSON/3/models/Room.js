@@ -11,15 +11,29 @@ class Room {
     }
 
     show() {
-        console.log(this.id, this.square_meters, this.free);
+        let message;
+        if (this.free) {
+            message = 'It\'s free to reserve';
+        } else {
+            message = 'Sorry but can\'t reserve this room';
+        }
+        alert(message);
     }
 
     reserve() {
-        this.free = false;
+        if (this.free) {
+            this.free = false;
+        } else {
+            alert('This room is yet reserved');
+        }
     }
 
     breakFree() {
-        this.free = true;
+        if (!this.free) {
+            this.free = true;
+        } else {
+            alert('This room is yet free');
+        }
     }
 
 }

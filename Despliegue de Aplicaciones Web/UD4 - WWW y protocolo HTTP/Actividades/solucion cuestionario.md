@@ -37,7 +37,7 @@ Http - TCP - 80
 Trata cada petición como una transacción independiente que no tiene relación con cualquier solicitud
 
 * 5)
-Los estándares de facto o “de hecho” son aquellos que no han sido desarrollados por ninguna organización de estandarización debidamente acreditada.
+Los estándares de facto o “de hecho” son aquellos que no han sido desarrollados por ninguna organización de estandarización debidamente acreditada.(primero se utiliza y luego se estandariza al contrario que los iure).
 Los estándares de iure son estándares formales y legales acordados por algún organismo internacional de estandarización autorizado.
 
 * 6)
@@ -49,12 +49,18 @@ El servidor devuelve la respuesta al cliente. Consiste en un código de estado y
 Se cierra la conexión TCP.
 
 * 7)
+En texto plano
 
 * 8)
 GET -> peticion para recibir datos
 POST -> peticion para mandar datos (se usa para creación)
 PUT -> peticion para mandar datos (se usa para actualizar)
+PATCH -> peticion para mandar datos parciales (se usa para actualizar)
 DELETE -> peticion para borrar datos
+OPTIONS -> solicitud de informacion acerca de las opciones de comunicación disponibles
+HEAD -> similar al get pero no responde con el cuerpo solo con linea de cabecera y headers
+TRACE -> realizar pruebas de petición
+connect -> establecer un tunel de conexion con un servidor
 
 * 9)
 Con los dos se pueden enviar datos al servidor pero lo normal es usar el GET para acceder a la información y el POST para enviar datos. Ya que en el GET los parametros van por la URL.

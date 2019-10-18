@@ -1,17 +1,11 @@
-@font-face { 
-  src: url('https://fonts.googleapis.com/css?family=Montserrat&display=swap'); 
-  font-family: montserrat; 
-}
 
-@font-face { 
-  src: url('https://fonts.googleapis.com/css?family=Poppins&display=swap'); 
-  font-family: poppins; 
-}
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap'); 
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 
 body {
   height: 90vh;
-  font-family: poppins;
+  font-family: 'poppins';
 }
 
 
@@ -27,7 +21,7 @@ td[class] {
   background-repeat: no-repeat;
   background-size: 3vw auto;
   background-position: right bottom;
-  font-family: montserrat;
+  font-family: 'Montserrat', sans-serif;
 }
 
 td > p:first-child {

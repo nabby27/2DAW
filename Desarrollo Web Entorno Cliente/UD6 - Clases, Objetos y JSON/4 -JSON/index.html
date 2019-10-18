@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Ejemplos JSON</title>
+    <script>
+        var json_compra = '{ "item1":"tomates", "item2":"manzanas", "item3":"leche"}';
+        var json_array = '{"compra":["tomates", "manzanas", "leche"]}';
+        var json_compra_anidada = '{ "usuario":"jesus", "dia":"18/10/19", "compra":["tomates", "manzanas", "leche"] }';
+        var json_compra_anidada_clavevalor = '{ "usuario":"jesus", "dia":"18/10/19", "compra": { "verduras":"tomates", "frutas":"manzanas", "lacteos":"leche"} }';
+        var obj_compra = JSON.parse(json_compra);
+        var obj_array = JSON.parse(json_array);
+        var obj_compra_anidada = JSON.parse(json_compra_anidada);
+        var obj_compra_anidada_clavevalor = JSON.parse(json_compra_anidada_clavevalor);
+        console.log(obj_compra.item1);
+        console.log(obj_array.compra[1]);
+        console.log(obj_compra_anidada.usuario);
+        console.log(obj_compra_anidada.compra[2]);
+        obj_compra_anidada.compra.forEach(function(item,index,array){
+            console.log(item);
+        })
+        console.log(obj_compra_anidada_clavevalor.compra.verduras);
+        Object.keys(obj_compra_anidada_clavevalor.compra).forEach(function(key) {
+            console.log('Key : ' + key + ', Value : ' + obj_compra_anidada_clavevalor.compra[key])
+        });
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

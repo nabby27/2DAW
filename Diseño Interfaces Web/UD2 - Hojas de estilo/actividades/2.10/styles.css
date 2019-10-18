@@ -51,6 +51,8 @@ textarea {
 .menu {
   border-top: 1px solid #333;
   margin: 0 2em 2em auto;
+  width: 100%;
+  border-bottom: 1px solid #333;
 }
 
 .menu__list {
@@ -64,6 +66,7 @@ textarea {
   text-decoration: none;
   text-transform: uppercase;
   color: #333;
+  border: 1px solid #333;
 }
 
 .menu__link--active {
@@ -224,6 +227,10 @@ textarea {
   width: 50%;
 }
 
+.input {
+  text-align: center;
+}
+
 .form__conditions {
   margin-top: 2em;
   display: flex;
@@ -236,8 +243,14 @@ textarea {
 }
 
 .button {
+  padding: 2em;
   margin: 3em 0 13em 0;
   width: 20%;
+  border-radius: 10px;
+  background-color: #963717b0;
+  color: #fff;
+  box-shadow: none;
+  border: 1px solid black;
 }
 
 .contact__info {

@@ -253,6 +253,11 @@ textarea {
   border: 1px solid black;
 }
 
+.button:hover {
+  cursor: pointer;
+  background-color: rgba(140, 22, 44, 0.514);
+}
+
 .contact__info {
   margin: 0;
   grid-area: 2 / 1 / 2 / 5;

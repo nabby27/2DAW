@@ -1,0 +1,7 @@
+{ 
+	"provincias": [ 
+		{"nom": "Castellon", "cp": "12"}, 
+		{"nom": "Valencia", "cp": "45"}, 
+		{"nom": "Alicante", "cp": "03"} 
+	] 
+}

@@ -8,11 +8,7 @@
 </head>
 <body>
 
-    <?php
-        while ($fila = $clientes->fetch_assoc()) {
-            echo 'Nombre: ' . $fila['nombre'] . '<br>';
-        }
-    ?>
+    Se ha actualizado correctamente<br>
     <a href=''>Volver</a>
 </body>
 </html>

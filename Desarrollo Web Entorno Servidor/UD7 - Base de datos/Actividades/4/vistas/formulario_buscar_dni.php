@@ -7,12 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-
-    <?php
-        while ($fila = $clientes->fetch_assoc()) {
-            echo 'Nombre: ' . $fila['nombre'] . '<br>';
-        }
-    ?>
-    <a href=''>Volver</a>
+    <form action="#" method="post">
+        DNI: <input type="text" name="dniCliente"><br>
+        <button type="submit" name="buscar">Buscar</button>
+    </form>
 </body>
 </html>

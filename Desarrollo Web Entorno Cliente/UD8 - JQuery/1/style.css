@@ -1,0 +1,44 @@
+body,
+header,
+nav,
+article,
+section,
+footer {
+  border: solid 1px;
+  margin: 15px;
+  padding: 10px;
+}
+
+#cuerpo {
+  border: solid 1px;
+  margin: 0px;
+  padding: 0px;
+  height: 700px;
+}
+
+nav {
+  float: left;
+  height: 90%;
+}
+
+header {
+  font-size: 150%;
+  background-color: lightblue;
+}
+
+section {
+  font-size: 110%;
+  background-color: salmon;
+  overflow: hidden;
+}
+
+article {
+  font-size: 110%;
+  background-color: lightgrey;
+  float: left;
+}
+
+footer {
+  font-size: 8px;
+  background-color: lightgreen;
+}

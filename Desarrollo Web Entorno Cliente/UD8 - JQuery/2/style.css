@@ -1,0 +1,39 @@
+body {
+  font-family: sans-serif;
+  border: solid 1px;
+}
+
+div {
+  margin-bottom: 15px;
+  background-color: salmon;
+}
+
+input {
+  width: 100px;
+}
+
+td {
+  text-align: right;
+  border: solid 1px;
+}
+
+tr:nth-child(odd) {
+  background-color: lightgrey;
+}
+tr:nth-child(even) {
+  background-color: lightyellow;
+}
+
+thead td {
+  font-weight: bold;
+  background-color: lightblue;
+}
+
+tfoot td {
+  font-weight: bold;
+  background-color: lightblue;
+}
+
+table {
+  width: 600px;
+}

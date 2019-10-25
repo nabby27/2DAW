@@ -1,11 +1,28 @@
 .container {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid black;
+    margin-top: 2em;
+    border-radius: 10px;
+    padding: 0.5em;
+}
+
+.item:hover {
+    transform: scale(1.1);
+    transition: transform  0.3s ease-in-out;
+    cursor: pointer;
 }
 
 .image {
-    width: 300px;
+    width: 200px;
+    height: 220px;
 }
 
 .text {

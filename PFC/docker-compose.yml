@@ -11,12 +11,14 @@ services:
     env_file: .env
     volumes:
       - ./e2e:/e2e
+    tty: true
     links:
       - api
       - front
     depends_on:
       - api
       - front
+
 
   #Front service
   front:
@@ -30,6 +32,7 @@ services:
       - ${FRONT_PORT}
     volumes:
       - ./front:/front
+    tty: true
     links:
       - api
     depends_on:
@@ -47,7 +50,7 @@ services:
       - ${API_PORT}
     volumes:
       - ./api:/api
-    command: npm run dev
+    tty: true
     links:
       - db
     depends_on:

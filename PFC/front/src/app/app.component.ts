@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
   crop() {
     const boxCropPosition = this.cropper.getData();
     this.imgCropped = this.cropper.getCroppedCanvas();
+    console.log(boxCropPosition);
     this.canvasContainer.innerHTML = '';
     this.canvasContainer.appendChild(this.imgCropped);
     this.transform();

@@ -2,16 +2,14 @@ FROM node:11-alpine
 
 WORKDIR /api
 
-COPY package.json ./
-
 RUN npm install -g npm
+
+COPY package*.json ./
 
 RUN npm install
 
-RUN npm install -g db-migrate
-
-USER node
-
 COPY . .
+
+RUN npm install -g db-migrate
 
 CMD ["npm", "run", "dev"]

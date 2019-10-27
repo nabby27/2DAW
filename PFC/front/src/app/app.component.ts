@@ -20,6 +20,17 @@ export class AppComponent implements OnInit {
     this.image = document.getElementById('image');
     this.canvasContainer = document.getElementById('canvasContainer');
     this.cropper = new Cropper(this.image, { });
+
+    // const img = new Image();
+    // img.onload = () => {
+    //   const canvasImage = document.getElementById('canvasImage') as HTMLCanvasElement;
+    //   const ctx = canvasImage.getContext('2d');
+    //   ctx.drawImage(img, 10, 10);
+    // };
+    // img.src = '../assets/ayuntamiento-zaragoza-logo-vector.jpg';
+    // img.src = '../assets/example.pdf';
+
+    // ctx.drawImage(this.image, 10, 10);
   }
 
   crop() {

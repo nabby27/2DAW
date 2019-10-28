@@ -7,9 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="" method="post">
-        DNI: <input type="text" name="dniCliente"><br>
-        <button type="submit" name="buscar">Buscar</button>
-    </form>
+
+    Se ha actualizado correctamente<br>
+    <a href=''>Volver</a>
 </body>
 </html>

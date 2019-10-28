@@ -26,8 +26,8 @@
 
 .last-news__container {
     display: grid;
-    grid-template: repeat(2, 15vw) / repeat(3, 15vw);
-    grid-gap: 2vw 8vw;
+    grid-template: repeat(2, 26vw) / repeat(3, 26vw);
+    grid-gap: 4vw 4vw;
 }
 
 .main__new {
@@ -42,6 +42,7 @@
 .new__image {
     width: 100%;
     height: 100%;
+    object-fit: cover;
     z-index: 1;
 }
 
@@ -49,7 +50,7 @@
     display: block;
     max-width: 50%;
     position: absolute;
-    font-size: 1vw;
+    font-size: 1.1vw;
     padding: 1em;
     color: #fff;
     background-color: rgba(0, 0, 0, 0.7);
@@ -58,7 +59,7 @@
     left: 10px
 }
 
-.new:nth-child(odd) {
+.last-new:nth-child(odd) {
     visibility: hidden;
 }
 
@@ -95,7 +96,7 @@
         padding: 0.5em;
     }
 
-    .new:nth-child(odd) {
+    .last-new:nth-child(odd) {
         visibility: visible;
     }
 }

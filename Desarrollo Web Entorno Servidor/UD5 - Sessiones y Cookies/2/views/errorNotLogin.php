@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    El usuario es incorrecto<br>
+    El usuario o la contraseña es incorrecto<br>
     <a href="index.php">Volver</a>
 </body>
 </html>

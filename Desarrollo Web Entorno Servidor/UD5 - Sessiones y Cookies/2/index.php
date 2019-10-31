@@ -1,6 +1,7 @@
 <?php
 require 'controllers/ClientController.php';
 
+session_start();
 $clientController = new ClientController();
 
 if (isset($_SESSION['name'])) {

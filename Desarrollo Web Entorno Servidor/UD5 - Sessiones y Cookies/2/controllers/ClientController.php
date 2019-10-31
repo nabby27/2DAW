@@ -1,6 +1,5 @@
 <?php
 require 'models/ClientModel.php';
-session_start();
 
 class ClientController {
     

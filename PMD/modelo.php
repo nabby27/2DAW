@@ -27,8 +27,6 @@ class Carrito {
 
 class Login {
 
-    private $link;
-
     private $dni;
     private $pws;
 
@@ -37,30 +35,35 @@ class Login {
         $this->pws = $pws;
     }
 
-    function doLogin($link) {
-        $queryString = 'SELECT * FROM clientes WHERE dniCliente=\'' . $this->dni . '\'';
-        $client= $link->query($queryString);
-        
+    function getOne($link) {
+        $queryString = "SELECT * FROM clientes WHERE dniCliente='$this->dni'";
+        $result = $link->query($queryString);
+        return $result->fetch_assoc();
     }
 
 }
 
 class Clientes {
 
-    private $link;
+    private $dniCliente;
+    private $nombre;
+    private $direccion;
+    private $email;
+    private $pwd;
+    private $administrador;
 
-    private $dni;
-    private $pws;
-
-    function __construct() {
-
+    function __construct($dniCliente, $nombre, $direccion, $email, $pwd, $administrador) {
+        $this->dniCliente = $dniCliente;
+        $this->nombre = $nombre;
+        $this->direccion = $direccion;
+        $this->email = $email;
+        $this->pwd = $pwd;
+        $this->administrador = $administrador;
     }
 
 }
 
 class Productos {
-
-    private $link;
 
     private $idProducto;
     private $nombre;

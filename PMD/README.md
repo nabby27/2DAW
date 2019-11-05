@@ -101,3 +101,60 @@ No se mostrarán las lineas del carrito cuya cantidad sea igual a 0, y está ser
 
 #### **INVESTIGACIÓN** 
 En este proyecto, se modificará la base de datos para que la gestión de las contraseñas sea utilizando la función para calcular su HASH, recomendada por php.net. De manera que no se almacena la contraseña, solo su HASH, y a la hora de validar se comprueba el HASH de la contraseña introducida con el almacenado en la base de datos.
+
+## **DWEC**
+
+### **Requisitos del proyecto**
+* Todo el javascript debe ir en un fichero .js a parte, no se puede añadir nada relativo a la parte del proyecto de DWEC en el HTML
+* Se puede (debe) utilizar jquery para facilitar el desarrollo y comprensión del código
+* Las funcionalidades a implementar, harán llamadas AJAX a controladores PHP, los cuales realizarán las tareas necesarias en la base de datos. Cada tarea/función ha de ser implementada en un controlador.php diferente
+* El intercambio de datos AJAX entre el cliente y el servidor se realizará con el formato de datos JSON, lo que facilita que se trabaje con objetos en todo momento
+Se debe optimizar la transferencia de datos, por lo que es necesario minimizar tanto los datos que se envían al servidor como los que responde
+* Se debe implementar las funcionalidades necesarias para que en el cliente se detecten posibles errores generados por la base de datos, por ejemplo, si se intenta insertar un pedido con id duplicado, el cliente ha de saber que ha habido un error
+* Se debe de minimizar los elementos que se recargan, de manera que si hay que eliminar una fila, mejor borrar el elemento, que volver a cargarlos todos
+* Es conveniente reducir el numero de identificadores en los elementos de HTML, se intentará aprovechar los identificadores de estilo para identificar los elementos en el javascript
+* En el caso que no se desarrolle la parte del PHP, el alumno puede programar controladores que respondan JSON fijos, definidos estáticamente en el PHP, para comprobar la funcionalidad de la aplicación
+* Se valorará el código bien formado, con tabulaciones que faciliten la comprensión, el uso de nombres de variable significativos, comentarios expicativos y el evitar código redundante.
+
+### **Funcionalidades**
+Tomando como base el ejemplo del módulo de DIW, en la pagina de gestión de usuarios tenemos que:
+
+*Gestión de usuarios*
+* Presentar en pantalla todos los usuarios
+* Crear usuario nuevo, enseñando el cuadro necesario
+* Borrar y editar un usuario en concreto, al editar enseñar el cuadro modal
+* Al cancelar operación, ocultar cuadro modal
+
+*Gestión de pedidos*
+* Crear pedido nuevo, enseñando el cuadro necesario
+* Borrar y editar un pedido en concreto, al editar enseñar el cuadro modal
+* Enseñar las líneas de pedido
+* Borrar lineas de pedido
+* Añadir lineas de pedido
+* Al cancelar operación, ocultar cuadro modal
+
+*Gestión de productos*
+* Presentar en pantalla todos los productos
+* Crear producto nuevo, enseñando el cuadro necesario y guardando la imagen
+* Borrar y editar un producto en concreto, al editar enseñar el cuadro modal
+* Al cancelar operación, ocultar cuadro modal
+
+### **Evaluación**
+Para evaluar, el alumno realizará:
+
+* La entrega del proyecto final en Aules 
+* En su ordenador prueba de las funcionalidades completas.
+* Explicación al profesor de como ha realizado la aplicación. El profesor realizará preguntas y solicitará modificaciones sobre el código del alumno.
+
+Se calificará la funcionalidad de las tres páginas mediante una rúbrica en Aules
+
+* 30% Usuarios
+* 30% Productos
+* 30% Pedidos
+
+El 10% restante valorará la rapidez y eficiencia al realizar la práctica.
+
+* +10% Si se presenta antes del miercoles 13/11
+* +5% Si se presenta el jueves 14/11
+
+El último día de entrega será el domingo 17 a las 23:59. En ese caso se evaluará el lunes 18 o martes 19

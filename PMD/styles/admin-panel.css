@@ -205,11 +205,11 @@ body {
     opacity: 0.8;
 }
 
-.button--edit {
+.button--secundary {
     background-color: #777777;
 }
 
-.button--remove {
+.button--danger {
     background-color: #C80F2E;
 }
 /**************************************************** BUTTON END ****************************************************/

@@ -2,6 +2,7 @@ let dniInput;
 let loginButton;
 let passswordInput;
 let modal;
+let buttonCloseModal;
 
 $(document).ready(function() {
     init();
@@ -12,13 +13,14 @@ function init() {
     passswordInput = $('#password_input');
     loginButton = $('#login_button');
     modal = $('#modal');
+    buttonCloseModal = $('#button_close_modal');
     
-    $('#login_button').click(function (e) { 
+    loginButton.click(function (e) { 
         e.preventDefault();
         doLogin();
     });
 
-    $('#button_close_modal').click(function (e) { 
+    buttonCloseModal.click(function (e) { 
         e.preventDefault();
         modal.css('display', 'none');
     });
@@ -27,12 +29,12 @@ function init() {
 function doLogin() {
     $.ajax({
         type: 'POST',
-        url: '../validar.php',
+        url: 'php/controllers/validar.php',
         data: {'dni': dniInput.val(), 'password': passswordInput.val()},
         dataType: 'json',
         success: (response, status, header) => {
-            if (response.administrador === '0') {
-                window.location.href = './gestion_clientes.html';
+            if (response.admin === '1') {
+                window.location.href = './admin/gestion_clientes.html';
             }
             if (response === 'USER_NOT_EXIST') {
                 modal.css('display', 'flex');

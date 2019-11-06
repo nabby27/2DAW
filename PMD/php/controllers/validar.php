@@ -1,5 +1,5 @@
 <?php
-require 'modelo.php';
+require '../modelo.php';
 session_start();
 
 $db = new Bd();

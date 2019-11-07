@@ -15,6 +15,9 @@ function init() {
     modal = $('#modal');
     buttonCloseModal = $('#button_close_modal');
     
+    dniInput.val('');
+    passswordInput.val('');
+
     loginButton.click(function (e) { 
         e.preventDefault();
         doLogin();
@@ -33,7 +36,7 @@ function doLogin() {
         data: {'dni': dniInput.val(), 'password': passswordInput.val()},
         dataType: 'json',
         success: (response, status, header) => {
-            if (response.admin === '1') {
+            if (response.administrador === '1') {
                 window.location.href = './admin/gestion_clientes.html';
             }
             if (response === 'USER_NOT_EXIST') {

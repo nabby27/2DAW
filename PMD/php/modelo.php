@@ -62,8 +62,22 @@ class Client implements \JsonSerializable {
     }
 
     function save($link) {
-        $queryString = "INSERT INTO clientes  (dniCliente, nombre, direccion, email, pwd, administrador) VALUES
+        $queryString = "INSERT INTO clientes (dniCliente, nombre, direccion, email, pwd, administrador) VALUES
             ('$this->dni', '$this->name', '$this->address', '$this->email', '$this->password', '$this->admin')";
+        $result = $link->query($queryString);
+
+        return $result;
+    }
+
+    function update($link) {
+        $queryString = "UPDATE clientes SET nombre='$this->name', direccion='$this->address', email='$this->email', pwd='$this->password', administrador='$this->admin' WHERE dniCliente='$this->dni'";
+        $result = $link->query($queryString);
+
+        return $result;
+    }
+
+    function remove($link) {
+        $queryString = "DELETE FROM clientes WHERE dniCliente='$this->dni'";
         $result = $link->query($queryString);
 
         return $result;
@@ -81,27 +95,76 @@ class Client implements \JsonSerializable {
 
         return $clients;
     }
+
+    function getOne($link) {
+        $queryString = "SELECT * FROM clientes WHERE dniCliente='$this->dni'";
+        $result = $link->query($queryString);
+
+        return $result->fetch_object();
+    }
 }
 
-class Product {
+class Product implements \JsonSerializable {
+    use JsonSerializer;
 
-    private $idProducto;
+    private $id;
     private $name;
     private $photo;
     private $brand;
-    private $weight;
-    private $unity;
+    private $quantity;
     private $price;
 
     function __construct() {
     }
     
-    function getOne($link) {
-        $this->link = $link;
+    function __get($var) {
+        $this->$var;
+    }
+
+    function __set($key, $value) {
+        $this->$key = $value;
+    }
+
+    function save($link) {
+        $queryString = "INSERT INTO productos (idProducto, nombre, foto, marca, cantidad, precio) VALUES
+            ('$this->id', '$this->name', '$this->photo', '$this->brand', '$this->quantity', '$this->price')";
+        $result = $link->query($queryString);
+
+        return $result;
+    }
+
+    function update($link) {
+        $queryString = "UPDATE productos SET nombre='$this->name', foto='$this->photo', marca='$this->brand', cantidad='$this->quantity', precio='$this->price' WHERE idProducto='$this->id'";
+        $result = $link->query($queryString);
+
+        return $result;
+    }
+
+    function remove($link) {
+        $queryString = "DELETE FROM productos WHERE idProducto='$this->id'";
+        $result = $link->query($queryString);
+
+        return $result;
     }
 
     static function getAll($link) {
-        $this->link = $link;
+        $queryString = "SELECT * FROM productos";
+        $result = $link->query($queryString);
+
+        $products = [];
+        while ($row = $result->fetch_assoc()) {
+            $product = new Producto($row['idProducto'], $row['nombre'], $row['foto'], $row['marca'], $row['cantidad'], $row['precio']);
+            array_push($products, $product);
+        }
+
+        return $products;
+    }
+
+    function getOne($link) {
+        $queryString = "SELECT * FROM productos WHERE idProducto='$this->id'";
+        $result = $link->query($queryString);
+
+        return $result->fetch_object();
     }
 
 }

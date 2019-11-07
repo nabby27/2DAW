@@ -21,10 +21,10 @@
     </nav>
     
     <div class="add-client">
-        <button class="button">A&ntilde;adir nuevo producto</button>
+        <button class="button" id="add_product_button">A&ntilde;adir nuevo producto</button>
     </div>
 
-    <section class="table">
+    <section class="table" id="table">
         <div class="table-row">
                 <div class="table-item">ID</div>
                 <div class="table-item">Imagen</div>
@@ -32,13 +32,64 @@
                 <div class="table-item">Marca</div>
                 <div class="table-item">Operaciones</div>
         </div>
-        <div class="table-row">
+        <!-- <div class="table-row">
             <div class="table-item">23451</div>
             <div class="table-item">asd</div>
             <div class="table-item">Camiseta Jordan</div>
             <div class="table-item">Reebook</div>
             <div class="table-item"><button class="button button--edit">Editar</button><button class="button button--remove">Borrar</button></div>
-        </div>
+        </div> -->
     </section>
+
+    <div id="modal_form" class="modal">
+        <div class="modal__box">
+            <div class="modal-box__text">
+                <form id="form">
+                    <div class="field-group">
+                        <label class="label" for="id_input">* ID:</label>
+                        <input class="input input--text" id="id_input" name="id" type="text" required>
+                    </div>
+                    <div class="field-group">
+                        <label class="label" for="name_input">* Nombre:</label>
+                        <input class="input input--text" id="name_input" name="name" type="text" required>
+                    </div>
+                    <div class="field-group">
+                        <label class="label" for="photo_input">* Foto:</label>
+                        <input class="input input--text" id="photo_input" type="file" required>
+                    </div>
+                    <div class="field-group">
+                        <label class="label" for="brand_input">Marca:</label>
+                        <input class="input input--text" id="brand_input" name="brand" type="text">
+                    </div>
+                    <div class="field-group">
+                        <label class="label" for="quantity_input">* Cantidad:</label>
+                        <input class="input input--text" id="quantity_input" name="quantity" type="number" step="0.1" min="0" required>
+                    </div>
+                    <div class="field-group">
+                        <label class="label" for="password_input">* Precio:</label>
+                        <input class="input input--text" id="password_input" name="password" type="number" step="0.1" min="0" required>
+                    </div>
+                    <button type="submit" class="button" id="modal_form_save_button">Guardar</button>
+                    <button class="button button--secundary" id="modal_form_close_button">Cerrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_error" class="modal">
+        <div class="modal__box">
+            <span class="modal-box__text">No se ha podido crear el producto, revise que no este creado ya</span>
+            <button id="modal_error_close_button" class="button">Cerrar</button>
+        </div>
+    </div>
+
+    <div id="modal_sure_delete" class="modal">
+        <div class="modal__box">
+            <span class="modal-box__text">Estas seguro que desea eliminar el producto</span>
+            <button id="modal_sure_delete_delete_button" class="button button--danger">Eliminar</button>
+            <button id="modal_sure_delete_close_button" class="button button--secundary">Cerrar</button>
+        </div>
+    </div>
+
 </body>
 </html>

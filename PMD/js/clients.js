@@ -16,12 +16,21 @@ let modalForm;
 let modalError;
 let modalErrorCloseButton;
 
+let modalSureDelete;
+let modalSureDelete_Deletebutton;
+let modalSureDelete_CloseButton;
+
+let dniToDelete;
+
 $(document).ready(function() {
     init();
     getClients();
 });
 
 function init() {
+
+    dniToDelete = '';
+
     addClientButton = $('#add_client_button');
     table = $('#table');
     
@@ -35,10 +44,14 @@ function init() {
 
     modalForm = $('#modal_form');
     modalFormSaveButton = $('#modal_form_save_button');
-    modalFormcloseButton = $('#modal_form_close_button');
+    modalFormCloseButton = $('#modal_form_close_button');
 
     modalError = $('#modal_error');
     modalErrorCloseButton = $('#modal_error_close_button');
+
+    modalSureDelete = $('#modal_sure_delete');
+    modalSureDelete_Deletebutton = $('#modal_sure_delete_delete_button');
+    modalSureDelete_CloseButton = $('#modal_sure_delete_close_button');
     
     addClientButton.click(function (e) { 
         e.preventDefault();
@@ -46,7 +59,7 @@ function init() {
         modalForm.css('display', 'flex');
     });
 
-    modalFormcloseButton.click(function (e) { 
+    modalFormCloseButton.click(function (e) { 
         e.preventDefault();
         modalForm.css('display', 'none');
     });
@@ -54,13 +67,27 @@ function init() {
     modalFormSaveButton.click(function (e) { 
         e.preventDefault();
         if (isFormValid()) {
-            saveClient();
+            if (!dniInput.prop('disabled')) {
+                addClient();
+            } else {
+                updateClient();
+            }
         }
+    });
+
+    modalSureDelete_CloseButton.click(function (e) { 
+        e.preventDefault();
+        modalSureDelete.css('display', 'none');
     });
 
     modalErrorCloseButton.click(function (e) { 
         e.preventDefault();
         modalError.css('display', 'none');
+    });
+
+    modalSureDelete_Deletebutton.click(function (e) { 
+        e.preventDefault();
+        deleteClient();
     });
 }
 
@@ -73,23 +100,26 @@ function getClients() {
             response.forEach(client => {
                 addClientRowToTable(client.dni, client.name, client.admin);
             })
-        },
-        error: (header, status, error) => {
-            
-        },
-        complete: (header, status) => {
-            
         }
     });
 }
 
 function isFormValid() {
-    debugger
-    return dniInput.val() != '' && nameInput.val() != '' && emailInput.val() != '' && passwordInput.val() != '' && emailInput.val().match('/^\w+@[a-zA-Z_]+?\.[a-zA-Z]$/');
+    return dniInput.val() != '' && nameInput.val() != '' && emailInput.val() != '' && passwordInput.val() != '' && emailInput.val().match('^[a-zA-Z0-9.!#$%&\'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$');
 }
 
-function saveClient() {
-        dataForm = {
+function addClient() {
+    let url_controller = '../php/controllers/clients/addClientController.php';
+    saveClient(url_controller, addClientRowToTable);
+}
+
+function updateClient() {
+    let url_controller = '../php/controllers/clients/updateClientController.php';
+    saveClient(url_controller, updateClientRowToTable);
+}
+
+function saveClient(url_controller, functionToCall) {
+    dataForm = {
         'dni': dniInput.val(),
         'name': nameInput.val(),
         'address': addressInput.val(),
@@ -100,38 +130,119 @@ function saveClient() {
 
     $.ajax({
         type: 'POST',
-        url: '../php/controllers/clients/addClientController.php',
+        url: url_controller,
         data: dataForm,
         dataType: 'json',
         success: (response, status, header) => {
             if (response === 'SUCCESS') {
-                addClientRowToTable(dataForm.dni, dataForm.name, dataForm.admin);
+                functionToCall(dataForm.dni, dataForm.name, dataForm.admin);
                 modalForm.css('display', 'none');
             } else if (response === 'ERROR') {
                 modalError.css('display', 'flex');
             }
-        },
-        error: (header, status, error) => {
-            
-        },
-        complete: (header, status) => {
-            
         }
     });
 }
 
 function addClientRowToTable(dni, name, admin) {
-    row = '<div class="table-row">';
+    let row = generateClientRowToTable(dni, name, admin);
+    
+    table.append(row);
+
+    addListenersToRowButtons(dni);
+}
+
+function updateClientRowToTable(dni, name, admin) {
+    let row = generateClientRowToTable(dni, name, admin);
+
+    $('#' + dni).replaceWith(row);
+    
+    addListenersToRowButtons(dni);
+}
+
+function generateClientRowToTable(dni, name, admin) {
+    let editButton = createEditButton(dni);
+    let deleteButton = createDeleteButton(dni);
+    let row = '<div id="' + dni + '"class="table-row">';
     row += '    <div class="table-item">' + dni + '</div>';
     row += '    <div class="table-item">' + name + '</div>';
-    row += '    <div class="table-item">' + admin + '</div>';
-    row += '    <div class="table-item"><button class="button button--secundary">Editar</button><button class="button button--danger">Borrar</button></div>';
+    if (admin === '1' || admin === true) {
+        row += '    <div class="table-item">Sí</div>';
+    } else {
+        row += '    <div class="table-item">No</div>';
+    }
+    row += '    <div class="table-item">' + editButton + deleteButton +'</div>';
     row += '</div>';
+    
+    return row;
+}
 
-    table.append(row);
+function addListenersToRowButtons(dni) {
+    $('#delete-' + dni).click(function (e) {
+        e.preventDefault();
+        dniToDelete = dni;
+        modalSureDelete.css('display', 'flex');
+    });
+
+    $('#edit-' + dni).click(function (e) {
+        e.preventDefault();
+        getOneCLient(dni);
+    });
+}
+
+function getOneCLient(dni) {
+    $.ajax({
+        type: 'GET',
+        url: '../php/controllers/clients/getOneClientController.php',
+        data: {'dni': dni},
+        dataType: 'json',
+        success: (response, status, header) => {
+            addClientDataToForm(response);
+            modalForm.css('display', 'flex');
+        }
+    });
+}
+
+function addClientDataToForm(client) {
+    dniInput.prop('disabled', true);
+    dniInput.val(client.dniCliente);
+    nameInput.val(client.nombre);
+    addressInput.val(client.direccion);
+    emailInput.val(client.email);
+    passwordInput.val(client.pwd);
+    if (client.administrador == "1") {
+        adminInput.prop('checked', true);
+    } else {
+        adminInput.prop('checked', false);
+    }
+}
+
+function createEditButton(dni) {
+    return '<button id="edit-' + dni + '" class="button button--secundary button--small">Editar</button>';
+}
+
+function createDeleteButton(dni) {
+    return '<button id="delete-' + dni + '" class="button button--danger button--small">Borrar</button>';
+}
+
+function deleteClient() {
+    $.ajax({
+        type: 'POST',
+        url: '../php/controllers/clients/removeClientController.php',
+        data: {dni: dniToDelete},
+        dataType: 'json',
+        success: (response, status, header) => {
+            if (response === 'SUCCESS') {
+                $('#' + dniToDelete).remove();
+                dniToDelete = '';
+                modalSureDelete.css('display', 'none');
+            }
+        }
+    });
 }
 
 function clearInputsForm() {
+    dniInput.prop('disabled', false);
     dniInput.val('');
     nameInput.val('');
     addressInput.val('');

@@ -18,9 +18,8 @@ CREATE TABLE productos(
     nombre VARCHAR(100) NOT NULL,
     foto VARCHAR (255),
     marca VARCHAR (50),
-    peso INTEGER(3) NOT NULL,
-    unidades INTEGER(5) NOT NULL,
-    precio INTEGER(10)
+    cantidad INTEGER(50),
+    precio FLOAT
 )engine innodb;
 
 CREATE TABLE pedidos(

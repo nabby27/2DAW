@@ -10,6 +10,7 @@
 
 body {
     margin: 0;
+    font-size: calc(1vw + 18px);
 }
 
 /* LOGIN START */
@@ -25,7 +26,7 @@ body {
     border-color: #C80F2E #C80F2E #1D4289 #1D4289;
     border-top: none;
     width: 50vw;
-    font-size: 18px;
+    font-size: calc(0.5vw + 18px);
 }
 
 .login-box__title {
@@ -36,6 +37,12 @@ body {
     padding: 1em 0;
     color: #FFFFFF;
     background: linear-gradient(45deg, #1D4289 0%,#1D4289 50%,#C80F2E 50%,#C80F2E 100%);
+}
+
+.login-error {
+    display: flex;
+    justify-content: center;
+    color: #C80F2E;
 }
 
 .login-box__content {
@@ -53,10 +60,10 @@ body {
 
 /**************************************************** FORM START ****************************************************/
 .field-group {
-    width: 100%;
+    width: 80%;
     display: flex;
-    justify-content: space-around;
-    margin: 2em;
+    justify-content: space-between;
+    margin: 1em;
     font-weight: lighter;
 }
 
@@ -69,19 +76,42 @@ body {
     padding: 0;
     border: none;
     width: 50%;
+}
+
+.input--text {
     box-shadow: 0px 2px 0px -1px #1D4289;
 }
 
-.input:hover,
-.input:active
+.input--text:hover,
+.input--text:active
 {
     box-shadow: 0 2px 0 #1D4289;
 }
 
-.input:focus {
+.input--text:focus {
     box-shadow: 0 3px 0 #1D4289;
     outline: none;
 }
+
+.input--checkbox {
+    outline: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    width: 2vw;
+    height: 2vw;
+    border: 1px solid #1D4289;
+    background-color: transparent;
+    border-radius: 50%;
+}
+
+.input--checkbox:checked {
+	background-color: #1D4289;
+}
+/* 
+.input--checkbox:not(:checked) {
+    background-color: #C80F2E;
+    border: 1px solid #C80F2E;
+} */
 /**************************************************** FORM END ****************************************************/
 
 /**************************************************** MODAL START ****************************************************/
@@ -194,7 +224,7 @@ body {
     color: #FFFFFF;
     background-color: #1D4289;
     border: none;
-    padding: 0.2em 1vw;
+    padding: 0.5vw 3vw;
     margin: 0.3em;
     font-size: 1vw;
     border-radius: 5px;
@@ -203,6 +233,10 @@ body {
 .button:hover {
     cursor: pointer;
     opacity: 0.8;
+}
+
+.button--small {
+    padding: 0.2vw 1vw;
 }
 
 .button--secundary {

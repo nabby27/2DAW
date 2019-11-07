@@ -10,11 +10,9 @@ if (isset($_POST)) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $admin = $_POST['admin'] === 'true' ? true : false;
-    
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    $clientModel = new Client($dni, $name, $address, $email, $hashed_password, $admin);
-    $result = $clientModel->save($db->link);
+    $clientModel = new Client($dni, $name, $address, $email, $password, $admin);
+    $result = $clientModel->update($db->link);
     
     if ($result) {
         echo json_encode('SUCCESS');

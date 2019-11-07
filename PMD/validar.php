@@ -11,8 +11,8 @@ if (isset($_POST['dni']) && isset($_POST['password'])) {
     $password = $_POST['password'];
     $loginModel = new Login($dni, $password);
     $client = $loginModel->getOne($db->link);
-    if (password_verify($password, $client['pwd'])) {
-        if (!$client['administrador']) {
+    if (password_verify($password, $client->pwd)) {
+        if ($client->administrador === '0') {
             $_SESSION['name'] = $client['nombre'];
             $_SESSION['dni'] = $client['dniCliente'];
             $_SESSION['total'] = 0;

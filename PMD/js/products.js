@@ -24,7 +24,7 @@ let idToDelete;
 
 $(document).ready(function() {
     init();
-    getProducts();
+    // getProducts();
 });
 
 function init() {
@@ -240,5 +240,5 @@ function clearInputsForm() {
     photoInput.val('');
     brandInput.val('');
     quantityInput.val('');
-    adminInput.val('');
+    priceInput.val('');
 }

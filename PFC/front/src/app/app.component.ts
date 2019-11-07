@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   image;
   cropper;
   canvasContainer;
+  pdfSrc = "../assets/example.pdf";
 
   imgCropped;
 

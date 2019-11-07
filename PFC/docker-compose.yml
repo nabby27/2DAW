@@ -11,6 +11,7 @@ services:
     env_file: .env
     volumes:
       - ./e2e:/e2e
+      - ./e2e/node_modules:/e2e/node_modules
     tty: true
     links:
       - api
@@ -32,6 +33,7 @@ services:
       - ${FRONT_PORT}
     volumes:
       - ./front:/front
+      - ./front/node_modules:/front/node_modules
     tty: true
     links:
       - api
@@ -50,6 +52,7 @@ services:
       - ${API_PORT}
     volumes:
       - ./api:/api
+      - ./api/node_modules:/api/node_modules
     tty: true
     links:
       - db

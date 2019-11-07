@@ -29,7 +29,7 @@ class Login {
     function getOne($link) {
         $queryString = "SELECT * FROM clientes WHERE dniCliente='$this->dni'";
         $result = $link->query($queryString);
-        return $result->fetch_assoc();
+        return $result->fetch_object();
     }
 
 }

@@ -63,6 +63,7 @@ body {
     width: 80%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 1em;
     font-weight: lighter;
 }
@@ -107,11 +108,10 @@ body {
 .input--checkbox:checked {
 	background-color: #1D4289;
 }
-/* 
-.input--checkbox:not(:checked) {
-    background-color: #C80F2E;
-    border: 1px solid #C80F2E;
-} */
+
+.input--file {
+
+}
 /**************************************************** FORM END ****************************************************/
 
 /**************************************************** MODAL START ****************************************************/

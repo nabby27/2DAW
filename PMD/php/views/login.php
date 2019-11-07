@@ -16,11 +16,11 @@
             <div class="login-box__content">
                 <div class="field-group">
                     <label class="label" for="dni_input">DNI:</label>
-                    <input class="input" id="dni_input" name="dni" type="text">
+                    <input class="input input--text" id="dni_input" name="dni" type="text">
                 </div>
                 <div class="field-group">
                     <label class="label" for="password_input">Contraseña:</label>
-                    <input class="input" id="password_input" name="password" type="password">
+                    <input class="input input--text" id="password_input" name="password" type="password">
                 </div>
                 <div class="login-error">
                     <?php echo $error ?>

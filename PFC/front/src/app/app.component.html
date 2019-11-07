@@ -1,5 +1,5 @@
 <div>
-  <img id="image" src="../assets/ayuntamiento-zaragoza-logo-vector.jpg">
+  <!-- <img id="image" src="../assets/ayuntamiento-zaragoza-logo-vector.jpg"> -->
   <!-- <canvas id="canvasImage">Your browser does not support the HTML5 canvas tag.</canvas> -->
 </div>
 <button (click)="crop()">Crop</button>
@@ -7,6 +7,8 @@
 <div id="canvasContainer">
 
 </div>
+
+<pdf-viewer [src]="pdfSrc" [render-text]="true" style="display: block;"></pdf-viewer>
 
 <div>
   <input type="text" name="" id="test">

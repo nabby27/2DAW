@@ -6,6 +6,7 @@
     padding: 0;
 }
 
+/************************************ HEADER START ************************************/
 .header {
     background-color: #1D4289;
     width: 100%;
@@ -21,27 +22,56 @@
     padding: 1em;
 }
 
+.account-info {
+    height: 100%;
+    margin-right: 0.2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 1vw;
+}
+
 .account-info__user {
-    margin-right: 2em;
+    display: flex;
+    align-items: center;
+    padding-right: 2vw;
 }
 
-.button {
-
+.cart {
+    width: 2vw;
+    margin: 0 2vw;
 }
 
-.button--logout {
-    
+.cart:hover {
+    cursor: pointer;
 }
 
+.cart__total {
+    color: #FFFFFF;
+    padding: 0.1vw 0.6vw;
+    background-color: #000000;
+    border-radius: 50%;
+    position: absolute;
+    margin-left: -2.5vw;
+    margin-top: 1vw;
+}
+
+.arrow-back {
+    margin: 2em 0 0 4em;
+}
+/************************************ HEADER END ************************************/
+
+/************************************ SHOP START ************************************/
 .container-products {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .product {
     margin: 3vw;
     padding: 1vw;
-    border: 1px solid #C80F2E;
+    border: 3px solid #C80F2E;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -74,3 +104,56 @@
     justify-content: flex-end;
     min-width: 20%;
 }
+/************************************ SHOP END ************************************/
+
+/************************************ DETAIL START ************************************/
+.detail__product {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 2em;
+}
+
+.detail__image-container {
+    border: 3px solid #C80F2E;
+    border-radius: 5px;
+}
+
+.detail__image {
+    width: 30vw;
+}
+
+
+.detail__info-product {
+    font-size: 1.5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.quantity-label {
+    font-size: 1vw;
+    color: #1D4289;
+}
+
+/************************************ DETAIL END ************************************/
+
+
+/************************************ BUTTON START ************************************/
+.button {
+    color: #FFFFFF;
+    text-decoration: none;
+    border: 1px solid #FFFFFF;
+    padding: 1em;
+}
+
+.button--buy {
+    color: #1D4289;
+    background-color: transparent;
+    border: 1px solid #1D4289;
+    padding: 0.2em 1em;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+/************************************ BUTTON END ************************************/

@@ -11,7 +11,7 @@ if (isset($_POST['dni']) && isset($_POST['password'])) {
     $password = $_POST['password'];
     $loginModel = new Login($dni, $password);
     $client = $loginModel->getOne($db->link);
-    if (password_verify($password, $client->pwd)) {
+    if ($client && password_verify($password, $client->pwd)) {
         if ($client->administrador === '0') {
             $_SESSION['name'] = $client->nombre;
             $_SESSION['dni'] = $client->dniCliente;
@@ -26,5 +26,10 @@ if (isset($_POST['dni']) && isset($_POST['password'])) {
         require 'php/views/login.php';
     }
 } else {
+    require 'php/views/login.php';
+}
+
+if (isset($_GET['logout'])) {
+    session_destroy();
     require 'php/views/login.php';
 }

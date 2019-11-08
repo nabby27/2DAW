@@ -67,7 +67,7 @@ function init() {
     modalFormSaveButton.click(function (e) { 
         e.preventDefault();
         if (isFormValid()) {
-            if (!dniInput.prop('disabled')) {
+            if (!dniInput.prop('readonly')) {
                 addClient();
             } else {
                 updateClient();
@@ -97,9 +97,11 @@ function getClients() {
         url: '../php/controllers/clients/listClientsController.php',
         dataType: 'json',
         success: (response, status, header) => {
-            response.forEach(client => {
-                addClientRowToTable(client.dni, client.name, client.admin);
-            })
+            if (Array.isArray(response)) {
+                response.forEach(client => {
+                    addClientRowToTable(client.dni, client.name, client.admin);
+                })
+            }
         }
     });
 }
@@ -119,23 +121,18 @@ function updateClient() {
 }
 
 function saveClient(url_controller, functionToCall) {
-    dataForm = {
-        'dni': dniInput.val(),
-        'name': nameInput.val(),
-        'address': addressInput.val(),
-        'email': emailInput.val(),
-        'password': passwordInput.val(),
-        'admin': adminInput.prop('checked')
-    }
+    let formData = new FormData(form[0]);
 
     $.ajax({
         type: 'POST',
         url: url_controller,
-        data: dataForm,
+        data: formData,
         dataType: 'json',
+        processData: false,
+        contentType : false,
         success: (response, status, header) => {
             if (response === 'SUCCESS') {
-                functionToCall(dataForm.dni, dataForm.name, dataForm.admin);
+                functionToCall(formData.get('dni'), formData.get('name'), formData.get('admin'));
                 modalForm.css('display', 'none');
             } else if (response === 'ERROR') {
                 modalError.css('display', 'flex');
@@ -166,7 +163,7 @@ function generateClientRowToTable(dni, name, admin) {
     let row = '<div id="' + dni + '"class="table-row">';
     row += '    <div class="table-item">' + dni + '</div>';
     row += '    <div class="table-item">' + name + '</div>';
-    if (admin === '1' || admin === true) {
+    if (admin === '1' || admin === 'on') {
         row += '    <div class="table-item">Sí</div>';
     } else {
         row += '    <div class="table-item">No</div>';
@@ -204,8 +201,10 @@ function getOneCLient(dni) {
 }
 
 function addClientDataToForm(client) {
-    dniInput.prop('disabled', true);
+    dniInput.prop('readonly', true);
+    dniInput.addClass('input--disabled');
     dniInput.val(client.dniCliente);
+
     nameInput.val(client.nombre);
     addressInput.val(client.direccion);
     emailInput.val(client.email);
@@ -242,7 +241,8 @@ function deleteClient() {
 }
 
 function clearInputsForm() {
-    dniInput.prop('disabled', false);
+    dniInput.prop('readonly', false);
+    dniInput.removeClass('input--disabled');
     dniInput.val('');
     nameInput.val('');
     addressInput.val('');

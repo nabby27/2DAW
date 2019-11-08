@@ -109,8 +109,8 @@ body {
 	background-color: #1D4289;
 }
 
-.input--file {
-
+.input--disabled {
+    background-color: #EFEFEF;
 }
 /**************************************************** FORM END ****************************************************/
 
@@ -139,6 +139,10 @@ body {
 .modal-box__text {
     display: block;
     margin-bottom: 1em;
+}
+
+.modal_image__image {
+    width: 70%;
 }
 /**************************************************** MODAL END ****************************************************/
 
@@ -216,6 +220,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.table-item-image {
+    width: 20%;
+    padding: 0.2vw;
 }
 /**************************************************** TABLE END ****************************************************/
 

@@ -4,7 +4,7 @@ require '../../modelo.php';
 $db = new Bd();
 
 if (isset($_GET)) {
-    $result = Client::getAll($db->link);
+    $result = Product::getAll($db->link);
 
     if ($result) {
         echo json_encode($result);

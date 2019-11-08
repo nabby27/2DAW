@@ -54,7 +54,7 @@ class Client implements \JsonSerializable {
     }
 
     function __get($var) {
-        $this->$var;
+        return $this->$var;
     }
 
     function __set($key, $value) {
@@ -92,7 +92,6 @@ class Client implements \JsonSerializable {
             $client = new Client($row['dniCliente'], $row['nombre'], $row['direccion'], $row['email'], $row['pwd'], $row['administrador']);
             array_push($clients, $client);
         }
-
         return $clients;
     }
 
@@ -114,11 +113,17 @@ class Product implements \JsonSerializable {
     private $quantity;
     private $price;
 
-    function __construct() {
+    function __construct($id, $name, $photo, $brand, $quantity, $price) {
+        $this->id = $id;
+        $this->name = $name;
+        $this->photo = $photo;
+        $this->brand = $brand;
+        $this->quantity = $quantity;
+        $this->price = $price;
     }
     
     function __get($var) {
-        $this->$var;
+        return $this->$var;
     }
 
     function __set($key, $value) {
@@ -126,17 +131,25 @@ class Product implements \JsonSerializable {
     }
 
     function save($link) {
-        $queryString = "INSERT INTO productos (idProducto, nombre, foto, marca, cantidad, precio) VALUES
-            ('$this->id', '$this->name', '$this->photo', '$this->brand', '$this->quantity', '$this->price')";
+        $queryString = "INSERT INTO productos (nombre, foto, marca, cantidad, precio) VALUES
+            ('$this->name', '$this->photo', '$this->brand', $this->quantity, $this->price)";
         $result = $link->query($queryString);
-
+        if ($result) {
+            $result = $this->getLastProduct($link);
+        }
         return $result;
     }
 
     function update($link) {
-        $queryString = "UPDATE productos SET nombre='$this->name', foto='$this->photo', marca='$this->brand', cantidad='$this->quantity', precio='$this->price' WHERE idProducto='$this->id'";
+        if ($this->photo != '') {
+            $queryString = "UPDATE productos SET nombre='$this->name', foto='$this->photo', marca='$this->brand', cantidad='$this->quantity', precio='$this->price' WHERE idProducto='$this->id'";
+        } else {
+            $queryString = "UPDATE productos SET nombre='$this->name', marca='$this->brand', cantidad='$this->quantity', precio='$this->price' WHERE idProducto='$this->id'";
+        }
         $result = $link->query($queryString);
-
+        if ($result) {
+            $result = $this->getOne($link);
+        }
         return $result;
     }
 
@@ -153,7 +166,7 @@ class Product implements \JsonSerializable {
 
         $products = [];
         while ($row = $result->fetch_assoc()) {
-            $product = new Producto($row['idProducto'], $row['nombre'], $row['foto'], $row['marca'], $row['cantidad'], $row['precio']);
+            $product = new Product($row['idProducto'], $row['nombre'], $row['foto'], $row['marca'], $row['cantidad'], $row['precio']);
             array_push($products, $product);
         }
 
@@ -165,6 +178,30 @@ class Product implements \JsonSerializable {
         $result = $link->query($queryString);
 
         return $result->fetch_object();
+    }
+
+    function getLastProduct($link) {
+        $queryString = "SELECT * FROM productos ORDER BY idProducto DESC LIMIT 1";
+        $result = $link->query($queryString);
+
+        return $result->fetch_object();
+    }
+
+}
+
+class Carrito implements \JsonSerializable {
+    use JsonSerializer;
+
+    function __construct() {
+
+    }
+    
+    function __get($var) {
+        $this->$var;
+    }
+
+    function __set($key, $value) {
+        $this->$key = $value;
     }
 
 }

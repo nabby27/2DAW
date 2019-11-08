@@ -9,7 +9,7 @@ if (isset($_POST)) {
     $address = $_POST['address'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $admin = $_POST['admin'] === 'true' ? true : false;
+    $admin = (isset($_POST['admin']) && $_POST['admin']) === 'on' ? true : false;
     
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 

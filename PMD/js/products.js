@@ -9,22 +9,26 @@ let brandInput;
 let quantityInput;
 let priceInput;
 
-let saveButton;
-let closeButton;
 let modalForm;
+let modalForm_SaveButton;
+let modalForm_CloseButton
 
 let modalError;
-let modalErrorCloseButton;
+let modalError_CloseButton;
 
 let modalSureDelete;
 let modalSureDelete_Deletebutton;
 let modalSureDelete_CloseButton;
 
+let modalImage;
+let modalImage_Image;
+let modalImage_CloseButton;
+
 let idToDelete;
 
 $(document).ready(function() {
     init();
-    // getProducts();
+    getProducts();
 });
 
 function init() {
@@ -35,7 +39,7 @@ function init() {
     table = $('#table');
     
     form = $('#form');
-    idInput = $('#dni_input');
+    idInput = $('#id_input');
     nameInput = $('#name_input');
     photoInput = $('#photo_input');
     brandInput = $('#brand_input');
@@ -43,31 +47,35 @@ function init() {
     priceInput = $('#price_input');
 
     modalForm = $('#modal_form');
-    modalFormSaveButton = $('#modal_form_save_button');
-    modalFormCloseButton = $('#modal_form_close_button');
+    modalForm_SaveButton = $('#modal_form_save_button');
+    modalForm_CloseButton = $('#modal_form_close_button');
 
     modalError = $('#modal_error');
-    modalErrorCloseButton = $('#modal_error_close_button');
+    modalError_CloseButton = $('#modal_error_close_button');
 
     modalSureDelete = $('#modal_sure_delete');
     modalSureDelete_Deletebutton = $('#modal_sure_delete_delete_button');
     modalSureDelete_CloseButton = $('#modal_sure_delete_close_button');
     
+    modalImage = $('#modal_image');
+    modalImage_Image = $('#modal_image_image');
+    modalImage_CloseButton = $('#modal_image_close_button');
+
     addProductButton.click(function (e) { 
         e.preventDefault();
         clearInputsForm();
         modalForm.css('display', 'flex');
     });
 
-    modalFormCloseButton.click(function (e) { 
+    modalForm_CloseButton.click(function (e) { 
         e.preventDefault();
         modalForm.css('display', 'none');
     });
 
-    modalFormSaveButton.click(function (e) { 
+    modalForm_SaveButton.click(function (e) { 
         e.preventDefault();
         if (isFormValid()) {
-            if (!idInput.prop('disabled')) {
+            if (!idInput.prop('readonly')) {
                 addProduct();
             } else {
                 updateProduct();
@@ -80,7 +88,7 @@ function init() {
         modalSureDelete.css('display', 'none');
     });
 
-    modalErrorCloseButton.click(function (e) { 
+    modalError_CloseButton.click(function (e) { 
         e.preventDefault();
         modalError.css('display', 'none');
     });
@@ -88,6 +96,11 @@ function init() {
     modalSureDelete_Deletebutton.click(function (e) { 
         e.preventDefault();
         deleteProduct();
+    });
+
+    modalImage_CloseButton.click(function (e) { 
+        e.preventDefault();
+        modalImage.css('display', 'none');
     });
 }
 
@@ -97,15 +110,17 @@ function getProducts() {
         url: '../php/controllers/products/listProductsController.php',
         dataType: 'json',
         success: (response, status, header) => {
-            response.forEach(product => {
-                addProductRowToTable(product.id, product.photo, product.name, product.price);
-            })
+            if (Array.isArray(response)) {
+                response.forEach(product => {
+                    addProductRowToTable(product.id, product.photo, product.name, product.price);
+                })
+            }
         }
     });
 }
 
 function isFormValid() {
-    return idInput.val() != '' && nameInput.val() != '' && photoInput.val() != '' && quantityInput.val() != '' && priceInput.val() != '';
+    return nameInput.val() != '' && quantityInput.val() != '' && priceInput.val() != '';
 }
 
 function addProduct() {
@@ -113,31 +128,26 @@ function addProduct() {
     saveProduct(url_controller, addProductRowToTable);
 }
 
-function updateClient() {
+function updateProduct() {
     let url_controller = '../php/controllers/products/updateProductController.php';
     saveProduct(url_controller, updateProductRowToTable);
 }
 
 function saveProduct(url_controller, functionToCall) {
-    dataForm = {
-        'id': idInput.val(),
-        'name': nameInput.val(),
-        'photo': photoInput.val(),
-        'brand': brandInput.val(),
-        'quantity': quantityInput.val(),
-        'price': priceInput.val()
-    }
+    let formData = new FormData(form[0]);
 
     $.ajax({
         type: 'POST',
         url: url_controller,
-        data: dataForm,
+        data: formData,
         dataType: 'json',
+        processData: false,
+        contentType : false,
         success: (response, status, header) => {
-            if (response === 'SUCCESS') {
-                functionToCall(dataForm.dni, dataForm.name, dataForm.admin);
+            if (response !== 'ERROR') {
+                functionToCall(response.idProducto, response.foto, response.nombre, response.precio);
                 modalForm.css('display', 'none');
-            } else if (response === 'ERROR') {
+            } else {
                 modalError.css('display', 'flex');
             }
         }
@@ -149,7 +159,7 @@ function addProductRowToTable(id, photo, name, price) {
     
     table.append(row);
 
-    addListenersToRowButtons(id);
+    addListenersToRowButtons(id, photo);
 }
 
 function updateProductRowToTable(id, photo, name, price) {
@@ -157,23 +167,30 @@ function updateProductRowToTable(id, photo, name, price) {
 
     $('#' + id).replaceWith(row);
     
-    addListenersToRowButtons(id);
+    addListenersToRowButtons(id, photo);
 }
 
 function generateClientRowToTable(id, photo, name, price) {
     let editButton = createEditButton(id);
     let deleteButton = createDeleteButton(id);
     let row = '<div id="' + id + '"class="table-row">';
-    row += '    <div class="table-item">' + photo + '</div>';
+    row += '    <div class="table-item">' + id + '</div>';
+    if (photo && photo.name) {
+        row += '    <div class="table-item"><img id="image-' + id + '" class="table-item-image" src="../img/' + photo.name + '" alt="product image"></div>';
+    } else if (photo != '') {
+        row += '    <div class="table-item"><img id="image-' + id + '" class="table-item-image" src="../img/' + photo + '" alt="product image"></div>';
+    } else {
+        row += '    <div class="table-item"><img id="image-' + id + '" class="table-item-image" src="" alt="product image"></div>';
+    }
     row += '    <div class="table-item">' + name + '</div>';
     row += '    <div class="table-item">' + price + '</div>';
     row += '    <div class="table-item">' + editButton + deleteButton +'</div>';
     row += '</div>';
-    
+
     return row;
 }
 
-function addListenersToRowButtons(id) {
+function addListenersToRowButtons(id, photo) {
     $('#delete-' + id).click(function (e) {
         e.preventDefault();
         idToDelete = id;
@@ -184,6 +201,22 @@ function addListenersToRowButtons(id) {
         e.preventDefault();
         getOneProduct(id);
     });
+
+    $('#image-' + id).click(function (e) {
+        e.preventDefault();
+        openModalImage(photo);
+    });
+}
+
+function openModalImage(photo) {
+    modalImage.css('display', 'flex');
+    let image_name = photo;
+    if (photo.name) {
+        image_name = photo.name;
+    }
+
+    let img = '<img class="modal_image__image" src="../img/' + image_name + '" alt="product image">';
+    modalImage_Image.html(img);
 }
 
 function getOneProduct(id) {
@@ -200,10 +233,10 @@ function getOneProduct(id) {
 }
 
 function addProductDataToForm(product) {
-    idInput.prop('disabled', true);
+    idInput.prop('readonly', true);
     idInput.val(product.idProducto);
     nameInput.val(product.nombre);
-    photoInput.val(product.foto);
+    photoInput.val('');
     brandInput.val(product.marca);
     quantityInput.val(product.cantidad);
     priceInput.val(product.precio);
@@ -234,7 +267,7 @@ function deleteProduct() {
 }
 
 function clearInputsForm() {
-    idInput.prop('disabled', false);
+    idInput.prop('readonly', false);
     idInput.val('');
     nameInput.val('');
     photoInput.val('');

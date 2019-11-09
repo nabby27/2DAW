@@ -11,8 +11,8 @@
     <header class="header">
         <span class="company_name">NBA T-shop</span>
         <div class="account-info">
-            <a class="button button--logout" href="validar.php?logout">Cerrar sesi&oacute;n</a>
-            <div class="account-info__user">Bienvenido <?php echo $_SESSION['name']?>! <div><a href="vercarrito.php"><img class="cart" src="./img/cart.svg"></a><span class="cart__total"><?php echo $_SESSION['total']?></span></div></div>
+            <a class="button button--logout" href="validar.php">Cerrar sesi&oacute;n</a>
+            <div class="account-info__user">Bienvenido <?php echo $_SESSION['user_name']?>! <div><a href="vercarrito.php"><img class="cart" src="./img/cart.svg"></a><span class="cart__total"><?php echo $_SESSION['total']?></span></div></div>
         </div>
     </header>
     <div class="arrow-back">

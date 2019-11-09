@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="styles/admin-panel.css">
-    <!-- <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/login.js"></script> -->
     <title>Login</title>
 </head>
 <body>
@@ -29,12 +27,5 @@
             </div>
         </form>
     </div>
-    
-    <!-- <div id="modal" class="modal">
-        <div class="modal__box">
-            <span class="modal-box__text">El usuario no existe o la contraseña es incorrecta</span>
-            <button id="button_close_modal" class="button">Aceptar</button>
-        </div>
-    </div> -->
 </body>
 </html>

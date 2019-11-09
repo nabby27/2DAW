@@ -192,16 +192,59 @@ class Product implements \JsonSerializable {
 class Carrito implements \JsonSerializable {
     use JsonSerializer;
 
-    function __construct() {
+    private $orderId;
+    private $date;
+    private $dniClient;
 
+    private $lineId;
+    private $productId;
+    private $quantity;
+
+    function __construct($orderId, $date, $dniClient, $lineId, $productId, $quantity) {
+        $this->orderId = $orderId;
+        $this->date = $date;
+        $this->dniClient = $dniClient;
+        $this->lineId = $lineId;
+        $this->productId = $productId;
+        $this->quantity = $quantity;
     }
     
     function __get($var) {
-        $this->$var;
+        return $this->$var;
     }
 
     function __set($key, $value) {
         $this->$key = $value;
+    }
+
+    function saveOrder($link) {
+        $queryString = "INSERT INTO pedidos (idPedido, fecha, dniCliente) VALUES
+            ('$this->orderId', '$this->date', '$this->dniClient')";
+        $result = $link->query($queryString);
+
+        return $result;
+    }
+
+    function saveLineOrder($link) {
+        $queryString = "INSERT INTO lineas_pedidos (nLinea, cantidad, idPedido, idProducto) VALUES
+            ('$this->lineId', '$this->quantity', '$this->orderId', '$this->productId')";
+        $result = $link->query($queryString);
+
+        return $result;
+    }
+
+    function getNewOrderId($link) {
+        $queryString = "SELECT max(idPedido) FROM pedidos";
+        $result = $link->query($queryString);
+        $maxId = mysqli_fetch_row($result)[0];
+        
+        if ($maxId === null) {
+            $id = 1;
+        } else {
+            $id = $maxId + 1;
+        }
+
+        return $id;
     }
 
 }

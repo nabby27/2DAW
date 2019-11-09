@@ -10,7 +10,7 @@ if (isset($_SESSION['dni']) && isset($_GET['idProducto'])) {
     $productModel = new Product($id, '', '', '', '', '');
     $product = $productModel->getOne($db->link);
 
-    require 'php/views/detalle.php';
+    require 'php/views/detail.php';
 } else {
     header('Location: validar.php');
 }

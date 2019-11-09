@@ -2,20 +2,26 @@ let userNameContainer;
 let userNameLogged;
 let logoutButton;
 
-let addProductButton;
+let addOrderButton;
 let table;
 
-let form;
-let idInput;
-let nameInput;
-let photoInput;
-let brandInput;
-let quantityInput;
-let priceInput;
+let formOrder;
+let idOrderInput;
+let dateInput;
+let clientSelect;
 
-let modalForm;
-let modalForm_SaveButton;
-let modalForm_CloseButton
+let formLine;
+let idLineInput;
+let quantityInput;
+let idProductInput;
+
+let modalFormOrder;
+let modalFormOrder_SaveButton;
+let modalFormOrder_CloseButton
+
+let modalFormLine;
+let modalFormLine_SaveButton;
+let modalFormLine_CloseButton
 
 let modalError;
 let modalError_CloseButton;
@@ -23,10 +29,6 @@ let modalError_CloseButton;
 let modalSureDelete;
 let modalSureDelete_Deletebutton;
 let modalSureDelete_CloseButton;
-
-let modalImage;
-let modalImage_Image;
-let modalImage_CloseButton;
 
 let idToDelete;
 
@@ -48,20 +50,26 @@ function init() {
 
     idToDelete = '';
 
-    addProductButton = $('#add_product_button');
+    addOrderButton = $('#add_order_button');
     table = $('#table');
     
-    form = $('#form');
-    idInput = $('#id_input');
-    nameInput = $('#name_input');
-    photoInput = $('#photo_input');
-    brandInput = $('#brand_input');
-    quantityInput = $('#quantity_input');
-    priceInput = $('#price_input');
+    formOrder = $('#form_order');
+    idOrderInput = $('#id_order_input');
+    dateInput = $('#date_input');
+    clientSelect = $('#client_select');
 
-    modalForm = $('#modal_form');
-    modalForm_SaveButton = $('#modal_form_save_button');
-    modalForm_CloseButton = $('#modal_form_close_button');
+    formLine = $('#form_line');
+    idLineInput = $('#id_line_input');
+    quantityInput = $('#quantity_input');
+    idProductInput = $('#id_product_input');
+
+    modalFormOrder = $('#modal_form_order');
+    modalFormOrder_SaveButton = $('#modal_form_order_save_button');
+    modalFormOrder_CloseButton = $('#modal_form_order_close_button');
+
+    modalFormLine = $('#modal_form_line');
+    modalFormLine_SaveButton = $('#modal_form_line_save_button');
+    modalFormLine_CloseButton = $('#modal_form_line_close_button');
 
     modalError = $('#modal_error');
     modalError_CloseButton = $('#modal_error_close_button');
@@ -69,10 +77,6 @@ function init() {
     modalSureDelete = $('#modal_sure_delete');
     modalSureDelete_Deletebutton = $('#modal_sure_delete_delete_button');
     modalSureDelete_CloseButton = $('#modal_sure_delete_close_button');
-    
-    modalImage = $('#modal_image');
-    modalImage_Image = $('#modal_image_image');
-    modalImage_CloseButton = $('#modal_image_close_button');
 
     userNameContainer.html('Bienvenido ' + userNameLogged + '!');
 
@@ -81,19 +85,35 @@ function init() {
         localStorage.clear();
         window.location.replace("../validar.php");
     });
-    
-    addProductButton.click(function (e) { 
+
+    addOrderButton.click(function (e) { 
         e.preventDefault();
         clearInputsForm();
-        modalForm.css('display', 'flex');
+        modalFormOrder.css('display', 'flex');
     });
 
-    modalForm_CloseButton.click(function (e) { 
+    modalFormOrder_CloseButton.click(function (e) { 
         e.preventDefault();
         modalForm.css('display', 'none');
     });
 
-    modalForm_SaveButton.click(function (e) { 
+    modalFormOrder_SaveButton.click(function (e) { 
+        e.preventDefault();
+        if (isFormValid()) {
+            if (!idInput.prop('readonly')) {
+                addProduct();
+            } else {
+                updateProduct();
+            }
+        }
+    });
+
+    modalFormLine_CloseButton.click(function (e) { 
+        e.preventDefault();
+        modalForm.css('display', 'none');
+    });
+
+    modalFormLine_SaveButton.click(function (e) { 
         e.preventDefault();
         if (isFormValid()) {
             if (!idInput.prop('readonly')) {
@@ -117,11 +137,6 @@ function init() {
     modalSureDelete_Deletebutton.click(function (e) { 
         e.preventDefault();
         deleteProduct();
-    });
-
-    modalImage_CloseButton.click(function (e) { 
-        e.preventDefault();
-        modalImage.css('display', 'none');
     });
 }
 

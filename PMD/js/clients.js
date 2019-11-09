@@ -1,3 +1,7 @@
+let userNameContainer;
+let userNameLogged;
+let logoutButton;
+
 let addClientButton;
 let table;
 
@@ -23,11 +27,20 @@ let modalSureDelete_CloseButton;
 let dniToDelete;
 
 $(document).ready(function() {
-    init();
-    getClients();
+    userNameLogged = localStorage.getItem('user_name');
+    
+    if (!userNameLogged) {
+        checkUserLogged();
+    } else {
+        init();
+    }
 });
 
 function init() {
+    getClients();
+
+    userNameContainer = $('#user_name');
+    logoutButton = $('#logout_button');
 
     dniToDelete = '';
 
@@ -53,6 +66,14 @@ function init() {
     modalSureDelete_Deletebutton = $('#modal_sure_delete_delete_button');
     modalSureDelete_CloseButton = $('#modal_sure_delete_close_button');
     
+    userNameContainer.html('Bienvenido ' + userNameLogged + '!');
+
+    logoutButton.click(function (e) { 
+        e.preventDefault();
+        localStorage.clear();
+        window.location.replace("../validar.php");
+    });
+
     addClientButton.click(function (e) { 
         e.preventDefault();
         clearInputsForm();
@@ -88,6 +109,24 @@ function init() {
     modalSureDelete_Deletebutton.click(function (e) { 
         e.preventDefault();
         deleteClient();
+    });
+}
+
+function checkUserLogged() {
+    $.ajax({
+        type: 'GET',
+        url: '../php/controllers/clients/getClientLogged.php',
+        dataType: 'json',
+        success: (response, status, header) => {
+            if (response && response != '') {
+                localStorage.setItem('user_name', response);
+                userNameLogged = response;
+                init();
+            }
+        },
+        error: (a, b, c) => {
+            window.location.replace("../validar.php");
+        }
     });
 }
 

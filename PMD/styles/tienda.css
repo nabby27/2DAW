@@ -134,23 +134,93 @@
     font-size: 1vw;
     color: #1D4289;
 }
-
 /************************************ DETAIL END ************************************/
 
+/************************************ CART START ************************************/
+.line-order {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5vw;
+    margin: 0 10em 0 10em;
+    padding: 1em;
+    border-bottom: 3px solid #1D4289;
+}
+
+.line-order__item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.line-order__input {
+    margin: 0 10%;
+    width: 20%;
+    font-size: 1vw;
+}
+
+.button-update__container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 15vw;
+}
+
+.buttons-end__container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2em;
+}
+
+.total-import__container {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 25vw;
+    font-size: 1.5vw;
+}
+
+.order-success {
+    display: flex;
+    justify-content: center;
+    font-size: 3vw;
+    color: #1D4289;
+}
+/************************************ CART END ************************************/
 
 /************************************ BUTTON START ************************************/
 .button {
-    color: #FFFFFF;
-    text-decoration: none;
-    border: 1px solid #FFFFFF;
-    padding: 1em;
-}
-
-.button--buy {
     color: #1D4289;
     background-color: transparent;
     border: 1px solid #1D4289;
+    text-decoration: none;
+    font-size: 1vw;
+}
+
+.button--buy {
     padding: 0.2em 1em;
+}
+
+.button--confirm {
+    padding: 1em 2em;
+    margin: 0 1em;
+}
+
+.button--go-to {
+    padding: 1em 2em;
+    font-size: 1vw;
+    margin: 0 1em;
+    color: #000000;
+    border-color: #000000;
+}
+
+.button--logout {
+    padding: 1em;
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+}
+
+.button--update {
+    padding: 0.5em 2em;
+    color: #C80F2E;
+    border-color: #C80F2E;
 }
 
 .button:hover {

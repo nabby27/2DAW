@@ -152,6 +152,19 @@ body {
     color: #FFF;
     padding: 1em 2em;
     font-size: 2vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.account-info {
+    display: flex;
+    align-items: center;
+}
+
+.account-info__user {
+    font-size: 1vw;
+    text-align: center;
+    margin: 0 2em;
 }
 
 .menu {
@@ -255,88 +268,10 @@ body {
 .button--danger {
     background-color: #C80F2E;
 }
+
+.button--logout {
+    text-decoration: none;
+    border: 1px solid #FFFFFF;
+    background-color: transparent;
+}
 /**************************************************** BUTTON END ****************************************************/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* MOBILE START */
-/* @media screen and (max-width: 600px) {
-    
-    body {
-        margin: 0;
-    }
-
-    .login__page {
-        height: auto;
-    }
-    
-    .login__box {
-        width: 100%;
-        border-radius: 0;
-        border: 0;
-    }
-
-    .login__title {
-        padding: 1em;
-        font-size: 7vw;
-    }
-    
-    .login__input-group {
-        margin: 3em 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-size: 5vw;
-    }
-    
-    .login__label {
-        text-align: center;
-        margin: 1em;
-    }
-    
-    .login__button {
-        display: flex;
-        justify-content: center;
-        font-size: 5vw;
-        width: 50%;
-        padding: 1em 5em;
-    }
-} */
-/* MOBILE END */

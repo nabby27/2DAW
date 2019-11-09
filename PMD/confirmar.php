@@ -14,7 +14,7 @@ if (isset($_SESSION['dni'])) {
     $orderToInsert->saveOrder($db->link);
 
     for ($index = 0; $index < $_SESSION['total']; $index++) { 
-        $lineOrder = new Carrito($orderId, '', '', $index, $_SESSION['product_id'][$index], $_SESSION['quantity'][$index]);
+        $lineOrder = new Carrito($orderId, '', '', $index+1, $_SESSION['product_id'][$index], $_SESSION['quantity'][$index]);
         $lineOrder->saveLineOrder($db->link);
     }
     $html = getHtml();

@@ -71,29 +71,20 @@
         <div class="modal__box">
             <div class="modal-box__text">
                 <form id="form_line">
-                    <input class="input input--text" id="id_line_input" name="id" type="hidden">
-                    <div class="field-group">
-                        <label class="label" for="name_input">* Nombre:</label>
-                        <input class="input input--text" id="name_input" name="name" type="text" required>
-                    </div>
-                    <div class="field-group">
-                        <label class="label" for="photo_input">Foto:</label>
-                        <input class="input input--file" id="photo_input" name="photo" type="file" required>
-                    </div>
-                    <div class="field-group">
-                        <label class="label" for="brand_input">Marca:</label>
-                        <input class="input input--text" id="brand_input" name="brand" type="text">
-                    </div>
+                    <input class="input input--text" id="id_line_input" name="lineId" type="hidden">
+                    <input class="input input--text" id="id_order_of_line_input" name="orderId" type="hidden">
                     <div class="field-group">
                         <label class="label" for="quantity_input">* Cantidad:</label>
-                        <input class="input input--text" id="quantity_input" name="quantity" type="number" step="1" min="0" required>
+                        <input class="input input--text" id="quantity_input" name="quantity" type="number" step="1" min="1" required>
                     </div>
                     <div class="field-group">
-                        <label class="label" for="price_input">* Precio:</label>
-                        <input class="input input--text" id="price_input" name="price" type="number" step="0.1" min="0" required>
+                        <label class="label" for="client_input">* Productos:</label>
+                        <select class="input input--select" name="productId" id="product_line_select" required>
+                        
+                        </select>
                     </div>
                     <button type="submit" class="button" id="modal_form_line_save_button">Guardar</button>
-                    <button class="button button--secundary" id="modal_form_line_ close_button">Cerrar</button>
+                    <button class="button button--secundary" id="modal_form_line_close_button">Cerrar</button>
                 </form>
             </div>
         </div>

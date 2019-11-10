@@ -21,21 +21,21 @@
     <section class="detail__product">
         
         <div class="detail__image-container">
-            <img class="detail__image" src="./img/<?php echo $product->foto?>" alt="imagen de producto">
+            <img class="detail__image" src="./img/<?php echo $product->photo?>" alt="imagen de producto">
         </div>
 
         <div class="detail__info-product">
-            <div>Nombre: <?php echo $product->nombre ?></div>
-            <div>Marca: <?php echo $product->marca ?></div>
-            <div>Cantidadt en stock: <?php echo $product->cantidad ?></div>
-            <div>Precio: <?php echo $product->precio ?> &euro;</div>
+            <div>Nombre: <?php echo $product->name ?></div>
+            <div>Marca: <?php echo $product->brand ?></div>
+            <div>Cantidadt en stock: <?php echo $product->quantity ?></div>
+            <div>Precio: <?php echo $product->price ?> &euro;</div>
             <div>
                 <form action="vercarrito.php" method="POST">
                     <label for="quantity" class="quantity-label">Cuantas quieres?</label>
                     <input class="quantity__input" type="number" name="quantity" value="1">
-                    <input type="hidden" name="id" value="<?php echo $product->idProducto ?>">
-                    <input type="hidden" name="name" value="<?php echo $product->nombre ?>">
-                    <input type="hidden" name="price" value="<?php echo $product->precio ?>">
+                    <input type="hidden" name="id" value="<?php echo $product->id ?>">
+                    <input type="hidden" name="name" value="<?php echo $product->name ?>">
+                    <input type="hidden" name="price" value="<?php echo $product->price ?>">
 
                     <button type="submit" class="button button--buy">Comprar</button>
                 </form>

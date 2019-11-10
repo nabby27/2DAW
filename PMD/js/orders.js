@@ -1,4 +1,6 @@
 let clients;
+let products;
+let linesOfOrdersOpen;
 
 let userNameContainer;
 let userNameLogged;
@@ -14,8 +16,9 @@ let clientOrderSelect;
 
 let formLine;
 let idLineInput;
+let idOrderOfLineInput;
 let quantityInput;
-let idProductInput;
+let productLineSelect;
 
 let modalFormOrder;
 let modalFormOrder_SaveButton;
@@ -50,13 +53,14 @@ $(document).ready(function() {
 });
 
 function init() {
-    getClientsAndOrders();
+    getClientsAndProductsAndOrders();
 
     userNameContainer = $('#user_name');
     logoutButton = $('#logout_button');
 
     idOrderToDelete = '';
     idLineToDelete = '';
+    linesOfOrdersOpen = [];
 
     addOrderButton = $('#add_order_button');
     table = $('#table');
@@ -68,8 +72,9 @@ function init() {
 
     formLine = $('#form_line');
     idLineInput = $('#id_line_input');
+    idOrderOrLineInput = $('#id_order_of_line_input');
     quantityInput = $('#quantity_input');
-    idProductInput = $('#id_product_input');
+    productLineSelect = $('#product_line_select');
 
     modalFormOrder = $('#modal_form_order');
     modalFormOrder_SaveButton = $('#modal_form_order_save_button');
@@ -146,16 +151,16 @@ function init() {
         deleteOrder();
     });
 
-    // modalSureDeleteLine_CloseButton.click(function (e) { 
-    //     e.preventDefault();
-    //     modalSureDeleteLine.css('display', 'none');
-    // });
+    modalSureDeleteLine_CloseButton.click(function (e) { 
+        e.preventDefault();
+        modalSureDeleteLine.css('display', 'none');
+    });
 
     
-    // modalSureDeleteLine_Deletebutton.click(function (e) { 
-    //     e.preventDefault();
-    //     deleteLine();
-    // });
+    modalSureDeleteLine_Deletebutton.click(function (e) { 
+        e.preventDefault();
+        debugger
+    });
     
     modalError_CloseButton.click(function (e) { 
         e.preventDefault();
@@ -181,13 +186,25 @@ function checkUserLogged() {
     });
 }
 
-function getClientsAndOrders() {
+function getClientsAndProductsAndOrders() {
     $.ajax({
         type: 'GET',
         url: '../php/controllers/clients/listClientsController.php',
         dataType: 'json',
         success: (response, status, header) => {
             clients = response;
+            getProducts();
+        }
+    });
+}
+
+function getProducts() {
+    $.ajax({
+        type: 'GET',
+        url: '../php/controllers/products/listProductsController.php',
+        dataType: 'json',
+        success: (response, status, header) => {
+            products = response;
             getOrders();
         }
     });
@@ -217,19 +234,28 @@ function addClientsToSelect() {
     clientOrderSelect.html(htmlOptions);
 }
 
-// function isFormLineValid() {
-//     return nameInput.val() != '' && quantityInput.val() != '' && priceInput.val() != '';
-// }
+function addProductsToSelect() {
+    let htmlOptions = '';
+    products.forEach(product => {
+        htmlOptions += '<option class="select--option" value=' + product.id + '>' + product.name  + '</option>';
+    })
+    
+    productLineSelect.html(htmlOptions);
+}
+
+function isFormLineValid() {
+    return quantityInput.val() != '' && productLineSelect.val() != '';
+}
 
 function addOrder() {
     let url_controller = '../php/controllers/orders/addOrderController.php';
     save(url_controller, addOrderRowToTable, formOrder[0]);
 }
 
-// function addLine() {
-//     let url_controller = '../php/controllers/orders/addLineController.php';
-//     save(url_controller, addLineRowToTable, formLine[0]);
-// }
+function addLine() {
+    let url_controller = '../php/controllers/orders/addLineController.php';
+    save(url_controller, addLinesOfOrderRowToTable, formLine[0]);
+}
 
 function updateOrder() {
     let url_controller = '../php/controllers/orders/updateOrderController.php';
@@ -305,19 +331,16 @@ function getClientName(dniClient) {
     return name;
 }
 
-// function generateLineRowToTable(lineId, quantity, productId) {
-//     let editButton = createEditButton(lineId);
-//     let deleteButton = createDeleteButton(lineId);
+function getProductName(productId) {
+    name = '';
+    products.forEach(product => {
+        if (product.id === productId) {
+            name = product.name;
+        }
+    })
 
-//     let row = '<div id="line-' + lineId + '"class="table-row">';
-//     row += '    <div class="table-item">' + lineId + '</div>';
-//     row += '    <div class="table-item">' + quantity + '</div>';
-//     row += '    <div class="table-item">' + productId + ' &euro;</div>';
-//     row += '    <div class="table-item">' + editButton + deleteButton +'</div>';
-//     row += '</div>';
-
-//     return row;
-// }
+    return name;
+}
 
 function addListenersToOrderRowButtons(orderId) {
     $('#delete_order-' + orderId).click(function (e) {
@@ -333,7 +356,13 @@ function addListenersToOrderRowButtons(orderId) {
 
     $('#product_order-' + orderId).click(function (e) {
         e.preventDefault();
-        getLinesOfOrder(orderId);
+        if (linesOfOrdersOpen.includes(orderId)) {
+            linesOfOrdersOpen = linesOfOrdersOpen.filter((value) => { return value !== orderId });
+            closeLinesOfOrder(orderId);
+        } else {
+            linesOfOrdersOpen.push(orderId);
+            getLinesOfOrder(orderId);
+        }
     });
 }
 
@@ -346,35 +375,49 @@ function getLinesOfOrder(orderId) {
         success: (response, status, header) => {
             if (response !== 'ERROR') {
                 if (Array.isArray(response)) {
-                    addLinesOfOrderRowToTable(orderId, response);
+                    addLinesOfOrderRowToTable(response);
+                    linesOpen = orderId;
                 }
             }
         }
     });
 }
 
-function addLinesOfOrderRowToTable(orderId, linesOfOrder) {
-    let headerRow = '<div class="table-row">';
-    headerRow += '    <div class="table-item">ID</div>';
-    headerRow += '    <div class="table-item">Cantidad</div>';
-    headerRow += '    <div class="table-item">Operaciones</div>';
-    headerRow += '</div>';
+function closeLinesOfOrder(orderId) {
+    $('#order-' + orderId + '_lines').remove();
+}
 
-    $('order-' + orderId).append(headerRow);
+function addLinesOfOrderRowToTable(linesOfOrder) {
+    $('#order-' + linesOfOrder[0].orderId + '_lines').remove();
+
+    let rows = '<div id="order-' + linesOfOrder[0].orderId + '_lines" class="subtable">';
+    rows += '    <div class="subtable-row">';
+    rows += '       <div class="subtable-item">ID</div>';
+    rows += '       <div class="subtable-item">Nombre</div>';
+    rows += '       <div class="subtable-item">Cantidad</div>';
+    rows += '       <div class="subtable-item">Operaciones</div>';
+    rows += '   </div>';
 
     linesOfOrder.forEach(line => {
-        let editButton = createLineEditButton(orderId, line.lineId);
-        let deleteButton = createLineDeleteButton(orderId, line.lineId);
+        let editButton = createLineEditButton(line.orderId, line.lineId);
+        let deleteButton = createLineDeleteButton(line.orderId, line.lineId);
 
-        let rows = '<div id="order-' + orderId + '_line-' + line.lineId + '" class="table-row">';
-        rows += '    <div class="table-item">' + line.lineId + '</div>';
-        rows += '    <div class="table-item">' + line.quantity + '</div>';
-        rows += '    <div class="table-item">' + editButton + deleteButton +'</div>';
+        rows += '<div id="order-' + line.orderId + '_line-' + line.lineId + '" class="subtable-row">';
+        rows += '    <div class="subtable-item">' + line.lineId + '</div>';
+        rows += '    <div class="subtable-item">' + getProductName(line.productId) + '</div>';
+        rows += '    <div class="subtable-item">' + line.quantity + '</div>';
+        rows += '    <div class="subtable-item">' + editButton + deleteButton +'</div>';
         rows += '</div>';
+    })
+    rows += '    <div class="subtable-row subtable-row__add">';
+    rows += '       <button id="order-' + linesOfOrder[0].orderId + '_add" class="button button--small">A&ntilde;adir producto</button>';
+    rows += '   </div>';
+    rows += '</div>';
 
-        $('order-' + orderId).append(rows);
-        
-        addListenersToLineOfOrderRowButtons(order.orderId, line.lineId);
+    $('#order-' + linesOfOrder[0].orderId).after(rows);
+
+    linesOfOrder.forEach(line => {
+        addListenersToLineOfOrderRowButtons(line.orderId, line.lineId);
     })
 }
 
@@ -391,7 +434,6 @@ function addListenersToLineOfOrderRowButtons(orderId, lineId) {
     $('#delete_order-' + orderId + '_line-' + lineId).click(function (e) {
         e.preventDefault();
         idLineToDelete = lineId;
-        debugger
         modalSureDeleteLine.css('display', 'flex');
     });
 
@@ -399,18 +441,14 @@ function addListenersToLineOfOrderRowButtons(orderId, lineId) {
         e.preventDefault();
         debugger
     });
+
+    $('#order-' + orderId + '_add').click(function (e) {
+        e.preventDefault();
+        clearLineForm(orderId);
+        addProductsToSelect();
+        modalFormLine.css('display', 'flex');
+    });
 }
-
-// function openModalImage(photo) {
-//     modalImage.css('display', 'flex');
-//     let image_name = photo;
-//     if (photo.name) {
-//         image_name = photo.name;
-//     }
-
-//     let img = '<img class="modal_image__image" src="../img/' + image_name + '" alt="product image">';
-//     modalImage_Image.html(img);
-// }
 
 function getOneOrder(id) {
     $.ajax({
@@ -482,4 +520,12 @@ function clearOrderForm() {
     idOrderInput.val('');
     dateInput.val('');
     clientOrderSelect.val('');
+}
+
+function clearLineForm(orderId) {
+    idLineInput.prop('readonly', false);
+    idLineInput.val('');
+    idOrderOrLineInput.val(orderId);
+    quantityInput.val('1');
+    productLineSelect.val('');
 }

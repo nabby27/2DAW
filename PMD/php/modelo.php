@@ -253,11 +253,28 @@ class Carrito implements \JsonSerializable {
             ('$this->lineId', '$this->quantity', '$this->orderId', '$this->productId')";
         $result = $link->query($queryString);
 
+        if ($result) {
+            $result = $this->getAllLineOfOrder($link);
+        }
         return $result;
     }
 
     function getNewOrderId($link) {
         $queryString = "SELECT max(idPedido) FROM pedidos";
+        $result = $link->query($queryString);
+        $maxId = mysqli_fetch_row($result)[0];
+        
+        if ($maxId === null) {
+            $id = 1;
+        } else {
+            $id = $maxId + 1;
+        }
+
+        return $id;
+    }
+
+    function getNewLineId($link) {
+        $queryString = "SELECT max(nLinea) FROM lineas_pedidos";
         $result = $link->query($queryString);
         $maxId = mysqli_fetch_row($result)[0];
         
@@ -305,9 +322,11 @@ class Carrito implements \JsonSerializable {
     function getAllLineOfOrder($link) {
         $queryString = "SELECT * FROM lineas_pedidos WHERE idPedido=$this->orderId";
         $result = $link->query($queryString);
-var_dump($queryString);
+
+        $lines = [];
         while ($row = $result->fetch_assoc()) {
-            $lines = new Carrito('', '', '', $row['nLinea'], $row['idProducto'], $row['cantidad']);
+            $line = new Carrito($this->orderId, '', '', $row['nLinea'], $row['idProducto'], $row['cantidad']);
+            array_push($lines, $line);
         }
 
         return $lines;

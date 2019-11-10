@@ -274,12 +274,12 @@ function getOneProduct(id) {
 
 function addProductDataToForm(product) {
     idInput.prop('readonly', true);
-    idInput.val(product.idProducto);
-    nameInput.val(product.nombre);
+    idInput.val(product.id);
+    nameInput.val(product.name);
     photoInput.val('');
-    brandInput.val(product.marca);
-    quantityInput.val(product.cantidad);
-    priceInput.val(product.precio);
+    brandInput.val(product.brand);
+    quantityInput.val(product.quantity);
+    priceInput.val(product.price);
 }
 
 function createEditButton(id) {

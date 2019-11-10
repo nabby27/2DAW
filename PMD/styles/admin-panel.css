@@ -249,6 +249,31 @@ body {
     align-items: center;
 }
 
+.subtable {
+    margin: 1em auto;
+    font-size: 1vw;
+}
+
+.subtable-row {
+    width: 80%;
+    margin: 0 auto;
+    border-bottom: 1px solid #000000;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.subtable-row__add {
+    justify-content: flex-end;
+}
+
+.subtable-item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .table-item-image {
     width: 20%;
     padding: 0.2vw;

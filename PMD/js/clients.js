@@ -243,13 +243,12 @@ function getOneCLient(dni) {
 function addClientDataToForm(client) {
     dniInput.prop('readonly', true);
     dniInput.addClass('input--disabled');
-    dniInput.val(client.dniCliente);
-
-    nameInput.val(client.nombre);
-    addressInput.val(client.direccion);
+    dniInput.val(client.dni);
+    nameInput.val(client.name);
+    addressInput.val(client.address);
     emailInput.val(client.email);
-    passwordInput.val(client.pwd);
-    if (client.administrador == "1") {
+    passwordInput.val(client.password);
+    if (client.admin == "1") {
         adminInput.prop('checked', true);
     } else {
         adminInput.prop('checked', false);

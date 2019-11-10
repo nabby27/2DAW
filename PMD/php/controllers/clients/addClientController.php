@@ -12,7 +12,6 @@ if (isset($_POST)) {
     $admin = (isset($_POST['admin']) && $_POST['admin'] === 'on') ? true : false;
     
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
     $clientModel = new Client($dni, $name, $address, $email, $hashed_password, $admin);
     $result = $clientModel->save($db->link);
     

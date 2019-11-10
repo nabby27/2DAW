@@ -52,11 +52,11 @@ body {
 }
 /* LOGIN END */
 
-/* ADMIN PANEL START */
-.add-client {
+/* PANEL START */
+.add-container {
     margin: 2vw 4vw;
 }
-/* ADMIN PANEL END */
+/* PANEL END */
 
 /**************************************************** FORM START ****************************************************/
 .field-group {
@@ -111,6 +111,20 @@ body {
 
 .input--disabled {
     background-color: #EFEFEF;
+}
+
+.input--select {
+    width: 50%;
+    background-color: transparent;
+    box-shadow: none;
+    border: 1px solid #1D4289;
+    outline: none;
+    font-size: 1vw;
+}
+
+.select--option:hover {
+    background-color: #1D4289;
+    outline: none;
 }
 /**************************************************** FORM END ****************************************************/
 

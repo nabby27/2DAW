@@ -14,7 +14,7 @@
         Menu de administraci&oacute;n
         <div class="account-info">
             <div id="user_name" class="account-info__user"></div>
-            <a id="logout_button" class="button button--logout" href="validar.php">Cerrar sesi&oacute;n</a>
+            <a id="logout_button" class="button button--logout" href="../validar.php">Cerrar sesi&oacute;n</a>
         </div>
     </header>
     <nav class="menu">
@@ -25,7 +25,7 @@
         </ul>
     </nav>
     
-    <div class="add-client">
+    <div class="add-container">
         <button class="button" id="add_product_button">A&ntilde;adir nuevo producto</button>
     </div>
 
@@ -43,7 +43,7 @@
         <div class="modal__box">
             <div class="modal-box__text">
                 <form id="form">
-                    <input class="input input--text" id="id_input" name="id" type="hidden">
+                    <input id="id_input" name="id" type="hidden">
                     <div class="field-group">
                         <label class="label" for="name_input">* Nombre:</label>
                         <input class="input input--text" id="name_input" name="name" type="text" required>

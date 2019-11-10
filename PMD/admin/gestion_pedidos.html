@@ -14,7 +14,7 @@
         Menu de administraci&oacute;n
         <div class="account-info">
             <div id="user_name" class="account-info__user"></div>
-            <a id="logout_button" class="button button--logout" href="validar.php">Cerrar sesi&oacute;n</a>
+            <a id="logout_button" class="button button--logout" href="../validar.php">Cerrar sesi&oacute;n</a>
         </div>
     </header>
     <nav class="menu">
@@ -25,11 +25,11 @@
         </ul>
     </nav>
     
-    <div class="add-client">
-        <button class="button">A&ntilde;adir nuevo pedido</button>
+    <div class="add-container">
+        <button class="button" id="add_order_button">A&ntilde;adir nuevo pedido</button>
     </div>
 
-    <section class="table">
+    <section class="table" id="table">
         <div class="table-row">
             <div class="table-item">ID</div>
             <div class="table-item">Fecha</div>
@@ -51,27 +51,14 @@
     <div id="modal_form_order" class="modal">
        <div class="modal__box">
             <div class="modal-box__text">
-                <form id="form">
-                    <input class="input input--text" id="id_input" name="id" type="hidden">
+                <form id="form_order">
+                    <input id="id_order_input" name="idOrder" type="hidden">
+                    <input id="date_input" name="date" type="hidden">
                     <div class="field-group">
-                        <label class="label" for="name_input">* Nombre:</label>
-                        <input class="input input--text" id="name_input" name="name" type="text" required>
-                    </div>
-                    <div class="field-group">
-                        <label class="label" for="photo_input">Foto:</label>
-                        <input class="input input--file" id="photo_input" name="photo" type="file" required>
-                    </div>
-                    <div class="field-group">
-                        <label class="label" for="brand_input">Marca:</label>
-                        <input class="input input--text" id="brand_input" name="brand" type="text">
-                    </div>
-                    <div class="field-group">
-                        <label class="label" for="quantity_input">* Cantidad:</label>
-                        <input class="input input--text" id="quantity_input" name="quantity" type="number" step="1" min="0" required>
-                    </div>
-                    <div class="field-group">
-                        <label class="label" for="price_input">* Precio:</label>
-                        <input class="input input--text" id="price_input" name="price" type="number" step="0.1" min="0" required>
+                        <label class="label" for="client_input">* Cliente:</label>
+                        <select class="input input--select" name="dniClient" id="client_order_select" required>
+                        
+                        </select>
                     </div>
                     <button type="submit" class="button" id="modal_form_order_save_button">Guardar</button>
                     <button class="button button--secundary" id="modal_form_order_close_button">Cerrar</button>
@@ -83,8 +70,8 @@
     <div id="modal_form_line" class="modal">
         <div class="modal__box">
             <div class="modal-box__text">
-                <form id="form">
-                    <input class="input input--text" id="id_input" name="id" type="hidden">
+                <form id="form_line">
+                    <input class="input input--text" id="id_line_input" name="id" type="hidden">
                     <div class="field-group">
                         <label class="label" for="name_input">* Nombre:</label>
                         <input class="input input--text" id="name_input" name="name" type="text" required>
@@ -119,19 +106,19 @@
         </div>
     </div>
 
-    <div id="modal_sure_delete" class="modal">
+    <div id="modal_sure_delete_order" class="modal">
         <div class="modal__box">
-            <span class="modal-box__text">Estas seguro que desea eliminar el producto</span>
-            <button id="modal_sure_delete_delete_button" class="button button--danger">Eliminar</button>
-            <button id="modal_sure_delete_close_button" class="button button--secundary">Cerrar</button>
+            <span class="modal-box__text">Estas seguro que desea eliminar el pedido</span>
+            <button id="modal_sure_delete_order_delete_button" class="button button--danger">Eliminar</button>
+            <button id="modal_sure_delete_order_close_button" class="button button--secundary">Cerrar</button>
         </div>
     </div>
 
-    <div id="modal_image" class="modal">
+    <div id="modal_sure_delete_line" class="modal">
         <div class="modal__box">
-            <div id="modal_image_image">
-            </div>
-            <button id="modal_image_close_button" class="button button--secundary">Cerrar</button>
+            <span class="modal-box__text">Estas seguro que desea eliminar el producto</span>
+            <button id="modal_sure_delete_line_delete_button" class="button button--danger">Eliminar</button>
+            <button id="modal_sure_delete_line_close_button" class="button button--secundary">Cerrar</button>
         </div>
     </div>
 </body>

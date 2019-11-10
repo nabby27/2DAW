@@ -25,7 +25,7 @@ CREATE TABLE productos(
 CREATE TABLE pedidos(
     idPedido INTEGER(4) NOT NULL PRIMARY KEY,
     fecha DATE NOT NULL,
-    dirEntrega VARCHAR(50) NOT NULL,
+    dirEntrega VARCHAR(50),
     nTarjeta VARCHAR(50),
     fechaCaducidad DATE,
     matriculaRepartidor VARCHAR (8),

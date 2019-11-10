@@ -106,6 +106,7 @@ function init() {
 
     modalSureDelete_CloseButton.click(function (e) { 
         e.preventDefault();
+        idToDelete = '';
         modalSureDelete.css('display', 'none');
     });
 

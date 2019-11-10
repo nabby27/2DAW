@@ -98,6 +98,7 @@ function init() {
 
     modalSureDelete_CloseButton.click(function (e) { 
         e.preventDefault();
+        dniToDelete = '';
         modalSureDelete.css('display', 'none');
     });
 

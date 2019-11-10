@@ -63,14 +63,14 @@ class Client implements \JsonSerializable {
 
     function save($link) {
         $queryString = "INSERT INTO clientes (dniCliente, nombre, direccion, email, pwd, administrador) VALUES
-            ('$this->dni', '$this->name', '$this->address', '$this->email', '$this->password', '$this->admin')";
+            ('$this->dni', '$this->name', '$this->address', '$this->email', '$this->password', " . (int) $this->admin . ")";
         $result = $link->query($queryString);
 
         return $result;
     }
 
     function update($link) {
-        $queryString = "UPDATE clientes SET nombre='$this->name', direccion='$this->address', email='$this->email', pwd='$this->password', administrador='$this->admin' WHERE dniCliente='$this->dni'";
+        $queryString = "UPDATE clientes SET nombre='$this->name', direccion='$this->address', email='$this->email', pwd='$this->password', administrador=" . (int) $this->admin . " WHERE dniCliente='$this->dni'";
         $result = $link->query($queryString);
 
         return $result;
@@ -99,7 +99,11 @@ class Client implements \JsonSerializable {
         $queryString = "SELECT * FROM clientes WHERE dniCliente='$this->dni'";
         $result = $link->query($queryString);
 
-        return $result->fetch_object();
+        while ($row = $result->fetch_assoc()) {
+            $client = new Client($row['dniCliente'], $row['nombre'], $row['direccion'], $row['email'], $row['pwd'], $row['administrador']);
+        }
+
+        return $client;
     }
 }
 
@@ -177,7 +181,11 @@ class Product implements \JsonSerializable {
         $queryString = "SELECT * FROM productos WHERE idProducto='$this->id'";
         $result = $link->query($queryString);
 
-        return $result->fetch_object();
+        while ($row = $result->fetch_assoc()) {
+            $product = new Product($row['idProducto'], $row['nombre'], $row['foto'], $row['marca'], $row['cantidad'], $row['precio']);
+        }
+
+        return $product;
     }
 
     function getLastProduct($link) {
@@ -219,10 +227,25 @@ class Carrito implements \JsonSerializable {
 
     function saveOrder($link) {
         $queryString = "INSERT INTO pedidos (idPedido, fecha, dniCliente) VALUES
-            ('$this->orderId', '$this->date', '$this->dniClient')";
+            ($this->orderId, '$this->date', '$this->dniClient')";
         $result = $link->query($queryString);
 
-        return $result;
+        if ($result) {
+            return new Carrito($this->orderId, $this->date, $this->dniClient, '', '', '');
+        }
+
+        return false;
+    }
+
+    function updateOrder($link) {
+        $queryString = "UPDATE pedidos SET dniCliente='$this->dniClient' WHERE idPedido=$this->orderId";
+        $result = $link->query($queryString);
+
+        if ($result) {
+            return new Carrito($this->orderId, $this->date, $this->dniClient, '', '', '');
+        }
+
+        return false;
     }
 
     function saveLineOrder($link) {
@@ -245,6 +268,56 @@ class Carrito implements \JsonSerializable {
         }
 
         return $id;
+    }
+
+    static function getAllOrder($link) {
+        $queryString = "SELECT * FROM pedidos";
+        $result = $link->query($queryString);
+
+        $orders = [];
+        while ($row = $result->fetch_assoc()) {
+            $order = new Carrito($row['idPedido'], $row['fecha'], $row['dniCliente'], '', '', '');
+            array_push($orders, $order);
+        }
+
+        return $orders;
+    }
+
+    function getOneOrder($link) {
+        $queryString = "SELECT * FROM pedidos WHERE idPedido=$this->orderId";
+        $result = $link->query($queryString);
+
+        while ($row = $result->fetch_assoc()) {
+            $order = new Carrito($row['idPedido'], $row['fecha'], $row['dniCliente'], '', '', '');
+        }
+
+        return $order;
+    }
+
+    function removeOrder($link) {
+        $queryString = "DELETE FROM pedidos WHERE idPedido=$this->orderId";
+        $result = $link->query($queryString);
+
+        return $result;
+
+    }
+
+    function getAllLineOfOrder($link) {
+        $queryString = "SELECT * FROM lineas_pedidos WHERE idPedido=$this->orderId";
+        $result = $link->query($queryString);
+var_dump($queryString);
+        while ($row = $result->fetch_assoc()) {
+            $lines = new Carrito('', '', '', $row['nLinea'], $row['idProducto'], $row['cantidad']);
+        }
+
+        return $lines;
+    }
+
+    function removeLineOfOrder($link) {
+        $queryString = "DELETE FROM lineas_pedidos WHERE idPedido=$this->orderId";
+        $result = $link->query($queryString);
+
+        return $result;
     }
 
 }

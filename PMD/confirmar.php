@@ -9,7 +9,7 @@ if (isset($_SESSION['dni'])) {
     $cartModel = new Carrito('', '', '', '', '', '');
     $orderId = $cartModel->getNewOrderId($db->link);
 
-    $orderToInsert = new Carrito($orderId, date('Y-m-d H:i:s'), $_SESSION['dni'], '', '', '');
+    $orderToInsert = new Carrito($orderId, date('Y-m-d'), $_SESSION['dni'], '', '', '');
 
     $orderToInsert->saveOrder($db->link);
 

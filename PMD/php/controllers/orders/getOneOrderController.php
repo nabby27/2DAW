@@ -6,8 +6,8 @@ $db = new Bd();
 if (isset($_GET)) {
     $idOrder = $_GET['idOrder'];
 
-    $cartModel = new Carrito($idOrder, '', '', '', '', '');
-    $result = $cartModel->getOneOrder($db->link);
+    $orderModel = new Order($idOrder, '', '');
+    $result = $orderModel->getOneOrder($db->link);
 
     if ($result) {
         echo json_encode($result);

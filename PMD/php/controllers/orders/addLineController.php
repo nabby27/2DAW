@@ -8,10 +8,10 @@ if (isset($_POST)) {
     $quantity = $_POST['quantity'];
     $productId = $_POST['productId'];
 
-    $cartModel = new Carrito('', '', '', '', '', '');
+    $cartModel = new Carrito('', '', '', '');
     $lineId = $cartModel->getNewLineId($db->link);
 
-    $cartModel = new Carrito($orderId, '', '', $lineId, $productId, $quantity);
+    $cartModel = new Carrito($orderId, $lineId, $productId, $quantity);
     $result = $cartModel->saveLineOrder($db->link);
 
     if ($result) {

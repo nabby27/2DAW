@@ -4,7 +4,7 @@ require '../../modelo.php';
 $db = new Bd();
 
 if (isset($_GET)) {
-    $result = Carrito::getAllOrder($db->link);
+    $result = Order::getAllOrder($db->link);
 
     if ($result) {
         echo json_encode($result);

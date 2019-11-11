@@ -6,15 +6,15 @@ $db = new Bd();
 
 if (isset($_SESSION['dni'])) {
     
-    $cartModel = new Carrito('', '', '', '', '', '');
-    $orderId = $cartModel->getNewOrderId($db->link);
+    $orderModel = new Order('', '', '');
+    $orderId = $orderModel->getNewOrderId($db->link);
 
-    $orderToInsert = new Carrito($orderId, date('Y-m-d'), $_SESSION['dni'], '', '', '');
+    $orderToInsert = new Order($orderId, date('Y-m-d'), $_SESSION['dni']);
 
     $orderToInsert->saveOrder($db->link);
 
     for ($index = 0; $index < $_SESSION['total']; $index++) { 
-        $lineOrder = new Carrito($orderId, '', '', $index+1, $_SESSION['product_id'][$index], $_SESSION['quantity'][$index]);
+        $lineOrder = new Carrito($orderId, $index+1, $_SESSION['product_id'][$index], $_SESSION['quantity'][$index]);
         $lineOrder->saveLineOrder($db->link);
     }
     $html = getHtml();

@@ -197,26 +197,19 @@ class Product implements \JsonSerializable {
 
 }
 
-class Carrito implements \JsonSerializable {
+class Order implements \JsonSerializable {
     use JsonSerializer;
 
     private $orderId;
     private $date;
     private $dniClient;
 
-    private $lineId;
-    private $productId;
-    private $quantity;
-
-    function __construct($orderId, $date, $dniClient, $lineId, $productId, $quantity) {
+    function __construct($orderId, $date, $dniClient) {
         $this->orderId = $orderId;
         $this->date = $date;
         $this->dniClient = $dniClient;
-        $this->lineId = $lineId;
-        $this->productId = $productId;
-        $this->quantity = $quantity;
     }
-    
+
     function __get($var) {
         return $this->$var;
     }
@@ -248,44 +241,8 @@ class Carrito implements \JsonSerializable {
         return false;
     }
 
-    function updateLine($link) {
-        $queryString = "UPDATE lineas_pedidos SET cantidad=$this->quantity, idProducto=$this->productId WHERE idPedido=$this->orderId AND nLinea=$this->lineId";
-        $result = $link->query($queryString);
-
-        if ($result) {
-            $result = $this->getAllLineOfOrder($link);
-        }
-
-        return $result;
-    }
-
-    function saveLineOrder($link) {
-        $queryString = "INSERT INTO lineas_pedidos (nLinea, cantidad, idPedido, idProducto) VALUES
-            ('$this->lineId', '$this->quantity', '$this->orderId', '$this->productId')";
-        $result = $link->query($queryString);
-
-        if ($result) {
-            $result = $this->getAllLineOfOrder($link);
-        }
-        return $result;
-    }
-
     function getNewOrderId($link) {
         $queryString = "SELECT max(idPedido) FROM pedidos";
-        $result = $link->query($queryString);
-        $maxId = mysqli_fetch_row($result)[0];
-        
-        if ($maxId === null) {
-            $id = 1;
-        } else {
-            $id = $maxId + 1;
-        }
-
-        return $id;
-    }
-
-    function getNewLineId($link) {
-        $queryString = "SELECT max(nLinea) FROM lineas_pedidos";
         $result = $link->query($queryString);
         $maxId = mysqli_fetch_row($result)[0];
         
@@ -311,6 +268,14 @@ class Carrito implements \JsonSerializable {
         return $orders;
     }
 
+    function removeOrder($link) {
+        $queryString = "DELETE FROM pedidos WHERE idPedido=$this->orderId";
+        $result = $link->query($queryString);
+
+        return $result;
+
+    }
+    
     function getOneOrder($link) {
         $queryString = "SELECT * FROM pedidos WHERE idPedido=$this->orderId";
         $result = $link->query($queryString);
@@ -320,6 +285,66 @@ class Carrito implements \JsonSerializable {
         }
 
         return $order;
+    }
+}
+
+class Carrito implements \JsonSerializable {
+    use JsonSerializer;
+
+    private $orderId;
+    private $lineId;
+    private $productId;
+    private $quantity;
+
+    function __construct($orderId, $lineId, $productId, $quantity) {
+        $this->orderId = $orderId;
+        $this->lineId = $lineId;
+        $this->productId = $productId;
+        $this->quantity = $quantity;
+    }
+    
+    function __get($var) {
+        return $this->$var;
+    }
+
+    function __set($key, $value) {
+        $this->$key = $value;
+    }
+
+    function updateLine($link) {
+        $queryString = "UPDATE lineas_pedidos SET cantidad=$this->quantity, idProducto=$this->productId WHERE idPedido=$this->orderId AND nLinea=$this->lineId";
+        $result = $link->query($queryString);
+
+        if ($result) {
+            $result = $this->getAllLineOfOrder($link);
+        }
+
+        return $result;
+    }
+
+    function saveLineOrder($link) {
+        $queryString = "INSERT INTO lineas_pedidos (nLinea, cantidad, idPedido, idProducto) VALUES
+            ('$this->lineId', '$this->quantity', '$this->orderId', '$this->productId')";
+        $result = $link->query($queryString);
+
+        if ($result) {
+            $result = $this->getAllLineOfOrder($link);
+        }
+        return $result;
+    }
+
+    function getNewLineId($link) {
+        $queryString = "SELECT max(nLinea) FROM lineas_pedidos";
+        $result = $link->query($queryString);
+        $maxId = mysqli_fetch_row($result)[0];
+        
+        if ($maxId === null) {
+            $id = 1;
+        } else {
+            $id = $maxId + 1;
+        }
+
+        return $id;
     }
 
     function getOneLine($link) {
@@ -331,14 +356,6 @@ class Carrito implements \JsonSerializable {
         }
 
         return $order;
-    }
-
-    function removeOrder($link) {
-        $queryString = "DELETE FROM pedidos WHERE idPedido=$this->orderId";
-        $result = $link->query($queryString);
-
-        return $result;
-
     }
 
     function getAllLineOfOrder($link) {

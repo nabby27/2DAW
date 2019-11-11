@@ -9,9 +9,9 @@ if (isset($_POST)) {
     $quantity = $_POST['quantity'];
     $productId = $_POST['productId'];
 
-    $orderModel = new Carrito($orderId, '', '', $lineId, $productId, $quantity);
+    $carritoModel = new Carrito($orderId, $lineId, $productId, $quantity);
 
-    $result = $orderModel->updateLine($db->link);
+    $result = $carritoModel->updateLine($db->link);
     
     if ($result) {
         echo json_encode($result);

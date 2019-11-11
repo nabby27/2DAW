@@ -7,7 +7,7 @@ if (isset($_POST)) {
     $orderId = $_POST['idOrder'];
     $dniClient = $_POST['dniClient'];
 
-    $orderModel = new Carrito($orderId, '', $dniClient, '', '', '');
+    $orderModel = new Order($orderId, '', $dniClient);
 
     $result = $orderModel->updateOrder($db->link);
     

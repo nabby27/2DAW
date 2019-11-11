@@ -7,7 +7,7 @@ if (isset($_GET)) {
     $idOrder = $_GET['idOrder'];
     $idLine = $_GET['idLine'];
 
-    $cartModel = new Carrito($idOrder, '', '', $idLine, '', '');
+    $cartModel = new Carrito($idOrder, $idLine, '', '');
     $result = $cartModel->getOneLine($db->link);
 
     if ($result) {

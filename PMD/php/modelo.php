@@ -242,10 +242,21 @@ class Carrito implements \JsonSerializable {
         $result = $link->query($queryString);
 
         if ($result) {
-            return new Carrito($this->orderId, $this->date, $this->dniClient, '', '', '');
+            return $this->getOneOrder($link);
         }
 
         return false;
+    }
+
+    function updateLine($link) {
+        $queryString = "UPDATE lineas_pedidos SET cantidad=$this->quantity, idProducto=$this->productId WHERE idPedido=$this->orderId AND nLinea=$this->lineId";
+        $result = $link->query($queryString);
+
+        if ($result) {
+            $result = $this->getAllLineOfOrder($link);
+        }
+
+        return $result;
     }
 
     function saveLineOrder($link) {
@@ -311,6 +322,17 @@ class Carrito implements \JsonSerializable {
         return $order;
     }
 
+    function getOneLine($link) {
+        $queryString = "SELECT * FROM lineas_pedidos WHERE idPedido=$this->orderId AND nLinea=$this->lineId";
+        $result = $link->query($queryString);
+
+        while ($row = $result->fetch_assoc()) {
+            $order = new Carrito($row['idPedido'], '', '', $row['nLinea'], $row['idProducto'], $row['cantidad']);
+        }
+
+        return $order;
+    }
+
     function removeOrder($link) {
         $queryString = "DELETE FROM pedidos WHERE idPedido=$this->orderId";
         $result = $link->query($queryString);
@@ -332,8 +354,15 @@ class Carrito implements \JsonSerializable {
         return $lines;
     }
 
-    function removeLineOfOrder($link) {
+    function removeLinesOfOrder($link) {
         $queryString = "DELETE FROM lineas_pedidos WHERE idPedido=$this->orderId";
+        $result = $link->query($queryString);
+
+        return $result;
+    }
+
+    function removeLine($link) {
+        $queryString = "DELETE FROM lineas_pedidos WHERE nLinea=$this->lineId AND idPedido=$this->orderId";
         $result = $link->query($queryString);
 
         return $result;

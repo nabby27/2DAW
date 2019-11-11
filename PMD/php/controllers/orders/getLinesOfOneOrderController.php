@@ -9,9 +9,5 @@ if (isset($_GET)) {
     $cartModel = new Carrito($idOrder, '', '', '', '', '');
     $result = $cartModel->getAllLineOfOrder($db->link);
 
-    if ($result) {
-        echo json_encode($result);
-    } else {
-        echo json_encode('ERROR');
-    }
+    echo json_encode($result);
 }

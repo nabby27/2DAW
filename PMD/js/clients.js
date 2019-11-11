@@ -125,7 +125,7 @@ function checkUserLogged() {
                 init();
             }
         },
-        error: (a, b, c) => {
+        error: (headers, status, error) => {
             window.location.replace("../validar.php");
         }
     });

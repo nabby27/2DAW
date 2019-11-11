@@ -7,7 +7,7 @@ if (isset($_POST)) {
     $idOrder = $_POST['id'];
 
     $carritoModel = new Carrito($idOrder, '', '', '', '', '');
-    $carritoModel->removeLineOfOrder($db->link);
+    $carritoModel->removeLinesOfOrder($db->link);
     $result = $carritoModel->removeOrder($db->link);
     
     if ($result) {

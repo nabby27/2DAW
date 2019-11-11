@@ -11,7 +11,6 @@ let table;
 
 let formOrder;
 let idOrderInput;
-let dateInput;
 let clientOrderSelect;
 
 let formLine;
@@ -67,12 +66,11 @@ function init() {
     
     formOrder = $('#form_order');
     idOrderInput = $('#id_order_input');
-    dateInput = $('#date_input');
     clientOrderSelect = $('#client_order_select');
 
     formLine = $('#form_line');
     idLineInput = $('#id_line_input');
-    idOrderOrLineInput = $('#id_order_of_line_input');
+    idOrderOfLineInput = $('#id_order_of_line_input');
     quantityInput = $('#quantity_input');
     productLineSelect = $('#product_line_select');
 
@@ -159,7 +157,7 @@ function init() {
     
     modalSureDeleteLine_Deletebutton.click(function (e) { 
         e.preventDefault();
-        debugger
+        deleteLine();
     });
     
     modalError_CloseButton.click(function (e) { 
@@ -262,10 +260,10 @@ function updateOrder() {
     save(url_controller, updateOrderRowToTable, formOrder[0]);
 }
 
-// function updateLine() {
-//     let url_controller = '../php/controllers/orders/updateLineController.php';
-//     save(url_controller, updateLineRowToTable, formLine[0]);
-// }
+function updateLine() {
+    let url_controller = '../php/controllers/orders/updateLineController.php';
+    save(url_controller, addLinesOfOrderRowToTable, formLine[0]);
+}
 
 function save(url_controller, functionToCall, form) {
     let formData = new FormData(form);
@@ -373,11 +371,8 @@ function getLinesOfOrder(orderId) {
         dataType: 'json',
         data: {'idOrder': orderId},
         success: (response, status, header) => {
-            if (response !== 'ERROR') {
-                if (Array.isArray(response)) {
-                    addLinesOfOrderRowToTable(response);
-                    linesOpen = orderId;
-                }
+            if (Array.isArray(response)) {
+                addLinesOfOrderRowToTable(response, orderId);
             }
         }
     });
@@ -387,10 +382,13 @@ function closeLinesOfOrder(orderId) {
     $('#order-' + orderId + '_lines').remove();
 }
 
-function addLinesOfOrderRowToTable(linesOfOrder) {
-    $('#order-' + linesOfOrder[0].orderId + '_lines').remove();
+function addLinesOfOrderRowToTable(linesOfOrder, orderId) {
+    if (linesOfOrder[0] && !orderId) {
+        orderId = linesOfOrder[0].orderId
+    }
+    $('#order-' + orderId + '_lines').remove();
 
-    let rows = '<div id="order-' + linesOfOrder[0].orderId + '_lines" class="subtable">';
+    let rows = '<div id="order-' + orderId + '_lines" class="subtable">';
     rows += '    <div class="subtable-row">';
     rows += '       <div class="subtable-item">ID</div>';
     rows += '       <div class="subtable-item">Nombre</div>';
@@ -409,16 +407,24 @@ function addLinesOfOrderRowToTable(linesOfOrder) {
         rows += '    <div class="subtable-item">' + editButton + deleteButton +'</div>';
         rows += '</div>';
     })
+
     rows += '    <div class="subtable-row subtable-row__add">';
-    rows += '       <button id="order-' + linesOfOrder[0].orderId + '_add" class="button button--small">A&ntilde;adir producto</button>';
+    rows += '       <button id="order-' + orderId + '_add" class="button button--small">A&ntilde;adir producto</button>';
     rows += '   </div>';
     rows += '</div>';
 
-    $('#order-' + linesOfOrder[0].orderId).after(rows);
+    $('#order-' + orderId).after(rows);
 
     linesOfOrder.forEach(line => {
-        addListenersToLineOfOrderRowButtons(line.orderId, line.lineId);
+        addListenersToLineOfOrderRowButtons(orderId, line.lineId);
     })
+
+    $('#order-' + orderId + '_add').click(function (e) {
+        e.preventDefault();
+        clearLineForm(orderId);
+        addProductsToSelect();
+        modalFormLine.css('display', 'flex');
+    });
 }
 
 function createLineEditButton(orderId, lineId) {
@@ -434,19 +440,13 @@ function addListenersToLineOfOrderRowButtons(orderId, lineId) {
     $('#delete_order-' + orderId + '_line-' + lineId).click(function (e) {
         e.preventDefault();
         idLineToDelete = lineId;
+        idOrderToDelete = orderId;
         modalSureDeleteLine.css('display', 'flex');
     });
 
     $('#edit_order-' + orderId + '_line-' + lineId).click(function (e) {
         e.preventDefault();
-        debugger
-    });
-
-    $('#order-' + orderId + '_add').click(function (e) {
-        e.preventDefault();
-        clearLineForm(orderId);
-        addProductsToSelect();
-        modalFormLine.css('display', 'flex');
+        getOneLine(orderId, lineId);
     });
 }
 
@@ -463,12 +463,33 @@ function getOneOrder(id) {
     });
 }
 
+function getOneLine(orderId, lineId) {
+    $.ajax({
+        type: 'GET',
+        url: '../php/controllers/orders/getOneLineController.php',
+        data: {'idOrder': orderId, 'idLine': lineId},
+        dataType: 'json',
+        success: (response, status, header) => {
+            addLineDataToForm(response);
+            modalFormLine.css('display', 'flex');
+        }
+    });
+}
+
 function addOrderDataToForm(order) {
     addClientsToSelect();
     idOrderInput.prop('readonly', true);
     idOrderInput.val(order.orderId);
-    dateInput.val(order.date);
     clientOrderSelect.val(order.dniClient);
+}
+
+function addLineDataToForm(line) {
+    addProductsToSelect();
+    idLineInput.prop('readonly', true);
+    idOrderOfLineInput.val(line.orderId);
+    idLineInput.val(line.lineId);
+    quantityInput.val(line.quantity);
+    productLineSelect.val(line.productId);
 }
 
 function createProductsButton(id) {
@@ -492,6 +513,7 @@ function deleteOrder() {
         success: (response, status, header) => {
             if (response === 'SUCCESS') {
                 $('#order-' + idOrderToDelete).remove();
+                $('#order-' + idOrderToDelete + '_lines').remove();
                 idOrderToDelete = '';
                 modalSureDeleteOrder.css('display', 'none');
             }
@@ -499,33 +521,33 @@ function deleteOrder() {
     });
 }
 
-// function deleteProduct() {
-//     $.ajax({
-//         type: 'POST',
-//         url: '../php/controllers/products/removeProductController.php',
-//         data: {id: idToDelete},
-//         dataType: 'json',
-//         success: (response, status, header) => {
-//             if (response === 'SUCCESS') {
-//                 $('#' + idToDelete).remove();
-//                 idToDelete = '';
-//                 modalSureDelete.css('display', 'none');
-//             }
-//         }
-//     });
-// }
+function deleteLine() {
+    $.ajax({
+        type: 'POST',
+        url: '../php/controllers/orders/removeLineOfOrderController.php',
+        data: {idLine: idLineToDelete, idOrder: idOrderToDelete},
+        dataType: 'json',
+        success: (response, status, header) => {
+            if (response === 'SUCCESS') {
+                $('#order-' + idOrderToDelete + '_line-' + idLineToDelete).remove();
+                idOrderToDelete = '';
+                idLineToDelete = '';
+                modalSureDeleteLine.css('display', 'none');
+            }
+        }
+    });
+}
 
 function clearOrderForm() {
     idOrderInput.prop('readonly', false);
     idOrderInput.val('');
-    dateInput.val('');
     clientOrderSelect.val('');
 }
 
 function clearLineForm(orderId) {
     idLineInput.prop('readonly', false);
     idLineInput.val('');
-    idOrderOrLineInput.val(orderId);
+    idOrderOfLineInput.val(orderId);
     quantityInput.val('1');
     productLineSelect.val('');
 }

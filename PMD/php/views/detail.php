@@ -32,7 +32,7 @@
             <div>
                 <form action="vercarrito.php" method="POST">
                     <label for="quantity" class="quantity-label">Cuantas quieres?</label>
-                    <input class="quantity__input" type="number" name="quantity" value="1">
+                    <input class="quantity__input" type="number" name="quantity" min="0" value="1">
                     <input type="hidden" name="id" value="<?php echo $product->id ?>">
                     <input type="hidden" name="name" value="<?php echo $product->name ?>">
                     <input type="hidden" name="price" value="<?php echo $product->price ?>">

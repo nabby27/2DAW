@@ -5,10 +5,9 @@ $db = new Bd();
 
 if (isset($_POST)) {
     $orderId = $_POST['idOrder'];
-    $date = $_POST['date'];
     $dniClient = $_POST['dniClient'];
 
-    $orderModel = new Carrito($orderId, $date, $dniClient, '', '', '');
+    $orderModel = new Carrito($orderId, '', $dniClient, '', '', '');
 
     $result = $orderModel->updateOrder($db->link);
     

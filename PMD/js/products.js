@@ -185,7 +185,7 @@ function saveProduct(url_controller, functionToCall) {
         contentType : false,
         success: (response, status, header) => {
             if (response !== 'ERROR') {
-                functionToCall(response.idProducto, response.foto, response.nombre, response.precio);
+                functionToCall(response.id, response.photo, response.name, response.price);
                 modalForm.css('display', 'none');
             } else {
                 modalError.css('display', 'flex');

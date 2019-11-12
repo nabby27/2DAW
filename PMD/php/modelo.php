@@ -11,8 +11,8 @@ class Bd {
 		}
     }
     
-    function __get($var) {
-		return $this->$var;
+    function __get($property) {
+		return $this->$property;
 	}
 }
 
@@ -53,12 +53,12 @@ class Client implements \JsonSerializable {
         $this->admin = $admin;
     }
 
-    function __get($var) {
-        return $this->$var;
+    function __get($property) {
+        return $this->$property;
     }
 
-    function __set($key, $value) {
-        $this->$key = $value;
+    function __set($property, $value) {
+        $this->$property = $value;
     }
 
     function save($link) {
@@ -70,7 +70,7 @@ class Client implements \JsonSerializable {
     }
 
     function update($link) {
-        $queryString = "UPDATE clientes SET nombre='$this->name', direccion='$this->address', email='$this->email', pwd='$this->password', administrador=" . (int) $this->admin . " WHERE dniCliente='$this->dni'";
+        $queryString = "UPDATE clientes SET nombre='$this->name', direccion='$this->address', email='$this->email', administrador=" . (int) $this->admin . " WHERE dniCliente='$this->dni'";
         $result = $link->query($queryString);
 
         return $result;
@@ -126,12 +126,12 @@ class Product implements \JsonSerializable {
         $this->price = $price;
     }
     
-    function __get($var) {
-        return $this->$var;
+    function __get($property) {
+        return $this->$property;
     }
 
-    function __set($key, $value) {
-        $this->$key = $value;
+    function __set($property, $value) {
+        $this->$property = $value;
     }
 
     function save($link) {
@@ -192,7 +192,11 @@ class Product implements \JsonSerializable {
         $queryString = "SELECT * FROM productos ORDER BY idProducto DESC LIMIT 1";
         $result = $link->query($queryString);
 
-        return $result->fetch_object();
+        while ($row = $result->fetch_assoc()) {
+            $product = new Product($row['idProducto'], $row['nombre'], $row['foto'], $row['marca'], $row['cantidad'], $row['precio']);
+        }
+
+        return $product;;
     }
 
 }
@@ -210,12 +214,12 @@ class Order implements \JsonSerializable {
         $this->dniClient = $dniClient;
     }
 
-    function __get($var) {
-        return $this->$var;
+    function __get($property) {
+        return $this->$property;
     }
 
-    function __set($key, $value) {
-        $this->$key = $value;
+    function __set($property, $value) {
+        $this->$property = $value;
     }
 
     function saveOrder($link) {
@@ -224,7 +228,7 @@ class Order implements \JsonSerializable {
         $result = $link->query($queryString);
 
         if ($result) {
-            return new Carrito($this->orderId, $this->date, $this->dniClient, '', '', '');
+            return new Order($this->orderId, $this->date, $this->dniClient);
         }
 
         return false;
@@ -261,7 +265,7 @@ class Order implements \JsonSerializable {
 
         $orders = [];
         while ($row = $result->fetch_assoc()) {
-            $order = new Carrito($row['idPedido'], $row['fecha'], $row['dniCliente'], '', '', '');
+            $order = new Order($row['idPedido'], $row['fecha'], $row['dniCliente']);
             array_push($orders, $order);
         }
 
@@ -281,7 +285,7 @@ class Order implements \JsonSerializable {
         $result = $link->query($queryString);
 
         while ($row = $result->fetch_assoc()) {
-            $order = new Carrito($row['idPedido'], $row['fecha'], $row['dniCliente'], '', '', '');
+            $order = new Order($row['idPedido'], $row['fecha'], $row['dniCliente']);
         }
 
         return $order;
@@ -303,12 +307,12 @@ class Carrito implements \JsonSerializable {
         $this->quantity = $quantity;
     }
     
-    function __get($var) {
-        return $this->$var;
+    function __get($property) {
+        return $this->$property;
     }
 
-    function __set($key, $value) {
-        $this->$key = $value;
+    function __set($property, $value) {
+        $this->$property = $value;
     }
 
     function updateLine($link) {
@@ -352,7 +356,7 @@ class Carrito implements \JsonSerializable {
         $result = $link->query($queryString);
 
         while ($row = $result->fetch_assoc()) {
-            $order = new Carrito($row['idPedido'], '', '', $row['nLinea'], $row['idProducto'], $row['cantidad']);
+            $order = new Carrito($row['idPedido'], $row['nLinea'], $row['idProducto'], $row['cantidad']);
         }
 
         return $order;
@@ -364,7 +368,7 @@ class Carrito implements \JsonSerializable {
 
         $lines = [];
         while ($row = $result->fetch_assoc()) {
-            $line = new Carrito($this->orderId, '', '', $row['nLinea'], $row['idProducto'], $row['cantidad']);
+            $line = new Carrito($this->orderId, $row['nLinea'], $row['idProducto'], $row['cantidad']);
             array_push($lines, $line);
         }
 

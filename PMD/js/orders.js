@@ -1,3 +1,4 @@
+// decalre global variables
 let clients;
 let products;
 let linesOfOrdersOpen;
@@ -41,7 +42,7 @@ let modalSureDeleteLine_CloseButton;
 let idOrderToDelete;
 let idLineToDelete;
 
-$(document).ready(function() {
+$(document).ready(function() { // check if user is login using localstorage
     userNameLogged = localStorage.getItem('user_name');
     
     if (!userNameLogged) {
@@ -51,9 +52,32 @@ $(document).ready(function() {
     }
 });
 
-function init() {
-    getClientsAndProductsAndOrders();
+function checkUserLogged() { // do petition to get user name if user is logged
+    $.ajax({
+        type: 'GET',
+        url: '../php/controllers/clients/getClientLogged.php',
+        dataType: 'json',
+        success: (response, status, header) => {
+            if (response && response != '') {
+                localStorage.setItem('user_name', response); // save user name on localstorage
+                userNameLogged = response;
+                init();
+            }
+        },
+        error: (a, b, c) => {
+            window.location.replace("../validar.php"); // redirect to login if back return that not user logged
+        }
+    });
+}
 
+function init() { // start
+    getClientsAndProductsAndOrders();
+    initzializeVariables();
+    userNameContainer.html('Bienvenido ' + userNameLogged + '!');
+    initListenersToButtons();
+}
+
+function initzializeVariables() { // initzialize variables getting html with jQuery
     userNameContainer = $('#user_name');
     logoutButton = $('#logout_button');
 
@@ -92,28 +116,28 @@ function init() {
     modalSureDeleteLine = $('#modal_sure_delete_line');
     modalSureDeleteLine_Deletebutton = $('#modal_sure_delete_line_delete_button');
     modalSureDeleteLine_CloseButton = $('#modal_sure_delete_line_close_button');
+}
 
-    userNameContainer.html('Bienvenido ' + userNameLogged + '!');
-
-    logoutButton.click(function (e) { 
+function initListenersToButtons() {
+    logoutButton.click(function (e) { // clear localstorage and redirect to to login when click logout
         e.preventDefault();
         localStorage.clear();
         window.location.replace("../validar.php");
     });
 
-    addOrderButton.click(function (e) { 
+    addOrderButton.click(function (e) { // show modal when click add order button
         e.preventDefault();
         clearOrderForm();
         addClientsToSelect();
         modalFormOrder.css('display', 'flex');
     });
 
-    modalFormOrder_CloseButton.click(function (e) { 
+    modalFormOrder_CloseButton.click(function (e) { // close modal form order when click to close button
         e.preventDefault();
         modalFormOrder.css('display', 'none');
     });
 
-    modalFormOrder_SaveButton.click(function (e) { 
+    modalFormOrder_SaveButton.click(function (e) { // save or update order when click save button
         e.preventDefault();
         if (!idOrderInput.prop('readonly')) {
             addOrder();
@@ -122,12 +146,12 @@ function init() {
         }
     });
 
-    modalFormLine_CloseButton.click(function (e) { 
+    modalFormLine_CloseButton.click(function (e) { // close modal form line when click to close button
         e.preventDefault();
         modalFormLine.css('display', 'none');
     });
 
-    modalFormLine_SaveButton.click(function (e) { 
+    modalFormLine_SaveButton.click(function (e) { // save or update line when click save button
         e.preventDefault();
         if (isFormLineValid()) {
             if (!idLineInput.prop('readonly')) {
@@ -138,60 +162,42 @@ function init() {
         }
     });
 
-    modalSureDeleteOrder_CloseButton.click(function (e) { 
+    modalSureDeleteOrder_CloseButton.click(function (e) { // close modal to delete order when click close button
         e.preventDefault();
         idOrderToDelete = '';
         modalSureDeleteOrder.css('display', 'none');
     });
 
-    modalSureDeleteOrder_Deletebutton.click(function (e) { 
+    modalSureDeleteOrder_Deletebutton.click(function (e) { // delete order when click delete button on modal
         e.preventDefault();
         deleteOrder();
     });
 
-    modalSureDeleteLine_CloseButton.click(function (e) { 
+    modalSureDeleteLine_CloseButton.click(function (e) { // close modal to delete line when click close button
         e.preventDefault();
         modalSureDeleteLine.css('display', 'none');
     });
 
     
-    modalSureDeleteLine_Deletebutton.click(function (e) { 
+    modalSureDeleteLine_Deletebutton.click(function (e) { // delete line when click delete button on modal
         e.preventDefault();
         deleteLine();
     });
     
-    modalError_CloseButton.click(function (e) { 
+    modalError_CloseButton.click(function (e) { // close modal error when click close button
         e.preventDefault();
         modalError.css('display', 'none');
     });
 }
 
-function checkUserLogged() {
-    $.ajax({
-        type: 'GET',
-        url: '../php/controllers/clients/getClientLogged.php',
-        dataType: 'json',
-        success: (response, status, header) => {
-            if (response && response != '') {
-                localStorage.setItem('user_name', response);
-                userNameLogged = response;
-                init();
-            }
-        },
-        error: (a, b, c) => {
-            window.location.replace("../validar.php");
-        }
-    });
-}
-
-function getClientsAndProductsAndOrders() {
+function getClientsAndProductsAndOrders() { // do petition to get clients, product, and orders
     $.ajax({
         type: 'GET',
         url: '../php/controllers/clients/listClientsController.php',
         dataType: 'json',
         success: (response, status, header) => {
             clients = response;
-            getProducts();
+            getProducts(); // do petition to get products after get clients
         }
     });
 }
@@ -203,7 +209,7 @@ function getProducts() {
         dataType: 'json',
         success: (response, status, header) => {
             products = response;
-            getOrders();
+            getOrders(); // do petition to get orders after get products
         }
     });
 }
@@ -216,14 +222,14 @@ function getOrders() {
         success: (response, status, header) => {
             if (Array.isArray(response)) {
                 response.forEach(order => {
-                    addOrderRowToTable(order);
+                    addOrderRowToTable(order); // add html row for that order
                 })
             }
         }
     });
 }
 
-function addClientsToSelect() {
+function addClientsToSelect() { // add html option on select for clients
     let htmlOptions = '';
     clients.forEach(client => {
         htmlOptions += '<option class="select--option" value=' + client.dni + '>' + client.name  + '</option>';
@@ -232,7 +238,7 @@ function addClientsToSelect() {
     clientOrderSelect.html(htmlOptions);
 }
 
-function addProductsToSelect() {
+function addProductsToSelect() { // add html option on select for products
     let htmlOptions = '';
     products.forEach(product => {
         htmlOptions += '<option class="select--option" value=' + product.id + '>' + product.name  + '</option>';
@@ -241,32 +247,32 @@ function addProductsToSelect() {
     productLineSelect.html(htmlOptions);
 }
 
-function isFormLineValid() {
+function isFormLineValid() { // check if form line is valid to save or update
     return quantityInput.val() != '' && productLineSelect.val() != '';
 }
 
-function addOrder() {
+function addOrder() { // do petition to create new order on php
     let url_controller = '../php/controllers/orders/addOrderController.php';
     save(url_controller, addOrderRowToTable, formOrder[0]);
 }
 
-function addLine() {
+function addLine() { // do petition to create new line on php
     let url_controller = '../php/controllers/orders/addLineController.php';
     save(url_controller, addLinesOfOrderRowToTable, formLine[0]);
 }
 
-function updateOrder() {
+function updateOrder() { // do petition to update exist order on php
     let url_controller = '../php/controllers/orders/updateOrderController.php';
     save(url_controller, updateOrderRowToTable, formOrder[0]);
 }
 
-function updateLine() {
+function updateLine() { // do petition to update exist line on php
     let url_controller = '../php/controllers/orders/updateLineController.php';
     save(url_controller, addLinesOfOrderRowToTable, formLine[0]);
 }
 
 function save(url_controller, functionToCall, form) {
-    let formData = new FormData(form);
+    let formData = new FormData(form); // get form data like object
 
     $.ajax({
         type: 'POST',
@@ -277,7 +283,7 @@ function save(url_controller, functionToCall, form) {
         contentType : false,
         success: (response, status, header) => {
             if (response !== 'ERROR') {
-                functionToCall(response);
+                functionToCall(response); // call to function 'update row' or 'add row' for order or line on html
                 modalFormOrder.css('display', 'none');
                 modalFormLine.css('display', 'none');
             } else {
@@ -288,62 +294,40 @@ function save(url_controller, functionToCall, form) {
 }
 
 function addOrderRowToTable(order) {
-    let row = generateOrderRowToTable(order.orderId, order.date, order.dniClient);
+    let row = generateOrderRowToTable(order.orderId, order.date, order.dniClient); // create html row order
 
     table.append(row);
 
-    addListenersToOrderRowButtons(order.orderId);
+    addListenersToOrderRowButtons(order.orderId); // add listeners to buttons for edit or delete order
 }
 
 function updateOrderRowToTable(order) {
-    let row = generateOrderRowToTable(order.orderId, order.date, order.dniClient);
+    let row = generateOrderRowToTable(order.orderId, order.date, order.dniClient); // create html row order
 
     $('#order-' + order.orderId).replaceWith(row);
     
-    addListenersToOrderRowButtons(order.orderId);
+    addListenersToOrderRowButtons(order.orderId); // add listeners to buttons for edit or delete order
 }
 
 function generateOrderRowToTable(orderId, date, dniClient) {
-    let productsButton = createProductsButton(orderId);
-    let editButton = createOrderEditButton(orderId);
-    let deleteButton = createOrderDeleteButton(orderId);
+    let productsButton = createProductsButton(orderId); // create html for see more button
+    let editButton = createOrderEditButton(orderId); // create html for edit button
+    let deleteButton = createOrderDeleteButton(orderId); // create html for delete button
 
     let row = '<div id="order-' + orderId + '"class="table-row">';
     row += '    <div class="table-item">' + orderId + '</div>';
     row += '    <div class="table-item">' + date + '</div>';
-    row += '    <div class="table-item">' + getClientName(dniClient) + '</div>';
-    row += '    <div class="table-item">' + productsButton + editButton + deleteButton +'</div>';
+    row += '    <div class="table-item">' + getClientName(dniClient) + '</div>'; // show name for client
+    row += '    <div class="table-item">' + productsButton + editButton + deleteButton +'</div>'; // add html buttons
     row += '</div>';
 
     return row;
 }
 
-function getClientName(dniClient) {
-    name = '';
-    clients.forEach(client => {
-        if (client.dni === dniClient) {
-            name = client.name;
-        }
-    })
-
-    return name;
-}
-
-function getProductName(productId) {
-    name = '';
-    products.forEach(product => {
-        if (product.id === productId) {
-            name = product.name;
-        }
-    })
-
-    return name;
-}
-
-function addListenersToOrderRowButtons(orderId) {
+function addListenersToOrderRowButtons(orderId) { // add listeners to buttons for edit, delete and see more client
     $('#delete_order-' + orderId).click(function (e) {
         e.preventDefault();
-        idOrderToDelete = orderId;
+        idOrderToDelete = orderId; // save on global variable what order want to delete
         modalSureDeleteOrder.css('display', 'flex');
     });
 
@@ -354,11 +338,12 @@ function addListenersToOrderRowButtons(orderId) {
 
     $('#product_order-' + orderId).click(function (e) {
         e.preventDefault();
-        if (linesOfOrdersOpen.includes(orderId)) {
-            linesOfOrdersOpen = linesOfOrdersOpen.filter((value) => { return value !== orderId });
+        // linesOfOrdersOpen have id of lines that are opened 
+        if (linesOfOrdersOpen.includes(orderId)) { // if line is opened close it
+            linesOfOrdersOpen = linesOfOrdersOpen.filter((value) => { return value !== orderId }); // remove line to openedLines
             closeLinesOfOrder(orderId);
         } else {
-            linesOfOrdersOpen.push(orderId);
+            linesOfOrdersOpen.push(orderId); // add line to openedLines
             getLinesOfOrder(orderId);
         }
     });
@@ -372,22 +357,23 @@ function getLinesOfOrder(orderId) {
         data: {'idOrder': orderId},
         success: (response, status, header) => {
             if (Array.isArray(response)) {
-                addLinesOfOrderRowToTable(response, orderId);
+                addLinesOfOrderRowToTable(response, orderId); // add html row for that line
             }
         }
     });
 }
 
-function closeLinesOfOrder(orderId) {
+function closeLinesOfOrder(orderId) { // remove html for lines
     $('#order-' + orderId + '_lines').remove();
 }
 
-function addLinesOfOrderRowToTable(linesOfOrder, orderId) {
-    if (linesOfOrder[0] && !orderId) {
+function addLinesOfOrderRowToTable(linesOfOrder, orderId) { // generate html for all lines
+    if (linesOfOrder[0] && !orderId) { // depend if is update or add
         orderId = linesOfOrder[0].orderId
     }
     $('#order-' + orderId + '_lines').remove();
 
+    // header line row
     let rows = '<div id="order-' + orderId + '_lines" class="subtable">';
     rows += '    <div class="subtable-row">';
     rows += '       <div class="subtable-item">ID</div>';
@@ -397,8 +383,8 @@ function addLinesOfOrderRowToTable(linesOfOrder, orderId) {
     rows += '   </div>';
 
     linesOfOrder.forEach(line => {
-        let editButton = createLineEditButton(line.orderId, line.lineId);
-        let deleteButton = createLineDeleteButton(line.orderId, line.lineId);
+        let editButton = createLineEditButton(line.orderId, line.lineId); // generate html button for edit
+        let deleteButton = createLineDeleteButton(line.orderId, line.lineId); // generate html button for delete
 
         rows += '<div id="order-' + line.orderId + '_line-' + line.lineId + '" class="subtable-row">';
         rows += '    <div class="subtable-item">' + line.lineId + '</div>';
@@ -408,6 +394,7 @@ function addLinesOfOrderRowToTable(linesOfOrder, orderId) {
         rows += '</div>';
     })
 
+    // add line row
     rows += '    <div class="subtable-row subtable-row__add">';
     rows += '       <button id="order-' + orderId + '_add" class="button button--small">A&ntilde;adir producto</button>';
     rows += '   </div>';
@@ -427,20 +414,33 @@ function addLinesOfOrderRowToTable(linesOfOrder, orderId) {
     });
 }
 
-function createLineEditButton(orderId, lineId) {
-    return '<button id="edit_order-' + orderId + '_line-' + lineId +'" class="button button--secundary button--small">Editar</button>';
+function getClientName(dniClient) { // get name of client passing dni
+    name = '';
+    clients.forEach(client => {
+        if (client.dni === dniClient) {
+            name = client.name;
+        }
+    })
 
+    return name;
 }
 
-function createLineDeleteButton(orderId, lineId) {
-    return '<button id="delete_order-' + orderId + '_line-' + lineId +'" class="button button--danger button--small">Borrar</button>';
+function getProductName(productId) { // get name of product passing id
+    name = '';
+    products.forEach(product => {
+        if (product.id === productId) {
+            name = product.name;
+        }
+    })
+
+    return name;
 }
 
 function addListenersToLineOfOrderRowButtons(orderId, lineId) {
     $('#delete_order-' + orderId + '_line-' + lineId).click(function (e) {
         e.preventDefault();
-        idLineToDelete = lineId;
-        idOrderToDelete = orderId;
+        idLineToDelete = lineId; // save on global variable what line want to delete
+        idOrderToDelete = orderId; // save on global variable what order want to delete
         modalSureDeleteLine.css('display', 'flex');
     });
 
@@ -478,14 +478,14 @@ function getOneLine(orderId, lineId) {
 
 function addOrderDataToForm(order) {
     addClientsToSelect();
-    idOrderInput.prop('readonly', true);
+    idOrderInput.prop('readonly', true); // use property readonly when is updating client
     idOrderInput.val(order.orderId);
     clientOrderSelect.val(order.dniClient);
 }
 
 function addLineDataToForm(line) {
     addProductsToSelect();
-    idLineInput.prop('readonly', true);
+    idLineInput.prop('readonly', true); // use property readonly when is updating client
     idOrderOfLineInput.val(line.orderId);
     idLineInput.val(line.lineId);
     quantityInput.val(line.quantity);
@@ -504,6 +504,15 @@ function createOrderDeleteButton(id) {
     return '<button id="delete_order-' + id + '" class="button button--danger button--small">Borrar</button>';
 }
 
+function createLineEditButton(orderId, lineId) {
+    return '<button id="edit_order-' + orderId + '_line-' + lineId +'" class="button button--secundary button--small">Editar</button>';
+
+}
+
+function createLineDeleteButton(orderId, lineId) {
+    return '<button id="delete_order-' + orderId + '_line-' + lineId +'" class="button button--danger button--small">Borrar</button>';
+}
+
 function deleteOrder() {
     $.ajax({
         type: 'POST',
@@ -514,7 +523,7 @@ function deleteOrder() {
             if (response === 'SUCCESS') {
                 $('#order-' + idOrderToDelete).remove();
                 $('#order-' + idOrderToDelete + '_lines').remove();
-                idOrderToDelete = '';
+                idOrderToDelete = ''; // unset global variable for order to delete 
                 modalSureDeleteOrder.css('display', 'none');
             }
         }
@@ -530,8 +539,8 @@ function deleteLine() {
         success: (response, status, header) => {
             if (response === 'SUCCESS') {
                 $('#order-' + idOrderToDelete + '_line-' + idLineToDelete).remove();
-                idOrderToDelete = '';
-                idLineToDelete = '';
+                idOrderToDelete = ''; // unset global variable for order to delete 
+                idLineToDelete = ''; // unset global variable for line to delete 
                 modalSureDeleteLine.css('display', 'none');
             }
         }
@@ -539,13 +548,13 @@ function deleteLine() {
 }
 
 function clearOrderForm() {
-    idOrderInput.prop('readonly', false);
+    idOrderInput.prop('readonly', false); // unset readonly by default 
     idOrderInput.val('');
     clientOrderSelect.val('');
 }
 
 function clearLineForm(orderId) {
-    idLineInput.prop('readonly', false);
+    idLineInput.prop('readonly', false); // unset readonly by default
     idLineInput.val('');
     idOrderOfLineInput.val(orderId);
     quantityInput.val('1');

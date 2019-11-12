@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../styles/admin-panel.css">
+    <link rel="stylesheet" href="../css/admin-panel.css">
     <script src="../js/jquery-3.4.1.min.js"></script>
     <script src="../js/orders.js"></script>
     <title>Admin</title>
 </head>
 <body>
     <header class="header">
-        Menu de administraci&oacute;n
+        Men&uacute; de administraci&oacute;n
         <div class="account-info">
             <div id="user_name" class="account-info__user"></div>
             <a id="logout_button" class="button button--logout" href="../validar.php">Cerrar sesi&oacute;n</a>
@@ -36,16 +36,6 @@
             <div class="table-item">Cliente</div>
             <div class="table-item">Operaciones</div>
         </div>
-        <!-- <div class="table-row">
-            <div class="table-item">12345678X</div>
-            <div class="table-item">22/10/2019</div>
-            <div class="table-item">Ivan</div>
-            <div class="table-item">
-                <button class="button button--small">Productos</button>
-                <button class="button button--secundary button--small">Editar</button>
-                <button class="button button--danger button--small">Borrar</button>
-            </div>
-        </div> -->
     </section>
 
     <div id="modal_form_order" class="modal">
@@ -54,7 +44,7 @@
                 <form id="form_order">
                     <input id="id_order_input" name="idOrder" type="hidden">
                     <div class="field-group">
-                        <label class="label" for="client_input">* Cliente:</label>
+                        <label class="label" for="client_order_select">* Cliente:</label>
                         <select class="input input--select" name="dniClient" id="client_order_select" required>
                         
                         </select>
@@ -77,7 +67,7 @@
                         <input class="input input--text" id="quantity_input" name="quantity" type="number" step="1" min="1" required>
                     </div>
                     <div class="field-group">
-                        <label class="label" for="client_input">* Productos:</label>
+                        <label class="label" for="product_line_select">* Productos:</label>
                         <select class="input input--select" name="productId" id="product_line_select" required>
                         
                         </select>

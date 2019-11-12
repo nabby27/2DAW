@@ -13,7 +13,7 @@ body {
     font-size: calc(1vw + 18px);
 }
 
-/* LOGIN START */
+/**************************************************** LOGIN START ****************************************************/
 .login {
     height: 90vh;
     display: flex;
@@ -50,13 +50,81 @@ body {
     flex-direction: column;
     align-items: center;
 }
-/* LOGIN END */
+/**************************************************** LOGIN END ****************************************************/
 
-/* PANEL START */
+/**************************************************** MENU START ****************************************************/
+.header {
+    background-image: linear-gradient(45deg, #1D4289 0%,#1D4289 50%,#C80F2E 50%,#C80F2E 100%);
+    color: #FFF;
+    padding: 1em 2em;
+    font-size: 2vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.account-info {
+    display: flex;
+    align-items: center;
+}
+
+.account-info__user {
+    font-size: 1vw;
+    text-align: center;
+    margin: 0 2em;
+}
+
+.menu {
+    background-image: linear-gradient(45deg, #1D4289 0%,#1D4289 54.57%,#C80F2E 54.57%,#C80F2E 100%);
+    font-size: 1.2vw;
+}
+
+.menu__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.menu-list__item {
+    text-align: center;
+    padding: 0.2em 2em;
+}
+
+.menu-list__item:hover {
+    background-color: #DDDDDD;
+    border-radius: 5px 5px 0 0;
+}
+
+.menu-list__item-link {
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.menu-list__item-link:hover {
+    cursor: pointer;
+}
+
+.menu-list__item:hover .menu-list__item-link {
+    color: #000000;
+}
+
+.menu-list__item--active,
+.menu-list__item--active:hover
+{
+    color: #1D4289;
+    background-color: #FFFFFF;
+    border-radius: 5px 5px 0 0;
+}
+/**************************************************** MENU END ****************************************************/
+
+/**************************************************** PANEL START ****************************************************/
 .add-container {
     margin: 2vw 4vw;
 }
-/* PANEL END */
+/**************************************************** PANEL END ****************************************************/
 
 /**************************************************** FORM START ****************************************************/
 .field-group {
@@ -160,74 +228,6 @@ body {
 }
 /**************************************************** MODAL END ****************************************************/
 
-/**************************************************** MENU START ****************************************************/
-.header {
-    background-image: linear-gradient(45deg, #1D4289 0%,#1D4289 50%,#C80F2E 50%,#C80F2E 100%);
-    color: #FFF;
-    padding: 1em 2em;
-    font-size: 2vw;
-    display: flex;
-    justify-content: space-between;
-}
-
-.account-info {
-    display: flex;
-    align-items: center;
-}
-
-.account-info__user {
-    font-size: 1vw;
-    text-align: center;
-    margin: 0 2em;
-}
-
-.menu {
-    background-image: linear-gradient(45deg, #1D4289 0%,#1D4289 54.57%,#C80F2E 54.57%,#C80F2E 100%);
-    font-size: 1.2vw;
-}
-
-.menu__list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.menu-list__item {
-    text-align: center;
-    padding: 0.2em 2em;
-}
-
-.menu-list__item:hover {
-    background-color: #DDDDDD;
-    border-radius: 5px 5px 0 0;
-}
-
-.menu-list__item-link {
-    width: 100%;
-    height: 100%;
-    text-decoration: none;
-    color: #FFFFFF;
-}
-
-.menu-list__item-link:hover {
-    cursor: pointer;
-}
-
-.menu-list__item:hover .menu-list__item-link {
-    color: #000000;
-}
-
-.menu-list__item--active,
-.menu-list__item--active:hover
-{
-    color: #1D4289;
-    background-color: #FFFFFF;
-    border-radius: 5px 5px 0 0;
-}
-/**************************************************** MENU END ****************************************************/
-
 /**************************************************** TABLE START ****************************************************/
 .table {
     width: 80%;
@@ -314,3 +314,95 @@ body {
     background-color: transparent;
 }
 /**************************************************** BUTTON END ****************************************************/
+
+/**************************************************** MOBILE START ****************************************************/
+@media screen and (max-width: 600px) {
+
+    body {
+        margin: 0;
+        font-size: calc(5vw + 18px);
+    }
+
+    /**************************************************** MENU MOBILE START ****************************************************/
+    .header {
+        background-image: linear-gradient(45deg, #1D4289 0%,#1D4289 50%,#C80F2E 50%,#C80F2E 100%);
+        color: #FFF;
+        padding: 1em 2em;
+        font-size: 2vw;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .account-info {
+        display: flex;
+        align-items: center;
+    }
+
+    .account-info__user {
+        font-size: 1vw;
+        text-align: center;
+        margin: 0 2em;
+    }
+
+    .menu {
+        background-image: linear-gradient(45deg, #1D4289 0%,#1D4289 54.57%,#C80F2E 54.57%,#C80F2E 100%);
+        font-size: 1.2vw;
+    }
+
+    .menu__list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .menu-list__item {
+        text-align: center;
+        padding: 0.2em 2em;
+    }
+
+    .menu-list__item:hover {
+        background-color: #DDDDDD;
+        border-radius: 5px 5px 0 0;
+    }
+
+    .menu-list__item-link {
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        color: #FFFFFF;
+    }
+
+    .menu-list__item-link:hover {
+        cursor: pointer;
+    }
+
+    .menu-list__item:hover .menu-list__item-link {
+        color: #000000;
+    }
+
+    .menu-list__item--active,
+    .menu-list__item--active:hover
+    {
+        color: #1D4289;
+        background-color: #FFFFFF;
+        border-radius: 5px 5px 0 0;
+    }
+    /**************************************************** MENU MOBILE END ****************************************************/
+
+    .table {
+        font-size: 5vw;
+        overflow-x: scroll;
+    }
+
+    .table-row {
+        width: 100%;
+    }
+
+    .table-item {
+        padding: 1vw 5vw;
+        width: 100%;
+    }
+}
+/**************************************************** MOBILE END ****************************************************/

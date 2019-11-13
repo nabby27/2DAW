@@ -26,16 +26,17 @@
     </nav>
     
     <div class="add-container">
-        <button class="button" id="add_product_button">A&ntilde;adir nuevo producto</button>
+        <button class="button button--add button--large" id="add_product_button">A&ntilde;adir nuevo producto</button>
     </div>
 
     <section class="table" id="table">
+        <h6 class="table__title">Lista de productos</h6>
         <div class="table-row">
-                <div class="table-item">ID</div>
-                <div class="table-item">Imagen</div>
-                <div class="table-item">Nombre</div>
-                <div class="table-item">Precio</div>
-                <div class="table-item">Operaciones</div>
+            <div class="table-item">ID</div>
+            <div class="table-item">Imagen</div>
+            <div class="table-item">Nombre</div>
+            <div class="table-item">Precio</div>
+            <div class="table-item">Operaciones</div>
         </div>
     </section>
 
@@ -64,8 +65,10 @@
                         <label class="label" for="price_input">* Precio:</label>
                         <input class="input input--text" id="price_input" name="price" type="number" step="0.1" min="0" required>
                     </div>
-                    <button type="submit" class="button" id="modal_form_save_button">Guardar</button>
-                    <button class="button button--secundary" id="modal_form_close_button">Cerrar</button>
+                    <div class="form-group-buttons">
+                        <button type="submit" class="button button--add" id="modal_form_save_button">Guardar</button>
+                        <button class="button button--close" id="modal_form_close_button">Cerrar</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -74,23 +77,28 @@
     <div id="modal_error" class="modal">
         <div class="modal__box">
             <span class="modal-box__text">No se ha podido crear el producto, revise que no este creado ya</span>
-            <button id="modal_error_close_button" class="button">Cerrar</button>
+            <div class="form-group-buttons">
+                <button id="modal_error_close_button" class="button button--close">Cerrar</button>
+            </div>
         </div>
     </div>
 
     <div id="modal_sure_delete" class="modal">
         <div class="modal__box">
             <span class="modal-box__text">Estas seguro que desea eliminar el producto</span>
-            <button id="modal_sure_delete_delete_button" class="button button--danger">Eliminar</button>
-            <button id="modal_sure_delete_close_button" class="button button--secundary">Cerrar</button>
+            <div class="form-group-buttons">
+                <button id="modal_sure_delete_delete_button" class="button button--delete">Eliminar</button>
+                <button id="modal_sure_delete_close_button" class="button button--close">Cerrar</button>
+            </div>
         </div>
     </div>
 
     <div id="modal_image" class="modal">
         <div class="modal__box">
-            <div id="modal_image_image">
+            <div id="modal_image_image"></div>
+            <div class="form-group-buttons">
+                <button id="modal_image_close_button" class="button button--close">Cerrar</button>
             </div>
-            <button id="modal_image_close_button" class="button button--secundary">Cerrar</button>
         </div>
     </div>
 

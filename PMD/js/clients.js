@@ -265,11 +265,11 @@ function addClientDataToForm(client) { // add client data to modal form
 }
 
 function createEditButton(dni) { // generate html for edit client button
-    return '<button id="edit-' + dni + '" class="button button--secundary button--small">Editar</button>'; 
+    return '<button id="edit-' + dni + '" class="button button--edit button--small">Editar</button>'; 
 }
 
 function createDeleteButton(dni) { // generate html for delete client button
-    return '<button id="delete-' + dni + '" class="button button--danger button--small">Borrar</button>';
+    return '<button id="delete-' + dni + '" class="button button--delete button--small">Borrar</button>';
 }
 
 function deleteClient() { // do petition to delete exist client on php

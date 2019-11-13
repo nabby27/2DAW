@@ -394,13 +394,13 @@ function addLinesOfOrderRowToTable(linesOfOrder, orderId) { // generate html for
         rows += '</div>';
     })
 
-    // add line row
+    // line row to add product
     rows += '    <div class="subtable-row subtable-row__add">';
     rows += '       <button id="order-' + orderId + '_add" class="button button--small">A&ntilde;adir producto</button>';
     rows += '   </div>';
     rows += '</div>';
 
-    $('#order-' + orderId).after(rows);
+    $('#order-' + orderId).after(rows); // insert subtable after table
 
     linesOfOrder.forEach(line => {
         addListenersToLineOfOrderRowButtons(orderId, line.lineId);
@@ -493,24 +493,24 @@ function addLineDataToForm(line) {
 }
 
 function createProductsButton(id) {
-    return '<button id="product_order-' + id + '" class="button button--small">Productos</button>';
+    return '<button id="product_order-' + id + '" class="button button--see-more button--small">Ver m&aacute;s</button>';
 }
 
 function createOrderEditButton(id) {
-    return '<button id="edit_order-' + id + '" class="button button--secundary button--small">Editar</button>';
+    return '<button id="edit_order-' + id + '" class="button button--edit button--small">Editar</button>';
 }
 
 function createOrderDeleteButton(id) {
-    return '<button id="delete_order-' + id + '" class="button button--danger button--small">Borrar</button>';
+    return '<button id="delete_order-' + id + '" class="button button--delete button--small">Borrar</button>';
 }
 
 function createLineEditButton(orderId, lineId) {
-    return '<button id="edit_order-' + orderId + '_line-' + lineId +'" class="button button--secundary button--small">Editar</button>';
+    return '<button id="edit_order-' + orderId + '_line-' + lineId +'" class="button button--edit button--small">Editar</button>';
 
 }
 
 function createLineDeleteButton(orderId, lineId) {
-    return '<button id="delete_order-' + orderId + '_line-' + lineId +'" class="button button--danger button--small">Borrar</button>';
+    return '<button id="delete_order-' + orderId + '_line-' + lineId +'" class="button button--delete button--small">Borrar</button>';
 }
 
 function deleteOrder() {

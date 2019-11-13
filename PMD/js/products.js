@@ -289,11 +289,11 @@ function addProductDataToForm(product) { // add product data to form
 }
 
 function createEditButton(id) { // generate html for edit client button
-    return '<button id="edit-' + id + '" class="button button--secundary button--small">Editar</button>';
+    return '<button id="edit-' + id + '" class="button button--edit button--small">Editar</button>';
 }
 
 function createDeleteButton(id) { // generate html for delete client button
-    return '<button id="delete-' + id + '" class="button button--danger button--small">Borrar</button>';
+    return '<button id="delete-' + id + '" class="button button--delete button--small">Borrar</button>';
 }
 
 function deleteProduct() { // do petition to delete exist product on php

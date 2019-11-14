@@ -396,7 +396,7 @@ function addLinesOfOrderRowToTable(linesOfOrder, orderId) { // generate html for
 
     // line row to add product
     rows += '    <div class="subtable-row subtable-row__add">';
-    rows += '       <button id="order-' + orderId + '_add" class="button button--small">A&ntilde;adir producto</button>';
+    rows += '       <button id="order-' + orderId + '_add" class="button button--add button--small"><img src="../img/plus.svg" class="button__icon--add" alt="plus icon"></button>';
     rows += '   </div>';
     rows += '</div>';
 
@@ -493,24 +493,34 @@ function addLineDataToForm(line) {
 }
 
 function createProductsButton(id) {
-    return '<button id="product_order-' + id + '" class="button button--see-more button--small">Ver m&aacute;s</button>';
+    return '<button id="product_order-' + id + '" class="button button--see-more button--small">' + 
+            '<img src="../img/list.svg" class="button__icon--eye" alt="edit icon">' +
+        '</button>';
 }
 
 function createOrderEditButton(id) {
-    return '<button id="edit_order-' + id + '" class="button button--edit button--small">Editar</button>';
+    return '<button id="edit_order-' + id + '" class="button button--edit button--small">' +
+            '<img src="../img/pencil.svg" class="button__icon--edit" alt="edit icon">' +
+        '</button>';
 }
 
 function createOrderDeleteButton(id) {
-    return '<button id="delete_order-' + id + '" class="button button--delete button--small">Borrar</button>';
+    return '<button id="delete_order-' + id + '" class="button button--delete button--small">' + 
+            '<img src="../img/trash.svg" class="button__icon--delete" alt="delete icon">' +
+        '</button>';
 }
 
 function createLineEditButton(orderId, lineId) {
-    return '<button id="edit_order-' + orderId + '_line-' + lineId +'" class="button button--edit button--small">Editar</button>';
+    return '<button id="edit_order-' + orderId + '_line-' + lineId +'" class="button button--edit button--small">' + 
+            '<img src="../img/pencil.svg" class="button__icon--edit" alt="edit icon">' +    
+        '</button>';
 
 }
 
 function createLineDeleteButton(orderId, lineId) {
-    return '<button id="delete_order-' + orderId + '_line-' + lineId +'" class="button button--delete button--small">Borrar</button>';
+    return '<button id="delete_order-' + orderId + '_line-' + lineId +'" class="button button--delete button--small">' + 
+            '<img src="../img/trash.svg" class="button__icon--delete" alt="delete icon">' +   
+        '</button>';
 }
 
 function deleteOrder() {

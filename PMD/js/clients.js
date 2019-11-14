@@ -29,7 +29,7 @@ let dniToDelete;
 
 $(document).ready(function() { // check if user is login using localstorage
     userNameLogged = localStorage.getItem('user_name');
-    
+
     if (!userNameLogged) {
         checkUserLogged();
     } else {
@@ -265,11 +265,15 @@ function addClientDataToForm(client) { // add client data to modal form
 }
 
 function createEditButton(dni) { // generate html for edit client button
-    return '<button id="edit-' + dni + '" class="button button--edit button--small">Editar</button>'; 
+    return '<button id="edit-' + dni + '" class="button button--edit button--small">' +
+            '<img src="../img/pencil.svg" class="button__icon--edit" alt="edit icon">' +
+        '</button>'; 
 }
 
 function createDeleteButton(dni) { // generate html for delete client button
-    return '<button id="delete-' + dni + '" class="button button--delete button--small">Borrar</button>';
+    return '<button id="delete-' + dni + '" class="button button--delete button--small">' + 
+            '<img src="../img/trash.svg" class="button__icon--delete" alt="delete icon">' +
+        '</button>';
 }
 
 function deleteClient() { // do petition to delete exist client on php

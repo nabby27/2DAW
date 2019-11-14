@@ -26,7 +26,10 @@
     </nav>
     
     <div class="add-container">
-        <button class="button button--add button--large" id="add_client_button"><img src="../img/plus.svg" class="button__icon--add" alt="plus icon">A&ntilde;adir nuevo cliente</button>
+        <button class="button button--add button--large" id="add_client_button">
+            <img src="../img/plus.svg" class="button__icon--add" alt="plus icon">
+            A&ntilde;adir nuevo cliente
+        </button>
     </div>
 
     <section class="table" id="table">
@@ -68,8 +71,14 @@
                         <input class="input input--checkbox" id="admin_input" name="admin" type="checkbox">
                     </div>
                     <div class="form-group-buttons">
-                        <button type="submit" class="button button--save" id="modal_form_save_button">Guardar</button>
-                        <button class="button button--close" id="modal_form_close_button">Cerrar</button>
+                        <button type="submit" class="button button--save" id="modal_form_save_button">
+                            <img src="../img/save.svg" class="button__icon--save" alt="save icon">
+                            Guardar
+                        </button>
+                        <button class="button button--close" id="modal_form_close_button">
+                            <img src="../img/cross.svg" class="button__icon--close" alt="cross icon">
+                            Cerrar
+                        </button>
                     </div>
                 </form>
             </div>
@@ -77,10 +86,16 @@
     </div>
 
     <div id="modal_error" class="modal">
-        <div class="modal__box">
+        <div class="modal__box modal__box--large">
+            <div>
+                <img src="../img/danger.svg" class="icon--danger" alt="danger icon">
+            </div>
             <span class="modal-box__text">No se ha podido crear el usuario, revise que no este creado ya</span>
             <div class="form-group-buttons">
-                <button id="modal_error_close_button" class="button button--close">Cerrar</button>
+                <button id="modal_error_close_button" class="button button--close">
+                    <img src="../img/cross.svg" class="button__icon--close" alt="cross icon">
+                    Cerrar
+                </button>
             </div>
         </div>
     </div>
@@ -89,8 +104,14 @@
         <div class="modal__box">
             <span class="modal-box__text">Estas seguro que desea eliminar el cliente</span>
             <div class="form-group-buttons">
-                <button id="modal_sure_delete_delete_button" class="button button--delete">Eliminar</button>
-                <button id="modal_sure_delete_close_button" class="button button--close">Cerrar</button>
+                <button id="modal_sure_delete_delete_button" class="button button--delete">
+                    <img src="../img/open-trash.svg" class="button__icon--open-trash" alt="open trash icon">
+                    Eliminar
+                </button>
+                <button id="modal_sure_delete_close_button" class="button button--close">
+                    <img src="../img/cross.svg" class="button__icon--close" alt="cross icon">
+                    Cerrar
+                </button>
             </div>
         </div>
     </div>

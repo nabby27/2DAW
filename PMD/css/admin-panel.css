@@ -54,7 +54,7 @@ body {
 
 /**************************************************** MENU START ****************************************************/
 .header {
-    background-image: linear-gradient(45deg, #1D4289 0%,#1D4289 50%,#C80F2E 50%,#C80F2E 100%);
+    background-color: #1D4289;
     color: #FFF;
     padding: 1em 2em;
     font-size: 2vw;
@@ -74,7 +74,7 @@ body {
 }
 
 .menu {
-    background-image: linear-gradient(45deg, #1D4289 0%,#1D4289 54.57%,#C80F2E 54.57%,#C80F2E 100%);
+    background-color: #1D4289;
     font-size: 1.2vw;
 }
 
@@ -223,6 +223,11 @@ body {
     font-size: 1.3vw;
 }
 
+.modal__box--large {
+    width: 60%;
+}
+
+
 .modal-box__text {
     display: block;
     margin-bottom: 1em;
@@ -230,6 +235,12 @@ body {
 
 .modal_image__image {
     width: 70%;
+}
+
+.icon--danger {
+    width: 4vw;
+    height: 4vw;
+    margin: 1vw 0;
 }
 /**************************************************** MODAL END ****************************************************/
 
@@ -306,6 +317,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    outline: none;
 }
 
 .button:hover {
@@ -325,41 +337,27 @@ body {
 
 .button--logout {
     text-decoration: none;
-    border: 1px solid #FFFFFF;
+    border: 0.1vw solid #FFFFFF;
     background-color: transparent;
 }
 
-.button__icon--add {
-    height: fit-content;
-    width: 1.5vw;
-    height: 1.5vw;
+.button--logout:hover {
+    animation: borderColor 2s infinite ease-in-out;
 }
 
 .button--add {
     background-color: #1D4289;
 }
 
-.button--save {
-    background-color: #1D4289;
-}
-
-.button--add:hover .button__icon--add {
-    animation: rotate 0.8s none ease-in-out;
-}
-
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(180deg);
-    }
-}
-
 .button--edit {
-    background-color: #EEEEEE;
+    background-color: #FEFEFE;
     border: 1px solid #000000;
     color: #000000;
+}
+
+.button--edit:hover {
+    background-color: #EEEEEE;
+    opacity: 1;
 }
 
 .button--delete {
@@ -367,104 +365,118 @@ body {
 }
 
 .button--see-more {
-    background-color: rgb(0, 147, 173);
+    background-color: rgb(252, 164, 0);
+    border: 1px solid #000000;
+    color: #555555;
+}
+
+.button--save {
+    background-color: #1D4289;
+    justify-content: center;
 }
 
 .button--close {
+    justify-content: center;
+    text-align: center;
     background-color: #111111;
     color: #FFFFFF;
 }
 
+.button__icon--add {
+    width: 1.7vw;
+    height: 1.7vw;
+}
+
+.button__icon--edit {
+    width: 1vw;
+    height: 1vw;
+}
+
+.button__icon--eye {
+    width: 1.7vw;
+    height: 1.7vw; 
+}
+
+.button__icon--delete {
+    width: 1vw;
+    height: 1vw;
+}
+
+.button__icon--open-trash {
+    width: 1.5vw;
+    height: 1.5vw;
+}
+
+.button__icon--close {
+    margin: 0 0.5vw;
+    width: 1vw;
+    height: 1vw;
+}
+
+.button__icon--save {
+    margin: 0 0.5vw;
+    width: 1vw;
+    height: 1vw;
+}
+
+.button:hover .button__icon--add {
+    animation: rotate 0.8s none ease-in-out;
+}
+
+.button:hover .button__icon--edit {
+    animation: pulse 0.5s none;
+}
+
+.button:hover .button__icon--delete {
+    width: 1.3vw;
+    height: 1.3vw;
+}
+
+.button:hover .button__icon--save {
+    animation: upDown 0.8s infinite ease-in-out;
+}
 /**************************************************** BUTTON END ****************************************************/
 
 /**************************************************** MOBILE START ****************************************************/
 @media screen and (max-width: 600px) {
 
-    body {
-        margin: 0;
-        font-size: calc(5vw + 18px);
-    }
-
-    /**************************************************** MENU MOBILE START ****************************************************/
-    .header {
-        background-image: linear-gradient(45deg, #1D4289 0%,#1D4289 50%,#C80F2E 50%,#C80F2E 100%);
-        color: #FFF;
-        padding: 1em 2em;
-        font-size: 2vw;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .account-info {
-        display: flex;
-        align-items: center;
-    }
-
-    .account-info__user {
-        font-size: 1vw;
-        text-align: center;
-        margin: 0 2em;
-    }
-
-    .menu {
-        background-image: linear-gradient(45deg, #1D4289 0%,#1D4289 54.57%,#C80F2E 54.57%,#C80F2E 100%);
-        font-size: 1.2vw;
-    }
-
-    .menu__list {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        display: flex;
-        justify-content: flex-end;
-    }
-
-    .menu-list__item {
-        text-align: center;
-        padding: 0.2em 2em;
-    }
-
-    .menu-list__item:hover {
-        background-color: #DDDDDD;
-        border-radius: 5px 5px 0 0;
-    }
-
-    .menu-list__item-link {
-        width: 100%;
-        height: 100%;
-        text-decoration: none;
-        color: #FFFFFF;
-    }
-
-    .menu-list__item-link:hover {
-        cursor: pointer;
-    }
-
-    .menu-list__item:hover .menu-list__item-link {
-        color: #000000;
-    }
-
-    .menu-list__item--active,
-    .menu-list__item--active:hover
-    {
-        color: #1D4289;
-        background-color: #FFFFFF;
-        border-radius: 5px 5px 0 0;
-    }
-    /**************************************************** MENU MOBILE END ****************************************************/
-
-    .table {
-        font-size: 5vw;
-        overflow-x: scroll;
-    }
-
-    .table-row {
-        width: 100%;
-    }
-
-    .table-item {
-        padding: 1vw 5vw;
-        width: 100%;
-    }
 }
 /**************************************************** MOBILE END ****************************************************/
+
+/**************************************************** ANIMATIONS START ****************************************************/
+@keyframes rotate {
+    to {
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.5); }
+    100% { transform: scale(1); }
+}
+
+@keyframes upDown {
+    0% { transform: translateY(0); }
+    20% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes borderColor {
+    0% {
+        border-color: #FFFFFF;
+    }
+    20% {
+        border-color: #C80F2E;
+    }
+    40% {
+        border-color: #FFFFFF;
+    }
+    80% {
+        border-color: #C80F2E;
+    }
+    100% {
+        border-color: #FFFFFF;
+    }
+}
+/**************************************************** ANIMATIONS END ****************************************************/

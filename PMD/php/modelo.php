@@ -338,7 +338,7 @@ class Carrito implements \JsonSerializable {
     }
 
     function getNewLineId($link) {
-        $queryString = "SELECT max(nLinea) FROM lineas_pedidos";
+        $queryString = "SELECT max(nLinea) FROM lineas_pedidos WHERE idPedido=$this->orderId";
         $result = $link->query($queryString);
         $maxId = mysqli_fetch_row($result)[0];
         

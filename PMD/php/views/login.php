@@ -8,7 +8,7 @@
     <title>Login</title>
 </head>
 <body>
-    <div class="login">
+    <div class="login__container">
         <form action="" method=post class="login__box">
             <div class="login-box__title">Login</div>
             <div class="login-box__content">
@@ -20,10 +20,10 @@
                     <label class="label" for="password_input">Contraseña:</label>
                     <input class="input input--text" id="password_input" name="password" type="password">
                 </div>
-                <div class="login-error">
+                <div class="login__message--error">
                     <?php echo $error ?>
                 </div>
-                <button class="button" type="submit" id="login_button">Login</button>
+                <button class="button button--login" type="submit" id="login_button">Login</button>
             </div>
         </form>
     </div>

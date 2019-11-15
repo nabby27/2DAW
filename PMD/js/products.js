@@ -290,13 +290,13 @@ function addProductDataToForm(product) { // add product data to form
 
 function createEditButton(id) { // generate html for edit client button
     return '<button id="edit-' + id + '" class="button button--edit button--small">' + 
-            '<img src="../img/pencil.svg" class="button__icon--edit" alt="edit icon">' +
+            '<img src="../img/pencil.svg" class="button__icon--small" alt="edit icon">' +
         '</button>';
 }
 
 function createDeleteButton(id) { // generate html for delete client button
     return '<button id="delete-' + id + '" class="button button--delete button--small">' + 
-            '<img src="../img/trash.svg" class="button__icon--delete" alt="delete icon">' +
+            '<img src="../img/trash.svg" class="button__icon--small" alt="delete icon">' +
         '</button>';
 }
 

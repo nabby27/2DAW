@@ -266,13 +266,13 @@ function addClientDataToForm(client) { // add client data to modal form
 
 function createEditButton(dni) { // generate html for edit client button
     return '<button id="edit-' + dni + '" class="button button--edit button--small">' +
-            '<img src="../img/pencil.svg" class="button__icon--edit" alt="edit icon">' +
+            '<img src="../img/pencil.svg" class="button__icon--small" alt="edit icon">' +
         '</button>'; 
 }
 
 function createDeleteButton(dni) { // generate html for delete client button
     return '<button id="delete-' + dni + '" class="button button--delete button--small">' + 
-            '<img src="../img/trash.svg" class="button__icon--delete" alt="delete icon">' +
+            '<img src="../img/trash.svg" class="button__icon--small" alt="delete icon">' +
         '</button>';
 }
 

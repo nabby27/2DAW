@@ -494,32 +494,32 @@ function addLineDataToForm(line) {
 
 function createProductsButton(id) {
     return '<button id="product_order-' + id + '" class="button button--see-more button--small">' + 
-            '<img src="../img/list.svg" class="button__icon--eye" alt="edit icon">' +
+            '<img src="../img/list.svg" class="button__icon--small" alt="edit icon">' +
         '</button>';
 }
 
 function createOrderEditButton(id) {
     return '<button id="edit_order-' + id + '" class="button button--edit button--small">' +
-            '<img src="../img/pencil.svg" class="button__icon--edit" alt="edit icon">' +
+            '<img src="../img/pencil.svg" class="button__icon--small" alt="edit icon">' +
         '</button>';
 }
 
 function createOrderDeleteButton(id) {
     return '<button id="delete_order-' + id + '" class="button button--delete button--small">' + 
-            '<img src="../img/trash.svg" class="button__icon--delete" alt="delete icon">' +
+            '<img src="../img/trash.svg" class="button__icon--small" alt="delete icon">' +
         '</button>';
 }
 
 function createLineEditButton(orderId, lineId) {
     return '<button id="edit_order-' + orderId + '_line-' + lineId +'" class="button button--edit button--small">' + 
-            '<img src="../img/pencil.svg" class="button__icon--edit" alt="edit icon">' +    
+            '<img src="../img/pencil.svg" class="button__icon--small" alt="edit icon">' +    
         '</button>';
 
 }
 
 function createLineDeleteButton(orderId, lineId) {
     return '<button id="delete_order-' + orderId + '_line-' + lineId +'" class="button button--delete button--small">' + 
-            '<img src="../img/trash.svg" class="button__icon--delete" alt="delete icon">' +   
+            '<img src="../img/trash.svg" class="button__icon--small" alt="delete icon">' +   
         '</button>';
 }
 

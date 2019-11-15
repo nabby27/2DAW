@@ -1,7 +1,3 @@
-/*rojo: #C80F2E*/
-/*azul: #1D4289*/
-/*blanco: #FFFFFF*/
-
 @import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
 
 * {
@@ -10,7 +6,7 @@
 
 body {
     margin: 0;
-    font-size: calc(1vw + 18px);
+    /* font-size: calc(1vw + 24px); */
 }
 
 /**************************************************** LOGIN START ****************************************************/
@@ -36,6 +32,7 @@ body {
     display: flex;
     justify-content: center;
     padding: 1em 0;
+    font-size: 2vw;
     color: #FFFFFF;
     background: linear-gradient(45deg, #1D4289 0%,#1D4289 50%,#C80F2E 50%,#C80F2E 100%);
 }
@@ -48,6 +45,7 @@ body {
 
 .login__message--error {
     display: flex;
+    font-size: 1.5vw;
     justify-content: center;
     color: #C80F2E;
 }
@@ -140,11 +138,13 @@ body {
 
 .label {
     width: 30%;
+    font-size: 2vw;
     text-align: end;
 }
 
 .input {
     padding: 0;
+    font-size: 2vw;
     border: none;
     width: 50%;
 }
@@ -423,410 +423,388 @@ body {
 @media screen and (max-width: 600px) {
     /**************************************************** LOGIN MOBILE START ****************************************************/
     .login__container {
-        height: calc(100vh - 1em);
         width: 100vw;
     }
 
     .login__box {
+        border: none;
         width: 100%;
         height: 100%;
-
-
-
-        /* border: 5px solid;
-        border-color: #C80F2E #C80F2E #1D4289 #1D4289;
-        border-top: none;
-        width: 50vw;
-        padding-bottom: 1em;
-        font-size: calc(0.5vw + 18px); */
     }
 
     .login-box__title {
-        /* align-self: flex-start;
-        justify-self: start;
-        display: flex;
-        justify-content: center;
-        padding: 1em 0;
-        color: #FFFFFF;
-        background: linear-gradient(45deg, #1D4289 0%,#1D4289 50%,#C80F2E 50%,#C80F2E 100%); */
-    }
-
-    .login-box__content {
-        /* display: flex;
-        flex-direction: column;
-        align-items: center; */
+        font-size: 8vw;
     }
 
     .login__message--error {
-        /* display: flex;
-        justify-content: center;
-        color: #C80F2E; */
+        padding: 1em 2em;
+        font-size: 5.5vw;
+        text-align: center;
     }
     /**************************************************** LOGIN MOBILE END ****************************************************/
 
     /**************************************************** HEADER MOBILE START ****************************************************/
     .header {
-        background-color: #1D4289;
-        color: #FFF;
-        padding: 1em 2em;
-        font-size: 2vw;
-        display: flex;
-        justify-content: space-between;
+        display: block;
     }
 
     .header__title {
-        font-size: 2.5vw;
+        display: block;
+        margin: 1em 0;
+        text-align: center;
+        font-size: 6vw;
     }
 
     .header__info {
-        font-size: 1vw;
         display: flex;
-        align-items: center;
+        justify-content: space-between;
+        align-items: flex-start;
     }
 
     .info__user {
-        font-size: 1vw;
-        text-align: center;
-        margin: 0 2em;
+        font-size: 4vw;
+        margin: 1em 0 2em 0;
     }
     /**************************************************** HEADER MOBILE END ****************************************************/
 
     /**************************************************** MENU MOBILE START ****************************************************/
     .menu {
-        background-color: #1D4289;
-        font-size: 1.2vw;
+        /* background-color: #1D4289;
+        font-size: 1.2vw; */
     }
-
+    
     .menu__list {
-        margin: 0;
+        justify-content: space-between;
+        /* margin: 0;
         padding: 0;
         list-style: none;
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-end; */
     }
 
     .menu-list__item {
-        text-align: center;
-        padding: 0.2em 2em;
+        font-size: 4vw;
+        /* text-align: center;
+        padding: 0.2em 2em; */
     }
 
     .menu-list__item:hover {
-        background-color: #DDDDDD;
-        border-radius: 5px 5px 0 0;
+        /* background-color: #DDDDDD;
+        border-radius: 5px 5px 0 0; */
     }
 
     .menu-list__item-link {
-        width: 100%;
+        /* width: 100%;
         height: 100%;
         text-decoration: none;
-        color: #FFFFFF;
+        color: #FFFFFF; */
     }
 
     .menu-list__item-link:hover {
-        cursor: pointer;
+        /* cursor: pointer; */
     }
 
     .menu-list__item:hover .menu-list__item-link {
-        color: #000000;
+        /* color: #000000; */
     }
 
     .menu-list__item--active,
     .menu-list__item--active:hover
     {
-        color: #1D4289;
+        /* color: #1D4289;
         background-color: #FFFFFF;
-        border-radius: 5px 5px 0 0;
+        border-radius: 5px 5px 0 0; */
     }
     /**************************************************** MENU MOBILE END ****************************************************/
 
     /**************************************************** FORM MOBILE START ****************************************************/
     .field-group {
-        width: 80%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin: 1em;
-        font-weight: lighter;
+        flex-direction: column;
     }
 
     .label {
-        width: 30%;
-        text-align: end;
+        margin: 1em 0;
+        font-size: 5vw;
+        text-align: start;
+        width: 80%;
     }
 
     .input {
-        padding: 0;
-        border: none;
-        width: 50%;
+        font-size: 5vw;
+        width: 80%;
     }
 
     .input--text {
-        box-shadow: 0px 2px 0px -1px #1D4289;
+        /* box-shadow: 0px 2px 0px -1px #1D4289; */
     }
 
     .input--text:hover,
     .input--text:active
     {
-        box-shadow: 0 2px 0 #1D4289;
+        /* box-shadow: 0 2px 0 #1D4289; */
     }
 
     .input--text:focus {
-        box-shadow: 0 3px 0 #1D4289;
-        outline: none;
+        /* box-shadow: 0 3px 0 #1D4289;
+        outline: none; */
     }
 
     .input--checkbox {
-        outline: none;
-        box-shadow: none;
-        -webkit-appearance: none;
-        width: 2vw;
-        height: 2vw;
-        border: 1px solid #1D4289;
-        background-color: transparent;
-        border-radius: 50%;
+        width: 10vw;
+        height: 10vw;
     }
 
     .input--checkbox:checked {
-        background-color: #1D4289;
+        /* background-color: #1D4289; */
     }
 
     .input--disabled {
-        background-color: #EFEFEF;
+        /* background-color: #EFEFEF; */
     }
 
     .input--select {
-        width: 50%;
+        /* width: 50%;
         background-color: transparent;
         box-shadow: none;
         border: 1px solid #1D4289;
         outline: none;
-        font-size: 1vw;
+        font-size: 1vw; */
     }
 
     .select--option:hover {
-        background-color: #1D4289;
-        outline: none;
+        /* background-color: #1D4289;
+        outline: none; */
     }
 
     .form-group-buttons {
-        display: flex;
-        justify-content: space-around;
+        /* display: flex;
+        justify-content: space-around; */
     }
     /**************************************************** FORM MOBILE END ****************************************************/
 
     /**************************************************** MODAL MOBILE START ****************************************************/
     .modal {
-        display: none;
+        overflow: auto;
+
+        /* display: none;
         position: fixed;
         top: 0;
         width: 100%;
         height: 100vh;
         background-color: rgba(0, 0, 0, 0.2);
         justify-content: center;
-        align-items: center;
+        align-items: center; */
     }
 
     .modal__box {
-        width: 40%;
+        width: 90%;
+        /* width: 40%;
         border: 1px solid black;
         border-radius: 5px;
         padding: 2em 1em;
         background-color: #FFFFFF;
         text-align: center;
-        font-size: 1.3vw;
+        font-size: 1.3vw; */
     }
 
     .modal__box--large {
-        width: 60%;
+        /* width: 60%; */
     }
 
     .modal-box__text {
-        display: block;
-        margin-bottom: 1em;
+        /* display: block;
+        margin-bottom: 1em; */
     }
 
     .modal_image__image {
-        width: 70%;
+        /* width: 70%; */
     }
 
     .icon--danger {
-        width: 4vw;
+        /* width: 4vw;
         height: 4vw;
-        margin: 1vw 0;
+        margin: 1vw 0; */
     }
     /**************************************************** MODAL MOBILE END ****************************************************/
 
     /**************************************************** TABLE MOBILE START ****************************************************/
     .table {
-        width: 80%;
+        overflow: auto;
+        font-size: 5vw;
+        margin: 2em auto;
+        /* width: 80%;
         margin: 1em auto;
-        font-size: 1vw;
+        font-size: 1vw; */
     }
 
     .table__title {
-        font-size: 2vw;
+        display: none;
+        /* min-width: 100%; */
+        /* font-size: 2vw;
         margin: 1em 0;
-        text-align: center;
+        text-align: center; */
     }
 
     .table-row {
-        border-bottom: 1px solid #000000;
+        /* min-width: 100%; */
+        /* border-bottom: 1px solid #000000;
         display: flex;
         justify-content: space-between;
-        text-align: center;
+        text-align: center; */
     }
 
     .table-item {
-        width: 100%;
+        min-width: 50%;
+        /* width: 100%;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: center; */
+    }
+
+    .table-row:nth-child(odd) {
+        background-color: #EEEEEE;
+        /* width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center; */
     }
 
     .table-item-image {
-        width: 20%;
-        padding: 0.2vw;
+        /* width: 20%;
+        padding: 0.2vw; */
     }
 
     .subtable {
-        padding: 1em;
+        /* padding: 1em;
         margin: 0 auto;
         background-color: #DDDDDD;
-        font-size: 1vw;
+        font-size: 1vw; */
     }
 
     .subtable-row {
-        width: 80%;
+        /* width: 80%;
         margin: 0 auto;
         border-bottom: 1px solid #000000;
         display: flex;
         justify-content: space-around;
-        text-align: center;
+        text-align: center; */
     }
 
     .subtable-row__add {
-        justify-content: flex-end;
-        border: none;
+        /* justify-content: flex-end;
+        border: none; */
     }
 
     .subtable-item {
-        width: 100%;
+        /* width: 100%;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: center; */
     }
     /**************************************************** TABLE MOBILE END ****************************************************/
 
     /**************************************************** BUTTON MOBILE START ****************************************************/
 
     .button-add__container {
-        margin: 2vw 4vw;
+        /* margin: 2vw 4vw; */
     }
 
     .button {
-        border: none;
-        color: #FFFFFF;
-        margin: 0.3em;
-        width: 10vw;
-        height: 3vw;
-        font-size: 1vw;
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        outline: none;
+        height: 15vw;
+        font-size: 7vw;
+        width: 40vw;
     }
 
     .button:hover {
-        cursor: pointer;
-        opacity: 0.9;
+        /* cursor: pointer;
+        opacity: 0.9; */
     }
 
     .button--small {
-        width: 5vw;
-        height: 2vw;
+        /* width: 5vw;
+        height: 2vw; */
     }
 
     .button--large {
-        width: 15vw;
-        height: 3vw;
+        width: 100%;
+        height: 10vw;
     }
 
     .button--login {
-        text-decoration: none;
-        border: 0.1vw solid #1D4289;
-        color: #1D4289;
-        background-color: transparent;
+        border-width: 0.5vw;
     }
 
     .button--logout {
-        text-decoration: none;
-        border: 0.1vw solid #FFFFFF;
-        background-color: transparent;
+        font-size: 3vw;
+        border-width: 0.5vw;
     }
 
     .button--logout:hover {
-        animation: borderColor 2s infinite ease-in-out;
+        /* animation: borderColor 2s infinite ease-in-out; */
     }
 
     .button--add {
-        background-color: #1D4289;
+        font-size: 4vw;
+        /* background-color: #1D4289; */
     }
 
     .button--save {
-        background-color: #1D4289;
-        justify-content: space-around;
+        /* background-color: #1D4289;
+        justify-content: space-around; */
     }
 
     .button--edit {
-        background-color: #FEFEFE;
+        /* background-color: #FEFEFE;
         border: 1px solid #000000;
-        color: #000000;
+        color: #000000; */
     }
 
     .button--edit:hover {
-        background-color: #EEEEEE;
-        opacity: 1;
+        /* background-color: #EEEEEE;
+        opacity: 1; */
     }
 
     .button--delete {
-        background-color: #C80F2E;
+        /* background-color: #C80F2E; */
     }
 
     .button--see-more {
-        background-color: rgb(252, 164, 0);
+        /* background-color: rgb(252, 164, 0);
         border: 1px solid #000000;
-        color: #555555;
+        color: #555555; */
     }
 
     .button--close {
-        justify-content: space-around;
+        /* justify-content: space-around;
         text-align: center;
         background-color: #111111;
-        color: #FFFFFF;
+        color: #FFFFFF; */
     }
 
     .button__icon--add {
-        width: 1.7vw;
-        height: 1.7vw;
+        display: none;
+        /* width: 1.7vw;
+        height: 1.7vw; */
     }
 
     .button__icon--small {
-        width: 1vw;
-        height: 1vw;
+        width: 5vw;
+        height: 5vw;
+        /* width: 1vw;
+        height: 1vw; */
     }
 
     .button__icon--medium {
-        width: 1.7vw;
-        height: 1.7vw; 
+        /* width: 1.7vw;
+        height: 1.7vw;  */
     }
 
     .button:hover .button__icon--add {
-        animation: rotate 0.8s infinite ease-in-out;
+        /* animation: rotate 0.8s infinite ease-in-out; */
     }
 
     .button:hover .button__icon--small {
-        animation: pulse 0.5s infinite;
+        /* animation: pulse 0.5s infinite; */
     }
     /**************************************************** BUTTON MOBILE END ****************************************************/
 

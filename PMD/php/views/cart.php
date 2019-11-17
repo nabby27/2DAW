@@ -29,30 +29,33 @@
             <button class="button button--update" type="submit" name="update">Actualizar</button>
         </div>
 
-        <article class="line-order">
-            <div class="line-order__item">Product</div>
-            <div class="line-order__item">Cantidad</div>
-            <div class="line-order__item">Precio unitario</div>
-            <div class="line-order__item">Importe</div>
-        </article>
-
-        <?php $totalImport = 0; ?>
-        <?php for ($index = 0; $index < $_SESSION['total']; $index++) : ?>
-            <?php $totalImport += $_SESSION['price'][$index] * $_SESSION['quantity'][$index]; ?>
-            <?php if (intval($_SESSION['quantity'][$index]) > 0) : ?>
-                <article class="line-order">
-                    <input type="hidden" name="index[]" value="<?php echo $index ?>">
-                    <div class="line-order__item"><?php echo $_SESSION['product_name'][$index] ?></div>
-                    <input class="line-order__item line-order__input quantity__input" type="number" min="0" name="quantity[]" value="<?php echo $_SESSION['quantity'][$index] ?>">
-                    <div class="line-order__item"><?php echo $_SESSION['price'][$index] ?> &euro;</div>
-                    <div class="line-order__item"><?php echo $_SESSION['price'][$index] * $_SESSION['quantity'][$index] ?> &euro;</div>
-                </article>
-            <?php endif ?>
-        <?php endfor ?>
+        <section class="order">
+            <article class="line-order">
+                <div class="line-order__item">Product</div>
+                <div class="line-order__item">Cantidad</div>
+                <div class="line-order__item">Precio unitario</div>
+                <div class="line-order__item">Importe</div>
+            </article>
+    
+            <?php $totalImport = 0; ?>
+            <?php for ($index = 0; $index < $_SESSION['total']; $index++) : ?>
+                <?php $totalImport += $_SESSION['price'][$index] * $_SESSION['quantity'][$index]; ?>
+                <?php if (intval($_SESSION['quantity'][$index]) > 0) : ?>
+                    <article class="line-order">
+                        <input type="hidden" name="index[]" value="<?php echo $index ?>">
+                        <div class="line-order__item"><?php echo $_SESSION['product_name'][$index] ?></div>
+                        <input class="line-order__item line-order__input quantity__input" type="number" min="0" name="quantity[]" value="<?php echo $_SESSION['quantity'][$index] ?>">
+                        <div class="line-order__item"><?php echo $_SESSION['price'][$index] ?> &euro;</div>
+                        <div class="line-order__item"><?php echo $_SESSION['price'][$index] * $_SESSION['quantity'][$index] ?> &euro;</div>
+                    </article>
+                <?php endif ?>
+            <?php endfor ?>
+            
+            <div class="total-import__container">
+                <strong>Total: <?php echo $totalImport; ?> &euro;</strong>
+            </div>
+        </section>
         
-        <div class="total-import__container">
-            <strong>Total: <?php echo $totalImport; ?> &euro;</strong>
-        </div>
 
         <div class="buttons-end__container">
             <a href="principal.php" class="button button--go-to">Seguir comprando</a>

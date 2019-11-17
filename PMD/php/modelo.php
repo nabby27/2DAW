@@ -6,7 +6,7 @@ class Bd {
     
 	function __construct() {
 		if (!isset ($this->link)) {
-            $this->link= new mysqli('localhost', 'root', 'root', 'VIRTUALMARKET_PMD');
+            $this->link= new mysqli('localhost', 'root', '', 'VIRTUALMARKET_PMD');
             $this->link->set_charset('utf-8'); 
 		}
     }

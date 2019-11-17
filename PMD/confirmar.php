@@ -19,7 +19,7 @@ if (isset($_SESSION['dni'])) {
     }
     $html = getHtml();
     require 'php/views/order.php';
-    // session_destroy();
+    session_destroy();
 } else {
     header('Location: validar.php');
 }
@@ -62,7 +62,7 @@ function getHtml() {
     $html .=        "</div>";
 
     $html .=        "<div class='buttons-end__container'>";
-    $html .=            "<a href='principal.php' class='button button--go-to'>Cerrar</a>";
+    $html .=            "<a href='validar.php' class='button button--go-to'>Cerrar</a>";
     $html .=        "</div>";
 
     $html .=    "</body>";

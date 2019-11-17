@@ -9,14 +9,19 @@
 </head>
 <body>
     <header class="header">
-        <span class="company_name">NBA T-shop</span>
-        <div class="account-info">
+        <span class="header__company-name">NBA T-shop</span>
+        <div class="header__user-info">
             <a class="button button--logout" href="validar.php">Cerrar sesi&oacute;n</a>
-            <div class="account-info__user">Bienvenido <?php echo $_SESSION['user_name']?>! <div><a href="vercarrito.php"><img class="cart" src="./img/cart.svg"></a><span class="cart__total"><?php echo $_SESSION['total']?></span></div></div>
+            <div class="header__user-wellcome">Bienvenido <?php echo $_SESSION['user_name']?>!
+                <div>
+                    <a href="vercarrito.php"><img class="icon" src="./img/cart.svg"></a>
+                    <span class="header__user-cart--number"><?php echo $_SESSION['total']?></span>
+                </div>
+            </div>
         </div>
     </header>
-    <div class="arrow-back">
-        <a href="principal.php"><img class="cart" src="./img/left-arrow.svg"></a>
+    <div class="arrow-back__container">
+        <a href="principal.php"><img class="icon" src="./img/left-arrow.svg"></a>
     </div>
     <section class="detail__product">
         
@@ -30,7 +35,7 @@
             <div>Cantidadt en stock: <?php echo $product->quantity ?></div>
             <div>Precio: <?php echo $product->price ?> &euro;</div>
             <div>
-                <form action="vercarrito.php" method="POST">
+                <form action="vercarrito.php" method="POST" class="detail__info-buy">
                     <label for="quantity" class="quantity-label">Cuantas quieres?</label>
                     <input class="quantity__input" type="number" name="quantity" min="0" value="1">
                     <input type="hidden" name="id" value="<?php echo $product->id ?>">

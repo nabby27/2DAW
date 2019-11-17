@@ -359,6 +359,8 @@ function getLinesOfOrder(orderId) {
             if (Array.isArray(response)) {
                 addLinesOfOrderRowToTable(response, orderId); // add html row for that line
             }
+        }, error: (header, status, error) => {
+            debugger
         }
     });
 }

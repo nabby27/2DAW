@@ -11,9 +11,9 @@
 </head>
 <body>
     <header class="header">
-        Men&uacute; de administraci&oacute;n
-        <div class="account-info">
-            <div id="user_name" class="account-info__user"></div>
+        <span class="header__title">Men&uacute; de administraci&oacute;n</span>
+        <div class="header__info">
+            <div id="user_name" class="info__user"></div>
             <a id="logout_button" class="button button--logout" href="../validar.php">Cerrar sesi&oacute;n</a>
         </div>
     </header>
@@ -25,7 +25,7 @@
         </ul>
     </nav>
     
-    <div class="add-container">
+    <div class="button-add__container">
         <button class="button button--add button--large" id="add_product_button">
             <img src="../img/plus.svg" class="button__icon--add" alt="plus icon">
             A&ntilde;adir nuevo producto
@@ -34,7 +34,7 @@
 
     <section class="table" id="table">
         <h6 class="table__title">Lista de productos</h6>
-        <div class="table-row">
+        <div class="table-row table-row--header">
             <div class="table-item">ID</div>
             <div class="table-item">Imagen</div>
             <div class="table-item">Nombre</div>
@@ -102,7 +102,10 @@
         <div class="modal__box">
             <span class="modal-box__text">Estas seguro que desea eliminar el producto</span>
             <div class="form-group-buttons">
-                <button id="modal_sure_delete_delete_button" class="button button--delete">Eliminar</button>
+                <button id="modal_sure_delete_delete_button" class="button button--delete">
+                    <img src="../img/open-trash.svg" class="button__icon--medium" alt="open trash icon">
+                    Eliminar
+                </button>
                 <button id="modal_sure_delete_close_button" class="button button--close">
                     <img src="../img/cross.svg" class="button__icon--small" alt="cross icon">
                     Cerrar

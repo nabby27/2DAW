@@ -9,14 +9,19 @@
 </head>
 <body>
     <header class="header">
-        <span class="company_name">NBA T-shop</span>
-        <div class="account-info">
+        <span class="header__company-name">NBA T-shop</span>
+        <div class="header__user-info">
             <a class="button button--logout" href="validar.php">Cerrar sesi&oacute;n</a>
-            <div class="account-info__user">Bienvenido <?php echo $_SESSION['user_name']?>! <div><a href="vercarrito.php"><img class="cart" src="./img/cart.svg"></a><span class="cart__total"><?php echo $_SESSION['total']?></span></div></div>
+            <div class="header__user-wellcome">Bienvenido <?php echo $_SESSION['user_name']?>!
+                <div>
+                    <a href="vercarrito.php"><img class="icon" src="./img/cart.svg"></a>
+                    <span class="header__user-cart--number"><?php echo $_SESSION['total']?></span>
+                </div>
+            </div>
         </div>
     </header>
-    <div class="arrow-back">
-        <a href="principal.php"><img class="cart" src="./img/left-arrow.svg"></a>
+    <div class="arrow-back__container">
+        <a href="principal.php"><img class="icon" src="./img/left-arrow.svg"></a>
     </div>
 
     <form action="" method="post">
@@ -38,7 +43,7 @@
                 <article class="line-order">
                     <input type="hidden" name="index[]" value="<?php echo $index ?>">
                     <div class="line-order__item"><?php echo $_SESSION['product_name'][$index] ?></div>
-                    <input class="line-order__item line-order__input" type="number" min="0" name="quantity[]" value="<?php echo $_SESSION['quantity'][$index] ?>">
+                    <input class="line-order__item line-order__input quantity__input" type="number" min="0" name="quantity[]" value="<?php echo $_SESSION['quantity'][$index] ?>">
                     <div class="line-order__item"><?php echo $_SESSION['price'][$index] ?> &euro;</div>
                     <div class="line-order__item"><?php echo $_SESSION['price'][$index] * $_SESSION['quantity'][$index] ?> &euro;</div>
                 </article>

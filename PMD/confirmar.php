@@ -19,7 +19,7 @@ if (isset($_SESSION['dni'])) {
     }
     $html = getHtml();
     require 'php/views/order.php';
-    session_destroy();
+    // session_destroy();
 } else {
     header('Location: validar.php');
 }
@@ -31,7 +31,7 @@ function getHtml() {
     $html .=        "<meta charset='UTF-8'>";
     $html .=        "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
     $html .=        "<meta http-equiv='X-UA-Compatible' content='ie=edge'>";            
-    $html .=        "<link rel='stylesheet' href='./styles/tienda.css'>";
+    $html .=        "<link rel='stylesheet' href='./css/tienda.css'>";
     $html .=        "<title>Tienda</title>";
     $html .=    "</head>";
 
@@ -62,7 +62,7 @@ function getHtml() {
     $html .=        "</div>";
 
     $html .=        "<div class='buttons-end__container'>";
-    $html .=            "<a href='validar.php' class='button button--go-to'>Cerrar</a>";
+    $html .=            "<a href='principal.php' class='button button--go-to'>Cerrar</a>";
     $html .=        "</div>";
 
     $html .=    "</body>";

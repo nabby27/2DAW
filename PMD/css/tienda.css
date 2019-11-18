@@ -8,21 +8,22 @@
 
 /************************************ HEADER START ************************************/
 .header {
+    background: linear-gradient(45deg, #1D4289 0%, #1D4289 60%, #C80F2E 60%, #C80F2E 100%);
     background-color: #1D4289;
     width: 100%;
-    height: 10em;
+    height: 10vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: #FFFFFF;
 }
 
-.company_name {
+.header__company-name {
     font-size: 4vw;
     padding: 1em;
 }
 
-.account-info {
+.header__user-info {
     height: 100%;
     margin-right: 0.2vw;
     display: flex;
@@ -32,46 +33,35 @@
     font-size: 1vw;
 }
 
-.account-info__user {
+.header__user-wellcome {
     display: flex;
     align-items: center;
     padding-right: 2vw;
 }
 
-.cart {
-    width: 2vw;
-    margin: 0 2vw;
-}
-
-.cart:hover {
-    cursor: pointer;
-}
-
-.cart__total {
+.header__user-cart--number {
     color: #FFFFFF;
     padding: 0.1vw 0.6vw;
     background-color: #000000;
     border-radius: 50%;
     position: absolute;
-    margin-left: -2.5vw;
-    margin-top: 1vw;
-}
-
-.arrow-back {
-    margin: 2em 0 0 4em;
+    margin-left: 3vw;
+    margin-top: -1vw;
 }
 /************************************ HEADER END ************************************/
 
-/************************************ SHOP START ************************************/
+/************************************ SHOP PAGE START ************************************/
 .container-products {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 }
 
+/************************************ PRODUCT START ************************************/
 .product {
     margin: 3vw;
     padding: 1vw;
-    border: 3px solid #C80F2E;
+    border: 0.2vw solid;
+    border-color: #C80F2E #C80F2E #1D4289 #1D4289;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -79,6 +69,7 @@
 }
 
 .product__image {
+    object-fit: contain;
     width: 100%;
     border-radius: 5px;
 }
@@ -88,10 +79,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 1vw;
 }
 
 .product__price {
-    font-size: 1vw;
+    font-size: 1.5vw;
     min-width: 20%;
 }
 
@@ -103,40 +95,70 @@
     display: flex;
     justify-content: flex-end;
     min-width: 20%;
+    text-decoration: none;
+    color: #1D4289;
 }
-/************************************ SHOP END ************************************/
 
-/************************************ DETAIL START ************************************/
+.product__link:hover {
+    transform: scale(1.2);
+}
+
+.product__link:visited {
+    color: #1D4289;
+}
+/************************************ PRODUCT END ************************************/
+/************************************ SHOP PAGE END ************************************/
+
+/************************************ DETAIL PAGE START ************************************/
 .detail__product {
     display: flex;
     justify-content: space-evenly;
     margin-top: 2em;
+    font-size: 1.5vw;
 }
 
 .detail__image-container {
-    border: 3px solid #C80F2E;
+    border: 0.5vw solid;
+    border-color: #C80F2E #C80F2E #1D4289 #1D4289;
     border-radius: 5px;
 }
 
 .detail__image {
+    object-fit: contain;
     width: 30vw;
 }
 
-
 .detail__info-product {
-    font-size: 1.5vw;
+    width: 30%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 }
 
+.detail__info-buy {
+    padding: 1vw 0;
+    border-bottom: 0.2vw solid #C80F2E;
+    border-right: 0.2vw solid #C80F2E;
+    border-radius: 0 0 5px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .quantity-label {
-    font-size: 1vw;
     color: #1D4289;
 }
-/************************************ DETAIL END ************************************/
 
-/************************************ CART START ************************************/
+.quantity__input {
+    font-size: 1.5vw;
+    width: 3vw;
+    outline: none;
+    border: 0.1vw solid #1D4289;
+    text-align: center;
+}
+/************************************ DETAIL PAGE END ************************************/
+
+/************************************ CART PAGE START ************************************/
 .line-order {
     display: flex;
     justify-content: space-between;
@@ -158,6 +180,64 @@
     font-size: 1vw;
 }
 
+.total-import__container {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 25vw;
+    font-size: 1.5vw;
+}
+/************************************ CART PAGE END ************************************/
+
+/************************************ CONFIRM PAGE END ************************************/
+.order-success {
+    margin: 5vw 0;
+    display: flex;
+    justify-content: center;
+    font-size: 3vw;
+    color: #1D4289;
+}
+/************************************ CONFIRM PAGE END ************************************/
+
+/************************************ INCONS START ************************************/
+.icon {
+    width: 2vw;
+    margin: 0 2vw;
+}
+
+.icon:hover {
+    cursor: pointer;
+    transform: scale(1.3);
+}
+
+.arrow-back__container {
+    margin: 1vw 0 0 4vw;
+}
+/************************************ INCONS END ************************************/
+
+/************************************ BUTTON START ************************************/
+.button {
+    color: #1D4289;
+    background-color: transparent;
+    border: 0.1vw solid #1D4289;
+    text-decoration: none;
+    font-size: 1vw;
+    border-radius: 5px;
+}
+
+.button:hover {
+    transform: scale(1.1);
+}
+
+.button--buy {
+    width: 7vw;
+    height: 2.5vw;
+}
+
+.button--confirm {
+    padding: 1em 2em;
+    margin: 0 1em;
+}
+
 .button-update__container {
     display: flex;
     justify-content: flex-end;
@@ -168,39 +248,6 @@
     display: flex;
     justify-content: center;
     margin-bottom: 2em;
-}
-
-.total-import__container {
-    display: flex;
-    justify-content: flex-end;
-    margin: 0 25vw;
-    font-size: 1.5vw;
-}
-
-.order-success {
-    display: flex;
-    justify-content: center;
-    font-size: 3vw;
-    color: #1D4289;
-}
-/************************************ CART END ************************************/
-
-/************************************ BUTTON START ************************************/
-.button {
-    color: #1D4289;
-    background-color: transparent;
-    border: 1px solid #1D4289;
-    text-decoration: none;
-    font-size: 1vw;
-}
-
-.button--buy {
-    padding: 0.2em 1em;
-}
-
-.button--confirm {
-    padding: 1em 2em;
-    margin: 0 1em;
 }
 
 .button--go-to {
@@ -227,3 +274,179 @@
     cursor: pointer;
 }
 /************************************ BUTTON END ************************************/
+
+/************************************ MOBILE END ************************************/
+@media screen and (max-width: 500px) {
+    /************************************ HEADER MOBILE START ************************************/
+    .header {
+        display: block;
+        text-align: center;
+        height: 25vw;
+        position: sticky;
+        top: 0;
+    }
+    
+    .header__company-name {
+        font-size: 10vw;
+    }
+
+    .header__user-info {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        padding: 0 2vw;
+        height: auto;
+        font-size: 4vw;
+    }
+
+    .header__user-cart--number {
+        margin-left: 0;
+        width: 6vw;
+        height: 6vw;
+        margin-top: -5vw;
+    }
+    /************************************ HEADER MOBILE END ************************************/
+
+    /************************************ SHOP PAGE MOBILE START ************************************/
+    .container-products {
+        grid-template-columns: repeat(1, 1fr);
+        margin: 1vw 4vw;
+    }
+
+    /************************************ PRODUCT MOBILE START ************************************/
+    .product {
+        border: 1vw solid;
+        border-color: #C80F2E #C80F2E #1D4289 #1D4289;
+        padding: 5vw;
+    }
+
+    .product__detail {
+        font-size: 5vw;
+    }
+
+    .product__price {
+        font-size: 7vw;
+    }
+    /************************************ PRODUCT MOBILE END ************************************/
+    /************************************ SHOP PAGE MOBILE END ************************************/
+
+    /************************************ DETAIL PAGE MOBILE START ************************************/
+    .detail__product {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .detail__image-container {
+        width: 70%;
+        height: auto;
+        border-width: 1vw;
+        border-color: #C80F2E #C80F2E #1D4289 #1D4289;
+    }
+
+    .detail__image {
+        width: 100%;
+    }
+
+    .detail__info-product {
+        width: 70%;
+        font-size: 4vw;
+        margin: 5vw 0;
+    }
+
+    .quantity__input {
+        font-size: 3vw;
+        width: 5vw;
+    }
+    /************************************ DETAIL PAGE MOBILE END ************************************/
+
+    /************************************ CART PAGE MOBILE START ************************************/
+    .order {
+        overflow: auto;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .line-order {
+        width: 100%;
+        margin: 0;
+        font-size: 3vw;
+    }
+    
+    .line-order__item {
+        width: 100%;
+        font-size: 4vw;
+        text-align: center;
+    }
+
+    .line-order__input {
+        width: 100%;
+    }
+
+    .total-import__container {
+        font-size: 5vw;
+        justify-content: center;
+        margin-bottom: 5vw;
+    }
+    /************************************ CART PAGE MOBILE END ************************************/
+
+    /************************************ CONFIRM PAGE MOBILE END ************************************/
+    .order-success {
+        font-size: 5vw;
+    }
+    /************************************ CONFIRM PAGE MOBILE END ************************************/
+
+    /************************************ INCONS MOBILE START ************************************/
+    .icon {
+        margin: 0 8vw;
+        height: 8vw;
+        width: 8vw;
+    }
+    /************************************ INCONS MOBILE END ************************************/
+
+    /************************************ BUTTON MOBILE START ************************************/
+    .button {
+        border: 0.5vw solid #1D4289;
+        font-size: 4vw;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 6vw;
+        width: 20vw;
+        font-size: 3vw;
+    }
+
+    .button--confirm {
+        font-size: 5vw;
+        height: 10vw;
+        width: 30vw;
+    }
+
+    .buttons-end__container {
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .button--go-to {
+        font-size: 5vw;
+        height: 20vw;
+        width: 30vw;
+        text-align: center;
+    }
+
+    .button--logout {
+        height: 7vw;
+        width: 35vw;
+        border-color: #FFFFFF;
+        color: #FFFFFF;
+    }
+
+    .button--update {
+        color: #C80F2E;
+        border-color: #C80F2E;
+        font-size: 4vw;
+        height: 10vw;
+    }
+    /************************************ BUTTON MOBILE END ************************************/
+}
+/************************************ MOBILE END ************************************/

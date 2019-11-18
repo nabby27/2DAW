@@ -11,9 +11,9 @@
 </head>
 <body>
     <header class="header">
-        Men&uacute; de administraci&oacute;n
-        <div class="account-info">
-            <div id="user_name" class="account-info__user"></div>
+        <span class="header__title">Men&uacute; de administraci&oacute;n</span>
+        <div class="header__info">
+            <div id="user_name" class="info__user"></div>
             <a id="logout_button" class="button button--logout" href="../validar.php">Cerrar sesi&oacute;n</a>
         </div>
     </header>
@@ -25,7 +25,7 @@
         </ul>
     </nav>
     
-    <div class="add-container">
+    <div class="button-add__container">
         <button class="button button--add button--large" id="add_order_button">
             <img src="../img/plus.svg" class="button__icon--add" alt="plus icon">
             A&ntilde;adir nuevo pedido
@@ -34,7 +34,7 @@
 
     <section class="table" id="table">
         <h6 class="table__title">Lista de pedido</h6>
-        <div class="table-row">
+        <div class="table-row table-row--header">
             <div class="table-item">ID</div>
             <div class="table-item">Fecha</div>
             <div class="table-item">Cliente</div>
@@ -85,7 +85,7 @@
                         </select>
                     </div>
                     <div class="form-group-buttons">
-                        <button type="submit" class="button" id="modal_form_line_save_button">
+                        <button type="submit" class="button button--save" id="modal_form_line_save_button">
                             <img src="../img/save.svg" class="button__icon--small" alt="save icon">
                             Guardar
                         </button>
@@ -101,7 +101,7 @@
 
     <div id="modal_error" class="modal">
         <div class="modal__box">
-            <span class="modal-box__text">No se ha podido crear el producto, revise que no este creado ya</span>
+            <span class="modal-box__text">No se ha podido crear el producto, revise que no est&eacute; creado ya</span>
             <div class="form-group-buttons">
                 <button id="modal_error_close_button" class="button button--close">
                     <img src="../img/cross.svg" class="button__icon--small" alt="cross icon">
@@ -113,9 +113,12 @@
 
     <div id="modal_sure_delete_order" class="modal">
         <div class="modal__box">
-            <span class="modal-box__text">Estas seguro que desea eliminar el pedido</span>
+            <span class="modal-box__text">¿Est&aacute;s seguro que desea eliminar el pedido?</span>
             <div class="form-group-buttons">
-                <button id="modal_sure_delete_order_delete_button" class="button button--delete">Eliminar</button>
+                <button id="modal_sure_delete_order_delete_button" class="button button--delete">
+                    <img src="../img/open-trash.svg" class="button__icon--medium" alt="open trash icon">
+                    Eliminar
+                </button>
                 <button id="modal_sure_delete_order_close_button" class="button button--close">
                     <img src="../img/cross.svg" class="button__icon--small" alt="cross icon">
                     Cerrar
@@ -126,7 +129,7 @@
 
     <div id="modal_sure_delete_line" class="modal">
         <div class="modal__box">
-            <span class="modal-box__text">Estas seguro que desea eliminar el producto</span>
+            <span class="modal-box__text">¿Est&aacute;s seguro que desea eliminar el producto?</span>
             <div class="form-group-buttons">
                 <button id="modal_sure_delete_line_delete_button" class="button button--delete">Eliminar</button>
                 <button id="modal_sure_delete_line_close_button" class="button button--close">

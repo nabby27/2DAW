@@ -8,6 +8,7 @@ if (isset($_POST)) {
     $orderModel = new Order('', '', '');
     $orderId = $orderModel->getNewOrderId($db->link);
 
+    // date('Y-m-d H:i:s')
     $orderModel = new Order($orderId, date('Y-m-d'), $_POST['dniClient']);
 
     $result = $orderModel->saveOrder($db->link);

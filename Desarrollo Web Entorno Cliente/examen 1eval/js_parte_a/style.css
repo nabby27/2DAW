@@ -1,0 +1,27 @@
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.green {
+    background-color: green;
+}
+
+.purple {
+    background-color: purple;
+}
+
+.lightgrey {
+    background-color: lightgrey;
+}
+
+#pactometro {
+    display: flex;
+}
+
+span {
+    height: 20px;
+}

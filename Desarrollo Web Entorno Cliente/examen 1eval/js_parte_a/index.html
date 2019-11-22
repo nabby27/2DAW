@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="controller.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Pactometro</title>
+</head>
+<body>
+    <h1>Pactómetro</h1>
+    <select id="partidos">
+        <option>Elije...</option>
+        <option value="red" escanyos="120">PSOE</option>
+        <option value="blue" escanyos="90">PP</option>
+        <option value="green" escanyos="61">VOX</option>
+        <option value="purple" escanyos="45">UP</option>
+        <option value="lightgrey" escanyos="34">OTROS</option>
+    </select>
+    <button id="limpiar">Limpiar</button>
+    <br>
+    
+    Mayoría 176:
+    <div id="pactometro"></div>
+    <div id="total"></div>
+    <div id="escanos"></div>
+</body>
+</html>

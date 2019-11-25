@@ -1,0 +1,48 @@
+/* IVÁN CÓRDOBA DONET */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    border: 0;
+}
+
+tr:nth-child(odd) {
+    background-color: grey;
+}
+
+td {
+    padding: 20px;
+}
+
+td[colspan="3"] {
+    border: 5px dashed black;
+}
+
+td[colspan="2"]:nth-child(3) {
+    border: 5px solid black;
+}
+
+td[rowspan="3"] {
+    background-color: red;
+}
+
+td[rowspan="2"] {
+    background-color: blue;
+}
+
+tr:last-child td:last-child {
+    background-color: yellow;
+}
+
+td:hover,
+th:hover {
+    background-color: purple !important;
+}
+
+td::selection,
+th::selection {
+    background-color: limegreen;
+    color: white;
+}

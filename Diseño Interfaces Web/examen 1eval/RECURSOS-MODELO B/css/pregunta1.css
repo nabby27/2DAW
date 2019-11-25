@@ -1,0 +1,135 @@
+* 
+{
+	margin:0;
+	padding: 0;
+}
+
+
+
+form 
+{
+	margin: 10px auto;
+    border-radius: 10px;
+	width: 710px;
+	text-align: center;
+	padding: 20px;
+	background-color: lightgrey;
+}
+
+form ul 
+{
+  list-style-type: none;
+}
+
+form ul li 
+{
+  margin-bottom: 15px;
+}
+
+
+form p 
+{
+  text-align: center;
+}
+
+form h1 
+{
+	font-size: 2em;
+	padding-bottom: 20px;
+}
+input 
+{ 
+	vertical-align:middle;  
+	color: #282828;
+	background: transparent no-repeat top right;
+	border: dotted #484848;	
+	border-width: 0 0 1px 0;
+	display:block;
+	margin: 10px auto 10px;
+	font-style:italic;
+	font-family: Times, "Times New Roman", serif;
+	font-size: 1.1em;
+	padding: 5px 30px 5px 30px;
+	width: 50%;
+	text-align: center;
+}
+
+input:not([type=range]):not([type=submit]):not([type=button]):not([type=checkbox]) 
+{ 
+	background: transparent no-repeat top right; 
+} 
+ 
+input:not([type=range]):not([type=submit]):not([type=button]):not([type=checkbox]):required 
+{ 
+	background-image: url('../imgs/required.png'); 
+}
+
+input:not([type=range]):not([type=date]):not([type=submit]):not([type=button]
+):not([type=checkbox]):not([type=number]):focus:invalid { 
+	background-image: url('../imgs/invalid.png'); 
+} 
+ 
+input:not([type=range]):not([type=date]):not([type=submit]):not([type=button]
+):not([type=checkbox]):not([type=number]):not([name=manual]):focus:valid { 
+	background-image: url('../imgs/valid.png'); 
+} 
+
+:invalid { box-shadow: none; }
+
+input[type="checkbox"] 
+{ 
+	vertical-align: bottom; 
+}
+
+label, input[type=submit]
+{ 
+	cursor: pointer; 
+}
+
+input[type=submit]
+{
+	border: none;
+	border-radius: 5px;
+	background-color: #333;
+		
+	color: #fff; 
+	
+	font-size: 1.5em;
+	padding: 10px 15px;
+	margin: 10px auto;
+	opacity: 0.8;
+	-webkit-transition: opacity .25s linear;
+	-moz-transition: opacity .25s linear;
+}
+
+input[type=submit]:hover 
+{
+  opacity: 1;
+}	
+
+input[type=radio]{
+	display: inline;
+	width: 30px;
+}
+
+
+
+#cantidad
+{
+	width: 30px;
+}
+
+
+
+label 
+{
+  font-family: Tahoma, Geneva, sans-serif;
+  display:block;
+  margin: auto;
+  text-align:center;
+}
+
+label[for=cantidad], #cantidad
+{
+	display: inline;
+}

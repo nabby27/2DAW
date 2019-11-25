@@ -1,0 +1,74 @@
+/* IVÁN CÓRDOBA DONET */
+body {
+    background-size: contain;
+    background-repeat: repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-size: 50vw;
+}
+
+.reloj_container {
+    margin-top: 50px;
+    width: 40vw;
+    height: 40vw;
+}
+
+.reloj {
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: center;
+}
+
+.titulo {
+    margin: 0;
+    font-size: 10vw;
+}
+
+@media screen and (max-width: 299px) {
+    body {
+        background-image: url("../imgs/fondoP.jpg");
+    }
+
+    .reloj {
+        background-image: url("../imgs/relojP.png");
+    }
+
+    .titulo::before {
+        content: 'PEQUEÑO';
+    }
+}
+
+@media screen and (min-width: 300px) and (max-width: 799px) {
+    body {
+        background-image: url("../imgs/fondoM.jpg");
+    }
+
+    .reloj {
+        background-image: url("../imgs/relojM.png");
+    }
+    
+    .titulo::before {
+        content: 'MEDIANO';
+    }
+}
+
+@media screen and (min-width: 800px) {
+    body {
+        background-image: url("../imgs/fondoG.jpg");
+    }
+
+    .reloj_container {
+        height: 95vw;
+    }
+
+    .reloj {
+        background-image: url("../imgs/relojG.png");
+    }
+    
+    .titulo::before {
+        content: 'GRANDE';
+    }
+}

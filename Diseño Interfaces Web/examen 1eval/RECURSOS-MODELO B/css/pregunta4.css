@@ -1,0 +1,34 @@
+/* IVÁN CÓRDOBA DONET */
+.tablero {
+    width: fit-content;
+    padding: 40px;
+    background-color:tan;
+    display: grid;
+    grid-template-columns: 20px repeat(8, 70px);
+    grid-template-rows: 20px repeat(8, 70px);
+}
+
+div:nth-child(odd) ~ div:nth-child(even) {
+    background-color: black;
+    width: 70px;
+    height: 70px;
+}
+
+div:nth-child(even) ~ div:nth-child(odd) {
+    background-color: white;
+    width: 70px;
+    height: 70px;
+}
+
+.col {
+    text-align: center;
+    height: auto;
+    width: 100%;
+    background-color: lightgrey !important;
+}
+
+.fila {
+    width: auto;
+    height: 100%;
+    background-color: lightgrey !important;
+}

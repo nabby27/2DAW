@@ -1,0 +1,69 @@
+<!-- IVÁN CÓRDOBA DONET -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/pregunta1.css">
+    <title>Pregunta 1</title>
+</head>
+<body>
+    <form action="">
+        <h1>Suscr&iacute;bete!</h1>
+        
+        <ul>
+            <li>
+                <label for="name">Mi nombre es:</label>
+                <input id="name" type="text" required autofocus>
+            </li>
+            <li>
+                <label for="email">Mi email es:</label>
+                <input id="email" type="email" required>
+            </li>
+            <li>
+                <label for="date">Mi fecha de nacimiento es:</label>
+                <input id="date" type="date" required>
+            </li>
+            <li>
+                <label for="level">Indica tu nivel de estudios</label>
+                <input id="level" list="level_values">
+                <datalist id="level_values">
+                    <option value="eso">ESO</option>
+                    <option value="bachillerato">Bachillerato</option>
+                    <option value="cfgm">CFGM</option>
+                    <option value="cfgs">CFGS</option>
+                    <option value="grado">Grado</option>
+                </datalist>
+            </li>
+            <li>
+                <label for="web">Mi direcci&oacute;n web es:</label>
+                <input id="web" type="url" placeholder="http://ejemplo.com">
+            </li>
+            <li>
+                <label for="password">Me gustar&iacute;a que mi password fuera: <br>(al menos 6 caracteres, sin espacios)</label>
+                <input id="password" type="password" required pattern="\S{6,}">
+            </li>
+            <li>
+                <label for="html">En una escala de 1 a 10, mis conocimientos de HTML5 son:</label>
+                <input id="html" type="range" min="1" max="10">
+            </li>
+            <li>
+                <label for="html">Indica el manual que quieres obtener</label>
+                <input type="radio" name="manual"> Manual HTML
+                <input type="radio" name="manual"> Manual CSS
+                <input type="radio" name="manual"> Manual JavaScript
+                <input type="radio" name="manual"> Manual JQuery
+                <input type="radio" name="manual"> Manual Bootstrap
+            </li>
+            <li>
+                <p>Me gustar&iacute;a recibir <input type="number" id="cantidad" value="1" name="copias" min="1" max="5"> copias de el manual seleccionado</p>
+            </li>
+            <li>
+                <input type="submit" value="Env&iacute;ame">
+            </li>
+        </ul>
+
+    </form>
+</body>
+</html>

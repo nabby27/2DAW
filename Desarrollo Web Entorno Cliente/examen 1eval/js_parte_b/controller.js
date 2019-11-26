@@ -69,14 +69,13 @@ function checkAnswers() {
     aciertos = [];
     for (let index = 0; index < quiz.preguntas.length; index++) {
         const pregunta = quiz.preguntas[index];
-        for (const key in pregunta.respuesta) {
-            if ($('#' + index + key)[0].checked && key == pregunta.correcta) {
-                aciertos.push(index);
-            }
+        let answer_clicked = $('#' + index + pregunta.correcta)[0];
+        if (answer_clicked.checked) {
+            aciertos.push(index);
         }
     }
 
-    // comprobar lso acriertos para poner el color
+    // comprobar los acriertos para poner el color
     for (let index = 0; index < quiz.preguntas.length; index++) {
         if (aciertos.includes(index)) {
             $('#' + index).attr('style', 'background-color:green');

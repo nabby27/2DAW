@@ -37,7 +37,7 @@ function addValueToPactometro(event) {
     if (!existPartidoOnPactometro(partido)) {
         pactometro.push({text: partido, escanos: escanos});
         generateSpanOnPactometro(partido, escanos, color);
-        updateTotalValue(escanos);
+        incrementTotalValue(escanos);
     }
 }
 
@@ -90,9 +90,9 @@ function removePartidoOnPactometro(e) {
             // remove of array pactometro
             for (let index = 0; index < pactometro.length; index++) {
                 if (pactometro[index].text === partidoClick) {
-                    pactometro.slice(index, index+1);
+                    decrementTotalValue(pactometro[index].escanos)
+                    pactometro.splice(index, 1);
                 }
-                
             }
         }
     }
@@ -108,8 +108,17 @@ function hideEsanos() {
     divEscanos.innerHTML = "";
 }
 
-function updateTotalValue(escanos) {
+function incrementTotalValue(escanos) {
     totalEscanos += escanos;
+    updateTotal();
+}
+
+function decrementTotalValue(escanos) {
+    totalEscanos -= escanos;
+    updateTotal();
+}
+
+function updateTotal() {
     divTotal.innerHTML = "Total: " + totalEscanos;
 }
 

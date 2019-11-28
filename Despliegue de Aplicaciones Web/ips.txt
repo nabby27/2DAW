@@ -1,0 +1,3 @@
+192.168.20.30 -> servidor w2012
+192.168.20.120 -> desarrollo w7
+192.168.20.220 -> servidor linux

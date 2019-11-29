@@ -37,8 +37,8 @@ tr:last-child td:last-child {
 }
 
 td:hover,
-th:hover {
-    background-color: purple !important;
+tr:last-child td:last-child:hover {
+    background-color: purple;
 }
 
 td::selection,

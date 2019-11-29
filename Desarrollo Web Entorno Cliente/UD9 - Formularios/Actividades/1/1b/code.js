@@ -1,67 +1,58 @@
-let form;
-let name;
-let age;
-let email;
-let date;
-let select;
-let checkBox;
-let radioButtons;
-let send;
+$.validator.setDefaults({
+    submitHandler: function () {
+        alert('se ha enviado');
+    }
+})
 
-window.onload = () => {
-    init();
-}
+$.validator.addMethod('valorNoIgual', function(valor, elemento, arg) {
+    return arg != valor;
+}, 'texto por defecto cuando el valor no es igual al parametro introducido');
 
-function init() {
-    form = document.getElementById('formulario');
-    name = document.getElementById('nombre');
-    age = document.getElementById('edad');
-    email = document.getElementById('correo');
-    date = document.getElementById('fecha');
-    select = document.getElementById('selector');
-    checkBox = document.getElementById('checkBox');
-    radioButtons = document.getElementsByName('radioButton');
-    send = document.getElementById('enviar');
-
-    enviar.addEventListener('click', validate);
-}
-
-function validate(e) {
-    e.preventDefault();
-    let errors = [];
-    const emailRegex = /\S+@\S+\.\S+/;
+$(document).ready(function () {
     
-    if (errors.length > 0) {
-        showErrors(errors)
-    } else {
-        alert(
-            'Nombre: ' + name.value + '\r' +
-            'Edad: ' + age.value + '\r' +
-            'Email: ' + email.value + '\r' +
-            'Fecha: ' + date.value + '\r' +
-            'Select: ' + select.value + '\r' +
-            'Checkbox: ' + checkBox.checked + '\r' +
-            'Radiobutton: ' + getRadioButtonSelectedValue() + '\r'
-        );
-    }
-}
-
-function getRadioButtonSelectedValue() {
-    let index = 0;
-    let optionSelected;
-
-    while (index < radioButtons.length && !optionSelected) {
-        if(radioButtons[index].checked) {
-            optionSelected = radioButtons[index];
+    $('#formulario').validate({
+        rules: {
+            nombre: {
+                required: true
+            },
+            edad: {
+                required: true,
+                number: true,
+                min: 18,
+                max: 100
+            },
+            password: {
+                required: true,
+                minlength: 5
+            },
+            confirm_password: {
+                required: true,
+                minlength: 5,
+                equalTo: password
+            },
+            selector: {
+                valorNoIgual: ""
+            }
+        },
+        messages: {
+            nombre: {
+                required: 'Se necesita un nombre'
+            },
+            edad: {
+                required: 'Se necesita una edad',
+                number: 'La edad tiene que ser un número',
+                min: 'La edad tiene que ser mayor de 18',
+                max: 'La edad tiene que ser menor de 100',
+            },
+            password: {
+                required: 'Se necesita una contraseña',
+                minlength: 'La contraseña tiene que ser superior a 5 caracteres'
+            },
+            selector: {
+                valorNoIgual: 'No puedes elegir ese valor'
+            }
         }
-        index++;
-    }
-
-    return optionSelected.value;
-}
-
-function showErrors(errors) {
-    errors.forEach(error => {
-        alert('ERROR!!! \ren el campo: ' + error.field + '\r' + error.msg);
     })
-}
+
+});
+

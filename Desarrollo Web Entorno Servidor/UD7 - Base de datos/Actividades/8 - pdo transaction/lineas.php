@@ -9,10 +9,10 @@ $link = $bd->link;
 
 $productos = Productos::getAll($link);
 
-if (iseet($_POST['continuar'])) {
+if (isset($_POST['continuar'])) {
     $_SESSION['numeroLineas']++;
-    $_SESSION['numeroLineas']['producto'] = $_POST['producto'];
-    $_SESSION['numeroLineas']['cantidad'] = $_POST['cantidad'];
+    $linea = new Lineas($_SESSION['producto'], $_SESSION['numeroLineas'], $_POST['producto'], $_POST['cantidad']);
+    $linea->guardar();
 }
 
 require 'vistas/detalle.php';

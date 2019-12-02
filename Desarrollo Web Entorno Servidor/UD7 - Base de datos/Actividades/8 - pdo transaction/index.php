@@ -8,17 +8,17 @@ $bd = new Bd();
 $link = $bd->link;
 $error = '';
 
-if (!isset($_POST['enviar'])) {
-    $clientes = Clientes::getAll($link);
-    require 'vistas/principal.php';
-} else {
+$clientes = Clientes::getAll($link);
+
+if (isset($_POST['enviar'])) {
+
     $pedido = new Pedidos($_POST['idPedido'], $_POST['fecha'], $_POST['cliente']);
     if (!$pedido->existe($link)) {
-        $_SESSION['idPedido'] = $_POST['idPedido'];
-        $_SESSION['fecha'] = $_POST['fecha'];
-        $_SESSION['cliente'] = $_POST['cliente'];
-        $_SESSION['numeroLineas'] = 0;
-    var_dump('a');
-        // header('Location: lineas.php');
+        $pedido->guardar();
+        header('Location: lineas.php');
+    } else {
+        $error = "<br>El pedido ya existe";
     }
 }
+
+require 'vistas/principal.php';

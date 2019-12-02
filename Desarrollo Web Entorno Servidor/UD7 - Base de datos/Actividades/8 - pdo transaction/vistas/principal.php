@@ -8,11 +8,11 @@
 </head>
 <body>
     
-    <form action="" method="POST">
+    <form action="#" method="POST">
         Id Pedido: <input type="number" name="idPedido"><br>
         Fecha: <input type="date" name="fecha"><br>
         Cliente: <?php echo getSelect($clientes, 'cliente', 'id', 'nombre'); ?><br>
-        <input type="submit" value="Enviar">
+        <input type="submit" name="enviar" value="Enviar">
         <?php echo $error; ?>
     </form>
 

@@ -22,8 +22,8 @@
                 <tr>
                     <td><?php echo $_SESSION['idPedido'] ?></td>
                     <td><?php echo $index ?></td>
-                    <td><?php echo $_SESSION[$index]['producto'] ?></td>
-                    <td><?php echo $_SESSION[$index]['cantidad'] ?></td>
+                    <td><?php echo $_SESSION['producto'][$index] ?></td>
+                    <td><?php echo $_SESSION['cantidad'][$index] ?></td>
                 </tr>
             <?php endfor ?>
             <tr>
@@ -31,7 +31,7 @@
                 <td><?php echo $_SESSION['numeroLineas'] + 1 ?></td>
                 <td><?php echo getSelect($productos, 'producto', 'id', 'nombre'); ?></td>
                 <td><input type="number" name="cantidad"></td>
-                <td><input type="submit" name="continuar"></td>
+                <td><input type="submit" name="continuar" value="continuar"></td>
             </tr>
         </table>
     </form>

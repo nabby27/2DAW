@@ -1,0 +1,1 @@
+Vamos a validar un usuario de virtualmarket (comprobando usuario y password) utilizando cookies y PDO

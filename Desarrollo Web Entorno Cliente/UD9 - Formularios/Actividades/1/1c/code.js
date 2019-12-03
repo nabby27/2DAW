@@ -22,7 +22,11 @@ function checkUserName(e) {
         if (ajax.readyState === completeState) {
             if (ajax.status == 200) {
                 let response = JSON.parse(ajax.responseText);
-                console.log(response)
+                if (response.disponible) {
+                    usuario.setCustomValidity('Disponiel');
+                } else {
+                    usuario.setCustomValidity('No esta disponible, prueba con: ' + response.alternativa);
+                }
             }
         }
     }

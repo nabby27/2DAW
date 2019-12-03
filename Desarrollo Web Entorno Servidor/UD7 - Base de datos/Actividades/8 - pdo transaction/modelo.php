@@ -8,8 +8,9 @@ class Bd {
         if (!isset($this->link)) {
             try {
                 $this->link = new PDO('mysql:host=localhost;dbname=virtualmarket', 'root', '');
-            } catch (PDOException $e) {
-                // echo "¡Error!: " . $e->getMessage() . "<br/>";
+                $this->link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);    
+            } catch (PDOException $error) {
+                require 'vistas/error.php';
                 die();
             }
         }
@@ -40,8 +41,8 @@ class Clientes {
             $queryString = "SELECT * FROM clientes";
             $result = $link->prepare($queryString);
             $result->execute();
-        } catch (PDOException $e) {
-            // echo "¡Error!: " . $e->getMessage() . "<br/>";
+        } catch (PDOException $error) {
+            require 'vistas/error.php';
             die();
         }
         
@@ -75,8 +76,8 @@ class Productos {
             $queryString = "SELECT * FROM productos";
             $result = $link->prepare($queryString);
             $result->execute();
-        } catch (PDOException $e) {
-            // echo "¡Error!: " . $e->getMessage() . "<br/>";
+        } catch (PDOException $error) {
+            require 'vistas/error.php';
             die();
         }
         
@@ -112,8 +113,8 @@ class Pedidos {
             $result = $link->prepare($queryString);
             $result->bindParam(':idProducto', $this->id);
             $result->execute();
-        } catch (PDOException $e) {
-            // echo "¡Error!: " . $e->getMessage() . "<br/>";
+        } catch (PDOException $error) {
+            require 'vistas/error.php';
             die();
         }
         
@@ -155,7 +156,7 @@ class Lineas {
     static function insertarTodas($link) {
         try {
             $link->beginTransaction();
-            $queryString = 'INSERT INTO pedidos (idPedido, fecha, dniCliente) VALUES (' . $_SESSION['idPedido'] . ', ' . date($_SESSION['fecha']) . ', ' . $_SESSION['cliente'] . ')';
+            $queryString = 'INSERT INTO pedidos (idPedido, fecha, dniCliente) VALUES (' . $_SESSION['idPedido'] . ', \'' . date($_SESSION['fecha']) . '\', ' . $_SESSION['cliente'] . ')';
             $result = $link->prepare($queryString);
             $result->execute();
 
@@ -170,8 +171,9 @@ class Lineas {
             }
 
             $link->commit();
-        } catch (PDOException $e) {
-            // echo "¡Error!: " . $e->getMessage() . "<br/>";
+        } catch (PDOException $error) {
+            $link->rollBack();
+            require 'vistas/error.php';
             die();
         }
     }

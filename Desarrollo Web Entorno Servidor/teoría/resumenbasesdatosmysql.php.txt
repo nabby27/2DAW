@@ -1,0 +1,14 @@
+$link = new mysqli('localhost', 'root', 'root', 'virtualmarket'); 
+if ( $link->connect_errno ){ 
+	echo "Fallo al conectar a MySQL: ". $link->connect_error; 
+} else
+{
+	$link->set_charset('utf-8'); 
+	$consulta="SELECT * FROM clientes ";
+	$result=$link->query($consulta);
+	while ($fila=$result->fetch_assoc()){
+		echo "nombre: ".$fila['nombre']."<br>";
+	}
+	$resultado->free();
+	$mysqli->close(); 
+}

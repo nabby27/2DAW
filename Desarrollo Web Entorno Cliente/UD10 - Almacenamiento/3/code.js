@@ -23,6 +23,22 @@ function init() {
     radioButtons = document.getElementsByName('radioButton');
     send = document.getElementById('enviar');
 
+    modal = document.getElementById('modal');
+    yes = document.getElementById('yes');
+    no = document.getElementById('no');
+
+    if (localStorage.getItem('values')) {
+        modal.style.display = 'flex';
+        yes.addEventListener('click', () => {
+            setValuesFromCookie();
+            modal.style.display = 'none';
+        });
+
+        no.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+    }
+
     enviar.addEventListener('click', validate);
 }
 
@@ -42,15 +58,16 @@ function validate(e) {
     if (errors.length > 0) {
         showErrors(errors)
     } else {
-        alert(
-            'Nombre: ' + name.value + '\r' +
-            'Edad: ' + age.value + '\r' +
-            'Email: ' + email.value + '\r' +
-            'Fecha: ' + date.value + '\r' +
-            'Select: ' + select.value + '\r' +
-            'Checkbox: ' + checkBox.checked + '\r' +
-            'Radiobutton: ' + getRadioButtonSelectedValue() + '\r'
-        );
+        data = {
+            'nombre': name.value,
+            'edad': age.value,
+            'email': email.value,
+            'fecha': date.value,
+            'select': select.value,
+            'checkbox': checkBox.checked,
+            'radiobutton': getRadioButtonSelectedValue()
+        };
+        localStorage.setItem('values', JSON.stringify(data))
     }
 }
 
@@ -86,4 +103,27 @@ function showErrors(errors) {
     errors.forEach(error => {
         alert('ERROR!!! \ren el campo: ' + error.field + '\r' + error.msg);
     })
+}
+
+function setValuesFromCookie() {
+    data = localStorage.getItem('values')
+    dataObj = JSON.parse(data);
+    name.value = dataObj.nombre
+    age.value = dataObj.edad
+    email.value = dataObj.email
+    date.value = dataObj.fecha
+    select.value = dataObj.select
+    checkBox.checked = dataObj.checkbox;
+    setRadioButtonValue(dataObj.radiobutton)
+}
+
+function setRadioButtonValue(value) {
+    let index = 0;
+
+    while (index < radioButtons.length) {
+        if(radioButtons[index].value === value) {
+            radioButtons[index].checked = true;
+        }
+        index++;
+    }
 }

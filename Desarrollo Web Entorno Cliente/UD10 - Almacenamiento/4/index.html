@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery-3.4.1.min.js"></script>
+    <script src="jquery.validate.min.js"></script>
+    <script src="controller.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="reservations"></div>
+    <a href="#" id="new_teacher_button">Nuevo profesor</a>
+    <a href="#" id="new_reserve_button">Nueva reserva</a>
+
+    <form id="teacher_form" class="hidden">
+        Nombre: <input id="teacher_form__name" name="name" type="text"><br>
+        Módulo: <input id="teacher_form__module" name="module" type="text"><br>
+        Correo electrónico: <input id="teacher_form__email" name="email" type="email"><br>
+        Usuario: <input id="teacher_form__user" name="user" type="text"><br>
+        Password: <input id="teacher_form__password" name="password" type="password"><br>
+        Repite password: <input id="teacher_form__repeat_password" name="repeat_password" type="password"><br>
+        <input id="teacher_form__button" type="submit" value="Enviar">
+    </form>
+
+    <form id="reserve_form" class="hidden">
+        Selecciona un profesor: <span id="reserve_form__teacher_container"></span><br>
+        Fecha: <input id="reserve_form__date" name="date" type="date"><br>
+        Hora: <input id="reserve_form__hour" name="hour" type="time"><br>
+        Selecciona un aula:<br>
+        <input id="reserve_form__classroom020" type="radio" name="classroom" value="020">Aula 020<br>
+        <input id="reserve_form__classroom021" type="radio" name="classroom" value="021">Aula 021<br>
+        <input id="reserve_form__classroomAct" type="radio" name="classroom" value="Act">Salón de actos<br>
+        Necesita proyector: <input id="reserve_form__projector" name="projector" type="checkbox">Si<br>
+        <input id="reserve_form__button" type="submit" value="Enviar">
+    </form>
+</body>
+</html>

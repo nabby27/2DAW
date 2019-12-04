@@ -30,7 +30,7 @@ function init() {
     if (localStorage.getItem('values')) {
         modal.style.display = 'flex';
         yes.addEventListener('click', () => {
-            setValuesFromCookie();
+            setValuesFromLocalStorage();
             modal.style.display = 'none';
         });
 
@@ -105,7 +105,7 @@ function showErrors(errors) {
     })
 }
 
-function setValuesFromCookie() {
+function setValuesFromLocalStorage() {
     data = localStorage.getItem('values')
     dataObj = JSON.parse(data);
     name.value = dataObj.nombre

@@ -8,8 +8,10 @@
 </head>
 <body>
     <form action="" method="post">
-        Name: <input type="text" name="name">
-        <button type="submit" name="login">Login</button>
+        Dni: <input type="text" name="dni"><br>
+        Password: <input type="password" name="password"><br>
+        <button type="submit" name="login">Login</button><br>
+        <?php echo $error; ?>
     </form>
 </body>
 </html>

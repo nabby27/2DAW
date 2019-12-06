@@ -9,27 +9,24 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
+  <script src="jquery-3.4.1.min.js"></script>
+  <script src="controller.js"></script>
   <title>Portfolio Iván</title>
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-  </style>
 </head>
 
-<body data-spy="scroll" data-target="#navbar" data-offset="0">
+<body data-spy="scroll" data-target="#navbar" data-offset="0" class="bg-dark">
   <section id="home"
     class="vh-100 text-white d-flex flex-column justify-content-center align-items-center background-home">
     <h1>
       <p class="typewriter type-18">Iván Córdoba Donet</p>
     </h1>
     <blockquote class="blockquote text-center">
-      <p class="mb-0 typewriter type-52">Desarrollador fullstack y Administrador de sistemas.</p>
+      <p class="mb-0 typewriter type-24">Desarrollador fullstack.</p>
     </blockquote>
   </section>
 
-  <section class="sticky-top shadow-lg bg-dark txt-white">
-    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <section class="sticky-top shadow-xl bg-dark txt-white">
+    <nav id="navbar" class="navbar navbar-expand-xl navbar-dark bg-dark">
       <span class="navbar-brand mb-0 h1">Iván Córdoba</span>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -54,9 +51,6 @@
           <li class="nav-item mx-5">
             <a class="nav-link" href="#contact">Contacta conmigo</a>
           </li>
-          <li class="nav-item mx-5">
-            <a class="nav-link" href="#clients">Clientes</a>
-          </li>
       </div>
     </nav>
   </section>
@@ -70,20 +64,20 @@
       </ol>
       <div class="carousel-inner h-100">
         <div class="carousel-item h-100 active">
-          <div class="service1 h-100 d-none d-md-flex flex-column justify-content-center align-items-center text-white">
-            <h2 class="font-weight-bold display-4">Desarrollo de software a medida</h2>
+          <div class="service1 h-100 d-flex flex-column justify-content-center align-items-center text-white">
+            <h2 class="font-weight-bold display-4 text-center">Desarrollo de software a medida</h2>
             <p class="lead">con las tecnologías más punteras del momento</p>
           </div>
         </div>
         <div class="carousel-item h-100">
-          <div class="service2 h-100 d-none d-md-flex flex-column justify-content-center align-items-center text-white">
-            <h2 class="font-weight-bold display-4">Hosting y servicios de administración</h2>
+          <div class="service2 h-100 d-flex flex-column justify-content-center align-items-center text-white">
+            <h2 class="font-weight-bold display-4 text-center">Hosting y servicios de administración</h2>
             <p class="lead">con escalabilidad y fiabilidad</p>
           </div>
         </div>
         <div class="carousel-item h-100">
-          <div class="service3 h-100 d-none d-md-flex flex-column justify-content-center align-items-center text-white">
-            <h2 class="font-weight-bold display-4">Diseño elegante y minimalista</h2>
+          <div class="service3 h-100 d-flex flex-column justify-content-center align-items-center text-white">
+            <h2 class="font-weight-bold display-4 text-center">Diseño elegante y minimalista</h2>
           </div>
         </div>
       </div>
@@ -99,9 +93,9 @@
   </section>
 
   <section id="me"
-    class="w-100 vh-100 bg-dark d-flex flex-column flex-md-row text-center justify-content-center align-items-center">
-    <img src="./img/me.png" class="img-thumbnail mx-5" alt="">
-    <div class="card w-50">
+    class="w-100 vh-100 bg-dark d-flex flex-column flex-lg-row text-center justify-content-center align-items-center container">
+    <img src="./img/me.png" class="img-thumbnail my-5 mx-lg-5 w-25" alt="">
+    <div class="card w-100 w-lg-50 mx-5 p-3">
       <div class="card-body">
         <h5 class="card-title">Me llamo Iván Córdoba</h5>
         <h6 class="card-subtitle my-3 text-muted">Actualmente trabajo en Green Urban Data</h6>
@@ -113,11 +107,13 @@
     </div>
   </section>
 
-  <section id="projects" class="w-100 vh-100 bg-dark d-flex text-center justify-content-center align-items-center p-5">
+  <section id="projects"
+    class="w-100 bg-dark d-flex flex-wrap text-center justify-content-center align-items-center p-5 container">
     <div class="row m-0 p-0">
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-4 my-5">
         <div class="card h-100">
-          <div class="card-body">
+          <img class="card-img-top img-fluid" src="./img/projects1.jpg" alt="Card image cap">
+          <div class="card-body d-flex flex-column justify-content-end">
             <h5 class="card-title">Panel CMS</h5>
             <p class="card-text">Un panel administrativo para poder gestionar cualquier tipo de blog, hecho con PHP y
               una estructura MVC.</p>
@@ -125,19 +121,21 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-4 my-5">
         <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title">Ejemplo APi en Node</h5>
+          <img class="card-img-top img-fluid" src="./img/projects2.jpeg" alt="Card image cap">
+          <div class="card-body d-flex flex-column justify-content-end">
+            <h5 class="card-title">Ejemplo API en Node</h5>
             <p class="card-text">Un pequeño ejemplo de una api en node con arquitectura DDD e implementación de test
               automaticos.</p>
             <a href="https://github.com/nabby27/example_node_api" target="_blank" class="btn btn-primary">Ver más</a>
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-4 my-5">
         <div class="card h-100">
-          <div class="card-body">
+          <img class="card-img-top img-fluid" src="./img/projects3.jpg" alt="Card image cap">
+          <div class="card-body d-flex flex-column justify-content-end">
             <h5 class="card-title">Ionic & Arduino</h5>
             <p class="card-text">Desde una app movil hecha con ionic se mandán diferente tipos de datos a
               una arduino mediante bluetooth.</p>
@@ -146,6 +144,100 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <section id="contact"
+    class="w-100 vh-100 bg-dark d-flex flex-wrap text-white text-center justify-content-center align-items-center p-5">
+    <form id="form">
+      <div class="form-row mt-2">
+        <div class="col-6">
+          <label for="form_name">Nombre</label>
+          <input type="text" class="form-control" id="form_name" placeholder="Introduce tu nombre" required>
+        </div>
+        <div class="col-6">
+          <label for="form_surname">Apellido</label>
+          <input type="text" class="form-control" id="form_surname" placeholder="Introduce tu apellido" required>
+        </div>
+        <div class="col-6 mt-2">
+          <label for="form_email">Email</label>
+          <input type="text" class="form-control mb-2" id="form_email" placeholder="Introduce tu nombre de email"
+            required>
+        </div>
+        <div class="col-6 mt-2">
+          <label for="form_server_mail">Servidor de correo</label>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">@</div>
+            </div>
+            <input type="text" class="form-control" id="form_server_mail" placeholder="gmail.com" required>
+          </div>
+        </div>
+      </div>
+      <div class="form-row mt-2">
+        <div class="col-12">
+          <label for="form_phone">Teléfono</label>
+          <input type="tel" class="form-control" id="form_phone" placeholder="Introduce tu teléfono" required>
+        </div>
+      </div>
+      <div class="form-row mt-2">
+        <div class="col-12">
+          <label for="form_comment">¿Que me quieres comentar?</label>
+          <textarea class="form-control" id="form_comment" rows="3" placeholder="Escribe aquí lo que quieras decirme"
+            required></textarea>
+        </div>
+      </div>
+      <button class="btn btn-primary mt-2" type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <div class="modal fade" id="contact_succes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Gracias!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Los datos se han enviado correctamente
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="bg-secondary text-white footer">
+    <ul class="container h-100 nav d-flex justify-content-between align-items-center">
+      <li class="nav-item">
+        <a class="nav-link icon" href="#">
+          <ion-icon size="large" name="logo-facebook"></ion-icon>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link icon" href="#">
+          <ion-icon size="large" name="logo-instagram"></ion-icon>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link icon" href="#">
+          <ion-icon size="large" name="logo-twitter"></ion-icon>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link icon" href="#">
+          <ion-icon size="large" name="mail"></ion-icon>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link icon" href="#">
+          <ion-icon size="large" name="call"></ion-icon>
+        </a>
+      </li>
+    </ul>
   </section>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -157,6 +249,9 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+
+  <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+
 </body>
 
 </html>

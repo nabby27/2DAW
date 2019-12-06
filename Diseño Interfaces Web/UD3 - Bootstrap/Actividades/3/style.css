@@ -1,8 +1,13 @@
+html {
+    scroll-behavior: smooth;
+}
+
 .background-home {
   background: linear-gradient(#003b369c, #41002d94),
     url("img/background1.jpg") no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  background-position: right;
 }
 
 .typewriter {
@@ -18,8 +23,8 @@
     blinkTextCursor 0.5s steps(20) infinite normal;
 }
 
-.type-52 {
-  animation: typewriter 2s steps(52) 2s 1 normal both,
+.type-24 {
+  animation: typewriter 2s steps(24) 2s 1 normal both,
     blinkTextCursor 0.5s steps(20) infinite normal;
 }
 
@@ -39,6 +44,27 @@
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url("img/service3.jpg") no-repeat;
   background-size: cover;
+}
+
+.card-img-top {
+    object-fit: cover;
+    height: 18vw;
+}
+
+#projects {
+    min-height: 100vh;
+}
+
+.icon {
+    color: white;
+}
+
+.icon:hover {
+    color: black;
+}
+
+.footer {
+    height: 5vw;
 }
 
 @keyframes typewriter {

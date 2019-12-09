@@ -14,7 +14,7 @@
   <title>Portfolio Iván</title>
 </head>
 
-<body data-spy="scroll" data-target="#navbar" data-offset="0" class="bg-dark">
+<body data-spy="scroll" data-target="#navbar" data-offset="0" class="bg-secondary">
   <section id="home"
     class="vh-100 text-white d-flex flex-column justify-content-center align-items-center background-home">
     <h1>
@@ -37,7 +37,7 @@
       <div class="collapse navbar-collapse nav justify-content-center" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item mx-5">
-            <a class="nav-link" href="#home">Inicio</a>
+            <a class="nav-link" href="#start">Inicio</a>
           </li>
           <li class="nav-item mx-5">
             <a class="nav-link" href="#services">Servicios</a>
@@ -49,13 +49,44 @@
             <a class="nav-link" href="#projects">Proyectos</a>
           </li>
           <li class="nav-item mx-5">
+            <a class="nav-link" href="#clients">Clientes</a>
+          </li>
+          <li class="nav-item mx-5">
             <a class="nav-link" href="#contact">Contacta conmigo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link icon" href="#">
+              <ion-icon size="small" name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link icon" href="#">
+              <ion-icon size="small" name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link icon" href="#">
+              <ion-icon size="small" name="logo-twitter"></ion-icon>
+            </a>
           </li>
       </div>
     </nav>
   </section>
 
-  <section id="services" class="w-100 vh-100 bg-dark text-white d-flex justify-content-center align-items-center">
+  <section id="start" class="p-5">
+    <div class="p-5 text-white bg-secondary">
+      <div class="container">
+        <blockquote class="blockquote">
+          <p class="lead">"La definición que uso para patrón es una idea que ha sido útil en un contexto práctico y
+            probablemente lo será en otros".</p>
+          <footer class="blockquote-footer text-white"><cite title="Source Title">Martin Fowler</cite></footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section id="services"
+    class="w-100 vh-100 bg-dark text-white d-flex justify-content-center align-items-center container service-container">
     <div id="carouselServices" class="carousel slide w-100 h-100" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#carouselServices" data-slide-to="0" class="active"></li>
@@ -146,9 +177,48 @@
     </div>
   </section>
 
+  <section id="clients" class="w-100 bg-dark container p-5">
+    <div class="row text-center p-5">
+      <div class="col-12 col-lg-6">
+        <div class="m-md-5 card">
+          <div class="card-body" role="alert">
+            <h5 class="card-title">Waki</h5>
+            <blockquote class="blockquote text-center">
+              <p class="mb-0">Iván es una persona eficiente y proactiva, hace que las cosas sean más faciles...</p>
+              <a href="https://waki.es" target="_blank"><cite title="Source Title">https://waki.es</cite></a>
+              <br>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="m-md-5 card">
+          <div class="card-body" role="alert">
+            <h5 class="card-title">Pizzeria manolo</h5>
+            <blockquote class="blockquote text-center">
+              <p class="mb-0">Gracias a la nueva web diseñada por Iván he incrementado mis clientes. Lo recomiendo.</p>
+              <a href="https://waki.es" target="_blank"><cite title="Source Title">https://pizzeriamanolo.com</cite></a>
+              <br>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star-half"></ion-icon>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="contact"
-    class="w-100 vh-100 bg-dark d-flex flex-wrap text-white text-center justify-content-center align-items-center p-5">
-    <form id="form">
+    class="w-100 vh-100 d-flex flex-wrap text-white text-center justify-content-center align-items-center p-5 bg-dark container">
+    <form id="form" class="needs-validation" novalidate>
       <div class="form-row mt-2">
         <div class="col-6">
           <label for="form_name">Nombre</label>
@@ -169,7 +239,8 @@
             <div class="input-group-prepend">
               <div class="input-group-text">@</div>
             </div>
-            <input type="text" class="form-control" id="form_server_mail" placeholder="gmail.com" required>
+            <input type="text" class="form-control" id="form_server_mail" placeholder="gmail.com" required
+              pattern="^[a-zA-Z]+[.]+[a-zA-Z]+$">
           </div>
         </div>
       </div>
@@ -210,7 +281,7 @@
     </div>
   </div>
 
-  <section class="bg-secondary text-white footer">
+  <section class="bg-dark text-white footer border border-bottom-0 border-left-0 border-right-0 border-white">
     <ul class="container h-100 nav d-flex justify-content-between align-items-center">
       <li class="nav-item">
         <a class="nav-link icon" href="#">
@@ -230,15 +301,23 @@
       <li class="nav-item">
         <a class="nav-link icon" href="#">
           <ion-icon size="large" name="mail"></ion-icon>
+          ivancordoba77@gmail.com
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link icon" href="#">
           <ion-icon size="large" name="call"></ion-icon>
+          +34 622 87 15 39
         </a>
       </li>
     </ul>
   </section>
+
+  <a href="#home">
+    <div class="to-up-arrow">
+      <ion-icon size="large" class="arrow-up-icon" name="arrow-round-up"></ion-icon>
+    </div>
+  </a>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

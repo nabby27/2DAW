@@ -1,5 +1,6 @@
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
+  z-index: 1;
 }
 
 .background-home {
@@ -28,6 +29,10 @@ html {
     blinkTextCursor 0.5s steps(20) infinite normal;
 }
 
+.service-container {
+  padding: 0;
+}
+
 .service1 {
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url("img/service1.jpg") no-repeat;
@@ -47,24 +52,51 @@ html {
 }
 
 .card-img-top {
-    object-fit: cover;
-    height: 18vw;
+  object-fit: cover;
+  height: 18vw;
 }
 
-#projects {
-    min-height: 100vh;
+#projects,
+#clients {
+  min-height: 100vh;
 }
 
 .icon {
-    color: white;
+  /* text-align: center; */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon__small {
+  height: 0.1vw;
 }
 
 .icon:hover {
-    color: black;
+  color: black;
 }
 
-.footer {
-    height: 5vw;
+.to-up-arrow {
+  background-color: black;
+  width: 4em;
+  border-radius: 50%;
+  height: 4em;
+  position: fixed;
+  bottom: 5vw;
+  right: 5vw;
+}
+
+.to-up-arrow:hover {
+  cursor: pointer;
+}
+
+.arrow-up-icon {
+  position: relative;
+  right: -0.5em;
+  color: white;
+  animation: toUp 1.8s infinite ease-in-out;
+  z-index: 99;
 }
 
 @keyframes typewriter {
@@ -81,5 +113,16 @@ html {
   }
   to {
     border-right-color: transparent;
+  }
+}
+@keyframes toUp {
+  0% {
+    bottom: -0.5em;
+  }
+  50% {
+    bottom: 0em;
+  }
+  100% {
+    bottom: -0.5em;
   }
 }

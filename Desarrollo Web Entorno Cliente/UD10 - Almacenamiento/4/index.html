@@ -15,7 +15,7 @@
     <a href="#" id="new_teacher_button">Nuevo profesor</a>
     <a href="#" id="new_reserve_button">Nueva reserva</a>
 
-    <form id="teacher_form" class="hidden">
+    <form id="teacher_form" class="hidden" method="POST">
         Nombre: <input id="teacher_form__name" name="name" type="text"><br>
         Módulo: <input id="teacher_form__module" name="module" type="text"><br>
         Correo electrónico: <input id="teacher_form__email" name="email" type="email"><br>
@@ -25,7 +25,7 @@
         <input id="teacher_form__button" type="submit" value="Enviar">
     </form>
 
-    <form id="reserve_form" class="hidden">
+    <form id="reserve_form" class="hidden" method="POST">
         Selecciona un profesor: <span id="reserve_form__teacher_container"></span><br>
         Fecha: <input id="reserve_form__date" name="date" type="date"><br>
         Hora: <input id="reserve_form__hour" name="hour" type="time"><br>

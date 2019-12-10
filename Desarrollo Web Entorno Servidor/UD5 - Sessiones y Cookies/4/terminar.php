@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 require 'modelo.php';
 
 $bd = new Bd();
@@ -16,12 +14,12 @@ $html = '<table>';
         $html .= '<td>Cantidad</td>';
     $html .= '</tr>';
 
-for ($index = 1; $index <= $_SESSION['numeroLineas']; $index++) {
+for ($index = 1; $index <= $_COOKIE['numeroLineas']; $index++) {
     $html .= '<tr>';
-    $html .= '<td>' . $_SESSION['idPedido'] . '</td>';
+    $html .= '<td>' . $_COOKIE['idPedido'] . '</td>';
         $html .= '<td>' . $index . '</td>';
-        $html .= '<td>' . $_SESSION['producto'][$index] . '</td>';
-        $html .= '<td>' . $_SESSION['cantidad'][$index] . '</td>';
+        $html .= '<td>' . $_COOKIE['producto'][$index] . '</td>';
+        $html .= '<td>' . $_COOKIE['cantidad'][$index] . '</td>';
     $html .= '</tr>';
 }
 

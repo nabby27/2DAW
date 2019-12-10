@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 require 'modelo.php';
 require 'functions.php';
 
@@ -14,6 +12,7 @@ if (isset($_POST['enviar'])) {
 
     $pedido = new Pedidos($_POST['idPedido'], $_POST['fecha'], $_POST['cliente']);
     if (!$pedido->existe($link)) {
+        setcookie('numeroLineas', 0, time() + 36000);
         $pedido->guardar();
         header('Location: lineas.php');
     } else {

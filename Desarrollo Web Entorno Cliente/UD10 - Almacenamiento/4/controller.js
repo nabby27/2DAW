@@ -28,53 +28,106 @@ function init() {
 
     newTeacherButton.addEventListener('click', () => {
         teacherForm.style.display = 'block';
+        reserveForm.style.display = 'none';
     });
 
     newReserveButton.addEventListener('click', () => {
+        createSelectForTeachers();
         reserveForm.style.display = 'block';
+        teacherForm.style.display = 'none';
     });
 
-    teacherFormButton.addEventListener('click', () => {
-        saveTeacherOnLocalStorage();
-        teacherForm.style.display = 'none';
-    })
-
-    reserveFormButton.addEventListener('click', () => {
-        saveReservOnLocalStorage();
-        reserveForm.style.display = 'none';
-    })
-
-    validateReserveForm();
     validateTeacherForm();
+    validateReserveForm();
+    updateVisualReservs();
 }
 
 function saveTeacherOnLocalStorage() {
-    // teachers = localStorage.getItem('teachers');
-    // if (teachers) {
-    //     teachers = JSON.parse(teachers);
-    //     teachers[]
-    // }
+    teachers = getTeachers();
+    teachers.push({
+        name: teacherFormName.value,
+        module: teacherFormModule.value,
+        email: teacherFormEmail.value,
+        user: teacherFormUser.value,
+        password: teacherFormPassword.value
+    })
+    localStorage.setItem('teachers', JSON.stringify(teachers));
 }
 
 function saveReservOnLocalStorage() {
+    reservs = getReservs();
+    reservs.push({
+        teacher: document.getElementsByName('teacher')[0].value,
+        date: reserveFormDate.value,
+        hour: reserveFormHour.value,
+        classroom: getSelectedClasroom(),
+        projector: reserveFormProjector.checked
+    })
+    localStorage.setItem('reservs', JSON.stringify(reservs));
 
+    updateVisualReservs();
 }
 
+function updateVisualReservs() {
+    let html = '';
+    reservs = getReservs();
+    for (let index = 0; index < reservs.length; index++) {
+        html += '<div class="reserv">' + reservs[index].teacher + ' - ' + reservs[index].date + ' ' + reservs[index].hour + ' - ' + reservs[index].classroom + ' - ' + reservs[index].projector + ' <button id="' + index + '">Borrar</button></div>'
+    }
+    $('#reservations').html(html)
+
+    addEventListeners();
+}
+
+function addEventListeners() {
+    reservs = getReservs();
+    for (let index = 0; index < reservs.length; index++) {
+        $('#'+ index).click(function() {
+            removeFromLocalStorage(index);
+            updateVisualReservs();
+        });
+    }
+}
+
+function removeFromLocalStorage(index) {
+    reservs = getReservs();
+    reservs.splice(index, 1);
+    localStorage.setItem('reservs', JSON.stringify(reservs));
+}
+
+function getSelectedClasroom() {
+    const radioButtons = document.getElementsByName('classroom')
+    let index = 0;
+    let optionSelected;
+    while (index < radioButtons.length && !optionSelected) {
+        if(radioButtons[index].checked) {
+            optionSelected = radioButtons[index];
+        }
+        index++;
+    }
+    return optionSelected.value;
+}
+
+$.validator.addMethod('checkProjector', function(valor, elemento, arg) {
+    const selectedClassroom = getSelectedClasroom();
+    return (!reserveFormProjector.checked && selectedClassroom && selectedClassroom == 'Act') || selectedClassroom != 'Act';
+}, 'Este aula no tiene proyector');
+
 function validateReserveForm() {
-    $.validator.addMethod('checkProjector', function(valor, elemento, arg) {
-        return !checkProjector.checked && classroom.value != 'Act';
-    }, 'Este aula no tiene proyector');
-    
-    $('#reserveForm').validate({
+    $('#reserve_form').validate({
         rules: {
             date: {
-                required: "Este campo es obligatorio",
+                required: true,
                 date: true
             },
             hour: {
-                required: "Este campo es obligatorio"
+                required: true
             },
             classroom: {
+                required: true,
+                checkProjector: true
+            },
+            projector: {
                 checkProjector: true
             }
         },
@@ -86,8 +139,16 @@ function validateReserveForm() {
                 required: "Este campo es obligatorio"
             },
             classroom: {
+                required: "Este campo es obligatorio",
                 checkProjector: "Esta sala no tiene proyector"
+            },
+            projector: {
+                checkProjector: ""
             }
+        },
+        submitHandler: function(form) {
+            saveReservOnLocalStorage();
+            clearFormReserv();
         }
     })
 }
@@ -143,8 +204,59 @@ function validateTeacherForm() {
                 minlength: "Deben ser más de 6 caracteres",
                 equalTo: "Las contraseñas no coinciden"
             }
+        },
+        submitHandler: function(form) {
+            reserveForm.style.display = 'none';
+            saveTeacherOnLocalStorage();
+            clearFormTeacher();
         }
     })
+}
+
+function clearFormTeacher() {
+    teacherFormName.clear();
+    teacherFormModuleteacherFormName.clear();
+    teacherFormEmailteacherFormName.clear();
+    teacherFormUserteacherFormName.clear();
+    teacherFormPasswordteacherFormName.clear();
+    teacherFormRepeatPasswordteacherFormName.clear();
+}
+
+function clearFormReserv() {
+    reserveFormDate.clear();
+    reserveFormHour.clear();
+    reserveFormClassroom020.checked = false;
+    reserveFormClassroom021.checked = false;
+    reserveFormClassroomAct.checked = false;
+    reserveFormProjector.clear();
+}
+
+function createSelectForTeachers() {
+    const teachers = getTeachers();
+    let html = '<select name="teacher">';
+    teachers.forEach(teacher => {
+        html += '<option value="' + teacher.user + '">' + teacher.name + '</option>';
+    })
+    html += '</select>';
+    $('#reserve_form__teacher_container').html(html);
+}
+
+function getTeachers() {
+    teachers = localStorage.getItem('teachers');
+    if (teachers) {
+        return JSON.parse(teachers);
+    }
+
+    return [];
+}
+
+function getReservs() {
+    reservs = localStorage.getItem('reservs');
+    if (reservs) {
+        return JSON.parse(reservs);
+    }
+
+    return [];
 }
 
 function getElements() {

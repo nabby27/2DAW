@@ -51,10 +51,9 @@
 			
 		}
 		public function guardar(){
-			$_SESSION['idPedido']=$this->idPedido;
-			$_SESSION['fecha']=$this->fecha;
-			$_SESSION['dniCliente']=$this->dniCliente;
-			
+			setcookie('idPedido',$this->idPedido,time()+36000);
+			setcookie('fecha',$this->fecha,time()+36000);
+			setcookie('dniCliente',$this->dniCliente,time()+36000);
 		}
 		
 		public function __set($propiedad, $var){
@@ -93,10 +92,11 @@
 			
 		}
 		public function guardar(){
-			$indice=$_SESSION['linea'];
-			$_SESSION['nlinea'][$indice]=$this->nlinea;
-			$_SESSION['idProducto'][$indice]=$this->idProducto;
-			$_SESSION['cantidad'][$indice]=$this->cantidad;
+			
+			setcookie("nlinea[$this->nlinea]",$this->nlinea,time()+36000);
+			setcookie("idProducto[$this->nlinea]",$this->idProducto,time()+36000);
+			setcookie("cantidad[$this->nlinea]",$this->cantidad,time()+36000);
+			
 		}
 		
 		public function __set($propiedad, $var){
@@ -122,16 +122,21 @@
 			$consulta->bindParam(':idProducto',$idProducto);
 			$consulta->bindParam(':cantidad',$cantidad);
 			$string="<table><tr><td>Pedido</td><td>Nlinea</td><td>producto</td><td>cantidad</td></tr>";
-			foreach ($_SESSION['idProducto'] as $indice => $value) {
-				$idPedido=$_SESSION['idPedido'];
-				$nlinea=$_SESSION['nlinea'][$indice];
-				$idProducto=$_SESSION['idProducto'][$indice];
-				$cantidad=$_SESSION['cantidad'][$indice];
+			foreach ($_COOKIE['idProducto'] as $indice => $value) {
+				$idPedido=$_COOKIE['idPedido'];
+				$nlinea=$_COOKIE['nlinea'][$indice];
+				$idProducto=$_COOKIE['idProducto'][$indice];
+				$cantidad=$_COOKIE['cantidad'][$indice];
 				$consulta->execute();
 				$string.="<tr><td>$idPedido</td><td> $nlinea </td><td>$idProducto</td><td> $cantidad </td></tr>";	
 			}
 			$string.="</table>";
-			session_destroy();
+			setcookie("nlinea","",time()-36000);
+			setcookie("idProducto","",time()-36000);
+			setcookie("cantidad","",time()-36000);
+			setcookie('idPedido',"",time()-36000);
+			setcookie('fecha',"",time()-36000);
+			setcookie('dniCliente',"",time()-36000);
 			return $string;
 			
 		}

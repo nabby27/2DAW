@@ -18,17 +18,17 @@
                 <td>Producto</td>
                 <td>Cantidad</td>
             </tr>
-            <?php for ($index = 1; $index <= $_SESSION['numeroLineas']; $index++) : ?>
+            <?php for ($linea = 1; $linea <= $dato['numeroLineas']; $linea++) : ?>
                 <tr>
-                    <td><?php echo $_SESSION['idPedido'] ?></td>
-                    <td><?php echo $index ?></td>
-                    <td><?php echo $_SESSION['producto'][$index] ?></td>
-                    <td><?php echo $_SESSION['cantidad'][$index] ?></td>
+                    <td><?php echo $_COOKIE['idPedido'] ?></td>
+                    <td><?php echo $linea ?></td>
+                    <td><?php echo $dato['producto'][$linea] ?></td>
+                    <td><?php echo $dato['cantidad'][$linea] ?></td>
                 </tr>
             <?php endfor ?>
             <tr>
-                <td><?php echo $_SESSION['idPedido'] ?></td>
-                <td><?php echo $_SESSION['numeroLineas'] + 1 ?></td>
+                <td><?php echo $_COOKIE['idPedido'] ?></td>
+                <td><?php echo $dato['numeroLineas'] + 1 ?></td>
                 <td><?php echo getSelect($productos, 'producto', 'id', 'nombre'); ?></td>
                 <td><input type="number" name="cantidad"></td>
                 <td><input type="submit" name="continuar" value="continuar"></td>

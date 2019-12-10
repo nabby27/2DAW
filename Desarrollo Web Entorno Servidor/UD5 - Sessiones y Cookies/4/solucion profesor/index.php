@@ -1,11 +1,10 @@
 <?php
-session_start();
 require "modelo.php";
 $base= new Base();
 if (isset($_POST['enviar'])) {
 	$ped= new Pedido ($_POST['idPedido'],$_POST['fecha'],$_POST['Cliente']);
 	if (!$ped->existe($base->link)) {
-		$_SESSION['linea']=0;
+		setcookie('ultimaLinea',0,time()+36000);
 		$ped->guardar();
 		header('Location:lineas.php');
 	} else {

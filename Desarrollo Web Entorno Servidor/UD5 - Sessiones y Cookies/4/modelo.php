@@ -22,7 +22,7 @@ class Bd {
 
 }
 
-class Clients {
+class Clientes {
     
     private $id;
     private $nombre;
@@ -36,6 +36,10 @@ class Clients {
         return $this->$property;
     }
 
+    // function __set($property, $value) {
+    //     $this->$property = $value;
+    // }
+
     static function getAll($link) {
         try {
             $queryString = "SELECT * FROM clientes";
@@ -48,7 +52,7 @@ class Clients {
         
         $clients = [];
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $client = new Clients($row['dniCliente'], $row['nombre']);
+            $client = new Clientes($row['dniCliente'], $row['nombre']);
             array_push($clients, $client);
         }
 
@@ -70,7 +74,11 @@ class Productos {
     function __get($property) {
         return $this->$property;
     }
-
+    
+    function __set($property, $value) {
+        $this->$property = $value;
+    }
+    
     static function getAll($link) {
         try {
             $queryString = "SELECT * FROM productos";
@@ -106,6 +114,10 @@ class Pedidos {
     function __get($property) {
         return $this->$property;
     }
+
+    function __set($property, $value) {
+        $this->$property = $value;
+    }
     
     function existe($link) {
         try {
@@ -126,14 +138,9 @@ class Pedidos {
     }
 
     function guardar() {
-        $_COOKIE['idPedido'] = $_POST['idPedido'];
-        $_COOKIE['fecha'] = $_POST['fecha'];
-        $_COOKIE['cliente'] = $_POST['cliente'];
-        $_COOKIE['numeroLineas'] = 0;
-        $data['idPedido'] = $_POST['idPedido'];
-        $data['fecha'] = $_POST['fecha'];
-        $data['cliente'] = $_POST['cliente'];
-        $data['numeroLineas'] = 0;
+        setcookie('idPedido', $_POST['idPedido'], time() + 36000);
+        setcookie('fecha', $_POST['fecha'], time() + 36000);
+        setcookie('cliente', $_POST['cliente'], time() + 36000);
     }
 
 }
@@ -152,11 +159,17 @@ class Lineas {
         $this->cantidad = $cantidad;
     }
 
+    function __get($property) {
+        return $this->$property;
+    }
+
+    function __set($property, $value) {
+        $this->$property = $value;
+    }
+
     function guardar() {
-        $_COOKIE['producto'][$this->numeroLinea] = $this->idProducto;
-        $_COOKIE['cantidad'][$this->numeroLinea] = $this->cantidad;
-        $data['producto'][$this->numeroLinea] = $this->idProducto;
-        $data['cantidad'][$this->numeroLinea] = $this->cantidad;
+        setcookie('producto[' . $this->numeroLinea . ']', $this->idProducto, time() + 36000);
+        setcookie('cantidad[' . $this->numeroLinea . ']', $this->cantidad, time() + 36000);
     }
 
     static function insertarTodas($link) {
@@ -166,17 +179,23 @@ class Lineas {
             $result = $link->prepare($queryString);
             $result->execute();
 
-            for ($index = 1; $index <= $_COOKIE['numeroLineas']; $index++) {
+            for ($linea = 1; $linea <= $_COOKIE['numeroLineas']; $linea++) {
                 $queryString = 'INSERT INTO lineaspedidos (idPedido, nLinea, idProducto, cantidad) VALUES (:idPedido, :nLinea, :idProducto, :cantidad)';
                 $result = $link->prepare($queryString);
                 $result->bindParam(':idPedido', $_COOKIE['idPedido']);
-                $result->bindParam(':nLinea', $index);
-                $result->bindParam(':idProducto', $_COOKIE['producto'][$index]);
-                $result->bindParam(':cantidad', $_COOKIE['cantidad'][$index]);
+                $result->bindParam(':nLinea', $linea);
+                $result->bindParam(':idProducto', $_COOKIE['producto'][$linea]);
+                $result->bindParam(':cantidad', $_COOKIE['cantidad'][$linea]);
                 $result->execute();
             }
 
             $link->commit();
+            setcookie('producto', '', time() - 36000);
+            setcookie('cantidad', '', time() - 36000);
+            setcookie('idPedido', '', time() - 36000);
+            setcookie('fecha', '', time() - 36000);
+            setcookie('cliente', '', time() - 36000);
+            setcookie('numeroLineas', '', time() - 36000);
         } catch (PDOException $error) {
             $link->rollBack();
             require 'vistas/error.php';

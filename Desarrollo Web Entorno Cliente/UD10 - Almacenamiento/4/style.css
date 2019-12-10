@@ -6,3 +6,12 @@ label.error {
     color: red;
     background-color: yellow;
 }
+
+.reserv {
+    height: 20px;
+    width: fit-content;
+    padding: 10px;
+    background-color: lightblue;
+    border: 1px solid black;
+    margin: 5px;
+}

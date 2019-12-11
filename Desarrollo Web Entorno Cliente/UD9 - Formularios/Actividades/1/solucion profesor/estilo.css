@@ -1,0 +1,14 @@
+
+label.error {
+    color:red;
+    background-color: #d8da3d;
+    border: solid 1px; 
+    padding-left: 5px;
+    margin-left: 5px; 
+}
+
+input:invalid{
+    border-color: #900;
+    background-color: #FDD;
+  }
+  

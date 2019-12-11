@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Prueba de validación con JS</title>
+  <link href="estilo.css" rel="stylesheet" type="text/css">
+  <script src="jquery-3.4.1.min.js"></script>
+  <script src="jquery.validate.min.js"></script>
+  <script src="code3.js"></script>
+ 
+    </head>
+<body>
+  <form id="formulario">
+    <label for="nombre">
+      <span>Nombre:</span>
+    </label>
+    <input id="nombre" name="nombre" type="text">
+    
+    <br><br>
+ 
+    <label for="edad">
+      <span>Edad:</span>
+    </label>
+    <input id="edad" name="edad" type="text">
+    
+    <br><br>
+ 
+    <label for="correo">
+      <span>Correo electrónico:</span>
+    </label>
+    <input id="correo" name="correo" type="text">
+    <br><br>
+
+    <label for="usuario">
+      <span>Usuario:</span>
+    </label>
+    <input id="usuario" name="usuario" type="text">
+    <br><br>
+    
+    <label for="password">
+      <span>Password:</span>
+    </label>
+    <input id="password" name="password" type="password">
+    <br>
+    <label for="confirm_password">
+      <span>Repite password:</span>
+    </label>
+    <input id="confirm_password" name="confirm_password" type="password">
+ 
+    <br><br>
+    
+    <label for="fecha">
+      <span>Fecha:</span>
+    </label>
+    <input id="fecha" name="fecha" type="date">
+ 
+    <br><br>
+ 
+    <label for="selector">
+      <span>Selecciona una opción:</span>
+    </label>
+    <select id="selector" name="selector">
+      <option value="">Valor por defecto</option>
+      <option value="1">Un oso</option>
+      <option value="2">Dos lobos</option>
+      <option value="3">Tres dragones</option>
+    </select>
+ 
+    <br><br>
+ 
+    <label for="checkBox">
+      <span>Un checkbox:</span>
+    </label>
+    <input id="checkBox" name="checkBox" type="checkbox"> Haz clic en mí
+    
+    <br><br>
+ 
+    <label for="radioButton">
+      <span>Selecciona una opción:</span>
+    </label><br>
+    <input type="radio" id="radioButton" name="radioButton" value="1"> Un boton<br>
+    <input type="radio" id="radioButton" name="radioButton" value="2"> Otro boton<br>
+    <input type="radio" id="radioButton" name="radioButton" value="mas"> Mas botones
+    
+    <br><br>
+ 
+    <input type="submit" id="enviar" value="Submit">
+ 
+  </form>
+</body>
+</html>

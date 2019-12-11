@@ -1,0 +1,23 @@
+{
+	"preguntas": [ 
+		{
+			"pregunta": "Cuantos son 10/2?",
+	    	"respuesta": {
+			"a": "3",
+			"b": "5",
+			"c": "115"
+		    },
+		    "correcta": "b"
+		},
+		{
+		    "pregunta": "Cuantos son 9/3?",
+	    	"respuesta": {
+			"a": "1",
+			"b": "4",
+			"c": "3",
+			"d": "21"
+		    },
+		    "correcta": "c"
+		}
+	]
+}

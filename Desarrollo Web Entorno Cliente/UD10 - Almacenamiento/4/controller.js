@@ -1,4 +1,3 @@
-let reservations;
 let newTeacherButton;
 let newReserveButton;
 let teacherForm;
@@ -8,7 +7,6 @@ let teacherFormEmail;
 let teacherFormUser;
 let teacherFormPassword;
 let teacherFormRepeatPassword;
-let teacherFormButton;
 let reserveForm;
 let reserveFormTeacherContainer;
 let reserveFormDate;
@@ -17,7 +15,6 @@ let reserveFormClassroom020;
 let reserveFormClassroom021;
 let reserveFormClassroomAct;
 let reserveFormProjector;
-let reserveFormButton;
 
 window.onload = () => {
     init();
@@ -126,9 +123,6 @@ function validateReserveForm() {
             classroom: {
                 required: true,
                 checkProjector: true
-            },
-            projector: {
-                checkProjector: true
             }
         },
         messages: {
@@ -141,9 +135,6 @@ function validateReserveForm() {
             classroom: {
                 required: "Este campo es obligatorio",
                 checkProjector: "Esta sala no tiene proyector"
-            },
-            projector: {
-                checkProjector: ""
             }
         },
         submitHandler: function(form) {
@@ -206,7 +197,6 @@ function validateTeacherForm() {
             }
         },
         submitHandler: function(form) {
-            reserveForm.style.display = 'none';
             saveTeacherOnLocalStorage();
             clearFormTeacher();
         }
@@ -215,11 +205,11 @@ function validateTeacherForm() {
 
 function clearFormTeacher() {
     teacherFormName.clear();
-    teacherFormModuleteacherFormName.clear();
-    teacherFormEmailteacherFormName.clear();
-    teacherFormUserteacherFormName.clear();
-    teacherFormPasswordteacherFormName.clear();
-    teacherFormRepeatPasswordteacherFormName.clear();
+    teacherFormModule.clear();
+    teacherFormEmail.clear();
+    teacherFormUser.clear();
+    teacherFormPassword.clear();
+    teacherFormRepeatPassword.clear();
 }
 
 function clearFormReserv() {
@@ -260,7 +250,6 @@ function getReservs() {
 }
 
 function getElements() {
-    reservations = document.getElementById('reservations');
     newTeacherButton = document.getElementById('new_teacher_button');
     newReserveButton = document.getElementById('new_reserve_button');
     teacherForm = document.getElementById('teacher_form');
@@ -270,7 +259,6 @@ function getElements() {
     teacherFormUser = document.getElementById('teacher_form__user');
     teacherFormPassword = document.getElementById('teacher_form__password');
     teacherFormRepeatPassword = document.getElementById('teacher_form__repeat_password');
-    teacherFormButton = document.getElementById('teacher_form__button');
     reserveForm = document.getElementById('reserve_form');
     reserveFormTeacherContainer = document.getElementById('reserve_form__teacher_container');
     reserveFormDate = document.getElementById('reserve_form__date');
@@ -279,6 +267,5 @@ function getElements() {
     reserveFormClassroom021 = document.getElementById('reserve_form__classroom021');
     reserveFormClassroomAct = document.getElementById('reserve_form__classroomAct');
     reserveFormProjector = document.getElementById('reserve_form__projector');
-    reserveFormButton = document.getElementById('reserve_form__button');
 }
 

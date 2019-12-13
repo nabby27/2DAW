@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Carta a los reyes</title>
+    <link href="estilo.css" rel="stylesheet" type="text/css">
+    <script src="jquery-3.4.1.min.js"></script>
+    <script src="jquery.validate.min.js"></script>
+    <script src="cookies.js"></script>
+    <script src="code.js"></script>
+  </head>
+
+<body>
+
+ <h2>Carta a los reyes</h2>
+
+  <form id="carta">
+
+    <label for="regalo1"><span>Regalo 1 :</span></label>
+    <input id="regalo1" name="regalo1" type="text"><br>
+    <label for="radioButton"><span>Preferencia:</span></label><br>
+    <input type="radio" class="preferencia1" name="preferencia1" value="1">*<br>
+    <input type="radio" class="preferencia1" name="preferencia1" value="2">**<br>
+    <input type="radio" class="preferencia1" name="preferencia1" value="3">***<br>
+
+    <label for="regalo2"><span>Regalo 2 :</span></label>
+    <input id="regalo2" name="regalo2" type="text"><br>
+    <label for="radioButton"><span>Preferencia:</span></label><br>
+    <input type="radio" class="preferencia2" name="preferencia2" value="1">*<br>
+    <input type="radio" class="preferencia2" name="preferencia2" value="2">**<br>
+    <input type="radio" class="preferencia2" name="preferencia2" value="3">*** <br>
+
+    <label for="regalo3"><span>Regalo 3 :</span></label>
+    <input id="regalo3" name="regalo3" type="text"><br>
+    <label for="radioButton"><span>Preferencia:</span></label><br>
+    <input type="radio" class="preferencia3" name="preferencia3" value="1">*<br>
+    <input type="radio" class="preferencia3" name="preferencia3" value="2">**<br>
+    <input type="radio" class="preferencia3" name="preferencia3" value="3">***<br>
+
+    <input type="submit" id="enviar_carta" value="Guarda y envia">
+  
+  </form>
+    
+ <div id="cartas"></div>
+ <div id="fecha"></div>
+
+</body>
+</html>

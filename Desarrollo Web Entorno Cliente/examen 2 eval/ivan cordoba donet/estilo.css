@@ -1,0 +1,13 @@
+.carta {
+    border: solid 1px;
+    margin: 5px;
+    padding: 5px;
+}
+.carta:last-of-type {
+    background-color: lightgreen;
+}
+
+label.error {
+    color: red;
+    background-color: green;
+}

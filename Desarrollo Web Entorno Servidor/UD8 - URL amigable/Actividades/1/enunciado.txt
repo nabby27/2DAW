@@ -1,0 +1,3 @@
+Crear un servicio REST-full que nos sirva com CRUD de la tabla clientes de virtualmarket y utilizando urls amigables, lo probaremos con POSTMAN.
+Utilizaremos put para modificar pero enviaremos los datos a modificar por POST en vez de GET.
+Y por supuesto respetando el MVC.

@@ -1,0 +1,3 @@
+RewriteEngine on
+RewriteRule ^clients$ index.php
+RewriteRule ^clients/(.+)$ index.php?dni=$1

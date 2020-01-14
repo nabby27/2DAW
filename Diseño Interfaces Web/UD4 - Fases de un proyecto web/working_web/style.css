@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
+
 * {
+    font-family: 'Anton', sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -39,4 +42,31 @@
     font-size: calc(16px + 1.2vw);
     color: white;
     font-weight: lighter;
+}
+
+.countdown {
+    font-size: calc(12px + 0.5vw);
+    color: white;
+    font-weight: lighter;
+}
+
+.muted-button {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: grey;
+    bottom: 50px;
+    right: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.muted-button:hover {
+    cursor: pointer;
+}
+
+.icon {
+    color: white;
 }

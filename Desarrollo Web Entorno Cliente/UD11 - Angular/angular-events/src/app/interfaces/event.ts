@@ -1,7 +1,7 @@
 export interface Event {
     title: string;
-    image: string;
-    date: string;
     description: string;
+    image: string | ArrayBuffer;
     price: number;
+    date: string;
 }

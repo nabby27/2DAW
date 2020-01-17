@@ -1,32 +1,54 @@
-<!-- <div>
-    Cabecera
-</div>
-<div *ngFor="let product of products">
-    <app-product [product]="product"></app-product>
-</div> -->
-
 <div class="card">
     <div class="card-header bg-primary text-white">
         {{title}}
     </div>
     <div class="card-block">
-        <div class="table-responsive" *ngIf="products">
+        <form class="form">
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2 text-sm-right" for="filterDesc">Filtro:</label>
+                <div class="col-sm-5">
+                    <input type="text" [(ngModel)]="filterSearch" class="form-control" name="filterDesc" id="filterDesc"
+                        placeholder="Filter...">
+                </div>
+                <label class="col-form-label col-sm-5">
+                    Filtrando por: {{filterSearch}}</label>
+            </div>
+        </form>
+        <!-- <div class="table-responsive" *ngIf="products">
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        <th>
+                            <button class="btn btn-sm" [ngClass]="{'btn-danger': showImage, 'btn-primary': !showImage}"
+                                (click)="toggleImage()">
+                                {{showImage?'Ocultar':'Mostrar'}} imagen
+                            </button>
+                        </th>
                         <th>{{headers.desc}}</th>
                         <th>{{headers.price}}</th>
                         <th>{{headers.avail}}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let product of products">
-                        <td>{{product.desc}}</td>
-                        <td>{{product.price}}</td>
-                        <td>{{product.avail}}</td>
-                    </tr>
+                    <app-product-item *ngFor="let product of products | productFilter: filterSearch" [product]="product"
+                        class="row no-gutters"></app-product-item>
                 </tbody>
             </table>
+        </div> -->
+        <div *ngIf="products && products.length">
+            <div class="row headers no-gutters">
+                <div class="col-2">
+                    <button class="btn btn-sm" [ngClass]="{'btn-danger': showImage, 'btn-primary': !showImage}"
+                        (click)="toggleImage()">
+                        {{showImage?'Hide':'Show'}} images
+                    </button></div>
+                <div class="col-4">{{headers.desc}}</div>
+                <div class="col">{{headers.price}}</div>
+                <div class="col">{{headers.avail}}</div>
+            </div>
+            <app-product-item *ngFor="let product of products | productFilter: filterSearch" [product]="product"
+                class="row no-gutters"></app-product-item>
         </div>
     </div>
 </div>
+

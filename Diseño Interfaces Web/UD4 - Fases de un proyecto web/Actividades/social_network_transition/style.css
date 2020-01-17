@@ -1,0 +1,27 @@
+.social-network-container {
+    transition: all 0.5s ease-in-out;
+    position: fixed;
+    right: -30px;
+    top: 20%;
+    background-color: blue;
+    color: white;
+    border-radius: 20px 0 0 20px;
+    padding-left: 5px;
+}
+
+.social-network-container:hover {
+    padding-right: 30px;
+}
+
+.social-network-list {
+    padding: 10px;
+    list-style: none;
+}
+
+.fab {
+    margin: 20px 0;
+}
+
+.fab:hover {
+    cursor: pointer;
+}

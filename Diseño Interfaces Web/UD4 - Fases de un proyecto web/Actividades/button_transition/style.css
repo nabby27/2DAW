@@ -1,0 +1,26 @@
+.container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    transition: all 0.2s ease-in-out;
+    font-size: 20px;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 100px;
+    outline: none;
+    border-style: none;
+    background-image: linear-gradient(to bottom right, rgb(82, 50, 228), rgb(226, 50, 50));
+    box-shadow: 0px 3px 5px 1px rgb(177, 18, 177);
+}
+
+.btn:hover {
+    box-shadow: 0px 7px 7px 1px rgb(0, 41, 94);
+}
+
+.btn:active {
+    box-shadow: 1px -1px 5px 3px darkgrey;
+    border: 1px solid black;
+}

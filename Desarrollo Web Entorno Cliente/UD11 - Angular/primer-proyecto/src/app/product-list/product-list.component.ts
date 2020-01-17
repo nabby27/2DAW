@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../product';
+import { Product } from '../interfaces/product';
 
 @Component({
   selector: 'app-product-list',
@@ -8,6 +8,8 @@ import { Product } from '../product';
 })
 export class ProductListComponent implements OnInit {
 
+  showImage = true;
+  filterSearch: string = '';
   title = "My product's list";
   headers = {desc: 'Producto', price: 'Precio', avail: 'Disponible'};
   products: Product[] = [
@@ -16,7 +18,7 @@ export class ProductListComponent implements OnInit {
       desc: 'SSD hard drive',
       avail: new Date('2016-10-03'),
       price: 75,
-      imageUrl: 'assets/ssd.jpg',
+      imageUrl: '../../assets/ssd.jpg',
       rating: 5
     },
     {
@@ -24,7 +26,7 @@ export class ProductListComponent implements OnInit {
       desc: 'LGA1151 Motherboard',
       avail: new Date('2016-09-15'),
       price: 96.95,
-      imageUrl: 'assets/motherboard.jpg',
+      imageUrl: '../../assets/motherboard.jpg',
       rating: 4
     }
   ];
@@ -32,6 +34,10 @@ export class ProductListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  toggleImage() {
+    this.showImage = !this.showImage;
   }
 
 }

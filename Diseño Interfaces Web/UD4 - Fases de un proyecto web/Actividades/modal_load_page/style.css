@@ -1,0 +1,104 @@
+.modal-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    /* display: none; */
+    display: flex;
+}
+
+.modal-box {
+    /* background-color: white; */
+    width: 70%;
+    height: 70%;
+}
+
+.icon {
+}
+
+.ball {
+    width: 12%;
+    height: 12%;
+    position: absolute;
+    top: 70%;
+    animation: insideBasket 3s linear 0s infinite;
+}
+
+.basket {
+    position: absolute;
+    right: 8%;
+    top: 15%;
+    width: 40%;
+    height: 40%;
+}
+
+@keyframes insideBasket {
+    0% { 
+        top: 70%;
+        left: 15vw;
+        transform: rotate(0deg);
+    }
+    7% {
+        top: 18%;
+        left: 40vw;
+    }
+    10% {
+        top: 10%;
+        left: 45vw;
+    }
+    13% {
+        top: 18%;
+        left: 50vw;
+    }
+    20% {
+        /* top: 50%;
+        left: 25vw; */
+        top: 30%;
+        left: 64vw;
+        transform: rotate(-360deg);
+    }
+    30% {
+        top: 70%;
+        left: 64vw;
+        transform: rotate(-60deg);
+    }
+    40% {
+        top: 60%;
+        left: 60vw;
+        transform: rotate(-80deg);
+    }
+    50% {
+        top: 70%;
+        left: 50vw;
+        transform: rotate(-100deg);
+    }
+    60% {
+        top: 65%;
+        left: 40vw;
+        transform: rotate(-120deg);
+    }
+    70% {
+        top: 70%;
+        left: 30vw;
+        transform: rotate(-140deg);
+    }
+    /* 80% {
+        top: 30%;
+        left: 55vw;
+    }
+    90% {
+        top: 40%;
+        left: 60vw;
+        z-index: 2;
+    } */
+    100% {
+        z-index: 0;
+        top: 70%;
+        left: 15vw;
+        transform: rotate(-200deg);
+    }
+}

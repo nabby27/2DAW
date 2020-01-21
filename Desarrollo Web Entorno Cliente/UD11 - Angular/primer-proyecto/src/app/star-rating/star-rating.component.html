@@ -1,0 +1,4 @@
+<div classs="star-container" (mouseleave)="restoreRating()">
+    <span *ngFor="let star of [1, 2, 3, 4, 5]" class="fa" (mouseenter)="auxRating = star"
+        (click)="setRating()" [ngClass]="{'fa-star': star <= auxRating, 'fa-star-o': star > auxRating}"></span>
+</div>

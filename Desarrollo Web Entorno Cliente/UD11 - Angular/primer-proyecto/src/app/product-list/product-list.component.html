@@ -14,27 +14,6 @@
                     Filtrando por: {{filterSearch}}</label>
             </div>
         </form>
-        <!-- <div class="table-responsive" *ngIf="products">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>
-                            <button class="btn btn-sm" [ngClass]="{'btn-danger': showImage, 'btn-primary': !showImage}"
-                                (click)="toggleImage()">
-                                {{showImage?'Ocultar':'Mostrar'}} imagen
-                            </button>
-                        </th>
-                        <th>{{headers.desc}}</th>
-                        <th>{{headers.price}}</th>
-                        <th>{{headers.avail}}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <app-product-item *ngFor="let product of products | productFilter: filterSearch" [product]="product"
-                        class="row no-gutters"></app-product-item>
-                </tbody>
-            </table>
-        </div> -->
         <div *ngIf="products && products.length">
             <div class="row headers no-gutters">
                 <div class="col-2">
@@ -46,8 +25,8 @@
                 <div class="col">{{headers.price}}</div>
                 <div class="col">{{headers.avail}}</div>
             </div>
-            <app-product-item *ngFor="let product of products | productFilter: filterSearch" [product]="product"
-                class="row no-gutters"></app-product-item>
+            <app-product-item *ngFor="let product of products | productFilter: filterSearch"
+                [product]="product" [showImage]="showImage" class="row no-gutters"></app-product-item>
         </div>
     </div>
 </div>

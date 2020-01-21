@@ -9,10 +9,14 @@ import { Product } from '../interfaces/product';
 export class ProductItemComponent implements OnInit {
 
   @Input() product: Product;
-
+  @Input() showImage: boolean;
+  
   constructor() { }
 
   ngOnInit() {
   }
 
+  changeRating(rating: number) {
+    this.product.rating = rating;
+  }
 }

@@ -1,24 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductListComponent } from './product-list.component';
-import { ProductItemComponent } from '../product-item/product-item.component';
-import { ProductFilterPipe } from '../product-filter.pipe';
+import { ProductFilterPipe } from '../filters/product-filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { ProductItemModule } from '../product-item/product-item.module';
+import { ProductsService } from '../service/products.service';
 
 
 @NgModule({
   declarations: [
     ProductListComponent,
-    ProductItemComponent,
     ProductFilterPipe
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    ProductItemModule
   ],
   exports: [
     ProductListComponent,
-    ProductItemComponent
+    ProductItemModule
+  ],
+  providers: [
+    ProductsService
   ]
 })
 export class ProductListModule { }

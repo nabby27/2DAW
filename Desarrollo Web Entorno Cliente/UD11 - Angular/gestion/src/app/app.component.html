@@ -1,0 +1,5 @@
+<div>
+  <app-menu (open)="openComponent($event)"></app-menu>
+  <app-students *ngIf="isOpenStudents"></app-students>
+  <app-cycles *ngIf="isOpenCycles"></app-cycles>
+</div>

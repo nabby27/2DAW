@@ -2,3 +2,6 @@
 <div class="col-4">{{product.desc}}</div>
 <div class="col">{{product.price | currency:'EUR':'symbol'}}</div>
 <div class="col">{{product.avail | date:'dd/MM/y'}}</div>
+<div class="col">
+    <app-star-rating (ratingChanged)="changeRating($event)" [rating]="product.rating"></app-star-rating>
+</div>

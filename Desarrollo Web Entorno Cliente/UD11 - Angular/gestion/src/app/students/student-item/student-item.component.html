@@ -1,0 +1,12 @@
+<div class="card my-4">
+    <div class="card-body">
+        <h5 class="card-title">{{ student.name }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">DNI: {{ student.dni }}</h6>
+        <p class="card-text">
+            Fecha de nacimiento: {{ student.date_of_birth }}<br>
+            Telefono: {{ student.telephon }}<br>
+            E-mail: {{ student.email }}
+        </p>
+        <span *ngFor="let cycle of student.cycles" class="badge badge-pill badge-secondary p-2 mx-1">{{ cycle.name }}</span>
+    </div>
+</div>

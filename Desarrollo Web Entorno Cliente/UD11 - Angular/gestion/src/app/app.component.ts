@@ -16,6 +16,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {}
 
   openComponent(component: string) {
+    this.isOpenStudents = false;
+    this.isOpenCycles = false;
+
     if (component === CONSTANTS.STUDENTS) {
       this.isOpenStudents = true;
       this.isOpenCycles = false;

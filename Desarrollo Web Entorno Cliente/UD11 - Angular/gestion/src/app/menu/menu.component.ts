@@ -22,4 +22,9 @@ export class MenuComponent implements OnInit {
   openCycles() {
     this.open.emit(CONSTANTS.CYCLES);
   }
+
+  closeAll(){
+    this.open.emit(null);
+  }
+
 }

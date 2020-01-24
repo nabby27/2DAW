@@ -2,4 +2,8 @@
   <app-menu (open)="openComponent($event)"></app-menu>
   <app-students *ngIf="isOpenStudents"></app-students>
   <app-cycles *ngIf="isOpenCycles"></app-cycles>
+
+  <h2 *ngIf="!isOpenStudents && !isOpenCycles" class="container text-center mt-5">
+    Bienvenido al panel de gestión
+  </h2>
 </div>

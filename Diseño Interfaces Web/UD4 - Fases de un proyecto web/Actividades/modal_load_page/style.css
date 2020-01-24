@@ -7,12 +7,11 @@
     width: 100vw;
     justify-content: center;
     align-items: center;
-    /* display: none; */
-    display: flex;
+    display: none;
 }
 
 .modal-box {
-    /* background-color: white; */
+    background-color: white;
     width: 70%;
     height: 70%;
 }
@@ -86,15 +85,6 @@
         left: 30vw;
         transform: rotate(-140deg);
     }
-    /* 80% {
-        top: 30%;
-        left: 55vw;
-    }
-    90% {
-        top: 40%;
-        left: 60vw;
-        z-index: 2;
-    } */
     100% {
         z-index: 0;
         top: 70%;

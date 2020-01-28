@@ -12,7 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         echo json_encode($client);
     } else {
         $clients = $clientController->listAllClients();
-        // var_dump($clients);
         echo json_encode($clients);
     }
 }

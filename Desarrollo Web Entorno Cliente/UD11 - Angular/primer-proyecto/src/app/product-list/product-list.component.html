@@ -24,6 +24,7 @@
                 <div class="col-4">{{headers.desc}}</div>
                 <div class="col">{{headers.price}}</div>
                 <div class="col">{{headers.avail}}</div>
+                <div class="col">{{headers.rating}}</div>
             </div>
             <app-product-item *ngFor="let product of products | productFilter: filterSearch"
                 [product]="product" [showImage]="showImage" class="row no-gutters"></app-product-item>

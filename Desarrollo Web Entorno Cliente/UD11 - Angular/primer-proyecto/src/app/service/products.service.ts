@@ -1,29 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../interfaces/product';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  constructor() { }
+  private productURL = 'http://arturober.com/products-angular/products';
 
-  getProducts(): Product[] {
-    return [{
-      id: 1,
-      desc: 'SSD hard drive',
-      avail: new Date('2016-10-03'),
-      price: 75,
-      imageUrl: 'assets/ssd.jpg',
-      rating: 5
-    }, {
-      id: 2,
-      desc: 'LGA1151 Motherboard',
-      avail: new Date('2016-09-15'),
-      price: 96.95,
-      imageUrl: 'assets/motherboard.jpg',
-      rating: 4
-    }];
+  constructor(private http: HttpClient) { }
+
+  getProducts(): Observable<Product[]> {
+    return this.http.get<{products: Product[]}>(this.productURL).pipe(
+      map(response => response.products)
+    );
   }
 
 }

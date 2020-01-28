@@ -12,7 +12,7 @@ export class ProductListComponent implements OnInit {
   showImage = true;
   filterSearch: string = '';
   title = "My product's list";
-  headers = {desc: 'Producto', price: 'Precio', avail: 'Disponible'};
+  headers = {desc: 'Producto', price: 'Precio', avail: 'Disponible', rating: 'Puntuación'};
   products: Product[];
 
   constructor(
@@ -20,7 +20,10 @@ export class ProductListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.products = this.productsService.getProducts();
+    this.productsService.getProducts().subscribe(
+      (products: Product[]) => this.products = products,
+      (error: any) => console.error('Error to get products: ' + error),
+    )
   }
 
   toggleImage() {

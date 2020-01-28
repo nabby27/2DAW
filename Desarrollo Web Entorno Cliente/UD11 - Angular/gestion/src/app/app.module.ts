@@ -7,6 +7,8 @@ import { StudentsComponent } from './students/students.component';
 import { CyclesComponent } from './cycles/cycles.component';
 import { StudentItemComponent } from './students/student-item/student-item.component';
 import { CycleItemComponent } from './cycles/cycle-item/cycle-item.component';
+import { StudentsService } from './services/students.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,9 +20,14 @@ import { CycleItemComponent } from './cycles/cycle-item/cycle-item.component';
     CycleItemComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    StudentsService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

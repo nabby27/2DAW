@@ -1,27 +1,5 @@
 <div class="mt-5">
     <h3>Administración de productos</h3>
 </div>
-<table class="table table-striped">
-    <thead class="thead-dark">
-        <tr>
-            <th class="text-center" scope="col">ID</th>
-            <th class="text-center" scope="col">Nombre</th>
-            <th class="text-center" scope="col">Descripción</th>
-            <th class="text-center" scope="col">Precio</th>
-            <th class="text-center" scope="col">Cantidad</th>
-            <th class="text-center" scope="col">Editar</th>
-            <th class="text-center" scope="col">Eliminar</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th class="text-center" scope="row">1</th>
-            <td class="text-center">super nombre</td>
-            <td class="text-center">Mega descripción del producto</td>
-            <td class="text-center">55.2</td>
-            <td class="text-center">3</td>
-            <td class="text-center"><i class="far fa-edit"></i></td>
-            <td class="text-center"><i class="fas fa-trash"></i></td>
-        </tr>
-    </tbody>
-</table>
+
+<app-table-products [products]="products"></app-table-products>

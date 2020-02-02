@@ -1,0 +1,20 @@
+<div class="p-2 col text-center" scope="row">{{ order.id }}</div>
+<div class="p-2 col text-center">{{ order.date }}</div>
+<div class="p-2 col text-center">{{ order.dniClient }}</div>
+<div class="p-2 col text-center">
+    <button type="button" class="btn btn-light" (click)="toggleShowLines(order.id)">
+        <i class="far fa-eye"></i>
+    </button>
+</div>
+<div class="p-2 col text-center">
+    <button type="button" class="btn btn-light">
+        <i class="far fa-edit"></i>
+    </button>
+</div>
+<div class="p-2 col text-center">
+    <button type="button" class="btn btn-light">
+        <i class="fas fa-trash"></i>
+    </button>
+</div>
+
+<app-table-lines-order class="col-12" *ngIf="linesOrderAreOpened" [linesOrder]="linesOrder"></app-table-lines-order>

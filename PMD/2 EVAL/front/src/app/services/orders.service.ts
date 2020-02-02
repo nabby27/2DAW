@@ -12,16 +12,21 @@ export class OrdersService {
   getAllOrders(): Observable<Order[]> {
     return of([{
       id: 0,
-      date: 'string',
-      dniClient: 'string'
+      date: '27/09/1996',
+      dniClient: '53878388Z'
+    },
+    {
+      id: 1,
+      date: '28/09/1996',
+      dniClient: '53878388Z1'
     }]);
   }
 
   getOneOrder(id: number): Observable<Order> {
     return of({
       id: 0,
-      date: 'string',
-      dniClient: 'string'
+      date: '27/09/1996',
+      dniClient: '53878388Z'
     });
   }
 

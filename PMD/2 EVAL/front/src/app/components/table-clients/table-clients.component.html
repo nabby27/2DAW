@@ -1,0 +1,21 @@
+<div *ngIf="!clients" class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+</div>
+<div *ngIf="clients">
+    <div class="bg-dark text-white">
+        <div class="row">
+            <div class="p-2 col text-center">ID</div>
+            <div class="p-2 col text-center">DNI</div>
+            <div class="p-2 col text-center">Nombre</div>
+            <div class="p-2 col text-center">Apellido</div>
+            <div class="p-2 col text-center">Editar</div>
+            <div class="p-2 col text-center">Eliminar</div>
+        </div>
+    </div>
+    <div>
+        <app-row-client class="row" *ngFor="let client of clients" [client]="client"></app-row-client>
+    </div>
+</div>
+
+<app-modal-client></app-modal-client>
+<app-modal-delete-client></app-modal-delete-client>

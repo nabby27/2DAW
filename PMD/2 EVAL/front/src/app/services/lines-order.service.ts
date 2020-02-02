@@ -10,10 +10,20 @@ export class LinesOrderService {
   constructor() { }
   
   getAllLinesOfOrder(orderId: number): Observable<LineOrder[]> {
-    return of([{
-      id: 0,
-      orderId: 0
-    }]);
+    if (orderId === 0) {
+      return of([{
+        id: 0,
+        orderId: 0
+      }]);
+    } else {
+      return of([{
+        id: 0,
+        orderId: 0
+      }, {
+        id: 0,
+        orderId: 1
+      }]);
+    }
   }
 
   getOneLineOrder(id: number): Observable<LineOrder> {

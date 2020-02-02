@@ -1,0 +1,16 @@
+<div>
+    <div class="bg-dark text-white">
+        <div class="row">
+            <div class="p-2 col text-center">ID</div>
+            <div class="p-2 col text-center">Nombre</div>
+            <div class="p-2 col-4 text-center">Descripción</div>
+            <div class="p-2 col text-center">Precio</div>
+            <div class="p-2 col text-center">Cantidad</div>
+            <div class="p-2 col text-center">Editar</div>
+            <div class="p-2 col text-center">Eliminar</div>
+        </div>
+    </div>
+    <div>
+        <app-row-product class="row" *ngFor="let product of products" [product]="product"></app-row-product>
+    </div>
+</div>

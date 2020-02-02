@@ -1,0 +1,14 @@
+<div *ngIf="linesOrder">
+    <div class="bg-secondary text-white">
+        <div class="row">
+            <div class="p-2 col text-center">ID Linea</div>
+            <div class="p-2 col text-center">ID Pedido</div>
+            <div class="p-2 col text-center">Editar</div>
+            <div class="p-2 col text-center">Eliminar</div>
+        </div>
+    </div>
+    <div>
+        <app-row-line-order class="row" *ngFor="let lineOrder of linesOrder" [lineOrder]="lineOrder"></app-row-line-order>
+    </div>
+    <hr>
+</div>

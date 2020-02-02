@@ -1,0 +1,15 @@
+<div>
+    <div class="bg-dark text-white">
+        <div class="row">
+            <div class="p-2 col text-center">ID</div>
+            <div class="p-2 col text-center">Fecha</div>
+            <div class="p-2 col text-center">Cliente</div>
+            <div class="p-2 col text-center">Ver productos</div>
+            <div class="p-2 col text-center">Editar</div>
+            <div class="p-2 col text-center">Eliminar</div>
+        </div>
+    </div>
+    <div>
+        <app-row-order class="row" *ngFor="let order of orders" [order]="order" (seeLinesOrder)="linesOrder"></app-row-order>
+    </div>
+</div>

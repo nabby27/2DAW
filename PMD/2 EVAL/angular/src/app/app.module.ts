@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 import { MenuModule } from './components/menu/menu.module';
 
 @NgModule({
@@ -12,6 +13,7 @@ import { MenuModule } from './components/menu/menu.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     MenuModule
   ],
   providers: [],

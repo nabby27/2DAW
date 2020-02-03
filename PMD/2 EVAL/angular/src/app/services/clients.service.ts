@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Client } from '../interfaces/client';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientsService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getAllClients(): Observable<Client[]> {
     return of([{
@@ -28,9 +29,11 @@ export class ClientsService {
       telephone: '6228715392',
       birthday: '27/06/19962'
     }]);
+
+    return this.http.get<Client[]>('http://localhost/clients');
   }
 
-  getOneClient(): Observable<Client> {
+  getOneClient(id: number): Observable<Client> {
     return of({
       id: 0,
       name: 'Iván',
@@ -40,14 +43,17 @@ export class ClientsService {
       telephone: '622871539',
       birthday: '27/06/1996'
     });
+
+    return this.http.get<Client>('http://localhost/client/' + id);
+
   }
 
-  updateClient(id: number): any {
-
+  updateClient(client: Client): Observable<boolean> {
+    return this.http.put<boolean>('http://localhost/client/' + client.id, client);
   }
 
-  deleteClient(id: number): any {
-
+  deleteClient(id: number): Observable<boolean> {
+    return this.http.delete<boolean>('http://localhost/client/' + id);
   }
 
 }

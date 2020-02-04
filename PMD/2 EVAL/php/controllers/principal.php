@@ -1,16 +1,13 @@
 <?php
 require '../modelo.php';
+require '../utils.php';
+
 $db = new Bd();
 
-if (isset($_COOKIE['user_name'])) {
-    setcookie('anonimIdClient');
-    $dni = isset($_COOKIE['dni']);
-} else {
-    $anonimIdClient = (isset($_COOKIE['anonimIdClient'])) ? $_COOKIE['anonimIdClient'] : time();
-    setcookie('anonimIdClient', $anonimIdClient, time() + 60*60*24*30); // one month
-}
+[$dni, $tempClientId] = getDniClientAndTempClientId();
 
 $products = Product::getAll($db->link);
-$soppingCartModel = new ShoppingCart('', $dni, $anonimIdClient, '', '', '');
+$soppingCartModel = new ShoppingCart('', '', $dni, $tempClientId, '', '');
 $shoppingCartTotal = $soppingCartModel->getNumberOfItemsByClient($db->link);
+
 require '../views/shop.php';

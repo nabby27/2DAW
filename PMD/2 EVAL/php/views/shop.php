@@ -7,7 +7,7 @@
                     <article class="card mx-2 my-4">
                         <div class="row">
                             <div class="col-md-4">
-                                <img src="./img/<?php echo $product->photo ?>">
+                                <img src="./img/<?php echo $product->image ?>">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">

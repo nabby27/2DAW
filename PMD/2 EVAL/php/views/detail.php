@@ -2,7 +2,7 @@
 
     <section class="container">
         <div class="mt-5 row text-center">
-            <img class="col-sm-6" src="./img/<?php echo $product->photo ?>">
+            <img class="col-sm-6" src="./img/<?php echo $product->image ?>">
             <article class="card col-sm-6">
                 <div class="card-body">
                     <h5 class="card-title text-truncate"><?php echo $product->name ?></h5>

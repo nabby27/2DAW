@@ -178,7 +178,7 @@ class Product implements \JsonSerializable {
     }
 
     function update($link): bool {
-        if ($this->photo != '') {
+        if ($this->image != '') {
             $queryString = "UPDATE products SET name='$this->name', image='$this->image', brand='$this->brand', quantity='$this->quantity', price='$this->price' WHERE id='$this->id'";
         } else {
             $queryString = "UPDATE products SET name='$this->name', brand='$this->brand', quantity='$this->quantity', price='$this->price' WHERE id='$this->id'";
@@ -283,7 +283,7 @@ class Order implements \JsonSerializable {
     static function getNewOrderId($link): int {
         $queryString = "SELECT max(id) FROM orders";
         $result = $link->query($queryString);
-        $maxId = mysqli_fetch_row($result)[0];
+        $maxId = $result->fetch(PDO::FETCH_ASSOC)['max(id)'];
         
         if($maxId) {
             return $maxId + 1;
@@ -363,16 +363,19 @@ class LineOfOrder implements \JsonSerializable {
             ('$this->lineId', '$this->quantity', '$this->orderId', '$this->productId')";
         $result = $link->query($queryString);
 
-        return $result;
+        if ($result) {
+            return true;
+        }
+        return false;
     }
 
     function getNewLineId($link): int {
         $queryString = "SELECT max(line_id) FROM orders_lines WHERE order_id=$this->orderId";
         $result = $link->query($queryString);
-        $maxId = mysqli_fetch_row($result)[0];
-        
-        if ($maxId) {
-            return $maxId + 1;
+        $maxLineId = $result->fetch(PDO::FETCH_ASSOC)['max(line_id)'];
+
+        if ($maxLineId) {
+            return $maxLineId + 1;
         }
         
         return 0;
@@ -516,38 +519,15 @@ class ShoppingCart implements \JsonSerializable {
         return false;
     }
 
-    // function updateShoppingCart($link): bool {
-    //     $queryString = "UPDATE lineas_pedidos SET cantidad=$this->quantity, idProducto=$this->productId WHERE idPedido=$this->orderId AND nLinea=$this->lineId";
-    //     $result = $link->query($queryString);
-
-    //     return $result;
-    // }
-
-    // function saveShoppingCart($link): bool {
-    //     $queryString = "INSERT INTO lineas_pedidos (nLinea, cantidad, idPedido, idProducto) VALUES
-    //         ('$this->lineId', '$this->quantity', '$this->orderId', '$this->productId')";
-    //     $result = $link->query($queryString);
-
-    //     return $result;
-    // }
-
-    // function getShoppingCart($link): Carrito {
-    //     $queryString = "SELECT * FROM lineas_pedidos WHERE idPedido=$this->orderId AND nLinea=$this->lineId";
-    //     $result = $link->query($queryString);
-
-    //     if ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-    //         return new Carrito($row['idPedido'], $row['nLinea'], $row['idProducto'], $row['cantidad']);
-    //     }
-
-    //     return null;
-    // }
-
-    // function removeShoppingCart($link): bool {
-    //     $queryString = "DELETE FROM lineas_pedidos WHERE idPedido=$this->orderId";
-    //     $result = $link->query($queryString);
-
-    //     return $result;
-    // }
+    function deleteAllShoppingCartForClient($link) {
+        $queryString = "DELETE FROM shopping_cart WHERE dni_client='$this->dniClient'";
+        $result = $link->query($queryString);
+        
+        if ($result) {
+            return true;
+        }
+        return false;
+    }
 
 }
 

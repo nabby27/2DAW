@@ -7,6 +7,7 @@ class Bd {
     function __construct() {
         if (!isset($this->link)) {
             $this->link = new PDO('mysql:host=localhost;dbname=virtualmarket_ivan', 'root', '');
+            $this->link->exec("set names utf8");
         }
     }
 
@@ -82,8 +83,9 @@ class Client implements \JsonSerializable {
     }
 
     function save($link): bool {
+        $hashed_password = password_hash($this->password, PASSWORD_DEFAULT);
         $queryString = "INSERT INTO clients (dni, name, address, email, password, admin) VALUES
-            ('$this->dni', '$this->name', '$this->address', '$this->email', '$this->password', " . (int) $this->admin . ")";
+            ('$this->dni', '$this->name', '$this->address', '$this->email', '$hashed_password', " . (int) $this->admin . ")";
         $result = $link->query($queryString);
 
         if ($result) {
@@ -112,7 +114,7 @@ class Client implements \JsonSerializable {
         return false;
     }
 
-    static function getAll($link): array {
+    static function getAll($link) {
         $queryString = "SELECT * FROM clients";
         $result = $link->query($queryString);
 
@@ -284,9 +286,9 @@ class Order implements \JsonSerializable {
         $queryString = "SELECT max(id) FROM orders";
         $result = $link->query($queryString);
         $maxId = $result->fetch(PDO::FETCH_ASSOC)['max(id)'];
-        
-        if($maxId) {
-            return $maxId + 1;
+
+        if($maxId !== null) {
+            return intval($maxId, 10) + 1;
         }
 
         return 0;

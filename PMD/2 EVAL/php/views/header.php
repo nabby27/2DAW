@@ -30,7 +30,7 @@
                 </div>
             <?php else : ?>
                 <div>
-                    <a href="../login" class="mx-2">Registrate</a>
+                    <a href="../sign-up" class="mx-2">Registrate</a>
                     <a href="../login" class="mx-2">Iniciar sesi&oacute;n</a>
                     <a class="badge badge-secondary" href="../../shopping-cart"><div><i class="fas fa-shopping-cart mx-2"></i><?php echo $shoppingCartTotal ?></div></a>
                 </div>

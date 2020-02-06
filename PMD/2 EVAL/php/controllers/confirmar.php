@@ -16,7 +16,7 @@ if (!isset($_COOKIE['user_name'])) {
     
     $orderModel = new Order($newId, $date, $dni);
     $orderSaved = $orderModel->saveOrder($db->link);
-    
+
     $lineOfOrderId = 0;
     foreach ($products as $product) {
         $lineOfOrderId++;

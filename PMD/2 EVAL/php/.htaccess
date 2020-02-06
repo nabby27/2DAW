@@ -3,17 +3,9 @@ RewriteEngine on
 RewriteRule ^shop$ controllers/principal.php
 RewriteRule ^detail/(.+)$ controllers/detalle.php?id=$1
 RewriteRule ^login$ controllers/validar.php
+RewriteRule ^sign-up$ controllers/registrar.php
 RewriteRule ^logout$ controllers/logout.php
 RewriteRule ^shopping-cart$ controllers/ver_carrito.php
 RewriteRule ^shopping-cart/(.+)$ controllers/ver_carrito.php?id=$1
 RewriteRule ^confirm$ controllers/confirmar.php
 RewriteRule ^exit$ controllers/logout.php
-
-RewriteRule ^clients$ services/clients.php
-RewriteRule ^clients/(.+)$ services/clients.php?dni=$1
-RewriteRule ^products$ services/products.php
-RewriteRule ^products/(.+)$ services/products.php?id=$1
-RewriteRule ^orders$ services/orders.php
-RewriteRule ^orders/(.+)$ services/orders.php?id=$1
-RewriteRule ^lines-order$ services/linesOrder.php
-RewriteRule ^lines-order/(.+)$ services/linesOrder.php?id=$1

@@ -3,7 +3,6 @@ require '../modelo.php';
 require '../utils.php';
 
 $db = new Bd();
-$error;
 
 if (isset($_POST['dni']) && isset($_POST['password'])) {
     $dni = $_POST['dni'];

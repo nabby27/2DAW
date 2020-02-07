@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Client } from 'src/app/interfaces/client';
+import { ClientsService } from 'src/app/services/clients.service';
 
 @Component({
   selector: 'app-modal-delete-client',
@@ -6,10 +8,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./modal-delete-client.component.css']
 })
 export class ModalDeleteClientComponent implements OnInit {
+  
+  @ViewChild('closeClientModalBtn', {static: true}) closeClientModalBtn: ElementRef;
+  @Input() clientSelected: Client;
+  @Output() clientDeleted = new EventEmitter<Client>();
+  
+  isDeletting: boolean = false;
 
-  constructor() { }
+  constructor(private clientsService: ClientsService) { }
 
   ngOnInit() {
   }
 
+  deleteClient() {
+    this.isDeletting = true;
+    this.clientsService.deleteClient(this.clientSelected.dni).subscribe(
+      () => this.clientDeleted.emit(this.clientSelected),
+      (error) => console.log(error),
+      () => {
+        this.isDeletting = false;
+        this.closeClientModalBtn.nativeElement.click();
+      }
+    )
+  }
 }

@@ -16,7 +16,9 @@ import { MenuModule } from './components/menu/menu.module';
     HttpClientModule,
     MenuModule
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [
     AppComponent
   ]

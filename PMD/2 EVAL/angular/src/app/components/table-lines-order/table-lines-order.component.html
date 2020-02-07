@@ -3,9 +3,13 @@
         <div class="row">
             <div class="p-2 col text-center">ID Linea</div>
             <div class="p-2 col text-center">ID Pedido</div>
+            <div class="p-2 col text-center">Producto</div>
             <div class="p-2 col text-center">Editar</div>
             <div class="p-2 col text-center">Eliminar</div>
         </div>
+    </div>
+    <div *ngIf="linesOrder?.length < 1" class="row mt-3">
+        <h5 class="col-12 text-center">No existen lineas</h5>
     </div>
     <div>
         <app-row-line-order class="row" *ngFor="let lineOrder of linesOrder" [lineOrder]="lineOrder"></app-row-line-order>

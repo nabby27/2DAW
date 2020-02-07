@@ -1,21 +1,28 @@
 <div *ngIf="!clients" class="spinner-border" role="status">
     <span class="sr-only">Loading...</span>
 </div>
+<div class="my-3 d-flex justify-content-end">
+    <button (click)="openModalToAddClient()" data-toggle="modal" data-target="#modalClient" type="button" class="btn btn-primary">Añadir cliente</button>
+</div>
 <div *ngIf="clients">
     <div class="bg-dark text-white">
         <div class="row">
-            <div class="p-2 col text-center">ID</div>
             <div class="p-2 col text-center">DNI</div>
             <div class="p-2 col text-center">Nombre</div>
-            <div class="p-2 col text-center">Apellido</div>
+            <div class="p-2 col text-center">Dirección</div>
+            <div class="p-2 col text-center">Email</div>
+            <div class="p-2 col text-center">Admin</div>
             <div class="p-2 col text-center">Editar</div>
             <div class="p-2 col text-center">Eliminar</div>
         </div>
     </div>
+    <div *ngIf="clients?.length < 1" class="row mt-3">
+        <h5 class="col-12 text-center">No existen clientes</h5>
+    </div>
     <div>
-        <app-row-client class="row" *ngFor="let client of clients" [client]="client"></app-row-client>
+        <app-row-client class="row" *ngFor="let client of clients" [client]="client" (clientSelected)="updateClientSelected($event)"></app-row-client>
     </div>
 </div>
 
-<app-modal-client></app-modal-client>
-<app-modal-delete-client></app-modal-delete-client>
+<app-modal-client [(modalType)]="modalType" [clientSelected]="clientSelected" (clientUpdated)="updateClient($event)"></app-modal-client>
+<app-modal-delete-client [clientSelected]="clientSelected" (clientDeleted)="removeClient($event)"></app-modal-delete-client>

@@ -10,6 +10,9 @@
             <div class="p-2 col text-center">Eliminar</div>
         </div>
     </div>
+    <div *ngIf="products?.length < 1" class="row mt-3">
+        <h5 class="col-12 text-center">No existen productos</h5>
+    </div>
     <div>
         <app-row-product class="row" *ngFor="let product of products" [product]="product"></app-row-product>
     </div>

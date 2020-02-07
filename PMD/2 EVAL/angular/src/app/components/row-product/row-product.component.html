@@ -1,7 +1,7 @@
 <div class="p-2 col text-center">{{ product.id }}</div>
 <div class="p-2 col text-center">{{ product.name }}</div>
 <div class="p-2 col-4 text-center">{{ product.description }}</div>
-<div class="p-2 col text-center">{{ product.price }}</div>
+<div class="p-2 col text-center">{{ product.price | currency:'EUR':'symbol' }}</div>
 <div class="p-2 col text-center">{{ product.quantity }}</div>
 <div class="p-2 col text-center"><i class="far fa-edit"></i></div>
 <div class="p-2 col text-center"><i class="fas fa-trash"></i></div>

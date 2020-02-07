@@ -6,6 +6,7 @@ import { TableClientsComponent } from 'src/app/components/table-clients/table-cl
 import { RowClientComponent } from 'src/app/components/row-client/row-client.component';
 import { ModalClientComponent } from 'src/app/components/modal-client/modal-client.component';
 import { ModalDeleteClientComponent } from 'src/app/components/modal-delete-client/modal-delete-client.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: '', component: ClientsComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule.forChild(routes)
   ]
 })

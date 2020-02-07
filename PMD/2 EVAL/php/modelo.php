@@ -48,7 +48,7 @@ class Login implements \JsonSerializable {
         $queryString = "SELECT * FROM clients WHERE dni='$this->dni' AND admin=0";
         $result = $link->query($queryString);
         if ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            return new Client($row['dni'], $row['name'], $row['address'], $row['email'], $row['password'], $row['admin']);
+            return new Client($row['dni'], $row['name'], $row['address'], $row['email'], $row['password'], (bool) $row['admin']);
         }
         return null;
     }
@@ -83,9 +83,8 @@ class Client implements \JsonSerializable {
     }
 
     function save($link): bool {
-        $hashed_password = password_hash($this->password, PASSWORD_DEFAULT);
         $queryString = "INSERT INTO clients (dni, name, address, email, password, admin) VALUES
-            ('$this->dni', '$this->name', '$this->address', '$this->email', '$hashed_password', " . (int) $this->admin . ")";
+            ('$this->dni', '$this->name', '$this->address', '$this->email', '$this->password', " . $this->admin . ")";
         $result = $link->query($queryString);
 
         if ($result) {
@@ -95,7 +94,7 @@ class Client implements \JsonSerializable {
     }
 
     function update($link): bool {
-        $queryString = "UPDATE clients SET name='$this->name', address='$this->address', email='$this->email', admin=" . (int) $this->admin . " WHERE dni='$this->dni'";
+        $queryString = "UPDATE clients SET name='$this->name', address='$this->address', email='$this->email', admin=" . $this->admin . " WHERE dni='$this->dni'";
         $result = $link->query($queryString);
 
         if ($result) {
@@ -114,13 +113,13 @@ class Client implements \JsonSerializable {
         return false;
     }
 
-    static function getAll($link) {
+    static function getAll($link): array {
         $queryString = "SELECT * FROM clients";
         $result = $link->query($queryString);
 
         $clients = [];
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $client = new Client($row['dni'], $row['name'], $row['address'], $row['email'], $row['password'], $row['admin']);
+            $client = new Client($row['dni'], $row['name'], $row['address'], $row['email'], $row['password'], (bool) $row['admin']);
             array_push($clients, $client);
         }
 
@@ -132,7 +131,7 @@ class Client implements \JsonSerializable {
         $result = $link->query($queryString);
 
         if ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            return new Client($row['dni'], $row['name'], $row['address'], $row['email'], $row['password'], $row['admin']);
+            return new Client($row['dni'], $row['name'], $row['address'], $row['email'], $row['password'], (bool) $row['admin']);
         }
 
         return null;
@@ -297,7 +296,6 @@ class Order implements \JsonSerializable {
     static function getAllOrder($link): array {
         $queryString = "SELECT * FROM orders";
         $result = $link->query($queryString);
-
         $orders = [];
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             $order = new Order($row['id'], $row['date'], $row['dni_client']);

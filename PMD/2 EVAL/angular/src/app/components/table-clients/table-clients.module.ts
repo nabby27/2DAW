@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { TableClientsComponent } from './table-clients.component';
 
 
-
 @NgModule({
   declarations: [
     TableClientsComponent

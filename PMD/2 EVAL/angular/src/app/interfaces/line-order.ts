@@ -1,4 +1,5 @@
 export interface LineOrder {
-    id: number;
+    lineId: number;
     orderId: number;
+    productId: number;
 }

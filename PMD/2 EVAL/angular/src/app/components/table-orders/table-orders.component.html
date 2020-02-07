@@ -9,6 +9,9 @@
             <div class="p-2 col text-center">Eliminar</div>
         </div>
     </div>
+    <div *ngIf="orders?.length < 1" class="row mt-3">
+        <h5 class="col-12 text-center">No existen pedidos</h5>
+    </div>
     <div>
         <app-row-order class="row" *ngFor="let order of orders" [order]="order" (seeLinesOrder)="linesOrder"></app-row-order>
     </div>

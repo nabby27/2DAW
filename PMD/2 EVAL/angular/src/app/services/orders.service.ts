@@ -1,25 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Order } from '../interfaces/order';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrdersService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getAllOrders(): Observable<Order[]> {
-    return of([{
-      id: 0,
-      date: '27/09/1996',
-      dniClient: '53878388Z'
-    },
-    {
-      id: 1,
-      date: '28/09/1996',
-      dniClient: '53878388Z1'
-    }]);
+    return this.http.get<Order[]>('http://localhost/services/orders/listOrdersController.php');
   }
 
   getOneOrder(id: number): Observable<Order> {

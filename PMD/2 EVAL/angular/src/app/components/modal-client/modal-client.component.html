@@ -4,16 +4,50 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="clientModalTitle">{{ title }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button (click)="closeModal()" #closeClientModalBtn type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                ...
+                <div *ngIf="isSendingData" class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div *ngIf="!isSendingData" class="row">
+                    <div class="form-group col-12 col-md-6">
+                        <label for="dni_input">DNI</label>
+                        <input [disabled]="modalType === 'EDIT'" class="form-control" name="dni" [(ngModel)]="clientSelected.dni" id="dni_input" type="text">
+                    </div>
+                    <div class="form-group col-12 col-md-6">
+                        <label for="name_input">Nombre</label>
+                        <input class="form-control" name="name" [(ngModel)]="clientSelected.name" id="name_input" type="text">
+                    </div>
+                    <div class="form-group col-12 col-md-6">
+                        <label for="address_input">Dirección</label>
+                        <input class="form-control" name="address" [(ngModel)]="clientSelected.address" id="address_input" type="text">
+                    </div>
+                    <div class="form-group col-12 col-md-6">
+                        <label for="email_input">Email</label>
+                        <input class="form-control" name="email" [(ngModel)]="clientSelected.email" id="email_input" type="email">
+                    </div>
+                    <div *ngIf="modalType === 'ADD'" class="form-group col-12 col-md-6">
+                        <label for="password_input">Contraseña</label>
+                        <input class="form-control" name="password" [(ngModel)]="clientSelected.password" id="password_input" type="password">
+                    </div>
+                    <div *ngIf="modalType === 'ADD'" class="form-group col-12 col-md-6">
+                        <label for="password_verify_input">Repite la contraseña</label>
+                        <input class="form-control" name="password_verify" [(ngModel)]="clientSelected.password_verify" id="password_verify_input" type="password">
+                    </div>
+                    <div class="form-group col-12 col-md-12 d-flex justify-content-center">
+                        <div class="form-check">
+                            <input class="form-check-input" name="admin" [(ngModel)]="clientSelected.admin" id="admin_input" type="checkbox">
+                            <label class="form-check-label" for="admin_input">Admin</label>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Guardar cambios</button>
+                <button (click)="closeModal()" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button (click)="saveClient()" type="button" class="btn btn-primary">{{ saveButtonText }}</button>
             </div>
         </div>
     </div>

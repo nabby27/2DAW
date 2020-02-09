@@ -82,25 +82,25 @@ class Client implements \JsonSerializable {
         $this->$property = $value;
     }
 
-    function save($link): bool {
+    function save($link): ?Client {
         $queryString = "INSERT INTO clients (dni, name, address, email, password, admin) VALUES
-            ('$this->dni', '$this->name', '$this->address', '$this->email', '$this->password', " . $this->admin . ")";
+            ('" . $this->dni . "', '" . $this->name . "', '" . $this->address . "', '" . $this->email . "', '" . $this->password . "', " . (int) $this->admin . ")";
         $result = $link->query($queryString);
 
         if ($result) {
-            return true;
+            return new Client($this->dni, $this->name, $this->address, $this->email, $this->password, $this->admin);
         }
-        return false;
+        return null;
     }
 
-    function update($link): bool {
-        $queryString = "UPDATE clients SET name='$this->name', address='$this->address', email='$this->email', admin=" . $this->admin . " WHERE dni='$this->dni'";
+    function update($link): ?Client {
+        $queryString = "UPDATE clients SET name='$this->name', address='$this->address', email='$this->email', admin=" . (int) $this->admin . " WHERE dni='$this->dni'";
         $result = $link->query($queryString);
 
         if ($result) {
-            return true;
+            return new Client($this->dni, $this->name, $this->address, $this->email, $this->password, $this->admin);
         }
-        return false;
+        return null;
     }
 
     function remove($link): bool {

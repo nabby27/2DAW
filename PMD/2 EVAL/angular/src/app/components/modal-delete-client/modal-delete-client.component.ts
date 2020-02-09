@@ -9,7 +9,7 @@ import { ClientsService } from 'src/app/services/clients.service';
 })
 export class ModalDeleteClientComponent implements OnInit {
   
-  @ViewChild('closeClientModalBtn', {static: true}) closeClientModalBtn: ElementRef;
+  @ViewChild('closeDeleteClientModalBtn', {static: true}) closeDeleteClientModalBtn: ElementRef;
   @Input() clientSelected: Client;
   @Output() clientDeleted = new EventEmitter<Client>();
   
@@ -27,7 +27,7 @@ export class ModalDeleteClientComponent implements OnInit {
       (error) => console.log(error),
       () => {
         this.isDeletting = false;
-        this.closeClientModalBtn.nativeElement.click();
+        this.closeDeleteClientModalBtn.nativeElement.click();
       }
     )
   }

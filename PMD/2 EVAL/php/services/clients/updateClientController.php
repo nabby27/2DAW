@@ -6,23 +6,26 @@ header("Allow: GET, POST, OPTIONS, PUT, DELETE");
 
 header('Content-Type: application/json');
 
-require '../../modelo.php';
+if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+    require '../../modelo.php';
+    $db = new Bd();
 
-$db = new Bd();
+    $_PUT = json_decode(file_get_contents('php://input'), FILE_USE_INCLUDE_PATH);
 
-if (isset($_POST)) {
-    $dni = $_POST['dni'];
-    $name = $_POST['name'];
-    $address = $_POST['address'];
-    $email = $_POST['email'];
-    $admin = (isset($_POST['admin']) && $_POST['admin'] === 'on') ? true : false;
+    $dni = $_GET['dni'];
+    $name = $_PUT['name'];
+    $address = $_PUT['address'];
+    $email = $_PUT['email'];
+    $admin = $_PUT['admin'];
 
     $clientModel = new Client($dni, $name, $address, $email, '', $admin);
-    $result = $clientModel->update($db->link);
-    
-    if ($result) {
-        echo json_encode('SUCCESS');
+    $clientUpdated = $clientModel->update($db->link);
+
+    if ($clientUpdated) {
+        http_response_code(201);
+        echo json_encode($clientUpdated);
     } else {
-        echo json_encode('ERROR');
+        http_response_code(400);
+        echo json_encode(['error' => ['message' => 'Failure updating client with dni = ' . $dni]]);
     }
 }

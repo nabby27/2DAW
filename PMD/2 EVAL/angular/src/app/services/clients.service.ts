@@ -14,12 +14,12 @@ export class ClientsService {
     return this.http.get<Client[]>('http://localhost/services/clients/listClientsController.php');
   }
 
-  saveClient(client: Client): Observable<object> {
-    return this.http.post<object>('http://localhost/services/clients/addClientController.php', client);
+  saveClient(client: Client): Observable<Client> {
+    return this.http.post<Client>('http://localhost/services/clients/addClientController.php', client);
   }
 
-  updateClient(client: Client): Observable<object> {
-    return this.http.put<object>('http://localhost/client/' + client.dni, client);
+  updateClient(client: Client): Observable<Client> {
+    return this.http.put<Client>('http://localhost/services/clients/updateClientController.php?dni=' + client.dni, client);
   }
 
   deleteClient(dni: string): Observable<object> {

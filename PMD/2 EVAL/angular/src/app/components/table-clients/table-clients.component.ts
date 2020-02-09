@@ -12,12 +12,13 @@ export class TableClientsComponent implements OnInit {
 
   modalType: 'ADD'|'EDIT' = 'EDIT';
   clientSelected: Client = {
-    birthday: '',
     dni: '',
-    email: '',
     name: '',
-    surname: '',
-    telephone: ''
+    address: '',
+    email: '',
+    password: '',
+    password_verify: '',
+    admin: false
   };
 
   constructor() { }
@@ -28,12 +29,13 @@ export class TableClientsComponent implements OnInit {
   openModalToAddClient() {
     this.modalType = 'ADD';
     this.clientSelected = {
-      birthday: '',
       dni: '',
-      email: '',
       name: '',
-      surname: '',
-      telephone: ''
+      address: '',
+      email: '',
+      password: '',
+      password_verify: '',
+      admin: false
     }
   }
 
@@ -41,8 +43,12 @@ export class TableClientsComponent implements OnInit {
     this.clientSelected = client;
   }
 
+  addClientOnTable(clientCreated: Client) {
+    this.clients.push(clientCreated);
+  }
+
   updateClient(clientUpdated: Client) {
-    this.clients = this.clients.filter(client => client.dni !== clientUpdated.dni);
+    this.clients = this.clients.map(client => client.dni === clientUpdated.dni ? clientUpdated : client);
   }
 
   removeClient(clientRemoved: Client) {

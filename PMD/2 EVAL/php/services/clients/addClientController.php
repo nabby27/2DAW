@@ -6,13 +6,12 @@ header("Allow: GET, POST, OPTIONS, PUT, DELETE");
 
 header('Content-Type: application/json');
 
-require '../../modelo.php';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require '../../modelo.php';
+    $db = new Bd();
 
-$db = new Bd();
-
-if (isset($_POST)) {
     $_POST = json_decode(file_get_contents('php://input'), FILE_USE_INCLUDE_PATH);
-    
+
     $dni = $_POST['dni'];
     $name = $_POST['name'];
     $address = $_POST['address'];
@@ -20,15 +19,15 @@ if (isset($_POST)) {
     $password = $_POST['password'];
     $admin = $_POST['admin'];
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-    $clientModel = new Client($dni, $name, $address, $email, $hashed_password, $admin);
-    $result = $clientModel->save($db->link);
 
-    var_dump($result);
-    if ($result) {
-        http_response_code(200);
-        echo json_encode(['success' => ['message' => 'Client with dni = ' . $dni . ' added']]);
+    $clientModel = new Client($dni, $name, $address, $email, $hashed_password, $admin);
+    $clientCreated = $clientModel->save($db->link);
+
+    if ($clientCreated) {
+        http_response_code(201);
+        echo json_encode($clientCreated);
     } else {
-        http_response_code(500);
+        http_response_code(400);
         echo json_encode(['error' => ['message' => 'Failure adding client with dni = ' . $dni]]);
     }
 }

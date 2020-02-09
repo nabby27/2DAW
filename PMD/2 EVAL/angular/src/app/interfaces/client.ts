@@ -1,8 +1,9 @@
 export interface Client {
-    name: string;
-    surname: string;
     dni: string;
+    name: string;
+    address: string;
     email: string;
-    telephone: string;
-    birthday: string;
+    password: string;
+    password_verify: string;
+    admin: boolean;
 }

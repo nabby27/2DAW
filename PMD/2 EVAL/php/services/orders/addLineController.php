@@ -1,22 +1,32 @@
 <?php
-require '../../modelo.php';
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+header("Allow: GET, POST, OPTIONS, PUT, DELETE");
 
-$db = new Bd();
+header('Content-Type: application/json');
 
-if (isset($_POST)) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require '../../modelo.php';
+    $db = new Bd();
+
+    $_POST = json_decode(file_get_contents('php://input'), FILE_USE_INCLUDE_PATH);
+
     $orderId = $_POST['orderId'];
-    $quantity = $_POST['quantity'];
     $productId = $_POST['productId'];
+    $quantity = $_POST['quantity'];
 
-    $cartModel = new Carrito($orderId, '', '', '');
-    $lineId = $cartModel->getNewLineId($db->link);
+    $lineOfOrderModel = new LineOfOrder((int) $orderId, 0, 0, 0);
+    $lineId = $lineOfOrderModel->getNewLineId($db->link);
 
-    $cartModel = new Carrito($orderId, $lineId, $productId, $quantity);
-    $result = $cartModel->saveLineOrder($db->link);
+    $lineOfOrderModel = new LineOfOrder($orderId, $lineId, $productId, $quantity);
+    $lineOfOrderCreated = $lineOfOrderModel->saveLineOrder($db->link);
 
-    if ($result) {
-        echo json_encode($result);
+    if ($lineOfOrderCreated) {
+        http_response_code(201);
+        echo json_encode($lineOfOrderCreated);
     } else {
-        echo json_encode('ERROR');
+        http_response_code(500);
+        echo json_encode(['error' => ['message' => 'Failure adding line on orderId = ' . $orderId]]);
     }
 }

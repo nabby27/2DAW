@@ -1,19 +1,27 @@
 <?php
-require '../../modelo.php';
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+header("Allow: GET, POST, OPTIONS, PUT, DELETE");
 
-$db = new Bd();
+header('Content-Type: application/json');
 
-if (isset($_POST)) {
-    $idOrder = $_POST['id'];
+if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    require '../../modelo.php';
+    $db = new Bd();
 
-    $carritoModel = new Carrito($idOrder, '', '', '');
-    $carritoModel->removeLinesOfOrder($db->link);
-    $orderModel = new Order($idOrder, '', '');
+    $orderId = $_GET['idOrder'];
+
+    $lineOforderModel = new LineOfOrder((int) $orderId, 0, 0, (float) 0);
+    $lineOforderModel->removeLinesOfOrder($db->link);
+    $orderModel = new Order($orderId, '', '');
     $result = $orderModel->removeOrder($db->link);
     
     if ($result) {
-        echo json_encode('SUCCESS');
+        http_response_code(200);
+        echo json_encode(['success' => ['message' => 'Order with id = ' . $orderId . ' removed']]);
     } else {
-        echo json_encode('ERROR');
+        http_response_code(500);
+        echo json_encode(['error' => ['message' => 'Failure removing order with id = ' . $orderId]]);
     }
 }

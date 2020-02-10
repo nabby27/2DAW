@@ -1,20 +1,20 @@
 import { Component, OnInit, ViewChild, Input, Output, ElementRef, EventEmitter, OnChanges } from '@angular/core';
-import { Client } from 'src/app/interfaces/client';
-import { ClientsService } from 'src/app/services/clients.service';
+import { Order } from 'src/app/interfaces/order';
+import { OrdersService } from 'src/app/services/orders.service';
 
 @Component({
-  selector: 'app-modal-client',
-  templateUrl: './modal-client.component.html',
-  styleUrls: ['./modal-client.component.css']
+  selector: 'app-modal-order',
+  templateUrl: './modal-order.component.html',
+  styleUrls: ['./modal-order.component.css']
 })
-export class ModalClientComponent implements OnInit, OnChanges {
+export class ModalOrderComponent implements OnInit, OnChanges {
 
-  @ViewChild('closeClientModalBtn', {static: true}) closeClientModalBtn: ElementRef;
-  @Input() clientSelected: Client;
+  @ViewChild('closeOrderModalBtn', {static: true}) closeOrderModalBtn: ElementRef;
+  @Input() orderSelected: Order;
   @Input() modalType: 'ADD'|'EDIT';
   @Output() modalTypeChange = new EventEmitter<'ADD'|'EDIT'>();
-  @Output() clientCreated = new EventEmitter<Client>();
-  @Output() clientUpdated = new EventEmitter<Client>();
+  @Output() orderCreated = new EventEmitter<Order>();
+  @Output() orderUpdated = new EventEmitter<Order>();
   
   isSendingData: boolean = false;
   isErrorResponse: boolean = false;
@@ -22,36 +22,37 @@ export class ModalClientComponent implements OnInit, OnChanges {
   title: string = '';
   saveButtonText: string = '';
 
-  constructor(private clientsService: ClientsService) { }
+  constructor(private ordersService: OrdersService) { }
 
   ngOnInit() {
-    console.log()
+
   }
 
   ngOnChanges() {
     if (this.modalType === 'EDIT') {
-      this.title = 'Actualizar usuario';
+      this.title = 'Actualizar pedido';
       this.saveButtonText = 'Actualizar';
     }
     if (this.modalType === 'ADD') {
-      this.title = 'Añadir usuario';
+      this.title = 'Añadir pedido';
       this.saveButtonText = 'Añadir';
     }
   }
   
   closeModal() {
     setTimeout(() => {
+      this.isErrorResponse = false;
       this.modalTypeChange.emit('EDIT');
     }, 500);
   }
 
-  saveClient() {
+  saveOrder() {
     this.isSendingData = true;
     if (this.modalType === 'EDIT') {
-      this.clientsService.updateClient(this.clientSelected).subscribe(
-        (clientUpdated: Client) => {
-          this.clientUpdated.emit(clientUpdated);
-          this.closeClientModalBtn.nativeElement.click();
+      this.ordersService.updateOrder(this.orderSelected).subscribe(
+        (orderUpdated: Order) => {
+          this.orderUpdated.emit(orderUpdated);
+          this.closeOrderModalBtn.nativeElement.click();
         },
         () => {
           this.isErrorResponse= true;
@@ -63,17 +64,16 @@ export class ModalClientComponent implements OnInit, OnChanges {
       )
     }
     if (this.modalType === 'ADD') {
-      this.clientsService.saveClient(this.clientSelected).subscribe(
-        (clientCreated: Client) => {
-          this.clientCreated.emit(clientCreated);
-          this.closeClientModalBtn.nativeElement.click();
+      this.ordersService.saveOrder(this.orderSelected).subscribe(
+        (orderCreated: Order) => {
+          this.orderCreated.emit(orderCreated);
+          this.closeOrderModalBtn.nativeElement.click();
         },
         () => {
           this.isErrorResponse= true;
           this.isSendingData = false;
         },
         () => {
-          debugger
           this.isSendingData = false;
         }
       )

@@ -14,20 +14,16 @@ export class LinesOrderService {
     return this.http.get<LineOrder[]>('http://localhost/services/orders/getLinesOfOneOrderController.php?idOrder=' + orderId);
   }
 
-  getOneLineOrder(id: number): Observable<LineOrder> {
-    return of({
-      lineId: 0,
-      orderId: 0,
-      productId: 0
-    });
+  saveLineOfOrder(lineOrder: LineOrder): Observable<LineOrder> {
+    return this.http.post<LineOrder>('http://localhost/services/orders/addLineController.php', lineOrder);
+  }
+  
+  updateLineOfOrder(lineOrder: LineOrder): Observable<LineOrder> {
+    return this.http.put<LineOrder>('http://localhost/services/orders/updateLineController.php?idOrder=' + lineOrder.orderId + '&idLine=' + lineOrder.lineId, lineOrder);
   }
 
-  updateLineOrder(id: number): any {
-
-  }
-
-  deleteLineOrder(id: number): any {
-
+  deleteLineOfOrder(idOrder: number, idLine: number): Observable<object> {
+    return this.http.delete<object>('http://localhost/services/orders/removeLineOfOrderController.php?idOrder=' + idOrder + '&idLine=' + idLine);
   }
 
 }

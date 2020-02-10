@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Order } from '../interfaces/order';
 import { HttpClient } from '@angular/common/http';
 
@@ -14,20 +14,16 @@ export class OrdersService {
     return this.http.get<Order[]>('http://localhost/services/orders/listOrdersController.php');
   }
 
-  getOneOrder(id: number): Observable<Order> {
-    return of({
-      id: 0,
-      date: '27/09/1996',
-      dniClient: '53878388Z'
-    });
+  saveOrder(order: Order): Observable<Order> {
+    return this.http.post<Order>('http://localhost/services/orders/addOrderController.php', order);
   }
 
-  updateOrder(id: number): any {
-
+  updateOrder(order: Order): Observable<Order> {
+    return this.http.put<Order>('http://localhost/services/orders/updateOrderController.php?idOrder=' + order.id, order);
   }
 
-  deleteOrder(id: number): any {
-
+  deleteOrder(id: number): Observable<object> {
+    return this.http.delete<object>('http://localhost/services/orders/removeOrderController.php?idOrder=' + id);
   }
-  
+
 }

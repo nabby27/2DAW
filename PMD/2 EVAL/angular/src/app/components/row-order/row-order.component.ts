@@ -11,6 +11,8 @@ import { LineOrder } from 'src/app/interfaces/line-order';
 export class RowOrderComponent implements OnInit {
 
   @Input() order: Order;
+  @Output() orderSelected = new EventEmitter<Order>();
+
   linesOrder: LineOrder[];
   linesOrderAreOpened: boolean = false;
 
@@ -19,6 +21,7 @@ export class RowOrderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
   }
 
   toggleShowLines(orderId: number) {
@@ -32,6 +35,10 @@ export class RowOrderComponent implements OnInit {
         }
       )
     }
+  }
+
+  selectOrder(order: Order) {
+    this.orderSelected.emit(order);
   }
 
 }

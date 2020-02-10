@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { LineOrder } from 'src/app/interfaces/line-order';
 
 @Component({
@@ -9,10 +9,14 @@ import { LineOrder } from 'src/app/interfaces/line-order';
 export class RowLineOrderComponent implements OnInit {
 
   @Input() lineOrder: LineOrder
+  @Output() lineOfOrderSelected = new EventEmitter<LineOrder>();
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  selectLineOfOrder(lineOfOrder: LineOrder) {
+    this.lineOfOrderSelected.emit(lineOfOrder);
+  }
 }

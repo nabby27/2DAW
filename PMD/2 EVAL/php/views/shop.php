@@ -6,8 +6,8 @@
                 <div class="col-sm-6 col-lg-4">
                     <article class="card mx-2 my-4">
                         <div class="row">
-                            <div class="col-md-4">
-                                <img src="./img/<?php echo $product->image ?>">
+                            <div class="col-md-4 w-25">
+                                <img class="img-fluid" src="../img/<?php echo $product->image ?>">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">

@@ -10,7 +10,7 @@ if (isset($_POST['addProductToCart'])) {
     $productId = $_POST['productId'];
     $quantity = $_POST['quantity'];
 
-    $shoppingCartModel = new ShoppingCart('', $date, $dni, $tempClientId, $productId, $quantity);
+    $shoppingCartModel = new ShoppingCart(0, $date, $dni, $tempClientId, (int) $productId, (int) $quantity);
     $shoppingCartModel->addToCart($db->link);
 }
 
@@ -20,7 +20,7 @@ if (isset($_POST['updateShoppingCart'])) {
         $shoppinCartId = $_POST['shoppinCartId'][$i];
         $productId = $_POST['productId'][$i];
         
-        $shoppingCartModel = new ShoppingCart($shoppinCartId, $date, $dni, $tempClientId, $productId, $quantity);
+        $shoppingCartModel = new ShoppingCart((int) $shoppinCartId, $date, $dni, $tempClientId, (int) $productId, (int) $quantity);
         
         if ($quantity == 0) {
             $shoppingCartModel->removeItemOnShoppingCart($db->link);    
@@ -32,12 +32,12 @@ if (isset($_POST['updateShoppingCart'])) {
 
 if (isset($_GET['id'])) { //remove by icon
     $shoppinCartId = $_GET['id'];
-    $shoppingCartModel = new ShoppingCart($shoppinCartId, '', '', '', '', '');
+    $shoppingCartModel = new ShoppingCart((int) $shoppinCartId, '', '', '', 0, 0);
     $shoppingCartModel->removeItemOnShoppingCart($db->link);
     header('Location: ../../shopping-cart');
 }
 
-$soppingCartModel = new ShoppingCart('', '', $dni, $tempClientId, '', '');
+$soppingCartModel = new ShoppingCart(0, '', $dni, $tempClientId, 0, 0);
 $shoppingCartTotal = $soppingCartModel->getNumberOfItemsByClient($db->link);
 
 $products = $soppingCartModel->getProductsOnShoppingCart($db->link);

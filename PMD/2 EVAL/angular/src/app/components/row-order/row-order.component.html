@@ -1,5 +1,4 @@
-<div class="p-2 col text-center" scope="row">{{ order.id }}</div>
-<div class="p-2 col text-center">{{ order.date }}</div>
+<div class="p-2 col text-center">{{ order.date | date:'dd/MM/yyyy HH:mm:ss'}}</div>
 <div class="p-2 col text-center">{{ order.dniClient }}</div>
 <div class="p-2 col text-center">
     <button type="button" class="btn btn-light" (click)="toggleShowLines(order.id)">
@@ -7,14 +6,15 @@
     </button>
 </div>
 <div class="p-2 col text-center">
-    <button type="button" class="btn btn-light">
+    <button (click)="selectOrder(order)" type="button" class="btn btn-light" data-toggle="modal" data-target="#modalOrder">
         <i class="far fa-edit"></i>
     </button>
 </div>
 <div class="p-2 col text-center">
-    <button type="button" class="btn btn-light">
+    <button (click)="selectOrder(order)" type="button" class="btn btn-light" data-toggle="modal" data-target="#modalDeleteOrder">
         <i class="fas fa-trash"></i>
     </button>
 </div>
 
-<app-table-lines-order class="col-12" *ngIf="linesOrderAreOpened" [linesOrder]="linesOrder"></app-table-lines-order>
+<app-table-lines-order class="col-12" *ngIf="linesOrderAreOpened" [order]="order" [linesOrder]="linesOrder"></app-table-lines-order>
+<hr class="col-12"/>

@@ -1,0 +1,26 @@
+<div class="modal fade" [attr.id]="'modalDeleteLineOfOrder-' + lineOfOrderSelected?.orderId" tabindex="-1" role="dialog" aria-labelledby="lineOfOrderDeleteModalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="lineOfOrderDeleteModalTitle">¿Estás seguro que deseas eliminar la linea de pedido?</h5>
+                <button #closeDeleteLineOfOrderModalBtn type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div *ngIf="isDeletting" class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div *ngIf="!isDeletting">
+                    Id Pedido: {{ lineOfOrderSelected?.orderId }}<br>
+                    Id Linea: {{ lineOfOrderSelected?.lineId }}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-danger" (click)="deleteLineOfOrder()">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>

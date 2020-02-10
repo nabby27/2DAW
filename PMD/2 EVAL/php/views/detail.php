@@ -2,9 +2,9 @@
 
     <section class="container">
         <div class="mt-5 row text-center">
-            <img class="col-sm-6" src="./img/<?php echo $product->image ?>">
+            <img class="col-sm-6 img-fluid" src="../img/<?php echo $product->image ?>">
             <article class="card col-sm-6">
-                <div class="card-body">
+                <div class="card-body d-flex flex-column justify-content-around">
                     <h5 class="card-title text-truncate"><?php echo $product->name ?></h5>
                     <p class="card-text">Marca: <?php echo $product->brand ?></p>
                     <p class="card-text">Aún nos quedan <?php echo $product->quantity ?> unidades</p>

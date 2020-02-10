@@ -26,7 +26,7 @@ if (isset($_POST['password']) && isset($_POST['password_verify'])) {
         $result = file_get_contents($url, false, $context);
         if ($result) {
             [$dni, $tempClientId] = getDniClientAndTempClientId();
-            $soppingCartModel = new ShoppingCart('', '', $_POST['dni'], $tempClientId, '', '');
+            $soppingCartModel = new ShoppingCart(0, '', $_POST['dni'], $tempClientId, 0, 0);
             $shoppingCartTotal = $soppingCartModel->updateShoppingCartToLoggedClient($db->link);
     
             setcookie('user_name', $_POST['name'], time() + 3600);

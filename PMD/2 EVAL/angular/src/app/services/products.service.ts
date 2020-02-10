@@ -14,22 +14,16 @@ export class ProductsService {
     return this.http.get<Product[]>('http://localhost/services/products/listProductsController.php');
   }
 
-  getOneProduct(id: number): Observable<Product> {
-    return of({
-      id: 0,
-      name: 'Jordan 24',
-      description: 'Camiseta de Michale Jordan número 24 en chicago',
-      price: 22.5,
-      quantity: 10
-    });
+  saveProduct(product: Product): Observable<Product> {
+    return this.http.post<Product>('http://localhost/services/products/addProductController.php', product);
   }
 
-  updateProduct(id: number): any {
-
+  updateProduct(product: Product): Observable<Product> {
+    return this.http.put<Product>('http://localhost/services/products/updateProductController.php?id=' + product.id, product);
   }
 
-  deleteProduct(id: number): any {
-
+  deleteProduct(id: number):  Observable<object> {
+    return this.http.delete<object>('http://localhost/services/products/removeProductController.php?id=' + id);
   }
-  
+
 }

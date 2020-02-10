@@ -1,8 +1,8 @@
-<div *ngIf="!clients" class="spinner-border" role="status">
-    <span class="sr-only">Loading...</span>
-</div>
 <div class="my-3 d-flex justify-content-end">
     <button (click)="openModalToAddClient()" data-toggle="modal" data-target="#modalClient" type="button" class="btn btn-primary">Añadir cliente</button>
+</div>
+<div *ngIf="!clients" class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
 </div>
 <div *ngIf="clients">
     <div class="bg-dark text-white">

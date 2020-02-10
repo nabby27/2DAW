@@ -20,11 +20,11 @@ class Login implements \JsonSerializable {
     use JsonSerializer;
 
     private $dni;
-    private $pws;
+    private $password;
 
-    function __construct(string $dni, ?string $pws) {
+    function __construct(string $dni, ?string $password) {
         $this->dni = $dni;
-        $this->pws = $pws;
+        $this->password = $password;
     }
 
     function __get($property) {
@@ -38,8 +38,8 @@ class Login implements \JsonSerializable {
     function loginAdmin($link): ?Client {
         $queryString = "SELECT * FROM clients WHERE dni='$this->dni' AND admin=TRUE";        
         $result = $link->query($queryString);
-        if ($result) {
-            return new Client($result['dni'], $result['name'], $result['address'], $result['email'], $result['password'], $result['admin']);
+        if ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            return new Client($row['dni'], $row['name'], $row['address'], $row['email'], $row['password'], (bool) $row['admin']);
         }
         return null;
     }
@@ -65,7 +65,7 @@ class Client implements \JsonSerializable {
     private $password;
     private $admin;
 
-    function __construct($dni, $name, $address, $email, $password, $admin) {
+    function __construct(string $dni, string $name, string $address, string $email, string $password, bool $admin) {
         $this->dni = $dni;
         $this->name = $name;
         $this->address = $address;
@@ -88,7 +88,7 @@ class Client implements \JsonSerializable {
         $result = $link->query($queryString);
 
         if ($result) {
-            return new Client($this->dni, $this->name, $this->address, $this->email, $this->password, $this->admin);
+            return new Client($this->dni, $this->name, $this->address, $this->email, $this->password, (bool) $this->admin);
         }
         return null;
     }
@@ -98,7 +98,7 @@ class Client implements \JsonSerializable {
         $result = $link->query($queryString);
 
         if ($result) {
-            return new Client($this->dni, $this->name, $this->address, $this->email, $this->password, $this->admin);
+            return new Client($this->dni, $this->name, $this->address, $this->email, $this->password, (bool) $this->admin);
         }
         return null;
     }
@@ -126,7 +126,7 @@ class Client implements \JsonSerializable {
         return $clients;
     }
 
-    function getOne($link): Client {
+    function getOne($link): ?Client {
         $queryString = "SELECT * FROM clients WHERE dni='$this->dni'";
         $result = $link->query($queryString);
 
@@ -149,7 +149,7 @@ class Product implements \JsonSerializable {
     private $quantity;
     private $price;
 
-    function __construct($id, $name, $description, $image, $brand, $quantity, $price) {
+    function __construct(int $id, string $name, string $description, string $image, string $brand, int $quantity, float $price) {
         $this->id = $id;
         $this->name = $name;
         $this->description = $description;
@@ -167,29 +167,29 @@ class Product implements \JsonSerializable {
         $this->$property = $value;
     }
 
-    function save($link): bool {
-        $queryString = "INSERT INTO products (name, description, iamge, brand, quantity, price) VALUES
+    function save($link): ?Product {
+        $queryString = "INSERT INTO products (name, description, image, brand, quantity, price) VALUES
             ('$this->name', '$this->description', '$this->image', '$this->brand', $this->quantity, $this->price)";
         $result = $link->query($queryString);
 
         if ($result) {
-            return true;
+            return $this->getLastProduct($link);
         }
-        return false;
+        return null;
     }
 
-    function update($link): bool {
+    function update($link): ?Product {
         if ($this->image != '') {
-            $queryString = "UPDATE products SET name='$this->name', image='$this->image', brand='$this->brand', quantity='$this->quantity', price='$this->price' WHERE id='$this->id'";
+            $queryString = "UPDATE products SET name='$this->name', description='$this->description', image='$this->image', brand='$this->brand', quantity='$this->quantity', price='$this->price' WHERE id='$this->id'";
         } else {
-            $queryString = "UPDATE products SET name='$this->name', brand='$this->brand', quantity='$this->quantity', price='$this->price' WHERE id='$this->id'";
+            $queryString = "UPDATE products SET name='$this->name', description='$this->description', brand='$this->brand', quantity='$this->quantity', price='$this->price' WHERE id='$this->id'";
         }
         $result = $link->query($queryString);
 
         if ($result) {
-            return true;
+            return new Product((int) $this->id, $this->name, $this->description, $this->image, $this->brand, (int) $this->quantity, (float) $this->price);
         }
-        return false;
+        return null;
     }
 
     function remove($link): bool {
@@ -208,7 +208,7 @@ class Product implements \JsonSerializable {
 
         $products = [];
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $product = new Product($row['id'], $row['name'], $row['description'], $row['image'], $row['brand'], $row['quantity'], $row['price']);
+            $product = new Product((int) $row['id'], $row['name'], $row['description'], $row['image'], $row['brand'], (int) $row['quantity'], (float) $row['price']);
             array_push($products, $product);
         }
 
@@ -220,7 +220,7 @@ class Product implements \JsonSerializable {
         $result = $link->query($queryString);
 
         if ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            return new Product($row['id'], $row['name'], $row['description'], $row['image'], $row['brand'], $row['quantity'], $row['price']);
+            return new Product((int) $row['id'], $row['name'], $row['description'], $row['image'], $row['brand'], (int) $row['quantity'], (float) $row['price']);
         }
 
         return null;
@@ -231,7 +231,7 @@ class Product implements \JsonSerializable {
         $result = $link->query($queryString);
 
         if ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            return new Product($row['id'], $row['name'], $row['description'], $row['image'], $row['brand'], $row['quantity'], $row['price']);
+            return new Product((int) $row['id'], $row['name'], $row['description'], $row['image'], $row['brand'], (int) $row['quantity'], (float) $row['price']);
         }
 
         return null;
@@ -246,7 +246,7 @@ class Order implements \JsonSerializable {
     private $date;
     private $dniClient;
 
-    function __construct($id, $date, $dniClient) {
+    function __construct(int $id, $date, $dniClient) {
         $this->id = $id;
         $this->date = $date;
         $this->dniClient = $dniClient;
@@ -271,12 +271,12 @@ class Order implements \JsonSerializable {
         return null;
     }
 
-    function updateOrder($link): bool {
+    function updateOrder($link): ?Order {
         $queryString = "UPDATE orders SET dni_client='$this->dniClient' WHERE id=$this->id";
         $result = $link->query($queryString);
 
         if ($result) {
-            return true;
+            return $this->getOneOrder($link);
         }
         return false;
     }
@@ -298,7 +298,7 @@ class Order implements \JsonSerializable {
         $result = $link->query($queryString);
         $orders = [];
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $order = new Order($row['id'], $row['date'], $row['dni_client']);
+            $order = new Order((int) $row['id'], $row['date'], $row['dni_client']);
             array_push($orders, $order);
         }
 
@@ -321,7 +321,7 @@ class Order implements \JsonSerializable {
         $result = $link->query($queryString);
 
         if ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            return new Order($row['id'], $row['date'], $row['dni_client']);
+            return new Order((int) $row['id'], $row['date'], $row['dni_client']);
         }
 
         return null;
@@ -336,7 +336,7 @@ class LineOfOrder implements \JsonSerializable {
     private $productId;
     private $quantity;
 
-    function __construct($orderId, $lineId, $productId, $quantity) {
+    function __construct(int $orderId, int $lineId, int $productId, int $quantity) {
         $this->orderId = $orderId;
         $this->lineId = $lineId;
         $this->productId = $productId;
@@ -351,22 +351,25 @@ class LineOfOrder implements \JsonSerializable {
         $this->$property = $value;
     }
 
-    function updateLine($link): bool {
+    function updateLine($link): ?LineOfOrder {
         $queryString = "UPDATE orders_lines SET quantity=$this->quantity, product_id=$this->productId WHERE order_id=$this->orderId AND line_id=$this->lineId";
         $result = $link->query($queryString);
 
-        return $result;
+        if ($result) {
+            return new LineOfOrder((int) $this->orderId, (int) $this->lineId, (int) $this->productId, (int) $this->quantity);
+        }
+        return null;
     }
 
-    function saveLineOrder($link): bool {
+    function saveLineOrder($link): ?LineOfOrder {
         $queryString = "INSERT INTO orders_lines (line_id, quantity, order_id, product_id) VALUES
-            ('$this->lineId', '$this->quantity', '$this->orderId', '$this->productId')";
+            ($this->lineId, $this->quantity, $this->orderId, $this->productId)";
         $result = $link->query($queryString);
 
         if ($result) {
-            return true;
+            return new LineOfOrder((int) $this->orderId, (int) $this->lineId, (int) $this->productId, (int) $this->quantity);
         }
-        return false;
+        return null;
     }
 
     function getNewLineId($link): int {
@@ -374,19 +377,19 @@ class LineOfOrder implements \JsonSerializable {
         $result = $link->query($queryString);
         $maxLineId = $result->fetch(PDO::FETCH_ASSOC)['max(line_id)'];
 
-        if ($maxLineId) {
-            return $maxLineId + 1;
+        if ($maxLineId != null) {
+            return intval($maxLineId, 10) + 1;
         }
         
         return 0;
     }
 
-    function getOneLine($link): LineOfOrder {
+    function getOneLine($link): ?LineOfOrder {
         $queryString = "SELECT * FROM orders_lines WHERE order_id=$this->orderId AND line_id=$this->lineId";
         $result = $link->query($queryString);
 
         if ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            return new LineOfOrder($row['order_id'], $row['line_id'], $row['product_id'], $row['quantity']);
+            return new LineOfOrder((int) $row['order_id'], (int) $row['line_id'], (int) $row['product_id'], (int) $row['quantity']);
         }
 
         return null;
@@ -398,7 +401,7 @@ class LineOfOrder implements \JsonSerializable {
 
         $lines = [];
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $line = new LineOfOrder($this->orderId, $row['line_id'], $row['product_id'], $row['quantity']);
+            $line = new LineOfOrder((int) $this->orderId, (int) $row['line_id'], (int) $row['product_id'], (int) $row['quantity']);
             array_push($lines, $line);
         }
 
@@ -437,7 +440,7 @@ class ShoppingCart implements \JsonSerializable {
     private $productId;
     private $quantity;
 
-    function __construct($id, $date, $dniClient, $tempClientId, $productId, $quantity) {
+    function __construct(int $id, $date, $dniClient, $tempClientId, int $productId, int $quantity) {
         $this->id = $id;
         $this->date = $date;
         $this->dniClient = $dniClient;
@@ -491,7 +494,7 @@ class ShoppingCart implements \JsonSerializable {
             $queryString = "SELECT * FROM products WHERE id = " . $row['product_id'];
             $resultProduct = $link->query($queryString);
             if ($rowProduct = $resultProduct->fetch(PDO::FETCH_ASSOC)) {
-                $productOnCart = new ProductOnShoppingCart($row['id'], $rowProduct['id'], $row['quantity'], $rowProduct['brand'], $rowProduct['name'], $rowProduct['description'], $rowProduct['image'], $rowProduct['price']);
+                $productOnCart = new ProductOnShoppingCart((int) $row['id'], (int) $rowProduct['id'], (int) $row['quantity'], $rowProduct['brand'], $rowProduct['name'], $rowProduct['description'], $rowProduct['image'], (float) $rowProduct['price']);
                 array_push($productsOnCart, $productOnCart);
             }
         }
@@ -543,7 +546,7 @@ class ProductOnShoppingCart implements \JsonSerializable {
     private $productImage;
     private $productPrice;
 
-    function __construct($shoppinCartId, $productId, $quantity, $productBrand, $productName, $productDescription, $productImage, $productPrice) {
+    function __construct(int $shoppinCartId, int $productId, int $quantity, $productBrand, $productName, $productDescription, $productImage, float $productPrice) {
         $this->shoppinCartId = $shoppinCartId;
         $this->productId = $productId;
         $this->quantity = $quantity;

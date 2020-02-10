@@ -1,13 +1,17 @@
-<td class="bg-light p-2 col text-center">{{ lineOrder.lineId }}</td>
-<td class="bg-light p-2 col text-center">{{ lineOrder.orderId }}</td>
-<td class="bg-light p-2 col text-center">{{ lineOrder.productId }}</td>
-<td class="bg-light p-2 col text-center">
-    <button type="button" class="btn btn-light">
-        <i class="far fa-edit"></i>
-    </button>
-</td>
-<td class="bg-light p-2 col text-center">
-    <button type="button" class="btn btn-light">
-        <i class="fas fa-trash"></i>
-    </button>
-</td>
+<div class="row m-0">
+    <td class="bg-secondary text-white p-2 col text-center">{{ lineOrder.lineId }}</td>
+    <td class="bg-secondary text-white p-2 col text-center">{{ lineOrder.orderId }}</td>
+    <td class="bg-secondary text-white p-2 col text-center">{{ lineOrder.productId }}</td>
+    <td class="bg-secondary text-white p-2 col text-center">{{ lineOrder.quantity }}</td>
+    <div class="p-2 bg-secondary text-white col text-center">
+        <button (click)="selectLineOfOrder(lineOrder)" type="button" class="btn btn-secondary text-white" data-toggle="modal" [attr.data-target]="'#modalLineOfOrder-' + lineOrder.orderId">
+            <i class="far fa-edit"></i>
+        </button>
+    </div>
+    <div class="p-2 bg-secondary text-white col text-center">
+        <button (click)="selectLineOfOrder(lineOrder)" type="button" class="btn btn-secondary text-white" data-toggle="modal" [attr.data-target]="'#modalDeleteLineOfOrder-' + lineOrder.orderId">
+            <i class="fas fa-trash"></i>
+        </button>
+    </div>
+    <td class="bg-secondary text-white p-2 col text-center"></td>
+</div>

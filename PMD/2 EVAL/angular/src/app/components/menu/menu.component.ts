@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  name: string = '';
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    this.name = localStorage.getItem('user_name');
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['login']);
   }
 
 }

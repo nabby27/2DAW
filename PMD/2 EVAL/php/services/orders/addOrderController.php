@@ -1,21 +1,29 @@
 <?php
-require '../../modelo.php';
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+header("Allow: GET, POST, OPTIONS, PUT, DELETE");
 
-$db = new Bd();
+header('Content-Type: application/json');
 
-if (isset($_POST)) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require '../../modelo.php';
+    $db = new Bd();
 
-    $orderModel = new Order('', '', '');
-    $orderId = $orderModel->getNewOrderId($db->link);
+    $_POST = json_decode(file_get_contents('php://input'), FILE_USE_INCLUDE_PATH);
 
-    // date('Y-m-d H:i:s')
-    $orderModel = new Order($orderId, date('Y-m-d'), $_POST['dniClient']);
+    $orderId = Order::getNewOrderId($db->link);
+    $date = date('Y-m-d H:i:s');
 
-    $result = $orderModel->saveOrder($db->link);
+    $orderModel = new Order($orderId, $date, $_POST['dniClient']);
+
+    $orderCreated = $orderModel->saveOrder($db->link);
     
-    if ($result) {
-        echo json_encode($result);
+    if ($orderCreated) {
+        http_response_code(201);
+        echo json_encode($orderCreated);
     } else {
-        echo json_encode('ERROR');
+        http_response_code(400);
+        echo json_encode(['error' => ['message' => 'Failure adding order']]);
     }
 }

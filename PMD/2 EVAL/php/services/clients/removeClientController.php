@@ -6,11 +6,11 @@ header("Allow: GET, POST, OPTIONS, PUT, DELETE");
 
 header('Content-Type: application/json');
 
-require '../../modelo.php';
 
-$db = new Bd();
-
-if (isset($_GET)) {
+if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    require '../../modelo.php';
+    $db = new Bd();
+    
     $dni = $_GET['dni'];
 
     $clientModel = new Client($dni, '', '', '', '', '');
@@ -23,4 +23,5 @@ if (isset($_GET)) {
         http_response_code(500);
         echo json_encode(['error' => ['message' => 'Failure removing client with dni = ' . $dni]]);
     }
+    
 }

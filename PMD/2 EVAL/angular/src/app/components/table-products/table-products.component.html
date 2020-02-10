@@ -1,7 +1,12 @@
-<div>
+<div class="my-3 d-flex justify-content-end">
+    <button (click)="openModalToAddProduct()" data-toggle="modal" data-target="#modalProduct" type="button" class="btn btn-primary">Añadir prducto</button>
+</div>
+<div *ngIf="!products" class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+</div>
+<div *ngIf="products">
     <div class="bg-dark text-white">
         <div class="row">
-            <div class="p-2 col text-center">ID</div>
             <div class="p-2 col text-center">Nombre</div>
             <div class="p-2 col-4 text-center">Descripción</div>
             <div class="p-2 col text-center">Precio</div>
@@ -14,6 +19,9 @@
         <h5 class="col-12 text-center">No existen productos</h5>
     </div>
     <div>
-        <app-row-product class="row" *ngFor="let product of products" [product]="product"></app-row-product>
+        <app-row-product class="row" *ngFor="let product of products" [product]="product" (productSelected)="updateProductSelected($event)"></app-row-product>
     </div>
 </div>
+
+<app-modal-product [(modalType)]="modalType" [productSelected]="productSelected" (productCreated)="addProductOnTable($event)" (productUpdated)="updateProduct($event)"></app-modal-product>
+<app-modal-delete-product [productSelected]="productSelected" (productDeleted)="removeProduct($event)"></app-modal-delete-product>

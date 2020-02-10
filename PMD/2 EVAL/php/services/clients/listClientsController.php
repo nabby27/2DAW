@@ -6,15 +6,15 @@ header("Allow: GET, POST, OPTIONS, PUT, DELETE");
 
 header('Content-Type: application/json');
 
-require '../../modelo.php';
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    require '../../modelo.php';
+    $db = new Bd();
 
-$db = new Bd();
+    $clients = Client::getAll($db->link);
 
-if (isset($_GET)) {
-    $result = Client::getAll($db->link);
-
-    if ($result || $result == []) {
-        echo json_encode($result);
+    if ($clients || $clients == []) {
+        http_response_code(200);
+        echo json_encode($clients);
     } else {
         http_response_code(500);
         echo json_encode(['error' => ['message' => 'database error']]);

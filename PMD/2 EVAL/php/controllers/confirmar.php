@@ -8,19 +8,19 @@ if (!isset($_COOKIE['user_name'])) {
     header('Location: ../login');
 } else {
     [$dni, $tempClientId] = getDniClientAndTempClientId();
-    $soppingCartModel = new ShoppingCart('', '', $dni, $tempClientId, '', '');
+    $soppingCartModel = new ShoppingCart(0, '', $dni, $tempClientId, 0, 0);
     $products = $soppingCartModel->getProductsOnShoppingCart($db->link);
     
     $newId = Order::getNewOrderId($db->link);
     $date = date('Y-m-d H:i:s');
     
-    $orderModel = new Order($newId, $date, $dni);
+    $orderModel = new Order((int) $newId, $date, $dni);
     $orderSaved = $orderModel->saveOrder($db->link);
 
     $lineOfOrderId = 0;
     foreach ($products as $product) {
         $lineOfOrderId++;
-        $lineOforder = new LineOfOrder($orderSaved->id, $lineOfOrderId, $product->productId, $product->quantity);
+        $lineOforder = new LineOfOrder((int) $orderSaved->id, (int) $lineOfOrderId, (int) $product->productId, (int) $product->quantity);
         $lineOforder->saveLineOrder($db->link);
     }
     

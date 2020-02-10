@@ -1,59 +1,45 @@
 <?php
-require '../../modelo.php';
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+header("Allow: GET, POST, OPTIONS, PUT, DELETE");
 
-$db = new Bd();
-$root_path_images = '../../../img/';
+header('Content-Type: application/json');
 
-if (isset($_POST)) {
-    $id = $_POST['id'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require '../../modelo.php';
+    require '../../utils.php';
+    $db = new Bd();
+
+    $root_path_images = '../../img/';
+
+    $_POST = json_decode(file_get_contents('php://input'), FILE_USE_INCLUDE_PATH);
+
     $name = $_POST['name'];
+    $description = $_POST['description'];
+    $image = $_POST['image'];
     $brand = $_POST['brand'];
     $quantity = $_POST['quantity'];
     $price = $_POST['price'];
 
     $image_name = '';
-    if (is_uploaded_file($_FILES['photo']['tmp_name'])) {
-        createPathIfNotExist();
-        $image_name = getImageName();
-        $image_path = $root_path_images . '/' . $image_name;
-        move_uploaded_file($_FILES['photo']['tmp_name'], $image_path);
+    if (isset($_FILES['image'])) {
+        if (is_uploaded_file($_FILES['image']['tmp_name'])) {
+            createPathIfNotExist();
+            $image_name = getImageName();
+            $image_path = $root_path_images . '/' . $image_name;
+            move_uploaded_file($_FILES['image']['tmp_name'], $image_path);
+        }
     }
 
-    $productModel = new Product($id, $name, $image_name, $brand, $quantity, $price);
-    $result = $productModel->save($db->link);
-    
-    if ($result) {
-        echo json_encode($result);
+    $productModel = new Product(0, $name, $description, $image_name, $brand, (int) $quantity, (float) $price);
+    $productCreated = $productModel->save($db->link);
+
+    if ($productCreated) {
+        http_response_code(201);
+        echo json_encode($productCreated);
     } else {
-        echo json_encode('ERROR');
+        http_response_code(400);
+        echo json_encode(['error' => ['message' => 'Failure adding product']]);
     }
-}
-
-
-function createPathIfNotExist() {
-    global $root_path_images;
-
-    if (!is_dir($root_path_images)) {
-        mkdir($root_path_images);
-    }
-}
-
-function getImageName() {
-    global $root_path_images;
-
-    $image_name = $_FILES['photo']['name'];
-    if (file_exists($root_path_images . '/' . $image_name)) {
-        $image_name = generateUniqName();
-    }
-
-    return $image_name;
-}
-
-function generateUniqName() {
-    $id = uniqid();
-    $nameAsArray = explode('.', $_FILES['photo']['name']);
-    $extension = array_pop($nameAsArray);
-    $name = join('.', $nameAsArray);
-
-    return $name . '-' . $id . '.' . $extension;
 }

@@ -47,6 +47,9 @@
                             <label class="form-check-label" for="admin_input">Admin</label>
                         </div>
                     </div>
+                    <div *ngIf="errorPasswordMatch" class="col-12 text-center alert alert-danger">
+                        <span>Las contraseñas no coinciden</span>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

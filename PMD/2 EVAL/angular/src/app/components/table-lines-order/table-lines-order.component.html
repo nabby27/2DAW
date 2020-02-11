@@ -10,17 +10,15 @@
             <div class="p-2 col text-center"></div>
         </div>
     </div>
-    <div *ngIf="linesOrder?.length < 1" class="row mt-3">
-        <h5 class="col-12 text-center">No existen lineas</h5>
-    </div>
     <div class="bg-secondary d-flex justify-content-end">
-        <button (click)="openModalToAddLineOfOrder()" data-toggle="modal" [attr.data-target]="'#modalLineOfOrder-' + linesOrder[0].orderId" type="button" class="btn btn-primary">Añadir linea</button>
+        <button (click)="openModalToAddLineOfOrder()" data-toggle="modal" [attr.data-target]="'#modalLineOfOrder-' + linesOrder[0]?.orderId" type="button" class="btn btn-primary">Añadir linea</button>
     </div>
+    <h5 *ngIf="linesOrder?.length < 1" class="py-3 bg-secondary text-center">No existen lineas</h5>
     <div>
-        <app-row-line-order *ngFor="let lineOrder of linesOrder" [lineOrder]="lineOrder" (lineOfOrderSelected)="updateLineOfOrderSelected($event)"></app-row-line-order>
+        <app-row-line-order *ngFor="let lineOrder of linesOrder" [lineOrder]="lineOrder" [products]="products" (lineOfOrderSelected)="updateLineOfOrderSelected($event)"></app-row-line-order>
     </div>
     <hr>
 </div>
 
-<app-modal-line-of-order [(modalType)]="modalType" [lineOfOrderSelected]="lineOfOrderSelected" (lineOfOrderCreated)="addLineOfOrderOnTable($event)" (lineOfOrderUpdated)="updateLineOfOrder($event)"></app-modal-line-of-order>
+<app-modal-line-of-order [(modalType)]="modalType" [lineOfOrderSelected]="lineOfOrderSelected" [products]="products" (lineOfOrderCreated)="addLineOfOrderOnTable($event)" (lineOfOrderUpdated)="updateLineOfOrder($event)"></app-modal-line-of-order>
 <app-modal-delete-line-of-order [lineOfOrderSelected]="lineOfOrderSelected" (lineOfOrderDeleted)="removeLineOfOrder($event)"></app-modal-delete-line-of-order>

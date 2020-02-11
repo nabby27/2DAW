@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LineOrder } from 'src/app/interfaces/line-order';
 import { Order } from 'src/app/interfaces/order';
+import { Product } from 'src/app/interfaces/product';
 
 @Component({
   selector: 'app-table-lines-order',
@@ -10,6 +11,7 @@ import { Order } from 'src/app/interfaces/order';
 export class TableLinesOrderComponent implements OnInit {
 
   @Input() order: Order;
+  @Input() products: Product[];
   @Input() linesOrder: LineOrder[];
 
   modalType: 'ADD'|'EDIT' = 'EDIT';

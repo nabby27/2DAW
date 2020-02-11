@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Input, Output, ElementRef, EventEmitter, OnChanges } from '@angular/core';
 import { LineOrder } from 'src/app/interfaces/line-order';
 import { LinesOrderService } from 'src/app/services/lines-order.service';
+import { Product } from 'src/app/interfaces/product';
 
 @Component({
   selector: 'app-modal-line-of-order',
@@ -11,6 +12,7 @@ export class ModalLineOfOrderComponent implements OnInit, OnChanges {
 
   @ViewChild('closeLineOfOrderModalBtn', {static: true}) closeLineOfOrderModalBtn: ElementRef;
   @Input() lineOfOrderSelected: LineOrder;
+  @Input() products: Product[];
   @Input() modalType: 'ADD'|'EDIT';
   @Output() modalTypeChange = new EventEmitter<'ADD'|'EDIT'>();
   @Output() lineOfOrderCreated = new EventEmitter<LineOrder>();
@@ -22,7 +24,9 @@ export class ModalLineOfOrderComponent implements OnInit, OnChanges {
   title: string = '';
   saveButtonText: string = '';
 
-  constructor(private lineOfOrdersService: LinesOrderService) { }
+  constructor(
+    private lineOfOrdersService: LinesOrderService,
+  ) { }
 
   ngOnInit() {
 

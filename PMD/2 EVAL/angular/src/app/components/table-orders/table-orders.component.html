@@ -7,6 +7,7 @@
 <div *ngIf="orders">
     <div class="bg-dark text-white">
         <div class="row">
+            <div class="p-2 col text-center">ID</div>
             <div class="p-2 col text-center">Fecha</div>
             <div class="p-2 col text-center">Cliente</div>
             <div class="p-2 col text-center">Ver productos</div>
@@ -18,9 +19,9 @@
         <h5 class="col-12 text-center">No existen pedidos</h5>
     </div>
     <div>
-        <app-row-order class="row" *ngFor="let order of orders" [order]="order" (seeLinesOrder)="linesOrder" (orderSelected)="updateOrderSelected($event)"></app-row-order>
+        <app-row-order class="row" *ngFor="let order of orders" [order]="order" [clients]="clients" [products]="products" (seeLinesOrder)="linesOrder" (orderSelected)="updateOrderSelected($event)"></app-row-order>
     </div>
 </div>
 
-<app-modal-order [(modalType)]="modalType" [orderSelected]="orderSelected" (orderCreated)="addOrderOnTable($event)" (orderUpdated)="updateOrder($event)"></app-modal-order>
+<app-modal-order [(modalType)]="modalType" [orderSelected]="orderSelected" [clients]="clients" (orderCreated)="addOrderOnTable($event)" (orderUpdated)="updateOrder($event)"></app-modal-order>
 <app-modal-delete-order [orderSelected]="orderSelected" (orderDeleted)="removeOrder($event)"></app-modal-delete-order>

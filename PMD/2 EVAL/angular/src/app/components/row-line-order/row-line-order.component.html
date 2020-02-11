@@ -1,8 +1,12 @@
 <div class="row m-0">
-    <td class="bg-secondary text-white p-2 col text-center">{{ lineOrder.lineId }}</td>
-    <td class="bg-secondary text-white p-2 col text-center">{{ lineOrder.orderId }}</td>
-    <td class="bg-secondary text-white p-2 col text-center">{{ lineOrder.productId }}</td>
-    <td class="bg-secondary text-white p-2 col text-center">{{ lineOrder.quantity }}</td>
+    <div class="bg-secondary text-white p-2 col text-center">{{ lineOrder.lineId }}</div>
+    <div class="bg-secondary text-white p-2 col text-center">{{ lineOrder.orderId }}</div>
+    <span *ngIf="products">
+        <div class="bg-secondary text-white p-2 col text-center h-100">
+            {{ getProductName(lineOrder.productId) }}
+        </div>
+    </span>
+    <div class="bg-secondary text-white p-2 col text-center">{{ lineOrder.quantity }}</div>
     <div class="p-2 bg-secondary text-white col text-center">
         <button (click)="selectLineOfOrder(lineOrder)" type="button" class="btn btn-secondary text-white" data-toggle="modal" [attr.data-target]="'#modalLineOfOrder-' + lineOrder.orderId">
             <i class="far fa-edit"></i>

@@ -3,8 +3,8 @@
     <section class="container-fluid">
         <form class="m-5" action="../../shopping-cart" method="POST">
             <div class="row m-2 d-flex justify-content-around">
-                <input class="btn btn-primary" type="submit" name="updateShoppingCart" value="Actualizar">
-                <a class="btn btn-primary" href="../../confirm">Comprar</a>
+                <input class="my-2 col-12 col-sm-4 col-md-2 btn btn-primary" type="submit" name="updateShoppingCart" value="Actualizar">
+                <a class="my-2 col-12 col-sm-4 col-md-2 btn btn-primary" href="../../confirm">Comprar</a>
             </div>
             <div class="row">
                 <?php foreach ($products as $product) : ?>
@@ -12,10 +12,10 @@
                         <article class="card">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <img src="./img/<?php echo $product->image ?>">
+                                    <img class="img-fluid w-25" src="../../img/<?php echo $product->productImage ?>">
                                 </div>
                                 <div class="col-md-8">
-                                    <div class="card-body row">
+                                    <div class="card-body h-100 row d-flex align-items-center">
                                         <h5 class="card-title col"><?php echo $product->productName ?></h5>
                                         <p class="card-text col"><?php echo $product->productPrice ?> &euro;</p>
                                         <input class="form-control form-control-sm col-1" type="number" min="0" name="quantity[]" value="<?php echo $product->quantity ?>">

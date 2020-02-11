@@ -2,6 +2,10 @@
 require '../modelo.php';
 require '../utils.php';
 
+
+require_once '../assets/dompdf/autoload.inc.php';
+use Dompdf\Dompdf;
+
 $db = new Bd();
 
 if (!isset($_COOKIE['user_name'])) {
@@ -27,10 +31,16 @@ if (!isset($_COOKIE['user_name'])) {
     $soppingCartModel->deleteAllShoppingCartForClient($db->link);
     
     $html = getHtml($products);
-    
-    require '../views/resum.php';
-}
+    // require '../views/resum.php';
 
+    $htmlToPDF = getHtmlToPDF($products);
+    $dompdf = new Dompdf();
+    $dompdf->loadHtml($htmlToPDF);
+    $dompdf->render();
+    $pdf = $dompdf->output(); 
+    $dompdf->stream('resum.pdf');
+    
+}
 
 function getHtml($products) {
     $html  ='<!DOCTYPE html>';
@@ -62,7 +72,7 @@ function getHtml($products) {
     $html .=        '<section class="container-fluid">';
     $html .=            '<form class="m-5" action="../../shopping-cart" method="POST">';
     $html .=                '<div class="row m-2 d-flex justify-content-around">';
-    $html .=                    '<a class="btn btn-primary" href="../../exit">Salir</a>';
+    $html .=                    '<a class="btn btn-primary" href="?pdf=true">Crear PDF</a>';
     $html .=                '</div>';
     $html .=                '<div class="row">';
                                 foreach ($products as $product) :
@@ -70,7 +80,7 @@ function getHtml($products) {
     $html .=                            '<article class="card">';
     $html .=                                '<div class="row">';
     $html .=                                    '<div class="col-md-4">';
-    $html .=                                        '<img src="./img/' . $product->productImage . '>';
+    $html .=                                        '<img src="../img/' . $product->productImage . '>';
     $html .=                                    '</div>';
     $html .=                                    '<div class="col-md-8">';
     $html .=                                        '<div class="card-body row">';
@@ -91,6 +101,33 @@ function getHtml($products) {
     $html .=        '</section>';
     $html .=    '</body>';
     $html .='</html>';
+
+    return $html;
+}
+
+function getHtmlToPDF($products) {
+    $sum = 0;
+    $html = '<!DOCTYPE html>';
+    $html .= '<html>';
+    $html .= '<body>';
+    $html .= '<h1 style="text-align:center">T-shop</h1>';
+    $html .= '<table style="width:100%; margin-top:100px;">';
+    foreach ($products as $product) :
+        $sum += ($product->productPrice * $product->quantity);
+        $html .='<tr style="width:100%; border-bottom:5px solid black;">';
+        $html .=    '<td style="text-align:center">Cantidad: <strong>' . $product->quantity . '</strong></td>';
+        $html .=    '<td style="text-align:center">Producto: <strong>' . $product->productName . '</strong></td>';
+        $html .=    '<td style="text-align:center">Precio: <strong>' . $product->productPrice . '&euro;</strong></td>';
+        $html .='</tr>';
+    endforeach;
+    $html .='<tr style="width:100%; height:300px;">';
+    $html .=    '<td></td>';
+    $html .=    '<td></td>';
+    $html .=    '<td style="text-align:end;">Total: <strong>' . $sum . '&euro;</strong></td>';
+    $html .='</tr>';
+    $html .= '</table>';
+    $html .= '</body>';
+    $html .= '</html>';
 
     return $html;
 }

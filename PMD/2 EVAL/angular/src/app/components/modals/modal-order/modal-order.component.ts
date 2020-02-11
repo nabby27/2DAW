@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Input, Output, ElementRef, EventEmitter, OnChanges } from '@angular/core';
 import { Order } from 'src/app/interfaces/order';
 import { OrdersService } from 'src/app/services/orders.service';
+import { Client } from 'src/app/interfaces/client';
 
 @Component({
   selector: 'app-modal-order',
@@ -11,6 +12,7 @@ export class ModalOrderComponent implements OnInit, OnChanges {
 
   @ViewChild('closeOrderModalBtn', {static: true}) closeOrderModalBtn: ElementRef;
   @Input() orderSelected: Order;
+  @Input() clients: Client[];
   @Input() modalType: 'ADD'|'EDIT';
   @Output() modalTypeChange = new EventEmitter<'ADD'|'EDIT'>();
   @Output() orderCreated = new EventEmitter<Order>();
@@ -22,7 +24,9 @@ export class ModalOrderComponent implements OnInit, OnChanges {
   title: string = '';
   saveButtonText: string = '';
 
-  constructor(private ordersService: OrdersService) { }
+  constructor(
+    private ordersService: OrdersService,
+  ) { }
 
   ngOnInit() {
 
@@ -38,7 +42,7 @@ export class ModalOrderComponent implements OnInit, OnChanges {
       this.saveButtonText = 'Añadir';
     }
   }
-  
+
   closeModal() {
     setTimeout(() => {
       this.isErrorResponse = false;

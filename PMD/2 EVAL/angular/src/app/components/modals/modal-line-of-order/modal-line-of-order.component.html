@@ -1,10 +1,11 @@
-<div class="modal fade" [attr.id]="'modalLineOfOrder-' + lineOfOrderSelected.orderId" tabindex="-1" role="dialog" aria-labelledby="lineOfOrderModalTitle"
-    aria-hidden="true">
+<div class="modal fade" [attr.id]="'modalLineOfOrder-' + lineOfOrderSelected.orderId" tabindex="-1" role="dialog"
+    aria-labelledby="lineOfOrderModalTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="lineOfOrderModalTitle">{{ title }}</h5>
-                <button (click)="closeModal()" #closeLineOfOrderModalBtn type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button (click)="closeModal()" #closeLineOfOrderModalBtn type="button" class="close"
+                    data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -19,25 +20,35 @@
                 <div *ngIf="!isSendingData && !isErrorResponse" class="row">
                     <div *ngIf="modalType === 'EDIT'" class="form-group col-12 col-md-6">
                         <label for="line_input">Linea</label>
-                        <input [disabled]="modalType === 'EDIT'" class="form-control" name="line" [(ngModel)]="lineOfOrderSelected.lineId" id="line_input" type="number">
+                        <input [disabled]="modalType === 'EDIT'" class="form-control" name="line"
+                            [(ngModel)]="lineOfOrderSelected.lineId" id="line_input" type="number">
                     </div>
                     <div *ngIf="modalType === 'EDIT'" class="form-group col-12 col-md-6">
                         <label for="order_input">Pedido</label>
-                        <input [disabled]="modalType === 'EDIT'" class="form-control" name="order" [(ngModel)]="lineOfOrderSelected.orderId" id="order_input" type="number">
+                        <input [disabled]="modalType === 'EDIT'" class="form-control" name="order"
+                            [(ngModel)]="lineOfOrderSelected.orderId" id="order_input" type="number">
                     </div>
-                    <div class="form-group col-12 col-md-6">
-                        <label for="product_input">Producto</label>
-                        <input class="form-control" name="product" min="0" [(ngModel)]="lineOfOrderSelected.productId" id="product_input" type="number">
+                    <div *ngIf="products?.length > 0" class="form-group col-md-6">
+                        <label for="product_select">Producto</label>
+                        <select id="product_select" class="form-control" [(ngModel)]="lineOfOrderSelected.productId" required>
+                            <option value="">Elige un producto</option>
+                            <option *ngFor="let product of products" [value]=product.id
+                                [attr.selected]="lineOfOrderSelected.productId === product.id">{{ product.name }}
+                            </option>
+                        </select>
                     </div>
                     <div class="form-group col-12 col-md-6">
                         <label for="quantity_input">Cantidad</label>
-                        <input class="form-control" name="quantity" min="1" [(ngModel)]="lineOfOrderSelected.quantity" id="quantity_input" type="number">
+                        <input class="form-control" name="quantity" min="1" [(ngModel)]="lineOfOrderSelected.quantity"
+                            id="quantity_input" type="number">
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button (click)="closeModal()" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button *ngIf="!isErrorResponse" (click)="saveLineOfOrder()" type="button" class="btn btn-primary">{{ saveButtonText }}</button>
+                <button (click)="closeModal()" type="button" class="btn btn-secondary"
+                    data-dismiss="modal">Cerrar</button>
+                <button *ngIf="!isErrorResponse" (click)="saveLineOfOrder()" type="button"
+                    class="btn btn-primary">{{ saveButtonText }}</button>
             </div>
         </div>
     </div>

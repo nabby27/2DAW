@@ -8,4 +8,5 @@ RewriteRule ^logout$ controllers/logout.php
 RewriteRule ^shopping-cart$ controllers/ver_carrito.php
 RewriteRule ^shopping-cart/(.+)$ controllers/ver_carrito.php?id=$1
 RewriteRule ^confirm$ controllers/confirmar.php
+RewriteRule ^pdf$ controllers/pdf.php
 RewriteRule ^exit$ controllers/logout.php

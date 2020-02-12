@@ -1,6 +1,7 @@
 <?php
 require '../modelo.php';
 require '../utils.php';
+setcookie('productsToPdf', '', time()-3600, '/');
 
 $db = new Bd();
 

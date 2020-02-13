@@ -6,6 +6,7 @@ $db = new Bd();
 
 if (isset($_POST['password']) && isset($_POST['password_verify'])) {
     if ($_POST['password'] === $_POST['password_verify']) {
+        
         $url = 'http://localhost/services/clients/addClientController.php';
         $data = array(
             'dni' =>  $_POST['dni'],
@@ -24,6 +25,7 @@ if (isset($_POST['password']) && isset($_POST['password_verify'])) {
         );
         $context  = stream_context_create($options);
         $result = file_get_contents($url, false, $context);
+        
         if ($result) {
             [$dni, $tempClientId] = getDniClientAndTempClientId();
             $soppingCartModel = new ShoppingCart(0, '', $_POST['dni'], $tempClientId, 0, 0);
@@ -38,8 +40,7 @@ if (isset($_POST['password']) && isset($_POST['password_verify'])) {
     } else {
         $error = 'Las contraseñas no coinciden';
     }
+} else {
+    require '../views/sign-up.php';
 }
 
-
-
-require '../views/sign-up.php';

@@ -11,13 +11,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $db = new Bd();
 
     $_POST = json_decode(file_get_contents('php://input'), FILE_USE_INCLUDE_PATH);
+    if ($_POST === null) {
+        parse_str(file_get_contents('php://input'), $_POST);
+    }
 
     $dni = $_POST['dni'];
     $name = $_POST['name'];
     $address = $_POST['address'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $admin = $_POST['admin'];
+    $admin = isset($_POST['admin']) ? $_POST['admin'] : false;
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     $clientModel = new Client($dni, $name, $address, $email, $hashed_password, $admin);

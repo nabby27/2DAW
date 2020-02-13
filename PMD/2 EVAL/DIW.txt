@@ -1,91 +1,91 @@
-IntroducciÛn
-El proyecto de la 2™ evaluaciÛn va a consistir en completar la tienda virtual realizada durante la primera evaluaciÛn para aplicar los nuevos conceptos trabajados en esta evaluaciÛn, de manera que los ve·is aplicados en un contexto en el que entran en juego varias tecnologÌas del lado cliente y servidor. De nuevo, aunque se trabajar·n los contenidos de los diferentes mÛdulos de forma simult·nea,  en cada mÛdulo sÛlo se evaluar·n las realizaciones asociadas a sus contenidos.
+Introducci√≥n
+El proyecto de la 2¬™ evaluaci√≥n va a consistir en completar la tienda virtual realizada durante la primera evaluaci√≥n para aplicar los nuevos conceptos trabajados en esta evaluaci√≥n, de manera que los ve√°is aplicados en un contexto en el que entran en juego varias tecnolog√≠as del lado cliente y servidor. De nuevo, aunque se trabajar√°n los contenidos de los diferentes m√≥dulos de forma simult√°nea,  en cada m√≥dulo s√≥lo se evaluar√°n las realizaciones asociadas a sus contenidos.
 
 
 
-DescripciÛn de la aplicaciÛn
-La aplicaciÛn que se va a desarrollar esta evaluaciÛn consistir· en optimizar la tienda virtual, para hacerla completamente funcional, y optimizar su cuadro de administraciÛn de productos, clientes y pedidos.
+Descripci√≥n de la aplicaci√≥n
+La aplicaci√≥n que se va a desarrollar esta evaluaci√≥n consistir√° en optimizar la tienda virtual, para hacerla completamente funcional, y optimizar su cuadro de administraci√≥n de productos, clientes y pedidos.
 
-Para el proyecto, es imprescindible continuar con la tem·tica de tienda de la primera evaluaciÛn, si bien, se podr·n hacer modificaciones en el diseÒo de la tienda respecto a la que se presentÛ entonces.
+Para el proyecto, es imprescindible continuar con la tem√°tica de tienda de la primera evaluaci√≥n, si bien, se podr√°n hacer modificaciones en el dise√±o de la tienda respecto a la que se present√≥ entonces.
 
 
 
 Objetivos
-Los objetivos para esta parte de la pr·ctica son los siguientes:
+Los objetivos para esta parte de la pr√°ctica son los siguientes:
 
-Aplicar de los conceptos trabajados en clase a un caso pr·ctico
-Utilizar un framework para diseÒar una aplicaciÛn web
-Utilizar guÌas de estilo para definir los estilos de una aplicaciÛn web
-Utilizar esquemas para planificar el diseÒo y navegaciÛn de una aplicaciÛn web
+Aplicar de los conceptos trabajados en clase a un caso pr√°ctico
+Utilizar un framework para dise√±ar una aplicaci√≥n web
+Utilizar gu√≠as de estilo para definir los estilos de una aplicaci√≥n web
+Utilizar esquemas para planificar el dise√±o y navegaci√≥n de una aplicaci√≥n web
 
-DescripciÛn de la pr·ctica
-Imagina que, en una fase del desarrollo del proyecto, tras probar el prototipo del producto (el proyecto de la 1™ EvaluaciÛn), se plantean nuevos requisitos o modificaciones a los existentes.
+Descripci√≥n de la pr√°ctica
+Imagina que, en una fase del desarrollo del proyecto, tras probar el prototipo del producto (el proyecto de la 1¬™ Evaluaci√≥n), se plantean nuevos requisitos o modificaciones a los existentes.
 
-Estas nuevos requisitos se definen a continuaciÛn. 
+Estas nuevos requisitos se definen a continuaci√≥n. 
 
 Lee detenidamente los siguientes puntos y, en caso de duda, pregunta al profesor:
 
 
 
-1. Mejora del cuadro de administraciÛn
-Se ha decidido que el cuadro de administraciÛn y toda su funcionalidad (login administrador y CRUD de todas las tablas) no es suficientemente robusto, y se ha optado por reimplementarlo usando el framework AngularJS y los estilos predefinidos de bootstrap.
+1. Mejora del cuadro de administraci√≥n
+Se ha decidido que el cuadro de administraci√≥n y toda su funcionalidad (login administrador y CRUD de todas las tablas) no es suficientemente robusto, y se ha optado por reimplementarlo usando el framework AngularJS y los estilos predefinidos de bootstrap.
 
 
-2. DiseÒo de la tienda
-Un estudio de mercado ha determinado que un porcentaje muy elevado de los usuarios de la tienda utilizar·n un smartphone para acceder a ella, por lo que en el diseÒo se va a centrar en la visualizaciÛn para dispositivos mÛviles.
-Ser· un diseÒo responsivo, de forma que sea compatible tambiÈn con dispositivos de escritorio, reajust·ndose los contenidos a esa visualizaciÛn.
-Como en el anterior diseÒo, el carrito con el n˙mero de productos estar· siempre visible (menos en el proceso de checkout).
-Elaborar un wireframe comentado para smartphone (puedas hacerlo con cacoo, con LO Draw o con el programa que tu quieras). Se deben incluir flechas entre las pantallas para expresar la navegaciÛn.
-Para cada pantalla del wireframe anterior, incluir una pantalla adicional sobre como quedar· en la versiÛn desktop (no hace falta que incluyas flechas para conectar esas pantallas).
+2. Dise√±o de la tienda
+Un estudio de mercado ha determinado que un porcentaje muy elevado de los usuarios de la tienda utilizar√°n un smartphone para acceder a ella, por lo que en el dise√±o se va a centrar en la visualizaci√≥n para dispositivos m√≥viles.
+Ser√° un dise√±o responsivo, de forma que sea compatible tambi√©n con dispositivos de escritorio, reajust√°ndose los contenidos a esa visualizaci√≥n.
+Como en el anterior dise√±o, el carrito con el n√∫mero de productos estar√° siempre visible (menos en el proceso de checkout).
+Elaborar un wireframe comentado para smartphone (puedas hacerlo con cacoo, con LO Draw o con el programa que tu quieras). Se deben incluir flechas entre las pantallas para expresar la navegaci√≥n.
+Para cada pantalla del wireframe anterior, incluir una pantalla adicional sobre como quedar√° en la versi√≥n desktop (no hace falta que incluyas flechas para conectar esas pantallas).
 Se puede hacer la tienda con bootstrap, aunque no es obligatorio.
 
 
-3. GuÌa de estilo
-Para garantizar una correcto mantenimiento del cÛdigo , se elaborar· una guÌa de estilos en un documento HTML, indicando con ejemplos los diferentes estilos empleados en la tienda (colores de fondo, colores de texto, botones, tamaÒos de  encabezamientos y tipografÌa, im·genes, ...). Dicho documento ser· accesible desde una URL del servidor de la web.
-Puedes basarte en el formato generado por Stylify me (pero lo has de hacer t˙)
+3. Gu√≠a de estilo
+Para garantizar una correcto mantenimiento del c√≥digo , se elaborar√° una gu√≠a de estilos en un documento HTML, indicando con ejemplos los diferentes estilos empleados en la tienda (colores de fondo, colores de texto, botones, tama√±os de  encabezamientos y tipograf√≠a, im√°genes, ...). Dicho documento ser√° accesible desde una URL del servidor de la web.
+Puedes basarte en el formato generado por Stylify me (pero lo has de hacer t√∫)
 
 
 4. Factura
-DiseÒa una p·gina de factura en HTML que se podr· descargar una vez finalizado el proceso de compra (usar una libreria de generaciÛn de PDF desde el PHP).
+Dise√±a una p√°gina de factura en HTML que se podr√° descargar una vez finalizado el proceso de compra (usar una libreria de generaci√≥n de PDF desde el PHP).
 
 
-5. AÒadir imagen corporativa
-Se ha de diseÒar un logotipo vectorial que se emplear· en el encabezado de p·gina, en la factura y en el favicon.
+5. A√±adir imagen corporativa
+Se ha de dise√±ar un logotipo vectorial que se emplear√° en el encabezado de p√°gina, en la factura y en el favicon.
 
 
-6. DiseÒo de banners
-Para el lanzamiento de la tienda, se diseÒar·n unos banners de promociones que se mostrar·n en zonas de la p·gina principal (indicar en el wireframe).
-Habr· un juego de banners de baja resoluciÛn para la versiÛn mÛvil y otro, con los mismos banners, pero con m·s resoluciÛn para la versiÛn de escritorio.
+6. Dise√±o de banners
+Para el lanzamiento de la tienda, se dise√±ar√°n unos banners de promociones que se mostrar√°n en zonas de la p√°gina principal (indicar en el wireframe).
+Habr√° un juego de banners de baja resoluci√≥n para la versi√≥n m√≥vil y otro, con los mismos banners, pero con m√°s resoluci√≥n para la versi√≥n de escritorio.
 
 
-7. Incluir vÌdeo
-Se ha decidido incorporar un banner grande con vÌdeo en la p·gina de inicio sÛlo en la versiÛn desktop. Ser· un vÌdeo relacionado con la tem·tica de la web, editado para evitar contenidos no visuales como texto y que sea coherente con el diseÒo de la web. No tendr· controles, ni sonido. Incluir esto tambiÈn en el wireframe.
+7. Incluir v√≠deo
+Se ha decidido incorporar un banner grande con v√≠deo en la p√°gina de inicio s√≥lo en la versi√≥n desktop. Ser√° un v√≠deo relacionado con la tem√°tica de la web, editado para evitar contenidos no visuales como texto y que sea coherente con el dise√±o de la web. No tendr√° controles, ni sonido. Incluir esto tambi√©n en el wireframe.
 
 
-8. Incluir animaciÛn
-Para dotar de un poco m·s de dinamismo a la p·gina, aÒadir alguna animaciÛn que mejore la experiencia de usuario y anime a hacer la compra. 
-Al menos, diseÒar y  aÒadir una animaciÛn con @keyframes (por ejemplo: que el carrito haga alguna animaciÛn sutil cuando se le aÒada un objecto, que los objetos de la tienda en oferta se muevan para llamar la atenciÛn, hacer un spinner o similar que aparezca en alg˙n momento de la interacciÛn de compra...)
+8. Incluir animaci√≥n
+Para dotar de un poco m√°s de dinamismo a la p√°gina, a√±adir alguna animaci√≥n que mejore la experiencia de usuario y anime a hacer la compra. 
+Al menos, dise√±ar y  a√±adir una animaci√≥n con @keyframes (por ejemplo: que el carrito haga alguna animaci√≥n sutil cuando se le a√±ada un objecto, que los objetos de la tienda en oferta se muevan para llamar la atenci√≥n, hacer un spinner o similar que aparezca en alg√∫n momento de la interacci√≥n de compra...)
 
 
-9. Limpieza y estructura de cÛdigo
-Para mejorar las tareas de mantenimiento, ser· necesario que el cÛdigo generado sea limpio, estÈ comentado y estructurado de forma coherente entre directorios.
-Mucho cuidado con las may˙sculas
+9. Limpieza y estructura de c√≥digo
+Para mejorar las tareas de mantenimiento, ser√° necesario que el c√≥digo generado sea limpio, est√© comentado y estructurado de forma coherente entre directorios.
+Mucho cuidado con las may√∫sculas
 
 
 10. Experiencia de usuario de la tienda
-El objetivo del proyecto es la creaciÛn de una aplicaciÛn web profesional, por lo que se tendr· en cuenta en la correcciÛn el detalle y el cuidado en el acabado, el seguimiento de principios de usabilidad generales y que el resultado proporcione una experiencia de usuario satisfactoria.
-Los estilos sÌ pueden ser diferentes entre la parte de cuadro de administraciÛn y la tienda.
+El objetivo del proyecto es la creaci√≥n de una aplicaci√≥n web profesional, por lo que se tendr√° en cuenta en la correcci√≥n el detalle y el cuidado en el acabado, el seguimiento de principios de usabilidad generales y que el resultado proporcione una experiencia de usuario satisfactoria.
+Los estilos pueden ser diferentes entre la parte de cuadro de administraci√≥n y la tienda.
 
 
-IMPORTANTE: En caso de no implementar la funcionalidad JS o PHP de alguna de las partes, se tendr· que desarrollar un mockup en HTML + CSS que simule como quedarÌa, para que se eval˙e esa parte en DIW.
+IMPORTANTE: En caso de no implementar la funcionalidad JS o PHP de alguna de las partes, se tendr√° que desarrollar un mockup en HTML + CSS que simule como quedar√≠a, para que se eval√∫e esa parte en DIW.
 
 
 
 Entrega
-Subir un documento con un enlace a GitHub en el que estÈ albergado el proyecto e instrucciones sobre cÛmo acceder a las diferentes secciones, asÌ como usuarios y passwords. AÒadir al usuario cmillanb como colaborador del proyecto. 
+Subir un documento con un enlace a GitHub en el que est√° albergado el proyecto e instrucciones sobre c√°mo acceder a las diferentes secciones, as√≠ como usuarios y passwords. A√±adir al usuario cmillanb como colaborador del proyecto. 
 
-IMPORTANTE: Incluid un archivo SQL con el volcado de la base de datos para su importaciÛn.
+IMPORTANTE: Incluid un archivo SQL con el volcado de la base de datos para su importaci√≥n.
 
-Incluir tambiÈn un documento con los wireframes.
+Incluir tambi√©n un documento con los wireframes.
 
-La entrega se har· el 14 de febrero. Los proyectos finalizados se presentar·n en clase entre el dÌa 14 y el 17 de febrero.
+La entrega se har√° el 14 de febrero. Los proyectos finalizados se presentar√°n en clase entre el d√≠a 14 y el 17 de febrero.

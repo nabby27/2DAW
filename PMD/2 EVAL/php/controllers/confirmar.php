@@ -7,11 +7,17 @@ $db = new Bd();
 if (!isset($_COOKIE['user_name'])) {
     header('Location: ../login');
 } else {
+    [$asiaTime, $asiaHour] = getAsiaHour();
+    ((int) $asiaHour < 20) ? $sendToday = true : $sendToday = false;
+
     [$dni, $tempClientId] = getDniClientAndTempClientId();
     $products = saveOrder($db, $dni, $tempClientId);
     
+    $clientModel = new Client($dni, '', '', '', '', false);
+    $client = $clientModel->getOne($db->link);
+
     setcookie('productsToPdf', json_encode($products), time()+3600);
-    $html = getHtml($products);
+    $html = getHtml($client, $products, $asiaTime, $sendToday);
     require '../views/resum.php';
 }
 
@@ -31,13 +37,31 @@ function saveOrder($db, $dni, $tempClientId) {
         $lineOforder = new LineOfOrder((int) $orderSaved->id, (int) $lineOfOrderId, (int) $product->productId, (int) $product->quantity);
         $lineOforder->saveLineOrder($db->link);
     }
-    
+
     $soppingCartModel->deleteAllShoppingCartForClient($db->link);
     
     return $products;
 }
 
-function getHtml($products) {
+function getAsiaHour() {
+    $url = 'http://worldtimeapi.org/api/timezone/Asia/Singapore';
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/json\r\n",
+            'method'  => 'GET',
+        )
+    );
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+    if ($result) {
+        $dateResponse = date_create(json_decode($result)->datetime);
+        $time = date_format($dateResponse, 'H:i:s');
+        $hour = date_format($dateResponse, 'H');
+        return [$time, $hour];
+    }
+}
+
+function getHtml($client, $products, $asiaTime, $sendToday) {
     $sum = 0;
     $html  ='<!DOCTYPE html>';
     $html .='<html lang="en">';
@@ -67,6 +91,8 @@ function getHtml($products) {
 
     $html .=        '<section class="container">';
     $html .=            '<h1 class="text-center">Compra realizada correctamente</h1>';
+    $html .=            '<p class="text-center">En Singapore son las ' . $asiaTime . '</p>';
+    $html .=            '<p class="text-center">Se enviará el pedido ' . (($sendToday) ? 'hoy': 'mañana') . ' a la dirección: ' . $client->address . '</p>';
     $html .=            '<div class="row m-2 d-flex justify-content-around">';
     $html .=                '<a class="btn btn-primary" href="../pdf">Crear PDF</a>';
     $html .=                '<a class="btn btn-primary" href="../logout">Salir</a>';

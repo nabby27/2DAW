@@ -17,10 +17,75 @@
 
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> -->
+    <style>
+        .btn {
+            transition: all 0.5s;
+        }
+
+        .btn: {
+            transition: all 0.5s;
+        }
+
+        .btn-primary {
+            background-color: #1D4289 !important;
+            border-color: transparent !important;
+            box-shadow: none  !important;
+        }
+
+        .btn-secondary {
+            background-color: #C80F2E !important;
+            border-color: transparent !important;
+            box-shadow: none  !important;
+        }
+
+        .btn-info {
+            background-color: #B542E2 !important;
+            border-color: transparent !important;
+            box-shadow: none  !important;
+        }
+
+        .btn-dark {
+            background-color: #303030 !important;
+            border-color: transparent !important;
+            box-shadow: none  !important;
+        }
+
+        .btn-light {
+            background-color: #FCFCFC !important;
+            border-color: #000 !important;
+            box-shadow: none  !important;
+        }
+
+        .card-container--sm {
+            width: 10%;
+        }
+
+        .card-container--lg {
+            width: 40%;
+        }
+
+        ._a_buzz {
+            animation: buzz 0.1s linear infinite alternate;
+        }
+
+        ._a_in-out {
+            animation: in-out 0.5s linear infinite alternate;
+        }
+
+        @keyframes buzz {
+            from { transform: rotate(-10deg); }
+            to { transform: rotate(10deg); }
+        }
+
+        @keyframes in-out {
+            from { transform: scale(1.2); }
+            to { transform: scale(0.8); }
+        }
+    </style>
 </head>
 
 <body>
-    <header class="header">
+    <header class="header sticky-top">
         <nav class="navbar navbar-light bg-light">
             <a class="navbar-brand" href="../../shop">
                 <img src="../img/logo_nba.ico" width="30" height="30" class="d-inline-block align-top" alt="">

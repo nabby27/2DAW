@@ -1,0 +1,92 @@
+.circle-color {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.circle-color--primary {
+    background-color: #1D4289;
+}
+
+.circle-color--secundary {
+    background-color: #C80F2E;
+}
+
+.circle-color--accent {
+    background-color: #B542E2
+}
+
+
+.circle-color--black {
+    background-color: #303030;
+}
+
+.circle-color--white {
+    background-color: #FCFCFC;
+}
+
+.cite {
+    border-left: 5px solid darkgray;
+    padding-left: 10px;
+}
+
+.text-accent {
+    font-style: italic;
+    color: rgb(204, 135, 32);
+}
+
+.btn-primary {
+    background-color: #1D4289 !important;
+    border-color: transparent !important;
+    box-shadow: none  !important;
+}
+
+.btn-secondary {
+    background-color: #C80F2E !important;
+    border-color: transparent !important;
+    box-shadow: none  !important;
+}
+
+.btn-info {
+    background-color: #B542E2 !important;
+    border-color: transparent !important;
+    box-shadow: none  !important;
+}
+
+.btn-dark {
+    background-color: #303030 !important;
+    border-color: transparent !important;
+    box-shadow: none  !important;
+}
+
+.btn-light {
+    background-color: #FCFCFC !important;
+    border-color: #000 !important;
+    box-shadow: none  !important;
+}
+
+.card-container--sm {
+    width: 10%;
+}
+
+.card-container--lg {
+    width: 40%;
+}
+
+._a_buzz {
+    animation: buzz 0.1s linear infinite alternate;
+}
+
+._a_in-out {
+    animation: in-out 0.5s linear infinite alternate;
+}
+
+@keyframes buzz {
+    from { transform: rotate(-10deg); }
+    to { transform: rotate(10deg); }
+}
+
+@keyframes in-out {
+    from { transform: scale(1.2); }
+    to { transform: scale(0.8); }
+}

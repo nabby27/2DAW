@@ -1,0 +1,24 @@
+<div *ngIf="linesOrder" calss="bg-secondary">
+    <div class="bg-secondary text-white">
+        <div class="row">
+            <div class="p-2 col text-center">ID Linea</div>
+            <div class="p-2 col text-center">ID Pedido</div>
+            <div class="p-2 col text-center">Producto</div>
+            <div class="p-2 col text-center">Cantidad</div>
+            <div class="p-2 col text-center">Editar</div>
+            <div class="p-2 col text-center">Eliminar</div>
+            <div class="p-2 col text-center"></div>
+        </div>
+    </div>
+    <div class="bg-secondary d-flex justify-content-end">
+        <button (click)="openModalToAddLineOfOrder()" data-toggle="modal" [attr.data-target]="'#modalLineOfOrder-' + order.id" type="button" class="btn btn-primary">Añadir linea</button>
+    </div>
+    <h5 *ngIf="linesOrder?.length < 1" class="py-3 bg-secondary text-center">No existen lineas</h5>
+    <div>
+        <app-row-line-order *ngFor="let lineOrder of linesOrder" [lineOrder]="lineOrder" [products]="products" (lineOfOrderSelected)="updateLineOfOrderSelected($event)"></app-row-line-order>
+    </div>
+    <hr>
+</div>
+
+<app-modal-line-of-order [(modalType)]="modalType" [lineOfOrderSelected]="lineOfOrderSelected" [products]="products" (lineOfOrderCreated)="addLineOfOrderOnTable($event)" (lineOfOrderUpdated)="updateLineOfOrder($event)"></app-modal-line-of-order>
+<app-modal-delete-line-of-order [lineOfOrderSelected]="lineOfOrderSelected" (lineOfOrderDeleted)="removeLineOfOrder($event)"></app-modal-delete-line-of-order>

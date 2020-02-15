@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 04, 2020 at 04:06 PM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Generation Time: Feb 15, 2020 at 09:57 PM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 CREATE DATABASE virtualmarket_ivan;
 USE virtualmarket_ivan;
@@ -45,10 +45,10 @@ CREATE TABLE `clients` (
 --
 
 INSERT INTO `clients` (`dni`, `name`, `address`, `email`, `password`, `admin`) VALUES
-('11111111A', 'Pepe', 'Otra la que sea 123', 'pepe@gmail.com', '$2y$10$n0I0jczZHCLzQJmXOAgCJ.BPDwBkED2cBkNzRpfUUmsORduMjRUg.', 0),
-('22222222A', 'Julia', 'Mi direccion 123', 'julia@gmail.com', '$2y$10$FT488FHEIGu5wR57X6eLxOKwoB.wmWNaVtCK.13EZEkoD1zwWMT3W', 0),
-('88888888A', 'Jose', 'Calle otra 234', 'jose@gmail.com', '$2y$10$x6qrt8rl3qhzyPWwHI2TYu.bG5CZBr7YRG4HHZxjlYnNBtvhrY2tK', 1),
-('99999999A', 'Iván', 'La que sea 123', 'ivan@gmail.com', '$2y$10$KoJJ5xCxTBH9sVAEgqV70evfhPrJZanIga8I8Z4BbGphX/Dh/C7oa', 1);
+('11111111A', 'Pepe', 'Calle Monestir de poblet 3 - 3', 'pepe@gmail.com', '$2y$10$n0I0jczZHCLzQJmXOAgCJ.BPDwBkED2cBkNzRpfUUmsORduMjRUg.', 0),
+('22222222A', 'Julia', 'Calle San valeriano 2 -3', 'julia@gmail.com', '$2y$10$FT488FHEIGu5wR57X6eLxOKwoB.wmWNaVtCK.13EZEkoD1zwWMT3W', 0),
+('88888888A', 'Jose', 'Avenida primado reig 4 - 1', 'jose@gmail.com', '$2y$10$x6qrt8rl3qhzyPWwHI2TYu.bG5CZBr7YRG4HHZxjlYnNBtvhrY2tK', 1),
+('99999999A', 'Iván2', 'Calle Álvaro de Bazán 10- 3', 'ivan@gmail.com', '$2y$10$KoJJ5xCxTBH9sVAEgqV70evfhPrJZanIga8I8Z4BbGphX/Dh/C7oa', 1);
 
 -- --------------------------------------------------------
 
@@ -59,7 +59,7 @@ INSERT INTO `clients` (`dni`, `name`, `address`, `email`, `password`, `admin`) V
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `date` datetime NOT NULL,
-  `dni_client` varchar(9) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+  `dni_client` varchar(9) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -96,11 +96,19 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `description`, `image`, `brand`, `quantity`, `price`) VALUES
-(6, 'Doncic Dallas 77', 'Doncic Dallas 77 descripción del producto', 'doncic-dallas.jpg', 'Nike', 5, 29.9),
-(7, 'Durant Oklahoma 35', 'Durant Oklahoma 35 descripción del producto', 'durant-oklahoma.jpg', 'Adidas', 3, 25.8),
-(8, 'James Lakers 23', 'James Lakers 23 descripción del producto', 'james-lakers.jpg', 'Nike', 4, 25.5),
-(9, 'Jordan Chicago 23', 'Jordan Chicago 23 descripción del producto', 'jordan-chicago.jpg', 'Nike', 10, 22.8),
-(10, 'Allen Miami 34', 'Allen Miami 34 descripción del producto', 'allen-miami.jfif', 'Adidas', 3, 24.6);
+(6, 'Doncic Dallas 77', 'camiseta de Doncic en los dallas con el número 77 y el color azul', 'doncic-dallas.jpg', 'Nike', 5, 29.9),
+(7, 'Durant Oklahoma 35', 'camiseta de Durant en Oklahoma con el núumero 35 y el color azul', 'durant-oklahoma.jpg', 'Adidas', 3, 25.8),
+(8, 'James Lakers 23', 'camiseta de Lebron James en los Lakers y el número 23', 'james-lakers.jpg', 'Nike', 4, 25.5),
+(9, 'Jordan Chicago 23', 'camiseta de Jordan en Chicago y número 23', 'jordan-chicago.jpg', 'Nike', 10, 22.8),
+(10, 'Allen Miami 34', 'camiseta de Allen en Miami con el número 34', 'allen-miami.jfif', 'Adidas', 3, 24.6),
+(11, 'Ricky Jazz 3', 'camiseta de ricky rubio en los Jazz y el número 3', 'ricky-jazz.jpg', 'Nike', 12, 28.5),
+(14, 'Curry Golden 30', 'camiseta de Stephen Curry en los Golden States y el número 30', 'curry-golden.jpg', 'Nike', 2, 40),
+(15, 'Griffin Pistons 23', 'camiseta de Griffin en los pistons y el número 23', 'griffin-pistons.jpg', 'Adidas', 5, 34),
+(16, 'Harden Rocket 13', 'camiseta de Harden en los rockets con el número 13', 'harden-rocket.jpg', 'Nike', 7, 32),
+(17, 'Irving Boston 11', 'camiseta de Irving en los bostons con el número 11', 'irving-boston.jpg', 'Nike', 21, 22),
+(18, 'Leonard Clipers 2', 'camiseta de leonard en los Clipers con el número 2', 'leonard-clipers.jpg', 'Nike', 10, 23),
+(19, 'Paul Thunder 3', 'camiseta de Paul en los Thunder con el número 3', 'paul-thunder.jpg', 'Nike', 11, 30),
+(20, 'Walker Boston 8', 'camiseta de walker en Boston con el número 8', 'walker-boston.jpg', 'Nike', 11, 26);
 
 -- --------------------------------------------------------
 
@@ -111,7 +119,7 @@ INSERT INTO `products` (`id`, `name`, `description`, `image`, `brand`, `quantity
 CREATE TABLE `shopping_cart` (
   `id` int(11) NOT NULL,
   `date` datetime DEFAULT NULL,
-  `dni_client` varchar(9) COLLATE utf8_unicode_ci NOT NULL,
+  `dni_client` varchar(9) COLLATE utf8_unicode_ci DEFAULT NULL,
   `temp_client_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `product_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL
@@ -156,25 +164,18 @@ ALTER TABLE `shopping_cart`
 --
 
 --
--- AUTO_INCREMENT for table `orders`
---
-ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-

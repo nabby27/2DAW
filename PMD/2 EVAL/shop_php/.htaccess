@@ -1,0 +1,12 @@
+RewriteEngine on
+
+RewriteRule ^shop$ controllers/principal.php
+RewriteRule ^detail/(.+)$ controllers/detalle.php?id=$1
+RewriteRule ^login$ controllers/validar.php
+RewriteRule ^sign-up$ controllers/registrar.php
+RewriteRule ^logout$ controllers/logout.php
+RewriteRule ^shopping-cart$ controllers/ver_carrito.php
+RewriteRule ^shopping-cart/(.+)$ controllers/ver_carrito.php?id=$1
+RewriteRule ^confirm$ controllers/confirmar.php
+RewriteRule ^pdf$ controllers/pdf.php
+RewriteRule ^exit$ controllers/logout.php

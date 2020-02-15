@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="../assets/img/logo_nba.ico">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/788922d05d.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+  <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+  <title>Style Guide</title>
+</head>
+
+<body class="container">
+  <h3 class="mt-5 text-center">Guía de estilo para el diseño de T-Shop</h3>
+  <p class="mt-5">El diseño de la web T-Shop esta realizado principalmente con la librería <a href="https://getbootstrap.com/">Bootstrap</a> y
+    con algunas modificaciones sobre esta libreria.</p>
+  <p>Para facilitar la comprensión de los estilos de la web se proporciona esta página donde se mostrará ejemplos de
+    diseño de cada componente y una breve explicación de donde usarlo.</p>
+  <hr>
+  <section>
+    <h3><strong>Colores</strong></h3>
+    <p>Los colores principales de la web són los oficiales de la NBA más el blanco y el negro.</p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" class="text-center">Primario</th>
+          <th scope="col" class="text-center">Secundario</th>
+          <th scope="col" class="text-center">Negro</th>
+          <th scope="col" class="text-center">Blanco</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr scope="row">
+          <td>
+            <div class="d-flex justify-content-center">
+              <span class="circle-color circle-color--primary"></span>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex justify-content-center">
+              <span class="circle-color circle-color--secundary"></span>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex justify-content-center">
+              <span class="circle-color circle-color--black"></span>
+            </div>
+          </td>
+          <td class="bg-dark">
+            <div class="d-flex justify-content-center">
+              <span class="circle-color circle-color--white"></span>
+            </div>
+          </td>
+        </tr>
+        <tr scope="row">
+          <td class="text-center">
+            #1D4289
+          </td>
+          <td class="text-center">
+            #C80F2E
+          </td>
+          <td class="text-center">
+            #303030
+          </td>
+          <td class="text-center">
+            #FCFCFC
+          </td>
+        </tr>
+        <tr scope="row">
+          <td class="text-center">
+            rgb(29,66,137)
+          </td>
+          <td class="text-center">
+            rgb(200,15,46)
+          </td>
+          <td class="text-center">
+            rgb(48,48,48)
+          </td>
+          <td class="text-center">
+            rgb(252,252,252)
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <span class="cite"><strong>NOTA:</strong> Tenemos que usar el color rojo con cuidado ya que puede dar la sensación
+      de error o advertencia</span>
+    <p class="mt-5">Al hacer un uso principal de dos colores tan fuertes y contrastados como son el rojo y el azul, para
+      destacar algo importante utilizaremos un color que junte a estos como es un morado pero para que llame la atención
+      le daremos un toque más suave que estos dos</p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" class="text-center">Extra</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr scope="row">
+          <td>
+            <div class="d-flex justify-content-center">
+              <span class="circle-color circle-color--accent"></span>
+            </div>
+          </td>
+        </tr>
+        <tr scope="row">
+          <td class="text-center">
+            #B542E2
+          </td>
+        </tr>
+        <tr scope="row">
+          <td class="text-center">
+            rgb(181,66,226)
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <hr>
+  <section>
+    <h3><strong>Botones</strong></h3>
+    <p>El diseño principal del botón es el de por defecto de bootstrap pero cambiando la modificación del color, la
+      clase de bootstrap primary estará relacionada con nuestro color principal, la clase secondary con nuestro color
+      rojo y la clase info con nuestro color morado.</p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" class="text-center">Clases</th>
+          <th scope="col" class="text-center">Ejemplo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr scope="row">
+          <td class="text-center">
+            <span class="text-accent">class="btn btn-primary"</span>
+          </td>
+          <td class="text-center">
+            <button class="btn btn-primary">Primary</button>
+          </td>
+        </tr>
+        <tr scope="row">
+          <td class="text-center">
+            <span class="text-accent">class="btn btn-secondary"</span>
+          </td>
+          <td class="text-center">
+            <button class="btn btn-secondary">Secondary</button>
+          </td>
+        </tr>
+        <tr scope="row">
+          <td class="text-center">
+            <span class="text-accent">class="btn btn-info"</span>
+          </td>
+          <td class="text-center">
+            <button class="btn btn-info">Info</button>
+          </td>
+        </tr>
+        <tr scope="row">
+          <td class="text-center">
+            <span class="text-accent">class="btn btn-dark"</span>
+          </td>
+          <td class="text-center">
+            <button class="btn btn-dark">Dark</button>
+          </td>
+        </tr>
+        <tr scope="row">
+          <td class="text-center">
+            <span class="text-accent">class="btn btn-light"</span>
+          </td>
+          <td class="text-center">
+            <button class="btn btn-light">Light</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <hr>
+  <section>
+    <h3><strong>Cartas de producto</strong></h3>
+    <p>La utilización de las cartas se hace para mostrar los diferentes productos de la tienda. Para el diseño en móbil
+      la carta se vera con la imágen arriba y los datos debajo para tener una mejor visualización. En la versión web se
+      vera la carta en formato apaisado con la imágen a la izquierda. El botón de acción siempre se situará en la parte
+      inferior a la derecha.</p>
+    <p>El borde de la carta se le pondra los color principales para destacar la marca de la tienda.</p>
+    <h5>Versión Móbile</h5>
+    <div class="px-5">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="text-center">Descripción</th>
+            <th scope="col" class="text-center">Clases</th>
+            <th scope="col" class="text-center">Ejemplo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr scope="row">
+            <td class="text-center">
+              <p class="text-justify p-5">
+                <strong>Carta de un producto en la pantalla principal:</strong>
+                Vemos que la imágen está arriba de tal forma que llame la atención lo máximo posible para incitar al cliente a comprar, el botón comprar a la derecha puesto que la mayoria de gente es diestra y es más fácil que pulsen el botón por último colocamos el prcio abajo a la izquierda porque es el último punto visual que de la tajeta que ve el usuario
+              </p>
+            </td>
+            <td class="text-center pt-5">
+              <span class="text-accent">class="card"</span>
+            </td>
+            <td class="text-center card-container--sm">
+              <div class="card">
+                <div class="row">
+                  <div class="col-12 d-flex justify-content-center align-items-center">
+                    <img class="w-75 img-fluid" src="../assets/img/doncic-dallas.jpg">
+                  </div>
+                  <div class="col-12">
+                    <div class="card-body">
+                      <h5 class="card-title text-truncate text-left">Doncic dallas 77</h5>
+                      <h6 class="card-text text-left">30 &euro;</h6>
+                      <div class="row d-flex justify-content-end pr-2">
+                        <a href="" class="btn btn-primary">Ver m&aacute;s</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h5>Versión Web</h5>
+    <div class="px-5">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="text-center">Descripción</th>
+            <th scope="col" class="text-center">Clases</th>
+            <th scope="col" class="text-center">Ejemplo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr scope="row">
+            <td class="text-center">
+              <p class="text-justify px-5">
+                <strong>Carta de un producto en la pantalla principal:</strong>
+                Vemos que la imágen está arriba de tal forma que llame la atención lo máximo posible para incitar al cliente a comprar, el botón comprar a la derecha puesto que la mayoria de gente es diestra y es más fácil que pulsen el botón por último colocamos el prcio abajo a la izquierda porque es el último punto visual que de la tajeta que ve el usuario
+              </p>
+            </td>
+            <td class="text-center pt-5">
+              <span class="text-accent">class="card"</span>
+            </td>
+            <td class="text-center card-container--lg">
+              <div class="card">
+                <div class="row">
+                  <div class="col-5 d-flex justify-content-center align-items-center">
+                    <img class="img-fluid p-3" src="../assets/img/doncic-dallas.jpg">
+                  </div>
+                  <div class="col-7">
+                    <div class="card-body">
+                      <h5 class="card-title text-truncate text-left">Doncic dallas 77</h5>
+                      <h6 class="card-text text-left">30 &euro;</h6>
+                      <div class="row d-flex justify-content-end pr-2">
+                        <a href="" class="btn btn-primary">Ver m&aacute;s</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section>
+    <h3><strong>Iconos</strong></h3>
+    <p>Los iconos pertenecen a <a href="https://fontawesome.com/">Fontawesome</a>.</p>
+  </section>
+  <section>
+    <h3><strong>Animaciones</strong></h3>
+    <p>Las animaciones son hechas de forma manual y vinculadas a una clase en concreto. Cada animación comienza dependiendo del evento que haga que salte, la gran mayoria comienzan al hacer <em>over</em> en el elemento pero hay otras animaciónes que sucenden al realizar alúna acción.</p>
+    <p>Para distinguir una animación el nombre de la clase en la que se asocia viene con el prefijo <strong>_a_</strong> justo antes del nombre de la animación</p>
+    <p>Aquí recopilamos algúnas animaciones realizadas:</p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" class="text-center">Clases</th>
+          <th scope="col" class="text-center">Descripción</th>
+          <th scope="col" class="text-center">Ejemplo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr scope="row">
+          <td class="text-center">
+            <span class="text-accent">class="_a_buzz"</span> 
+          </td>
+          <td class="text-center">
+            El elemento hace un zumbido de lado a lado
+          </td>
+          <td class="text-center">
+            <i class="fas fa-shopping-cart fa-2x _a_buzz"></i>
+          </td>
+        </tr>
+        <tr scope="row">
+          <td class="text-center">
+            <span class="text-accent">class="_a_in-out"</span> 
+          </td>
+          <td class="text-center">
+            El elemento hace un zoom de más a menos
+          </td>
+          <td class="text-center">
+            <i class="fas fa-shopping-cart fa-2x _a_in-out"></i>
+          </td>
+        </tr>
+        <tr scope="row">
+          <td class="text-center">
+            <span class="text-accent">class="_a_rotate"</span> 
+          </td>
+          <td class="text-center">
+            El elemento da un giro completo
+          </td>
+          <td class="text-center">
+            <i class="fas fa-shopping-cart fa-2x _a_rotate"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</body>
+
+</html>

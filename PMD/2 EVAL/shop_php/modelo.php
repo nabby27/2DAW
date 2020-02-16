@@ -130,7 +130,7 @@ class Client implements \JsonSerializable {
             $result->bindValue(':name', $this->name);
             $result->bindValue(':address', $this->address);
             $result->bindValue(':email', $this->email);
-            $result->bindValue(':admin', $this->admin, PDO::PARAM_BOOL);
+            $result->bindValue(':admin', (int) $this->admin);
             $result->execute();
         } catch (Exception $e) {
             return null;
@@ -231,8 +231,8 @@ class Product implements \JsonSerializable {
             $result->bindValue(':description', $this->description);
             $result->bindValue(':image', $this->image);
             $result->bindValue(':brand', $this->brand);
-            $result->bindValue(':quantity', $this->quantity, PDO::PARAM_INT);
-            $result->bindValue(':price', $this->price, PDO::PARAM_INT);
+            $result->bindValue(':quantity', $this->quantity);
+            $result->bindValue(':price', $this->price);
             $result->execute();
         } catch (PDOException $e) {
             return null;

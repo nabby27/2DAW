@@ -1,21 +1,21 @@
 <div class="row m-0">
-    <div class="bg-secondary text-white p-2 col text-center">{{ lineOrder.lineId }}</div>
-    <div class="bg-secondary text-white p-2 col text-center">{{ lineOrder.orderId }}</div>
-    <span *ngIf="products">
-        <div class="bg-secondary text-white p-2 col text-center h-100">
+    <div class="bg-secondary text-white p-2 col-2 text-center">{{ lineOrder.lineId }}</div>
+    <div class="bg-secondary text-white p-2 col-1 text-center">{{ lineOrder.orderId }}</div>
+    <span *ngIf="products" class="col-4 bg-secondary text-white">
+        <div class="bg-secondary text-white p-2 text-center h-100">
             {{ getProductName(lineOrder.productId) }}
         </div>
     </span>
-    <div class="bg-secondary text-white p-2 col text-center">{{ lineOrder.quantity }}</div>
-    <div class="p-2 bg-secondary text-white col text-center">
+    <div class="bg-secondary text-white p-2 col-2 text-center">{{ lineOrder.quantity }}</div>
+    <div class="p-2 bg-secondary text-white col-1 text-center">
         <button (click)="selectLineOfOrder(lineOrder)" type="button" class="btn btn-secondary text-white" data-toggle="modal" [attr.data-target]="'#modalLineOfOrder-' + lineOrder.orderId">
             <i class="far fa-edit"></i>
         </button>
     </div>
-    <div class="p-2 bg-secondary text-white col text-center">
+    <div class="p-2 bg-secondary text-white col-1 text-center">
         <button (click)="selectLineOfOrder(lineOrder)" type="button" class="btn btn-secondary text-white" data-toggle="modal" [attr.data-target]="'#modalDeleteLineOfOrder-' + lineOrder.orderId">
             <i class="fas fa-trash"></i>
         </button>
     </div>
-    <td class="bg-secondary text-white p-2 col text-center"></td>
+    <td class="bg-secondary text-white p-2 col-1 text-center"></td>
 </div>

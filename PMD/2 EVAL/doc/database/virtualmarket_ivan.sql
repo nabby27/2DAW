@@ -46,9 +46,9 @@ CREATE TABLE `clients` (
 
 INSERT INTO `clients` (`dni`, `name`, `address`, `email`, `password`, `admin`) VALUES
 ('11111111A', 'Pepe', 'Calle Monestir de poblet 3 - 3', 'pepe@gmail.com', '$2y$10$n0I0jczZHCLzQJmXOAgCJ.BPDwBkED2cBkNzRpfUUmsORduMjRUg.', 0),
-('22222222A', 'Julia', 'Calle San valeriano 2 -3', 'julia@gmail.com', '$2y$10$FT488FHEIGu5wR57X6eLxOKwoB.wmWNaVtCK.13EZEkoD1zwWMT3W', 0),
+('22222222A', 'Julia', 'Calle San valeriano 2 - 3', 'julia@gmail.com', '$2y$10$FT488FHEIGu5wR57X6eLxOKwoB.wmWNaVtCK.13EZEkoD1zwWMT3W', 0),
 ('88888888A', 'Jose', 'Avenida primado reig 4 - 1', 'jose@gmail.com', '$2y$10$x6qrt8rl3qhzyPWwHI2TYu.bG5CZBr7YRG4HHZxjlYnNBtvhrY2tK', 1),
-('99999999A', 'Iván2', 'Calle Álvaro de Bazán 10- 3', 'ivan@gmail.com', '$2y$10$KoJJ5xCxTBH9sVAEgqV70evfhPrJZanIga8I8Z4BbGphX/Dh/C7oa', 1);
+('99999999A', 'Iván', 'Calle Álvaro de Bazán 10 - 3', 'ivan@gmail.com', '$2y$10$KoJJ5xCxTBH9sVAEgqV70evfhPrJZanIga8I8Z4BbGphX/Dh/C7oa', 1);
 
 -- --------------------------------------------------------
 

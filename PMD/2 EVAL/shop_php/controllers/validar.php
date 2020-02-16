@@ -12,6 +12,8 @@ if (isset($_POST['dni']) && isset($_POST['password'])) {
     if ($client && password_verify($password, $client->password)) {
 
         [$dni, $tempClientId] = getDniClientAndTempClientId();
+        
+        /** Actualizar el carrito con el usuario logeado */
         $soppingCartModel = new ShoppingCart(0, '', $client->dni, $tempClientId, 0, 0);
         $shoppingCartTotal = $soppingCartModel->updateShoppingCartToLoggedClient($db->link);
 

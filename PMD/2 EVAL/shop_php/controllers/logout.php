@@ -1,6 +1,6 @@
 <?php
 
-$paths = ['', '/', '/detail'];
+$paths = ['', '/', '/shop', '/detail', '/shopping-cart', '/confirm', '/pdf', '/login', '/sign-up', '/logout'];
 
 if (isset($_SERVER['HTTP_COOKIE'])) {
     $cookies = explode(';', $_SERVER['HTTP_COOKIE']);

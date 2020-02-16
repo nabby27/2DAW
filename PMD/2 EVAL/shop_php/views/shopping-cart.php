@@ -13,8 +13,8 @@
                     <div class="col-12 m-2">
                         <article class="card">
                             <div class="row">
-                                <div class="col-12 col-md-2 d-flex justify-content-center">
-                                    <img class="w-75 img-fluid" src="../../assets/img/<?php echo $product->productImage ?>">
+                                <div class="col-12 col-md-2 w-75 d-flex justify-content-center">
+                                    <img class="img-fluid" src="../../assets/img/<?php echo $product->productImage ?>">
                                 </div>
                                 <div class="col-12 col-md-10">
                                     <div class="row p-3 h-100 row d-flex justify-content-center align-items-center">

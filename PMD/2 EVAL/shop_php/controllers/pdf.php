@@ -3,6 +3,7 @@
 require_once '../lib/dompdf/autoload.inc.php';
 use Dompdf\Dompdf;
 
+/** Imprimir PDF de factura */
 if (isset($_COOKIE['productsToPdf'])) {
     $htmlToPDF = getHtmlToPDF(json_decode($_COOKIE['productsToPdf']));
     $dompdf = new Dompdf();
@@ -12,6 +13,7 @@ if (isset($_COOKIE['productsToPdf'])) {
     $dompdf->stream('factura_Tshop_' . date('Y-m-d') . '.pdf');
 }
 
+/** Se genera todo el html en un string que devuelve */
 function getHtmlToPDF($products) {
     $sum = 0;
     $html = '<!DOCTYPE html>';

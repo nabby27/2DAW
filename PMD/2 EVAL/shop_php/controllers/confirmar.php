@@ -4,6 +4,7 @@ require '../utils.php';
 
 $db = new Bd();
 
+/** Se comprueba que el usuario este logeado */
 if (!isset($_COOKIE['user_name'])) {
     header('Location: ../login');
 } else {
@@ -21,6 +22,7 @@ if (!isset($_COOKIE['user_name'])) {
     require '../views/resum.php';
 }
 
+/** Función que guarda un pedido y sus lineas de pedido desde la bd de carrito con el usuario asociado */
 function saveOrder($db, $dni, $tempClientId) {
     $soppingCartModel = new ShoppingCart(0, '', $dni, $tempClientId, 0, 0);
     $products = $soppingCartModel->getProductsOnShoppingCart($db->link);
@@ -43,6 +45,7 @@ function saveOrder($db, $dni, $tempClientId) {
     return $products;
 }
 
+/** Función que recoge la hora de Asia (Singapore) */
 function getAsiaHour() {
     $url = 'http://worldtimeapi.org/api/timezone/Asia/Singapore';
     $options = array(
@@ -61,6 +64,7 @@ function getAsiaHour() {
     }
 }
 
+/** Función que devuelve un strign con el html */
 function getHtml($client, $products, $asiaTime, $sendToday) {
     $sum = 0;
     $html  ='<!DOCTYPE html>';

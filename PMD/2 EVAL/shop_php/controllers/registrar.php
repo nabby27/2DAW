@@ -2,9 +2,9 @@
 require '../modelo.php';
 require '../utils.php';
 
-error_reporting(~0); ini_set('display_errors', 1);
 $db = new Bd();
 
+/** Se verifica las contraseñas antes de registrar el usuario */
 if (isset($_POST['password']) && isset($_POST['password_verify'])) {
     if ($_POST['password'] === $_POST['password_verify']) {
         $url = 'http://localhost/services/clients/addClientController.php';

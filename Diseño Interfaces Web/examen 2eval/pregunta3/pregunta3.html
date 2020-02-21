@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pregunta 3</title>
+    <style>
+        .i_move {
+            animation: move 2s infinite 0s ease-in-out;
+            /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+        }
+        .i_color {
+            animation: move 2s infinite 0s ease-in-out;
+        }
+        .v {
+            animation: move 2s infinite 0.33s ease-in-out;
+        }
+        .a {
+            animation: move 2s infinite 0.66s ease-in-out;
+        }
+        .n {
+            animation: move 2s infinite 1s ease-in-out;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(0px);
+                color: red;
+            }
+            10% {transform: translateY(-10px);}
+            25% {color: blue;}
+            50% {
+                transform: translateY(0px);
+                color: yellow;
+            }
+            75% {color: green;}
+            100% {
+                transform: translateY(0px);
+                color: purple;
+            }
+        }
+    </style>
+</head>
+<body style="display: flex; justify-content: center; min-height: 100vh; align-items: center; font-size: 30px;">
+    <!-- IVÁN CÓRDOBA DONET -->
+    <span class="i_move i_color">I</span>
+    <span class="v">V</span>
+    <span class="a">Á</span>
+    <span class="n">N</span>
+</body>
+</html>

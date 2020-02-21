@@ -1,0 +1,9 @@
+<div>
+    Esto es nueva-falla<br>
+    Nombre: <input type="text" name="nombre" [(ngModel)]="nuevaFalla.nombre"><br>
+    Dirección: <input type="text" name="direccion" [(ngModel)]="nuevaFalla.direccion"><br>
+    Categoria: <input type="number" name="categoria" [(ngModel)]="nuevaFalla.categoria"><br>
+    Carpa: <input type="checkbox" name="carpa" [(ngModel)]="nuevaFalla.carpa"><br>
+    <button (click)="cancelForm()">Cancelar</button>
+    <button (click)="sendForm()">Enviar</button>
+</div>

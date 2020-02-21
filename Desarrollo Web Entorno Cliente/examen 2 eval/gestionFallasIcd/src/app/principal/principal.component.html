@@ -1,0 +1,6 @@
+<div>
+    Esto es principal<br>
+    <button (click)="openForm()">Nueva falla</button>
+    <app-nueva-falla *ngIf="isOpenForm" (newFalla)="addNewFalla($event)" (closeForm)="closeForm()"></app-nueva-falla>
+    <app-lista-fallas [fallas]="fallas"></app-lista-fallas>
+</div>

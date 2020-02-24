@@ -1,0 +1,4 @@
+RewriteEngine on
+
+RewriteRule ^ivan/todos$ ivan.php
+RewriteRule ^ivan/(.+)$ ivan.php?idJugador=$1
